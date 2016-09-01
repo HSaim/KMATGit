@@ -1,0 +1,128 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 26, 2016, 11:33:58 AM
+    Author     : Habiba Saim
+*/
+/**
+Import of other css into main,so only main to be linked with the code
+*/
+@import url(topMenubar.css);
+@import url(verticalMenu.css);
+
+
+body{
+    background-image:url("../images/background3.jpg");
+    /*background-repeat: no-repeat;*/
+    background-size: cover;
+   /* background-repeat: repeat-y;*/
+}
+
+
+
+
+
+#section {
+    width:350px;
+    float:left;
+    padding:10px;
+    /*background-color:pink;*/
+    /*background-image:url("11.png");*/
+    width:auto;
+    height:auto;	
+}
+
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	
+}
+
+
+.active {
+    background-color: #4CAF50;
+}
+
+div{
+    background-color:grey;
+}
+
+.simple-ss{
+    display:none;
+    width:100%;
+    height:250px;
+    float:right;
+}
+
+div.hidden{
+    display:none;
+}
+
+/*
+div.log-in{
+    display:none;
+}
+*/
+#tool-add{
+    display:none;
+}
+
+#outbtn{
+    display:none;
+}
+
+#added{
+    display:none;
+}
+#delmsg{
+display:none;
+}
+
+#tool-added{
+    display:none;
+}
+#logo{
+   float: left;
+   position: absolute;
+   background:none;
+}
+
+#imglogo{
+   width:100px;
+   height:100px;
+   top:75px;
+   left:20px;
+   position:relative;
+   float:center-left;
+   
+}
+
+#Login{
+    display: block;
+}
+
+p.error-message{
+    color:  red;
+    font-size: 20px;
+    
+}
+
+#add-user{
+    display: block;
+}
+
+.required{
+    color: red;
+    font-size:15px;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+

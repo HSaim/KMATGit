@@ -1,0 +1,155 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 26, 2016, 11:33:58 AM
+    Author     : Habiba Saim
+*/
+
+body{
+    background-image:url("../images/11.png");
+    background-repeat: repeat;
+   /* background-repeat: repeat-y;*/
+}
+
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+
+#nav {
+    /*line-height:30px;*/
+    background-color:#eeeeee;
+    height:auto;
+    width:auto;
+    float:left;
+    padding:5px;
+    display:block;
+}
+
+#section {
+    width:350px;
+    float:left;
+    padding:10px;
+    /*background-color:pink;*/
+    /*background-image:url("11.png");*/
+    width:auto;
+    height:auto;	
+}
+
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    width:auto;
+}
+
+li {
+    float: right;
+    width:auto;
+	
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    width:auto;
+
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+div{
+    background-color:grey;
+}
+
+.simple-ss{
+    display:none;
+    width:100%;
+    height:250px;
+    float:right;
+}
+
+div.hidden{
+    display:none;
+}
+
+div.log-in{
+    display:none;
+}
+#tool-add{
+    display:none;
+}
+
+#outbtn{
+    display:none;
+}
+
+#added{
+    display:none;
+}
+#delmsg{
+display:none;
+}
+#to-add{
+    display:none;
+}
+#tool-added{
+    display:none;
+}
+#logo{
+   float: left;
+   position: absolute;
+   background:none;
+}
+
+#imglogo{
+   width:100px;
+   height:100px;
+   top:75px;
+   left:20px;
+   position:relative;
+   float:center-left;
+   
+}
+
+#login{
+    display: block;
+}
+
+.error-color{
+    color:  red;
+    
+}
+
+#add-user{
+    display: block;
+}
