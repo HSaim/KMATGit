@@ -8,14 +8,14 @@
 <!-- <link rel="stylesheet" type="text/css" href="css/sidebarMenu.css">-->
 <%-- Sidebar Menu Starts 
 <div id = "nav" >--%>
-
-    <ul id = "vertical">
-        <li>
-            <a href = "#addUser">User</a>  
+<div id = "vertical">
+    <ul >
+        <li class = "user">
+            <a href = "AddUser">User</a>  
         </li>
 
-        <li>
-            <a href = "#addRole">Roles</a>
+        <li class =  "rolls">
+            <a href="#">Roles</a>
             <!-- Provision to add sub menu   -->
             <ul>
                <li><a href="#">Sub-Item 1 a</a></li>
@@ -31,12 +31,12 @@
             <a>Concept Map</a>
         </li>
 
-        <li>
+        <li >
             <a>Tools</a>
         </li>
 
-        <li>
-            <a href = "AddResource.jsp">
+        <li class = "resource" >
+            <a href = "AddResource">
                 Resources
             </a>
         </li>      
@@ -50,15 +50,15 @@
      <div id="addRole">Tab 2 Content</div>
      <div id="addLadder">Tab 3 Content</div>
 -->
-<!-- </div> -->
+</div>
 <!-- Script for submenu to be diplayed and hidden on mouse click -->
 <script>
     $(document).ready(function () {
-        $('#vertical > li > a').click(function(){
+        $('#vertical ul > li > a').click(function(){
             if ($(this).attr('class') != 'active'){
-                $('#vertical li ul').slideUp();
+                $('#vertical ul li ul').slideUp();
                 $(this).next().slideToggle();
-                $('#vertical li a').removeClass('active');
+                $('#vertical ul li a').removeClass('active');
                 $(this).addClass('active');
              }
         });

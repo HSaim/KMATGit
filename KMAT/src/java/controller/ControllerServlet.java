@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
                         "/UserAboutUs",
                         "/UserContactUs",
                         "/UserNews",
+                        "/AddUser",
+                        "/AddResource",
                         "/test"})
 public class ControllerServlet extends HttpServlet {
 

@@ -112,15 +112,20 @@ span[class ^= "icon"]{
     float: left;
    /* width: 280px; */
     width: auto;
-    padding:5px;
+    padding:1px;
+    /*
     border-top: 1px solid #999;
     border-right: 1px solid #999;
     border-left: 1px solid #999;
+    */
     list-style: none;
-     background-color:grey;
+   /* background-color:grey;*/
+}
+#vertical ul {
+    list-style: none;
 }
 
-#vertical li a {
+#vertical ul li a {
     display: block;
     padding: 10px 15px;
     background: #ccc;
@@ -132,17 +137,23 @@ span[class ^= "icon"]{
 
 
 
-#vertical li a:hover, #vertical li a.active {
+#vertical ul li a:hover, #vertical ul li a.active {
     background: #999;
     color: #fff;
 }
-#vertical li ul {
+#vertical ul li ul {
     display: none;/* used to hide sub-menus*/
     list-style: none;
     
 }
-#nav li ul li a {
+#vertical  ul li ul li a {
     padding: 10px 25px;
     background: #ececec;
     border-bottom: 1px dotted #ccc;
+}
+
+body.adduser #vertical ul li.user > a,
+body.addresource #vertical ul li.resource > a{
+    background: #999;
+    color: #fff;
 }

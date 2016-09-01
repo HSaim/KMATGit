@@ -14,23 +14,24 @@
         <title>About Us</title>
     </head>
     <body class ="about">
-         <%-- Menubar starts --%>
-       <jsp:include page="includes/menubar.jsp" />
-       <%-- Menubar Ends --%>
-       
-       <%-- Slider starts --%>
-       <div id = simple>  
-            <jsp:include page="includes/topSliderImages.jsp" />
-       </div>
-       <%-- Slider ends --%>
-       <h1>About Us Page is under construction</h1>
-      
-        <%-- adds Top Slider, login functions --%>
-        <jsp:include page="includes/js.jsp" /> 
-        
-        <%-- Includes footer 
-        <jsp:include page="includes/footer.jsp" />
-        
+        <div class = "wrapper">
+            <%-- Menubar starts --%>
+            <jsp:include page="includes/menubar.jsp" />
+            <%-- Menubar Ends --%>
+
+            <%-- Slider starts --%>
+            <div id = simple>  
+                 <jsp:include page="includes/topSliderImages.jsp" />
+            </div>
+            <%-- Slider ends --%>
+            <h1>About Us Page is under construction</h1>
+
+             <%-- adds Top Slider, login functions --%>
+             <jsp:include page="includes/js.jsp" /> 
+
+             <%-- Includes footer 
+             <jsp:include page="includes/footer.jsp" />
+
     </body>
 </html>
 --%>

@@ -14,26 +14,27 @@
         <title>About Us</title>
     </head>
     <body class ="about">
-         <%-- Menubar starts --%>
-       <jsp:include page="../../includes/menubarUser.jsp" />
-       <%-- Menubar Ends --%>
-       
-       <%-- Slider starts --%>
-       <div id = simple>  
-            <jsp:include page="../../includes/topSliderImages.jsp" />
-       </div>
-       <%-- Slider ends --%>
-       <h1>User's About Us Page is under construction</h1>
-       <%-- Sidebar Menu Starts --%>
-       <jsp:include page="../../includes/verticalUserMenu.jsp" />       
-       <%-- Sidebar Menu Ends --%>
-        <br/>
-        <%-- adds Top Slider, login functions --%>
-        <jsp:include page="../../includes/js.jsp" /> 
-        
-        <%-- Includes footer
-        <jsp:include page="includes/footer.jsp" />
-        
+        <div class = "wrapper">
+            <%-- Menubar starts --%>
+            <jsp:include page="../../includes/menubarUser.jsp" />
+            <%-- Menubar Ends --%>
+
+            <%-- Slider starts --%>
+            <div id = simple>  
+                 <jsp:include page="../../includes/topSliderImages.jsp" />
+            </div>
+            <%-- Slider ends --%>
+            <h1>User's About Us Page is under construction</h1>
+            <%-- Sidebar Menu Starts --%>
+            <jsp:include page="../../includes/verticalUserMenu.jsp" />       
+            <%-- Sidebar Menu Ends --%>
+             <br/>
+             <%-- adds Top Slider, login functions --%>
+             <jsp:include page="../../includes/js.jsp" /> 
+
+             <%-- Includes footer
+             <jsp:include page="includes/footer.jsp" />
+
     </body>
 </html>
  --%>

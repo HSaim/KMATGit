@@ -16,6 +16,7 @@
         <title>KMAT User</title>
     </head>
     <body class = "home"> <!-- onload="loading();"> -->
+        <div class = "wrapper">
        <%--
            String user = request.getParameter("hidden");
            out.println("user name: " + user);

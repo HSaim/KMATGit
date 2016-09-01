@@ -13,17 +13,20 @@ Import of other css into main,so only main to be linked with the code
 @import url(topMenubar.css);
 @import url(verticalMenu.css);
 
-
+/*
 body{
-    background-image:url("../images/background3.jpg");
-    /*background-repeat: no-repeat;*/
-    background-size: cover;
-   /* background-repeat: repeat-y;*/
+    background-image:url("../images/background3.jpg");   
+    background-size: cover;   
 }
 
+*/
 
-
-
+.wrapper{
+    background-color:grey;
+    background-image:url("../images/background3.jpg");
+    background-size: cover;
+    /*background-repeat: no-repeat;*/
+}
 
 #section {
     width:350px;
@@ -48,9 +51,7 @@ body{
     background-color: #4CAF50;
 }
 
-div{
-    background-color:grey;
-}
+
 
 .simple-ss{
     display:none;

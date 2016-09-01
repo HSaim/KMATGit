@@ -15,19 +15,20 @@
         
     </head>
     <body class = "home">
-       <%-- Menubar starts --%>
-       <jsp:include page="includes/menubar.jsp" />
-       <%-- Menubar Ends --%>
-       
-       <%-- Slider starts --%>
-       <div id = simple>  
-            <jsp:include page="includes/topSliderImages.jsp" />
-       </div>
-       <%-- Slider ends --%>
+        <div class = "wrapper">
+            <%-- Menubar starts --%>
+            <jsp:include page="includes/menubar.jsp" />
+            <%-- Menubar Ends --%>
 
-        <%-- adds Top Slider, login functions --%>
-        <jsp:include page="includes/js.jsp" /> 
-        
+            <%-- Slider starts --%>
+            <div id = simple>  
+                 <jsp:include page="includes/topSliderImages.jsp" />
+            </div>
+            <%-- Slider ends --%>
+
+             <%-- adds Top Slider, login functions --%>
+             <jsp:include page="includes/js.jsp" /> 
+
         
         
    

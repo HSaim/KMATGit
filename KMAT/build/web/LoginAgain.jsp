@@ -16,80 +16,81 @@
     </head>
     
     <body class = "login">
-       <%-- Menubar starts --%>
-       <jsp:include page="includes/menubar.jsp" />
-       <%-- Menubar Ends --%>
-       
-       <%-- Slider starts --%>
-       <div id = simple>  
-            <jsp:include page="includes/topSliderImages.jsp" />
-       </div>
-       <%-- Slider ends --%>
-       
-       <%-- Login section starts --%>
-       <div  id ="Login" align="center">
-            <form method="post" action="ValidateLogin.jsp" >    
-                
-                <p class ="error-message">                   
-                    Invalid user name or password                    
-                </p>
-                   
-                <table style="width:auto"align="center">
-                    <tr>
-                        <th colspan="2">
-                            Sign in
-                        </th>
-                    </tr>
-                    
-                    <tr>
-                        <td style="width:auto"align="right">
-                            Username:
-                        </td>
-                        <td style="width:auto"align="left">
-                            <input id="login-username" type="text" name="username" placeholder="Username or Email" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width:auto"align="right">
-                            Password:
-                        </td>
-                        <td style="width:auto"align="left">     
-                            <input id="login-password" type="password" name="password" placeholder="Password" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="width:auto"align="right">
-                            <a href="#">Forgot Password?</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="width:auto"align="left">
-                            <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="width:auto"align="center">
-                            <!--<button name="loginform"   onclick="loggedin()">Login</button>-->
-                            <input type="submit" value="Login" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="width:auto"align="center">
-                            No account? <a href = "SignUp.jsp">Sign Up Here!</a>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-        <%-- Login section ends --%>
-        
-        <%-- adds Top Slider, login functions --%>
-        <jsp:include page="includes/js.jsp" />
+        <div class = "wrapper">
+            <%-- Menubar starts --%>
+            <jsp:include page="includes/menubar.jsp" />
+            <%-- Menubar Ends --%>
 
- 
-        <%-- Includes footer 
-        <jsp:include page="includes/footer.jsp" />
-         
+            <%-- Slider starts --%>
+            <div id = simple>  
+                 <jsp:include page="includes/topSliderImages.jsp" />
+            </div>
+            <%-- Slider ends --%>
+
+            <%-- Login section starts --%>
+            <div  id ="Login" align="center">
+                 <form method="post" action="ValidateLogin.jsp" >    
+
+                     <p class ="error-message">                   
+                         Invalid user name or password                    
+                     </p>
+
+                     <table style="width:auto"align="center">
+                         <tr>
+                             <th colspan="2">
+                                 Sign in
+                             </th>
+                         </tr>
+
+                         <tr>
+                             <td style="width:auto"align="right">
+                                 Username:
+                             </td>
+                             <td style="width:auto"align="left">
+                                 <input id="login-username" type="text" name="username" placeholder="Username or Email" required>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td style="width:auto"align="right">
+                                 Password:
+                             </td>
+                             <td style="width:auto"align="left">     
+                                 <input id="login-password" type="password" name="password" placeholder="Password" required>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td colspan="2" style="width:auto"align="right">
+                                 <a href="#">Forgot Password?</a>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td colspan="2" style="width:auto"align="left">
+                                 <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+                             </td>
+                         </tr>
+                         <tr>
+                             <td colspan="2" style="width:auto"align="center">
+                                 <!--<button name="loginform"   onclick="loggedin()">Login</button>-->
+                                 <input type="submit" value="Login" />
+                             </td>
+                         </tr>
+                         <tr>
+                             <td colspan="2" style="width:auto"align="center">
+                                 No account? <a href = "SignUp.jsp">Sign Up Here!</a>
+                             </td>
+                         </tr>
+                     </table>
+                 </form>
+             </div>
+             <%-- Login section ends --%>
+
+             <%-- adds Top Slider, login functions --%>
+             <jsp:include page="includes/js.jsp" />
+
+
+             <%-- Includes footer 
+             <jsp:include page="includes/footer.jsp" />
+
     </body>
 </html>
 --%>
