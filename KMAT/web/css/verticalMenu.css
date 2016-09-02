@@ -107,28 +107,41 @@ span[class ^= "icon"]{
     display:block;  
 }
 */
-
-#vertical {
+#container {
+    position: relative;
+    margin-top: 0;
+}
+#navbar {
     float: left;
-   /* width: 280px; */
+    /*position: absolute;*/
+    width: 20%;
+    height: 100%;
+    overflow: auto;
+    border: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
+   /* padding-top: 15%;*/
+    /*display:block;
+   /* width: 280px; 
     width: auto;
-    padding:1px;
+    height:auto;*/
+   /* padding:1px;*/
     /*
     border-top: 1px solid #999;
     border-right: 1px solid #999;
     border-left: 1px solid #999;
+    border-bottom: 1px solid #999;
     */
-    list-style: none;
    /* background-color:grey;*/
 }
-#vertical ul {
+#navbar ul {
     list-style: none;
 }
 
-#vertical ul li a {
+#navbar ul > li > a {
     display: block;
     padding: 10px 15px;
-    background: #ccc;
+    background: #D2B48C;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #999;
     text-decoration: none;
@@ -137,23 +150,23 @@ span[class ^= "icon"]{
 
 
 
-#vertical ul li a:hover, #vertical ul li a.active {
-    background: #999;
+#navbar ul > li > a:hover, #navbar ul > li > a.active {
+    background: #8B4513;
     color: #fff;
 }
-#vertical ul li ul {
+#navbar  ul > li > ul {
     display: none;/* used to hide sub-menus*/
     list-style: none;
     
 }
-#vertical  ul li ul li a {
+#navbar ul > li > ul > li > a {
     padding: 10px 25px;
     background: #ececec;
     border-bottom: 1px dotted #ccc;
 }
 
-body.adduser #vertical ul li.user > a,
-body.addresource #vertical ul li.resource > a{
-    background: #999;
+body.adduser #navbar ul li.user > a,
+body.addresource #navbar ul li.resource > a{
+    background: #CD853F;
     color: #fff;
 }

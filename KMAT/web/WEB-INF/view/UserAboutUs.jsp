@@ -24,11 +24,14 @@
                  <jsp:include page="../../includes/topSliderImages.jsp" />
             </div>
             <%-- Slider ends --%>
-            <h1>User's About Us Page is under construction</h1>
+            <div id = "container">
+                <h1>User's About Us Page is under construction</h1>
             <%-- Sidebar Menu Starts --%>
             <jsp:include page="../../includes/verticalUserMenu.jsp" />       
             <%-- Sidebar Menu Ends --%>
+            
              <br/>
+             </div>
              <%-- adds Top Slider, login functions --%>
              <jsp:include page="../../includes/js.jsp" /> 
 

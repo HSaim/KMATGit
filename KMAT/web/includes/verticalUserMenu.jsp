@@ -8,7 +8,7 @@
 <!-- <link rel="stylesheet" type="text/css" href="css/sidebarMenu.css">-->
 <%-- Sidebar Menu Starts 
 <div id = "nav" >--%>
-<div id = "vertical">
+<div id = "navbar">
     <ul >
         <li class = "user">
             <a href = "AddUser">User</a>  
@@ -44,6 +44,7 @@
         <li>
             <a>Lists</a>
         </li>
+        
      </ul>
 <!--
      <div id="addUser">Tab 1 Content</div> 
@@ -54,11 +55,11 @@
 <!-- Script for submenu to be diplayed and hidden on mouse click -->
 <script>
     $(document).ready(function () {
-        $('#vertical ul > li > a').click(function(){
+        $('#navbar ul > li > a').click(function(){
             if ($(this).attr('class') != 'active'){
-                $('#vertical ul li ul').slideUp();
+                $('#navbar  ul > li > ul').slideUp();
                 $(this).next().slideToggle();
-                $('#vertical ul li a').removeClass('active');
+                $('#navbar ul > li  >a').removeClass('active');
                 $(this).addClass('active');
              }
         });

@@ -49,7 +49,9 @@ body.home #header li.home > a,
 body.login #header li.login >a,
 body.about #header li.about > a,
 body.contact #header li.contact >a,
-body.news #header li.news >a
+body.news #header li.news >a,
+body.adduser #header li.home > a,
+body.addresource #header li.home > a
 {
     color: #FFA500; 
 }
