@@ -24,7 +24,9 @@
                  <jsp:include page="../../includes/topSliderImages.jsp" />
             </div>
             <%-- Slider ends --%>
+            
             <h1>User's News Page is under construction</h1>
+            
             <%-- Sidebar Menu Starts --%>
             <jsp:include page="../../includes/verticalUserMenu.jsp" />       
             <%-- Sidebar Menu Ends --%>

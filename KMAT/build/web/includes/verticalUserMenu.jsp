@@ -8,49 +8,46 @@
 <!-- <link rel="stylesheet" type="text/css" href="css/sidebarMenu.css">-->
 <%-- Sidebar Menu Starts 
 <div id = "nav" >--%>
-<div id = "navbar">
-    <ul >
-        <li class = "user">
-            <a href = "AddUser">User</a>  
-        </li>
+<div id = "container"> 
+    <div id = "navbar">
+        <ul >
+            <li class = "user">
+                <a href = "AddUser">User</a>  
+            </li>
 
-        <li class =  "rolls">
-            <a href="#">Roles</a>
-            <!-- Provision to add sub menu   -->
-            <ul>
-               <li><a href="#">Sub-Item 1 a</a></li>
-           </ul>
-          
-        </li>
+            <li class =  "rolls">
+                <a href="#">Roles</a>
+                <!-- Provision to add sub menu   -->
+                <ul>
+                   <li><a href="#">Sub-Item 1 a</a></li>
+               </ul>
 
-        <li>
-            <a href = "#addLadder">Composition Ladder</a>
-        </li>
+            </li>
 
-        <li>
-            <a>Concept Map</a>
-        </li>
+            <li>
+                <a href = "#addLadder">Composition Ladder</a>
+            </li>
 
-        <li >
-            <a>Tools</a>
-        </li>
+            <li>
+                <a>Concept Map</a>
+            </li>
 
-        <li class = "resource" >
-            <a href = "AddResource">
-                Resources
-            </a>
-        </li>      
+            <li >
+                <a>Tools</a>
+            </li>
 
-        <li>
-            <a>Lists</a>
-        </li>
-        
-     </ul>
-<!--
-     <div id="addUser">Tab 1 Content</div> 
-     <div id="addRole">Tab 2 Content</div>
-     <div id="addLadder">Tab 3 Content</div>
--->
+            <li class = "resource" >
+                <a href = "AddResource">
+                    Resources
+                </a>
+            </li>      
+
+            <li>
+                <a>Lists</a>
+            </li>
+
+         </ul>   
+    </div>
 </div>
 <!-- Script for submenu to be diplayed and hidden on mouse click -->
 <script>

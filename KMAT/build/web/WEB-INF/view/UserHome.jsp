@@ -66,11 +66,11 @@
                  <jsp:include page="../../includes/topSliderImages.jsp" />
             </div>
             <%-- Slider ends --%>
-             <div id = "container"> 
-            <%-- Sidebar Menu Starts --%>
-            <jsp:include page="../../includes/verticalUserMenu.jsp" />       
+            <%-- Sidebar Menu Starts --%>                            
+            <jsp:include page="../../includes/verticalUserMenu.jsp" />                 
+            
             <%-- Sidebar Menu Ends --%>
-            </div>
+            
              <%-- adds Top Slider, login functions --%>
              <jsp:include page="../../includes/js.jsp" /> 
 
