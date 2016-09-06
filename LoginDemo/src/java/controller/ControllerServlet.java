@@ -20,7 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ControllerServlet", 
         loadOnStartup = 1,
         urlPatterns = { "/login", 
-                        "/reset"})
+                        "/reset",
+                        "/testpage"})
 public class ControllerServlet extends HttpServlet {
 
     /**
@@ -69,11 +70,14 @@ public class ControllerServlet extends HttpServlet {
        
        if (userPath.equals("/login")){
            //TODO: Implement login action 
-           userPath = "/UserTestPage";
+           //userPath = "/UserTestPage";
        } else if (userPath.equals("/reset")){
            //TODO: Implement reset action  
        }
-       
+       else if (userPath.equals("/testpage")){
+           //TODO: Implement reset action  
+            userPath = "/UserTestPage";
+       }
        // use RequestDispatcher to forward request internally
         String url = "/WEB-INF/view" + userPath + ".jsp";
 

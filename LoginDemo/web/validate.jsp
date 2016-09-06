@@ -12,12 +12,12 @@
     	String pass = "century_77";
     	out.println("in validate.jsp" + "<br>");
         String username = request.getParameter("username");
-        out.println("\nUser Name: "+ username);
-        out.println("<br>");
+        //out.println("\nUser Name: "+ username);
+        //out.println("<br>");
         String pwd = request.getParameter("password");
-        out.println("\nPassword: " + pwd + "<br>");
+        //out.println("\nPassword: " + pwd + "<br>");
         Class.forName("com.mysql.jdbc.Driver").newInstance();  // MySQL database connection
-        out.println("\nClass.forName executed" + "<br>");
+        //out.println("\nClass.forName executed" + "<br>");
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kmat_db1",  user, pass) ;
        // Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kmat_db" + "user=root&password=century_77");    
         out.println("\nConnected to DB" + "<br>");
@@ -30,7 +30,7 @@
         %>
         <script type="text/javascript">
             //window.location.href = "/WEB-INF/view/UserTestPage.jsp";
-            window.location.href = "UserTestPage.jsp";
+            window.location.href = "testpage";
         </script>
         <%
         }
