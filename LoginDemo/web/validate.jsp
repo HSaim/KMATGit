@@ -9,7 +9,7 @@
 <%
     //try{
     	String user = "root";
-    	String pass = "century_77";
+    	String pass = "admin";
     	out.println("in validate.jsp" + "<br>");
         String username = request.getParameter("username");
         //out.println("\nUser Name: "+ username);

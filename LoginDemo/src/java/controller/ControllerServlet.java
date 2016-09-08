@@ -73,6 +73,7 @@ public class ControllerServlet extends HttpServlet {
            //userPath = "/UserTestPage";
        } else if (userPath.equals("/reset")){
            //TODO: Implement reset action  
+           userPath = "/UserTestPage";
        }
        else if (userPath.equals("/testpage")){
            //TODO: Implement reset action  
