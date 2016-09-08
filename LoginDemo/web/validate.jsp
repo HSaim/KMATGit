@@ -8,8 +8,8 @@
 <%@ page import="java.sql.DriverManager" %>
 <%
     //try{
-    	String user = "root";
-    	String pass = "admin";
+    	String user = "kmat";
+    	String pass = "kmat";
     	out.println("in validate.jsp" + "<br>");
         String username = request.getParameter("username");
         //out.println("\nUser Name: "+ username);
