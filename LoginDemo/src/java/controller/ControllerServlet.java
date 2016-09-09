@@ -12,16 +12,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Habiba Saim
  */
 @WebServlet(name = "ControllerServlet", 
-        loadOnStartup = 1,
-        urlPatterns = { "/login", 
-                        "/reset",
-                        "/testpage"})
+        loadOnStartup = 1
+       // urlPatterns = { //"/login", 
+                        //"/reset",
+                       // "/testpage"
+                        //}
+)
 public class ControllerServlet extends HttpServlet {
 
     /**
@@ -66,8 +69,11 @@ public class ControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        //processRequest(request, response);
-       String userPath = request.getServletPath();
-       
+      
+      // String userPath = request.getServletPath();
+        PrintWriter out = response.getWriter();
+       out.println("In ControllerServlet doGet()");
+       /*
        if (userPath.equals("/login")){
            //TODO: Implement login action 
            //userPath = "/UserTestPage";
@@ -86,8 +92,40 @@ public class ControllerServlet extends HttpServlet {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
+        /* User login check */
+        try{       	    
 
+            UserBean user = new UserBean();
+            user.setUserName(request.getParameter("username"));
+            user.setPassword(request.getParameter("password"));
+
+            user = UserDAO.login(user);
+
+            if (user.isValid())
+            {
+                  
+                out.println("valid user");
+                 HttpSession session = request.getSession(true);	    
+                 session.setAttribute("currentSessionUser",user); 
+                 response.sendRedirect("userLogged.jsp"); //logged-in page      		
+            }
+
+            else 
+                 response.sendRedirect("invalidLogin.jsp"); //error page 
+       } 
+
+
+       catch (Throwable theException) 	    
+       {
+           out.println(theException); 
+       }
+        finally{
+            out.close();
+        }
     }
+
+    
 
     /**
      * Handles the HTTP <code>POST</code> method.

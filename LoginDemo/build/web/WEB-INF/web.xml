@@ -5,6 +5,7 @@
             30
         </session-timeout>
     </session-config>
+    <!--
     <resource-ref>
         <description>Connects to DB for LoginDemo project</description>
         <res-ref-name>jdbc/KMATDB1</res-ref-name>
@@ -12,4 +13,15 @@
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
+   -->
+    <servlet>
+        <servlet-name>ControllerServlet</servlet-name>
+        <servlet-class>controller.ControllerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>ControllerServlet</servlet-name>
+      <url-pattern>/ControllerServlet</url-pattern>
+    </servlet-mapping>
+
+    
 </web-app>
