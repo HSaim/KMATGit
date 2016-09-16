@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="controller.UserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -12,9 +13,7 @@
     
      <body >
          
-         <%
-        String user = request.getParameter("hidden");
-        %>
+        
         <div id = "header">
             <ul>
                 <li class = "home"><a  href="UserHome">Home</a></li>
@@ -22,19 +21,22 @@
                 <li class = "contact"><a href="UserContactUs">Contact</a></li>
                 <li class = "about"><a href="UserAboutUs">About</a></li>
                <!--- <li class = "map"><a href="UserMap.jsp">Site Map</a></li> -->   
-               <li class = "map"><a href="UserMap">Site Map</a></li>
+                <li class = "map"><a href="UserMap">Site Map</a></li>
                 <li><a href = "login.jsp">Logout</a></li>
-
+ 
                 <%-- Code to display hello message with user name - Starts--%> 
+                
                 <lable id = "hellomsg" align="left"></lable>
                 <script>
                    (function() {
-                        var val1 = 'user';
+                       <% UserBean currentUser = ((UserBean) (session.getAttribute("CurrentSessionUser"))); %>
+                        var v1 = '<%= currentUser.getUsername() %>';
+                      // var val1 =  "user";
                         var label = document.getElementById("hellomsg");
                         //var uname = document.getElementById("login-username").value;
                         //var val2 = request.getParameter("hidden");
                         //var val3 = session.getAttribute(userName);
-                        label.innerHTML = "Welcome! " + val1;
+                        label.innerHTML = "Welcome! " +   v1;
                         label.style.display = "block";
                     })();
                   

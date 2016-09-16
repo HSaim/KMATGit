@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -70,7 +71,35 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+        
+        //Validate username and password
+        /*
+        try{
+            UserBean user = new UserBean();
+            user.setUserName(request.getParameter("username"));
+            user.setPassword(request.getParameter("password"));
+            
+            user = UserDAO.login(user);
+            
+            if (user.isValid()){
+                HttpSession session = request.getSession(true);
+                session.setAttribute("CurrentSessionUser", user);
+                response.sendRedirect("UserHome");
+            }
+            else{
+                response.sendRedirect("LoginAgain.jsp");
+            }
+        }
+        catch (Throwable theException){ 	    
+       
+           theException.printStackTrace(); 
+        }
+        finally{
+            
+        }
+        
+        */
+        
         String userPath = request.getServletPath();
         
         // if map page is requested

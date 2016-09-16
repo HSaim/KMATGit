@@ -67,8 +67,7 @@ public class ControllerServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       //processRequest(request, response);
+            throws ServletException, IOException {      
       
       // String userPath = request.getServletPath();
         PrintWriter out = response.getWriter();

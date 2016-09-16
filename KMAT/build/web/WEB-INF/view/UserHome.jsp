@@ -6,6 +6,7 @@
     Logged in user's home page
 --%>
 
+<%@page import="controller.UserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -66,6 +67,7 @@
                  <jsp:include page="../../includes/topSliderImages.jsp" />
             </div>
             <%-- Slider ends --%>
+            
             <%-- Sidebar Menu Starts --%>                            
             <jsp:include page="../../includes/verticalUserMenu.jsp" />                 
             
