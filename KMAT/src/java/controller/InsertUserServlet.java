@@ -5,6 +5,7 @@
  */
 package controller;
 
+import Model.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpSession;
  * Connect to KMAT DB to add a new user
  * @author Habiba Saim
  */
-public class InsertUserController extends HttpServlet {
+public class InsertUserServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -94,7 +95,7 @@ public class InsertUserController extends HttpServlet {
                 }
             }
             
-            else if (!user.isAdded() && user.isDuplicateUser()){  
+            else if (!user.isAdded() && user.isDuplicateUser() && user.getHidden().equalsIgnoreCase("adduser")){  
                 response.setContentType("text/html;charset=UTF-8");
                 try {
                     PrintWriter out = response.getWriter();
@@ -102,6 +103,20 @@ public class InsertUserController extends HttpServlet {
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('User name: " + user.getUserName() +" already exists, choose a new one!');");
                     out.println("location='AddUser';");
+                    out.println("</script>");                    
+                }
+                catch (Exception e){
+                    System.out.println("Alert could not be generated. Error: " + e);
+                }
+            }
+            else if (!user.isAdded() && user.isDuplicateUser() && user.getHidden().equalsIgnoreCase("signup")){  
+                response.setContentType("text/html;charset=UTF-8");
+                try {
+                    PrintWriter out = response.getWriter();
+                    String userName= user.getUserName();
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('User name: " + user.getUserName() +" already exists, choose a new one!');");
+                    out.println("location='SignUp.jsp';");
                     out.println("</script>");                    
                 }
                 catch (Exception e){

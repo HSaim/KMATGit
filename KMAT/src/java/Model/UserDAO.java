@@ -1,5 +1,5 @@
 
-package controller;
+package Model;
 
 /**
  * Query KMAT DB to confirm username and password
@@ -7,6 +7,8 @@ package controller;
  * 
  * @author Habiba Saim
  */
+import controller.AddUserBean;
+import controller.UserBean;
 import java.io.PrintWriter;
 import java.text.*;
 import java.util.*;
