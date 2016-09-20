@@ -44,7 +44,7 @@
 
         <%-- Add User Block Starts --%>
         <div  class = "wrapper">
-            <form method="post" action="InsertUserController" > <!--onsubmit="return validLogin();"> -->
+            <form method="post" action="InsertUserServlet" > <!--onsubmit="return validLogin();"> -->
                 <input type="hidden" name="hidden" value="SignUp"> <!-- For distinction of SignUp and AddUser pages-->
                 <table style="width:auto"align="center">
                     <tr>

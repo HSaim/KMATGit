@@ -34,7 +34,7 @@
             <%-- Add User Block Starts --%>      
 
             <div  id ="Login" align="center">
-                <form method="post" action="InsertUserController">
+                <form method="post" action="InsertUserServlet">
                     <input type="hidden" name="hidden" value="AddUser"> <!-- For distinction of SignUp and AddUser pages-->
                     <table style="width:auto"align="center">
                         <tr>
