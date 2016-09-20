@@ -43,8 +43,8 @@
         </div>
 
         <%-- Add User Block Starts --%>
-        <div  id ="Login">
-            <form method="post" action="InsertUser.jsp" > <!--onsubmit="return validLogin();"> -->
+        <div  class = "wrapper">
+            <form method="post" action="InsertUserController" > <!--onsubmit="return validLogin();"> -->
                 <input type="hidden" name="hidden" value="SignUp"> <!-- For distinction of SignUp and AddUser pages-->
                 <table style="width:auto"align="center">
                     <tr>

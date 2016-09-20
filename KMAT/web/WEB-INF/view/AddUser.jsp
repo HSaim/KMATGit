@@ -34,7 +34,7 @@
             <%-- Add User Block Starts --%>      
 
             <div  id ="Login" align="center">
-                <form method="post" action="InsertUser.jsp">
+                <form method="post" action="InsertUserController">
                     <input type="hidden" name="hidden" value="AddUser"> <!-- For distinction of SignUp and AddUser pages-->
                     <table style="width:auto"align="center">
                         <tr>
@@ -49,7 +49,8 @@
                 </form>
             </div>       
             <%-- Add User Block Ends --%>
-           <%-- adds Top Slider, login functions --%>
+            
+            <%-- adds Top Slider, login functions --%>
             <jsp:include page="../../includes/js.jsp" /> 
 
             <%-- Includes footer 
