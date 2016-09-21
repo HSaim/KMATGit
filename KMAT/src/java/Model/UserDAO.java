@@ -18,6 +18,7 @@ public class UserDAO {
     static Connection currentCon = null;
     static ResultSet rs = null;  
 		
+    //Validate username and password while login
     public static UserBean login(UserBean bean) {
 	
         //preparing some objects for connection 
@@ -100,6 +101,7 @@ public class UserDAO {
 
     }	
     
+    //Add a new user in KMAT DB
     public static AddUserBean insertUser(AddUserBean bean) {
         
         
