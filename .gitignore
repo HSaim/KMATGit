@@ -51,3 +51,6 @@ nbbuild/
 nbdist/
 */nbproject/private/
 *.class
+KMAT/build/web/WEB-INF/classes/controller/ControllerServlet.class
+KMAT/build/web/WEB-INF/classes/controller/ControllerServlet.class
+*.class
