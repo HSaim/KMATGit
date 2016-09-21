@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Habiba Saim
  */
-@WebServlet(name = "ControllerServlet", 
+@WebServlet(name = "RequestDispatcherController", 
         loadOnStartup = 1,
         urlPatterns = {"/UserHome",
                         "/UserMap",
@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
                         "/AddUser",
                         "/AddResource",
                         "/test"})
-public class ControllerServlet extends HttpServlet {
+public class RequestDispatcherController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,10 +49,10 @@ public class ControllerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControllerServlet</title>");            
+            out.println("<title>Servlet RequestDispatcherController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControllerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RequestDispatcherController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,37 +71,10 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        //Validate username and password
-        /*
-        try{
-            UserBean user = new UserBean();
-            user.setUserName(request.getParameter("username"));
-            user.setPassword(request.getParameter("password"));
-            
-            user = UserDAO.login(user);
-            
-            if (user.isValid()){
-                HttpSession session = request.getSession(true);
-                session.setAttribute("CurrentSessionUser", user);
-                response.sendRedirect("UserHome");
-            }
-            else{
-                response.sendRedirect("LoginAgain.jsp");
-            }
-        }
-        catch (Throwable theException){ 	    
-       
-           theException.printStackTrace(); 
-        }
-        finally{
-            
-        }
-        
-        */
+      
         
         String userPath = request.getServletPath();
-        
+        /*
         // if map page is requested
         if (userPath.equals("/UserMap")) {
             // TODO: Implement map request
@@ -129,6 +102,7 @@ public class ControllerServlet extends HttpServlet {
              // TODO: Implement user's news  request
             //userPath = "/UserTestPage";
         }
+        */
         String url = "/WEB-INF/view" + userPath + ".jsp";
 
         try {

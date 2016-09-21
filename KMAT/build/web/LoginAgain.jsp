@@ -29,7 +29,7 @@
 
             <%-- Login section starts --%>
             <div  id ="Login" align="center">
-                 <form method="post" action="LoginServlet" >    
+                 <form method="post" action="LoginController" >    
 
                      <p class ="error-message">                   
                          Invalid user name or password                    

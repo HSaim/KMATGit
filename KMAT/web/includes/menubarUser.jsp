@@ -5,7 +5,7 @@
 --%>
 
 
-<%@page import="controller.UserBean"%>
+<%@page import="Model.UserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 

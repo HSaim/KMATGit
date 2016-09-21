@@ -6,7 +6,7 @@
     Logged in user's home page
 --%>
 
-<%@page import="controller.UserBean"%>
+<%@page import="Model.UserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

@@ -1,5 +1,5 @@
 
-package controller;
+package Model;
 
 /**
  * UserBean to set and get user details

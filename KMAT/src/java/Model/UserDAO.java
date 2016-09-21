@@ -7,8 +7,6 @@ package Model;
  * 
  * @author Habiba Saim
  */
-import controller.AddUserBean;
-import controller.UserBean;
 import java.io.PrintWriter;
 import java.text.*;
 import java.util.*;

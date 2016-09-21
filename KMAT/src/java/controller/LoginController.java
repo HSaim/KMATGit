@@ -5,6 +5,7 @@
  */
 package controller;
 
+import Model.UserBean;
 import Model.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Habiba Saim
  */
-public class LoginServlet extends HttpServlet{
+public class LoginController extends HttpServlet{
     
     
      /**

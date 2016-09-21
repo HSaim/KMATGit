@@ -5,6 +5,7 @@
  */
 package controller;
 
+import Model.AddUserBean;
 import Model.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpSession;
  * Connect to KMAT DB to add a new user
  * @author Habiba Saim
  */
-public class InsertUserServlet extends HttpServlet {
+public class InsertUserController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -115,7 +116,7 @@ public class InsertUserServlet extends HttpServlet {
                     PrintWriter out = response.getWriter();
                     String userName= user.getUserName();
                     out.println("<script type=\"text/javascript\">");
-                    out.println("alert('User name: " + user.getUserName() +" already exists, choose a new one!');");
+                    out.println("alert('User name: " + userName +" already exists, choose a new one!');");
                     out.println("location='SignUp.jsp';");
                     out.println("</script>");                    
                 }
