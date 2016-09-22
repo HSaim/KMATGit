@@ -13,6 +13,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <title>Map</title>
     </head>
+    
     <body class = "map">
         <div class = "wrapper">
             <%-- Menubar starts --%>
@@ -29,9 +30,4 @@
              <%-- adds Top Slider, login functions --%>
              <jsp:include page="includes/js.jsp" /> 
 
-             <%-- Includes footer 
-             <jsp:include page="includes/footer.jsp" />
-
-    </body>
-</html>
---%>
+             <%-- footer.jspf integrates here --%>

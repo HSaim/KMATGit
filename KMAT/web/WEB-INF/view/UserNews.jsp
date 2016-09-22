@@ -27,16 +27,11 @@
             
             <h1>User's News Page is under construction</h1>
             
-            <%-- Sidebar Menu Starts --%>
+            <%-- Sidebar Menu Starts 
             <jsp:include page="../../includes/verticalUserMenu.jsp" />       
             <%-- Sidebar Menu Ends --%>
 
              <%-- adds Top Slider, login functions --%>
              <jsp:include page="../../includes/js.jsp" /> 
 
-             <%-- Includes footer 
-             <jsp:include page="includes/footer.jsp" />
-
-    </body>
-</html>
---%>
+             <%-- footer.jspf integrates here --%>

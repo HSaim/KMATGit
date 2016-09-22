@@ -47,8 +47,29 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcherController</servlet-name>
+        <url-pattern>/AddRoles</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcherController</servlet-name>
+        <url-pattern>/AddLadder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcherController</servlet-name>
+        <url-pattern>/AddMap</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcherController</servlet-name>
+        <url-pattern>/AddTools</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcherController</servlet-name>
         <url-pattern>/AddResource</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcherController</servlet-name>
+        <url-pattern>/AddList</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
@@ -57,6 +78,7 @@
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
     </servlet-mapping>
+    
     <jsp-config>
         <jsp-property-group>
             <description>header and footer settings</description>

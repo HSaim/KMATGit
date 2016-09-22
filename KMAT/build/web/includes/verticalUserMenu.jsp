@@ -15,8 +15,8 @@
                 <a href = "AddUser">User</a>  
             </li>
 
-            <li class =  "rolls">
-                <a href="#">Roles</a>
+            <li class =  "role">
+                <a href="AddRoles">Roles</a>
                 <!-- Provision to add sub menu   -->
                 <ul>
                    <li><a href="#">Sub-Item 1 a</a></li>
@@ -24,16 +24,16 @@
 
             </li>
 
-            <li>
-                <a href = "#addLadder">Composition Ladder</a>
+            <li class = "ladder">
+                <a href = "AddLadder">Composition Ladder</a>
             </li>
 
-            <li>
-                <a>Concept Map</a>
+            <li class = "map">
+                <a href = "AddMap">Concept Map</a>
             </li>
 
-            <li >
-                <a>Tools</a>
+            <li class = "tool">
+                <a href = "AddTools">Tools</a>
             </li>
 
             <li class = "resource" >
@@ -42,8 +42,8 @@
                 </a>
             </li>      
 
-            <li>
-                <a>Lists</a>
+            <li class = "list">
+                <a href = "AddList">Lists</a>
             </li>
 
          </ul>   

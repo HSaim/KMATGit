@@ -48,7 +48,7 @@ public class InsertUserController extends HttpServlet {
         
         try{
             AddUserBean user = new AddUserBean();
-            
+            //Get Signup form elements 
             user.setUserName(request.getParameter("user_name"));
             user.setPassword(request.getParameter("password"));
             user.setFirstName(request.getParameter("firstname"));
@@ -63,6 +63,7 @@ public class InsertUserController extends HttpServlet {
             
             user = UserDAO.insertUser(user);
             
+            //If insertion done successfully and done by existing user
             if (user.isAdded() && user.getHidden().equalsIgnoreCase("adduser")){
                 //HttpSession session = request.getSession(true);
                 //session.setAttribute("CurrentSessionUser", user);//.getUsername());
@@ -81,6 +82,7 @@ public class InsertUserController extends HttpServlet {
                 }
       
             }
+            //If insertion done successfully and done by sign up form
             else if (user.isAdded() && user.getHidden().equalsIgnoreCase("signup")){
                 
                 response.setContentType("text/html;charset=UTF-8");
@@ -96,6 +98,7 @@ public class InsertUserController extends HttpServlet {
                 }
             }
             
+            //If duplicate user name is given in the form from an existing user
             else if (!user.isAdded() && user.isDuplicateUser() && user.getHidden().equalsIgnoreCase("adduser")){  
                 response.setContentType("text/html;charset=UTF-8");
                 try {
@@ -110,6 +113,7 @@ public class InsertUserController extends HttpServlet {
                     System.out.println("Alert could not be generated. Error: " + e);
                 }
             }
+            //If duplicate user name is given in the signup form
             else if (!user.isAdded() && user.isDuplicateUser() && user.getHidden().equalsIgnoreCase("signup")){  
                 response.setContentType("text/html;charset=UTF-8");
                 try {

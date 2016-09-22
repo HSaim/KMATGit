@@ -29,6 +29,6 @@
              <%-- adds Top Slider, login functions --%>
              <jsp:include page="includes/js.jsp" /> 
 
-        
+             <%-- footer.jspf integrates here --%>
         
    
