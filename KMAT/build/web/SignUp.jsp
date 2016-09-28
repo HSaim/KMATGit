@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="css/mainStyle.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <title>Sign Up</title>
-        
+        <!--
         <script>
             function validLogin(){
                         <%--if (n == "111"){
@@ -29,7 +29,24 @@
                 return true;
            }
         </script>
-       
+       -->
+       <!-- To validate email address-->
+        <script>
+            function verifyEmail(){
+                var status = true;     
+                var emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+                    if (document.signup.p_email.value.search(emailRegEx) == -1) {
+                         alert("Please enter a valid email address in Primary Email field");                      
+                         status = false;
+                    }
+
+                    if (document.signup.s_email.value.search(emailRegEx) == -1 && document.signup.s_email.value!="") {
+                         alert("Please enter a valid email address in Secondary Email field");                   
+                         status = false;
+                    }
+                return status;
+            }
+        </script>
     </head>
     
     <body>
@@ -44,7 +61,7 @@
 
         <%-- Add User Block Starts --%>
         <div  class = "wrapper">
-            <form method="post" action="InsertUserController" > <!--onsubmit="return validLogin();"> -->
+            <form name = "signup" method="post" action="InsertUserController" onSubmit="return verifyEmail()"> <!--onsubmit="return validLogin();"> -->
                 <input type="hidden" name="hidden" value="SignUp"> <!-- For distinction of SignUp and AddUser pages-->
                 <table style="width:auto"align="center">
                     <tr>
