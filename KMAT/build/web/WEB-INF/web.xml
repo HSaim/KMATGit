@@ -64,7 +64,7 @@
     <servlet-mapping>
         <servlet-name>RequestDispatcherController</servlet-name>
         <url-pattern>/AddResource</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>    
     <servlet-mapping>
         <servlet-name>RequestDispatcherController</servlet-name>
         <url-pattern>/AddList</url-pattern>

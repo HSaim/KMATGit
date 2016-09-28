@@ -37,15 +37,12 @@
             </li>
 
             <li class = "resource" >
-                <a href = "AddResource">
-                    Resources
-                </a>
+                <a href = "AddResource">Resources</a>                   
             </li>      
 
             <li class = "list">
                 <a href = "AddList">Lists</a>
-            </li>
-
+            </li>            
          </ul>   
     </div>
 </div>
