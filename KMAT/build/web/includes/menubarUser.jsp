@@ -21,7 +21,7 @@
                 <li class = "contact"><a href="UserContactUs">Contact</a></li>
                 <li class = "about"><a href="UserAboutUs">About</a></li>               
                 <li class = "map"><a href="UserMap">Site Map</a></li>
-                <li><a href = "login.jsp">Logout</a></li>
+                <li><a href = "LoginController">Logout</a></li>
  
                 <%-- Code to display hello message with user name - Starts--%> 
                 

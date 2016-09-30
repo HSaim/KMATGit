@@ -34,10 +34,15 @@ public class LoginController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session=request.getSession(); 
+        session.removeAttribute("CurrentSessionUser");
+        session.invalidate();  
+        response.sendRedirect("login.jsp");     
         //response.setContentType("text/html");
         //PrintWriter out = response.getWriter();
         //Validate username  and password
-        try{
+        /*try{
             UserBean user = new UserBean();
             user.setUserName(request.getParameter("username"));
             user.setPassword(request.getParameter("password"));
@@ -60,7 +65,7 @@ public class LoginController extends HttpServlet{
         }
         finally{
             
-        }
+        }*/
         
     }
 
@@ -76,7 +81,36 @@ public class LoginController extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        // processRequest(request, response);
-        doGet(request, response);
+        //doGet(request, response);
+        try{
+            UserBean user = new UserBean();
+            user.setUserName(request.getParameter("username"));
+            user.setPassword(request.getParameter("password"));
+            
+            user = UserDAO.login(user);
+            
+            if (user.isValid()){
+                HttpSession session = request.getSession(true);
+                session.setAttribute("CurrentSessionUser", user);//.getUsername());
+                //request.getRequestDispatcher("/WEB-INF/view/UserHome.jsp").forward(request, response);
+                //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/UserHome.jsp");
+                 //dispatcher.forward(request, response);  
+               response.sendRedirect("UserHome");
+                           
+            }
+            else{
+                response.sendRedirect("LoginAgain.jsp");
+               // request.getRequestDispatcher("LoginAgain.jsp").forward(request, response);
+            }
+        }
+        catch (Throwable theException){ 	    
+       
+           theException.printStackTrace(); 
+        }
+        finally{
+            
+        }
+        
     }
 
     /**

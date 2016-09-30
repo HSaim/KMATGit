@@ -5,6 +5,16 @@
 
     Logged in user's home page
 --%>
+<!-- To prevent user from accessing any user specific page after logout/seesion end -->
+<%
+    response.setHeader("Pragma","no-cache"); 
+    response.setHeader("Cache-Control","no-store");
+    response.setDateHeader("Expires",-1);
+    if(session.getAttribute("CurrentSessionUser")==null){
+    
+        response.sendRedirect("login.jsp");
+    }
+%> 
 
 <%@page import="Model.UserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
