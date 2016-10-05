@@ -1,9 +1,9 @@
 <%-- 
-    Document   : sidebarUser
+    Document   : verticalUserMenu
     Created on : Aug 2, 2016, 11:41:03 AM
     Author     : Habiba Saim
 --%>
-
+<!-- Adds vertical menu on user's home page -->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- <link rel="stylesheet" type="text/css" href="css/sidebarMenu.css">-->
 <%-- Sidebar Menu Starts 

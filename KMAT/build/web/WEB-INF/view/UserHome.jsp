@@ -5,7 +5,7 @@
 
     Logged in user's home page
 --%>
-<!-- To prevent user from accessing any user specific page after logout/seesion end -->
+<!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
     response.setHeader("Pragma","no-cache"); 
     response.setHeader("Cache-Control","no-store");

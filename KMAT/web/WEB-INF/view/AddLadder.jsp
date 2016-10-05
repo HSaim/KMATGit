@@ -4,6 +4,16 @@
     Author     : Habiba Saim
 --%>
 
+
+<%
+    response.setHeader("Pragma","no-cache"); 
+    response.setHeader("Cache-Control","no-store");
+    response.setDateHeader("Expires",-1);
+    if(session.getAttribute("CurrentSessionUser")==null){
+    
+        response.sendRedirect("login.jsp");
+    }
+%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
