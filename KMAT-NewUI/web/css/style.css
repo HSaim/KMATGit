@@ -349,58 +349,7 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 
-#fh5co-header {
-  position: absolute;
-  z-index: 1001;
-  width: 100%;
-  margin: 0px 0 0 0;
-  background: rgba(0, 0, 0, 0.5);
-}
-@media screen and (max-width: 768px) {
-  #fh5co-header {
-    margin: 0px 0 0 0;
-  }
-}
-#fh5co-header .header-inner {
-  height: 80px;
-  padding-left: 20px;
-  padding-right: 20px;
-  float: left;
-  width: 100%;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  border-radius: 7px;
-}
-#fh5co-header h1 {
-  float: left;
-  padding: 0;
-  font-weight: 700;
-  line-height: 0;
-  font-size: 30px;
-}
-#fh5co-header h1 a {
-  color: white;
-}
-#fh5co-header h1 a > span {
-  color: #118DF0;
-}
-#fh5co-header h1 a:hover, #fh5co-header h1 a:active, #fh5co-header h1 a:focus {
-  text-decoration: none;
-  outline: none;
-}
-#fh5co-header h1, #fh5co-header nav {
-  margin: 38px 0 0 0;
-}
-#fh5co-header nav {
-  float: right;
-  padding: 0;
-}
-@media screen and (max-width: 768px) {
-  #fh5co-header nav {
-    display: none;
-  }
-}
+fh5co-header
 #fh5co-header nav ul {
   padding: 0;
   margin: 0 -0px 0 0;
@@ -516,7 +465,30 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transform: scaleX(1);
   transform: scaleX(1);
 }
+/*
+Start: Additions by Habiba Saim
 
+#fh5co-header nav ul li ul{
+    display: none;
+}
+#fh5co-header nav ul li:hover ul {
+     display: block;
+     margin-top: 1.5em;
+  position: absolute;
+  padding: 0px;
+  background: black;
+  padding: 10px;
+  border: 1px solid black;
+                                
+}
+#fh5co-header nav ul li :hover ul li{
+    
+   display: block;
+}
+/*
+End: Additions by Habiba Saim
+
+*/
 #fh5co-hero {
   min-height: 700px;
   background: #fff url(../images/loader.gif) no-repeat center center;

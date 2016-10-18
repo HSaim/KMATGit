@@ -61,7 +61,8 @@
 	<link rel="stylesheet" href="css/flexslider.css">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
-
+        <!-- Navigation Bar -->
+        <link rel="stylesheet" href="css/navbar.css">
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -74,20 +75,36 @@
 	
 	
 	<div id="fh5co-page">
-	<header id="fh5co-header" role="banner">
+	<header id="navbar-header" role="banner">
 		<div class="container">
 			<div class="row">
 				<div class="header-inner">
 					<h1><a href="index.html">Estate<span>.</span></a></h1>
-					<nav role="navigation">
-						<ul>
-							<li><a href="buy.html">Buy</a></li>
-							<li><a href="rent.html">Rent</a></li>
-							<li><a href="properties.html">Properties</a></li>
-							<li class="call"><a href="tel://123456789"><i class="icon-phone"></i> +1 123 456 789</a></li>
-							<li class="cta"><a href="contact.html">Contact us</a></li>
-						</ul>
-					</nav>
+					<nav id="nav">
+								<ul>
+									<li><a class="icon fa-home" href="index.html"><span>Introduction</span></a></li>
+									<li>
+										<a href="#" class="icon fa-bar-chart-o"><span>Dropdown</span></a>
+										<ul>
+											<li><a href="#">Lorem ipsum dolor</a></li>
+											<li><a href="#">Magna phasellus</a></li>
+											<li><a href="#">Etiam dolore nisl</a></li>
+											<li>
+												<a href="#">Phasellus consequat</a>
+												<ul>
+													<li><a href="#">Magna phasellus</a></li>
+													<li><a href="#">Etiam dolore nisl</a></li>
+													<li><a href="#">Phasellus consequat</a></li>
+												</ul>
+											</li>
+											<li><a href="#">Veroeros feugiat</a></li>
+										</ul>
+									</li>
+									<li><a class="icon fa-cog" href="left-sidebar.html"><span>Left Sidebar</span></a></li>
+									<li><a class="icon fa-retweet" href="right-sidebar.html"><span>Right Sidebar</span></a></li>
+									<li><a class="icon fa-sitemap" href="no-sidebar.html"><span>No Sidebar</span></a></li>
+								</ul>
+							</nav>
 				</div>
 			</div>
 		</div>
@@ -451,6 +468,9 @@
 
 	<!-- MAIN JS -->
 	<script src="js/main.js"></script>
+        <!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>		
 
 	</body>
 </html>

@@ -1,0 +1,138 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 10, 2016, 11:37:25 AM
+    Author     : Habiba Saim
+*/
+
+/* Navbar Header
+#navbar-header {
+  position: absolute;
+  z-index: 1001;
+  width: 100%;
+  margin: 0px 0 0 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+@media screen and (max-width: 768px) {
+  #navbar-header {
+    margin: 0px 0 0 0;
+  }
+}
+#navbar-header .header-inner {
+  height: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+  float: left;
+  width: 100%;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  border-radius: 7px;
+}
+#navbar-header h1 {
+  float: left;
+  padding: 0;
+  font-weight: 700;
+  line-height: 0;
+  font-size: 30px;
+}
+#navbar-header h1 a {
+  color: white;
+}
+#navbar-header h1 a > span {
+  color: #118DF0;
+}
+#navbar-header h1 a:hover, #navbar-header h1 a:active, #navbar-header h1 a:focus {
+  text-decoration: none;
+  outline: none;
+}
+#navbar-header h1, #navbar-header #nav {
+  margin: 38px 0 0 0;
+}
+#navbar-header #nav {
+  float: right;
+  padding: 0;
+}
+@media screen and (max-width: 768px) {
+  #navbar-header nav {
+    display: none;
+  }
+}
+/* Nav */
+
+			#nav {
+				position: absolute;
+				right: 2em;
+				top: 0;
+				line-height: 5.5em;
+			}
+
+				#nav > ul > li {
+					float: left;
+					padding: 0 0.8em 0 0.8em;
+				}
+
+					#nav > ul > li > a, #nav > ul > li > span {
+						color: #fff;
+						text-decoration: none;
+						text-transform: uppercase;
+						font-weight: 800;
+						font-size: 0.95em;
+						letter-spacing: 0.075em;
+						padding: 0.5em 0.8em 0.5em 0.8em;
+						border-radius: 6px;
+						outline: 0;
+					}
+
+					#nav > ul > li.active > a, #nav > ul > li.current_page_item > a, #nav > ul > li.active > span, #nav > ul > li.current_page_item > span {
+						background: rgba(0, 0, 0, 0.15);
+						box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.025), 1px 1px 0px 0px rgba(255, 255, 255, 0.025);
+					}
+
+					#nav > ul > li:last-child {
+						padding-right: 0;
+					}
+
+					#nav > ul > li > ul {
+						display: none;
+					}
+
+			.dropotron {
+				background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0)), url("images/bg02.png");
+				background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0)), url("images/bg02.png");
+				background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0)), url("images/bg02.png");
+				background-image: linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0)), url("images/bg02.png");
+				position: relative;
+				background-color: #3B3E45;
+				background-color: rgba(59, 62, 69, 0.9);
+				border-radius: 8px;
+				box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 2px rgba(255, 255, 255, 0.075), inset 0px 2px 1px 0px rgba(255, 255, 255, 0.2), 0px 2px 14px 0px rgba(0, 0, 0, 0.4);
+				text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
+				padding: 1.5em;
+				line-height: 2.5em;
+				min-width: 15em;
+			}
+
+				.dropotron.level-0 {
+					border-top-left-radius: 0;
+					border-top-right-radius: 0;
+					margin-top: -2px;
+					box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 2px rgba(255, 255, 255, 0.075), 0px 2px 14px 0px rgba(0, 0, 0, 0.4);
+				}
+
+				.dropotron a, .dropotron span {
+					color: #aaa;
+					text-decoration: none;
+					text-transform: uppercase;
+					font-weight: 800;
+					font-size: 0.8em;
+					letter-spacing: 0.075em;
+					outline: 0;
+				}
+
+				.dropotron li:hover > a, .dropotron li:hover > span {
+					color: #fff;
+				}
