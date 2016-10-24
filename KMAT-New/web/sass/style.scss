@@ -1648,7 +1648,9 @@ figure {
 	vertical-align: middle;
 }
 
-
+.text-styled {
+	font-family: $font-secondary;
+}
 #contact-section {
 	.contact-info{
 		margin: 0;

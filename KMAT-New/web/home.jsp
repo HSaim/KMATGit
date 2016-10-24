@@ -67,19 +67,19 @@
                                                 <li>
                                                     <a href="#" class="fh5co-sub-ddown">sub menu 2</a>
                                                     <ul class="sub-menu">
-                                                            <li><a href="" >Build</a></li>
-                                                            <li><a href="">Work</a></li>
-                                                            <li><a href="">Light</a></li>
-                                                            <li><a href="">Relic</a></li>
-                                                            <li><a href="">Display</a></li>
-                                                            <li><a href="">Sprint</a></li>
+                                                        <li><a href="" >Build</a></li>
+                                                        <li><a href="">Work</a></li>
+                                                        <li><a href="">Light</a></li>
+                                                        <li><a href="">Relic</a></li>
+                                                        <li><a href="">Display</a></li>
+                                                        <li><a href="">Sprint</a></li>
                                                     </ul>
                                                 </li>                                                
                                             </ul>
                                         </li>
                                     <li><a href="about.html">About</a></li>
                                     <li><a href="contact.html">Contact</a></li>
-                                    <li class="cta"><a href="">Login</a></li>
+                                    <li class="cta"><a href="#get-signin">Login</a></li>
                                 </ul>
                                 </nav>
                                 <!-- END menu-wrap -->
@@ -179,7 +179,7 @@
                                 <div class="sub-feature">
 
                                     <figure>
-                                        <img src="images/slide_2.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                        <img src="images/slide_2.jpg" alt="Composition Ladder" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
@@ -287,8 +287,80 @@
 
                         </div>
                     </div>
-            </div>            
-            <!-- KMAT Components Ends-->
+                </div>            
+            <!-- END: KMAT Components -->
+            
+            <!-- START: Sign in 
+            <div class="parallax" style="background-image: url(images/hero4.jpg);" >
+                <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center table">
+                                <div class="intro table-cell animate-box">
+                                    <h2 class="text-styled">Sign in</h2>
+                                    <p>Made with love by the fine folks at <a href="http://freehtml5.co">FreeHTML5.co</a></p>
+                                    <form class="form-inline">
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="name" class="sr-only">Name</label>
+                                                <input type="text" class="form-control" id="name" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="email" class="sr-only">Email</label>
+                                                <input type="email" class="form-control" id="email" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <button type="submit" class="btn btn-default btn-block">Login</button>
+                                        </div>
+					</form>
+                                    <p><a href="#" class="btn btn-primary btn-lg">Get started</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+		</div>
+            <!-- END: Sign in-->
+                <!-- START: Sign in -->
+                <div id="get-signin">
+                    <div class="container">
+                        <div class="row text-center signin-heading">
+                            <div class="col-md-8 col-md-offset-2">
+                                    <h2 class="text-styled">Sign in</h2>
+
+                            </div>
+                        </div>
+                        <div class="get-signin">
+                            <form class="form-inline">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="form-group">
+                                        <label for="email" class="sr-only">Email</label>
+                                        <input type="email" class="form-control" id="name" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="form-group">
+                                        <label for="password" class="sr-only">Password</label>
+                                        <input type="password" class="form-control" id="email" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <button type="submit" class="btn btn-default btn-block">Login</button>
+                                </div>
+                            </form>                            
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-md-8 col-md-offset-2">                                    
+                                    <p><a href="#" class="btn btn-primary btn-lg">Sign Up</a></p>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- END: Sign in -->
                 
                 <!-- START footer -->
                 <footer id="footer">
@@ -363,7 +435,7 @@
 	<!-- Counters -->
 	<script src="js/jquery.countTo.js"></script>
 
-	<!-- Main JS (Do not remove) -->
+	<!-- Main JS  -->
 	<script src="js/main.js"></script>
     </body>
 </html>

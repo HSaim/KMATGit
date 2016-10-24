@@ -55,17 +55,17 @@
                                 <h1 id="logo"><a href="home.jsp">KMAT</a></h1>
                                 <!-- START #menu-wrap -->
                                 <nav id="menu-wrap" role="navigation">
-                                    <ul class="sf-menu sf-js-enabled sf-arrows" id="primary-menu" >
+                                    <ul class="sf-menu" id="primary-menu" >
                                        
-                                        <li><a class="active" href="home.jsp">Home</a></li>
+                                        <li><a href="home.jsp">Home</a></li>
                                         <li><a href="">News</a></li>
                                         <li>
-                                            <a href="" class="fh5co-sub-ddown sf-with-ul">Site Map </a>
+                                            <a href="" class="sub-ddown">Site Map </a>
                                             <ul class="sub-menu">
                                                 <li><a href="">sub menu 1</a></li>
                                                 
                                                 <li>
-                                                    <a href="#" class="fh5co-sub-ddown sf-with-ul ">sub menu 2 &#9660;</a>
+                                                    <a href="#" class="fh5co-sub-ddown">sub menu 2 </a>
                                                     <ul class="sub-menu">
                                                             <li><a href="" >Build</a></li>
                                                             <li><a href="">Work</a></li>
@@ -91,63 +91,83 @@
                 </div>
                 <!-- END header -->
                 
-                <aside class="fh5co-page-heading">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 class="fh5co-page-heading-lead">
-						Left Sidebar
-						<span class="fh5co-border"></span>
-					</h1>
-					
-				</div>
-			</div>
-		</div>
+                <aside class="page-heading">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="page-heading-lead">
+                                    Welcome User!
+                                    <span class="border"></span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
                 </aside>
                 
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8 col-md-push-4">
-                            <h2>Lorem ipsum dolor sit amet.</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore quis et recusandae atque, quos, dolore, rem, obcaecati ratione nesciunt similique accusamus? Esse ullam laboriosam error temporibus saepe totam asperiores hic at, eius officiis expedita ex corporis iusto deleniti ratione, possimus perspiciatis sunt consequatur, unde assumenda, nisi odit facilis quis ut!</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero laudantium totam sunt! Officiis quasi ipsam perspiciatis tenetur ipsum quibusdam eveniet eaque nihil dolorem doloremque nostrum fugiat optio asperiores ut non, pariatur! Culpa animi cumque corrupti laborum nulla. Tenetur, doloribus sint unde porro. Minus, ipsam iste quos totam unde vero dolore. Odio saepe minima totam quos illum, excepturi. Perferendis, tempore, non. Quidem animi enim est labore pariatur inventore beatae, et repellat eius nihil numquam quae explicabo quod dolorem earum doloribus voluptatem molestiae qui placeat tempore aperiam odit. Aperiam laudantium architecto, voluptatum dolorem pariatur consectetur, fugit repellendus, dolore placeat a soluta at.</p>
+                        <div class="col-md-10 col-md-push-2">
+                            <h2>Knowledge Management for All Tool (K-MAT) basic features </h2>
+                            <p>
+                               <br/>
+                                * Provide industry with a low cost KM software solution for SMEs
+                                <br/>
+                                * Readily integrate to most common existing DIMS, and legacy systems
+                                <br/>
+                                * Adapt to any SME sector with complete KM control
+                                <br/>
+                                * Will be easily manageable by SMEs without incurring specialized human resource cost.
+                            </p>
+                            <p></p>
                             
                         </div>
                         
-                        <div class="col-md-4 col-md-pull-8">
-                            <div class="fh5co-sidebox">
-						<h3 class="fh5co-sidebox-lead">Image List</h3>	
-						<ul class="fh5co-post">
-							<li>
-								<a href="#">
-									
-									<div class="fh5co-post-blurb">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-										<span class="fh5co-post-meta">Oct. 12, 2015</span>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									
-									<div class="fh5co-post-blurb">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-										<span class="fh5co-post-meta">Oct. 12, 2015</span>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									
-									<div class="fh5co-post-blurb">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-										<span class="fh5co-post-meta">Oct. 12, 2015</span>
-									</div>
-								</a>
-							</li>
-						</ul>
-						
-					</div>
+                        <div class="col-md-2 col-md-pull-10">
+                            <div class="sidebox">
+                                <h3 class="sidebox-lead">KMAT Components</h3>	
+                                <ul class="sidebox-menu">
+                                    <li>
+                                        <a href="#">
+
+                                            <div class="sidebox-menu-blurb">
+                                                Users 
+                                                <span class="sidebox-menu-meta">Add User</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+
+                                            <div class="sidebox-menu-blurb">
+                                                Roles
+                                                <!-- <span class="sidebox-menu-meta">Add Role</span> -->
+                                                </div>
+                                                <ul>
+                                                    <li><a href="#">
+                                                            <div class="sidebox-menu-blurb">
+                                                                Sub-Item 1 
+                                                            </div>
+                                                    </a></li>
+                                                    <li><a href="#">
+                                                            <div class="sidebox-menu-blurb">
+                                                                Sub-Item 2 
+                                                            </div>
+                                                    </a></li>
+                                                </ul>
+                                            
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="sidebox-menu-blurb">
+                                                Composition Ladders 
+                                                <span class="sidebox-menu-meta">Add Ladder</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
                         </div>
                         
                     </div>
@@ -226,7 +246,7 @@
 	<!-- Counters -->
 	<script src="js/jquery.countTo.js"></script>
 
-	<!-- Main JS (Do not remove) -->
+	<!-- Main JS  -->
 	<script src="js/main.js"></script>
     </body>
 </html>

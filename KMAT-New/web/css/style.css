@@ -1,3 +1,9 @@
+/**
+Import of other css into main,so only main to be linked with the code
+*/
+@import url(left-sidebar.css);
+@import url(sign-in.css);
+
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon/icomoon.eot?srf3rx");
@@ -867,6 +873,30 @@ figure {
 
 /* END: Home page KMAT Features style */
 
+/* START: Page heading */
+.page-heading {
+  text-align: center;
+  padding: 100px 0 60px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase; 
+}
+
+.page-heading .page-heading-lead {
+  position: relative;
+  padding-bottom: 20px; 
+}
+
+.page-heading .page-heading-lead .border {
+  width: 50px;
+  height: 3px;
+  background: #000;
+  margin-left: -25px;
+  left: 50%;
+  bottom: 0;
+  position: absolute; 
+}
+/* END: Page heading */
+
 #services-section,
 #pricing-section,
 #blog-section,
@@ -1583,8 +1613,8 @@ figure {
 }
 
 .parallax {
-  background-color: #555;
-  background-attachment: fixed;
+  /*background-color: #555;
+  background-attachment: fixed;*/
   background-size: cover;
   position: relative;
 }
@@ -1594,7 +1624,7 @@ figure {
   left: 0;
   right: 0;
   bottom: 0;
-  background: black;
+ /* background: black;*/
   opacity: .7;
 }
 
@@ -1629,7 +1659,13 @@ figure {
   padding: 40px;
   background: #222831;
 }
-
+#signin-box{
+    
+}
+.text-styled{
+    font-family: "Kaushan Script", cursive;
+    
+}
 .table {
   display: table;
 }
