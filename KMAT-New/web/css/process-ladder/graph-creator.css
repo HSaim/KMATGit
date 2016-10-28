@@ -1,0 +1,394 @@
+/*
+	This file styles the graphs for composition ladders alongwith some functions
+*/
+/* 
+    Created on : May 13, 2016, 4:13:59 PM
+    Author     : Maryam Khalid
+*/
+
+/* Styling of the heading */
+.subpage-title
+{
+	font: 20px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	color: #767676;
+	position: relative;
+        top: 10px;
+        /*
+	left: 220px;
+	top: 13px;
+	width: 200px;
+	height: 10px;
+        */
+}
+
+/* Styling of the outer most node of graph name label and textfield (1st level) */
+.field-name-wrapper
+{
+	float: left;
+	position: relative;
+        top: 5px;
+	/*left: 550px;*/
+    width: 360px;
+    margin-right: 10px;
+	display: block;
+	box-sizing: border-box;
+	word-wrap: break-word;
+	font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #333;
+}
+
+/* Styling of the parent node of name label and textfield (2nd level) */
+.field-name-border
+{
+	display: table;
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: normal;
+    vertical-align: middle;
+	background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+	outline: none;
+    box-shadow: inset 0 0px 2px rgba(0,0,0,0.075);
+	cursor: default;
+}
+
+.field-name-wrapper:hover
+{
+	box-shadow: inset 2px 0 8px rgba(0,0,0,.075), 1px 0 8px rgba(102, 175, 233, 0.6);
+}
+
+/*Styling of name label (3rd level)*/
+.field-name-label
+{
+    display: table-cell;
+    width: 1%;
+    padding-right: 8px;
+    padding-left: 8px;
+    color: #767676;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-right: 1px solid #eee;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+/*Styling of name textfield (3rd level)*/
+.field-name-value
+{
+    display: table-cell;
+    width: 99%;
+    min-height: 26px;
+    padding-top: 0;
+    padding-bottom: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+	/*padding: 7px 8px;*/
+    font-size: 13px;
+    color: #333;
+    vertical-align: middle;
+	border-radius: 3px;
+    outline: none;
+	font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	margin: 0;
+	box-sizing: border-box;
+	-webkit-appearance: textfield;
+	-webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+	text-rendering: auto;
+	text-align: start;
+	-webkit-writing-mode: horizontal-tb;
+	word-wrap: break-word;
+}
+
+p
+{ 
+     text-align: center; 
+     position: relative;
+}
+
+body
+{
+	margin: 10px;
+    padding: 10px;
+	overflow-y: hidden;
+	overflow-x: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Graph container */
+svg
+{
+	top: 11%;
+	right: 1.5%;
+	margin-top: 5px;
+	position: fixed;
+	width: 20%;
+	height: 25%;
+	z-index: 1; /* Sit on top */
+	margin-bottom: 2em;
+	margin-left: 1em;
+	border: 2px solid #EEEEEE;
+	overflow: hidden;
+}
+
+svg:hover, svg:focus
+{
+	box-shadow: inset 0 0 8px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.graph-buttons, #graph-buttons
+{
+	position: relative;
+	/*left: 790px;*/
+	outline: none;
+        padding-left: 100px;
+}
+
+#graph-help-icon
+{
+	position: relative;
+	top: 1px;
+	width: 27px;
+	height: 27px;
+	opacity: 0.7;
+	/*padding-right: 3px;*/
+	outline: none;
+}
+
+#graph-settings-icon
+{
+	width: 25px;
+	height: 25px;
+	opacity: 0.7;
+	outline: none;
+}
+
+#graph-settings-icon:hover, #graph-help-icon:hover
+{
+	opacity: 1;
+}
+
+/* Toolbox buttons */
+#toolbox
+{
+    position: absolute;
+	/*top: 540px;*/
+    bottom: 25px;
+	/*bottom: 65px;*/
+    /*left: 240px;*/
+    margin-bottom: 0.5em;
+    margin-left: 1em;
+    border: 2px solid #EEEEEE;
+    border-radius: 5px;
+    padding: 1em;
+    z-index: 5;
+}
+
+#toolbox input
+{
+    width: 30px;
+    opacity: 0.4;
+	outline: none;
+}
+
+#toolbox input:hover
+{
+    opacity: 1;
+    cursor: pointer;
+}
+
+#preview-input
+{
+    margin-left: 0.5em;
+	margin-right: 0.4em;
+	outline: none;
+}
+
+/* Node text */
+.conceptG text
+{
+	font: 13px Helvetica, arial;
+	stroke: rgba(153, 163, 164, 0.9);
+	stroke-width: 0.7px;
+}
+
+/* Node arrow */
+marker
+{
+    fill: #333;
+}
+
+/* Node */
+g.conceptG circle
+{
+	fill: url('#radial-gradient-normal');
+    stroke: #333;
+    stroke-width: 0.03px;
+	transform:translate3d(0,0,0);
+	transition:transform ease-in-out 200ms;
+}
+
+/* Node on hover */
+g.conceptG:hover circle
+{
+	fill: url('#radial-gradient-normal');
+	filter:url('#drop-shadow');
+}
+
+/* Node on selection */
+g.selected circle
+{
+	fill: url('#radial-gradient-select');
+	filter:url('#drop-shadow');
+	transform:scale(1.2,1.2) translate3d(0,0,0);
+}
+
+g.selected:hover circle
+{
+	fill: url('#radial-gradient-select');
+	filter:url('#drop-shadow');
+	transform:scale(1.2,1.2) translate3d(0,0,0);
+}
+
+/* Root Node */
+g.root circle
+{
+/*TODO: #root-gradient-normal*/
+	fill: url('#radial-gradient-select');
+	filter:url('#drop-shadow');
+	transform:scale(1.2,1.2) translate3d(0,0,0);
+}
+
+g.root:hover circle
+{
+/*TODO: #root-gradient-select*/
+	fill: url('#radial-gradient-select');
+	filter:url('#drop-shadow');
+	transform:scale(1.2,1.2) translate3d(0,0,0);
+}
+
+/* Error Node */
+g.error circle
+{
+/*TODO: #gradient-on-error*/
+	fill: url('#radial-gradient-select');
+	filter:url('#drop-shadow');
+	transform:scale(1.2,1.2) translate3d(0,0,0);
+}
+
+/* Edge */
+path.link 
+{
+    fill: none;
+    stroke: rgba(0, 0, 0, 0.3);
+    stroke-width: 2px;
+    cursor: default;
+	transform:translate3d(0,0,0);
+	transition:transform ease-in-out 200ms;
+}
+
+/* Edge on Hover */
+path.link:hover
+{
+    stroke: rgba(94, 196, 204, 0.8);
+	filter:url('#drop-shadow');
+	transform:scale(1,1) translate3d(0,0,0);
+}
+
+/* Graph node on Edge connection */
+g.connect-node circle
+{
+	fill: url('#radial-gradient-select');
+	filter:url('#drop-shadow');
+}
+
+path.link.hidden
+{
+    stroke-width: 0;
+}
+
+/* Edge on Selection */
+path.link.selected 
+{
+	stroke: yellow;
+	filter:url('#drop-shadow');
+	transform:scale(1,1) translate3d(0,0,0);
+}
+
+#error-button
+{
+	display: none;
+	position: absolute;
+	right: 3%;
+	bottom: 5%;
+	z-index: 5;
+	outline: none;
+}
+
+/* Tooltip text */
+.help-tooltiptext 
+{
+	font-size: medium;
+	display: none;
+    right: 10%;
+    margin-top: -5px;
+	border: 1px solid #eee;
+    width: 400px;
+    background-color: #dfdfdf;
+    text-align: left;
+    padding: 0px 10px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 500;
+}
+
+li.directions-list-item
+{
+	margin: 10px 0;
+}
+
+.error-modal
+{
+	/*display: inline;*/
+	display: none;
+	position: absolute;
+	bottom: 5%;
+	right: 5%;
+	width: 60%;
+	border: 1px solid red;
+	color: #D63301;
+	background-color: rgba(255, 204, 186, 0.95);
+	background-image: url('resources/error-icon.ico');
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	background-size: 28px;
+	z-index: 400;
+	max-height: 10em;
+	overflow-y: scroll;
+}
+
+li.error-modal-line
+{
+	margin: 5px 20px;
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 13px;
+}
+
+li.error-modal-line:hover
+{
+	cursor: pointer;
+	font-weight: bold;
+}

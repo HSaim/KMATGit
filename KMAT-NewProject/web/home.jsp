@@ -15,7 +15,9 @@
 	<meta name="keywords" content="KMAT, resource, concept, concept map, list, tool" />
 	<meta name="author" content="KMAT Team" />        
         
-        <jsp:include page="includes/link.jsp" />
+        <!-- CSS includes-->
+        <jsp:include page="includes/link.jsp" /> 
+        
         
         <title>KMAT-Home</title>
     </head>
@@ -32,6 +34,7 @@
                 <!-- Slider Starts-->
                 <jsp:include page="includes/slider.jsp" /> 
                 <!-- Slider Ends -->
+           
                 
                 <!-- KMAT Components Starts-->
                 <div id="features">
@@ -46,7 +49,7 @@
                                 <div class="sub-feature">
 
                                     <figure>
-                                        <img src="images/slide_3.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                        <img src="images/slide_3.jpg" alt="slide" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
@@ -90,7 +93,7 @@
                                 <div class="sub-feature">
 
                                     <figure>
-                                        <img src="images/slide_3.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                        <img src="images/slide_3.jpg" alt="slide" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
@@ -114,7 +117,7 @@
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
                                 <div class="sub-feature">
                                     <figure>
-                                        <img src="images/slide_3.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                        <img src="images/slide_3.jpg" alt="slide" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
@@ -135,7 +138,7 @@
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
                                 <div class="sub-feature">
                                     <figure>
-                                        <img src="images/slide_2.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                        <img src="images/slide_2.jpg" alt="slide" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
@@ -156,7 +159,7 @@
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
                                 <div class="sub-feature">
                                     <figure>
-                                        <img src="images/slide_3.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                        <img src="images/slide_3.jpg" alt="slide" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
@@ -222,17 +225,17 @@
                             </div>
                         </div>
                         <div class="get-signin">
-                            <form class="form-inline">
+                            <form class="form-inline" method="post" action="LoginController">
                                 <div class="col-md-4 col-sm-4">
                                     <div class="form-group">
                                         <label for="email" class="sr-only">Email</label>
-                                        <input type="email" class="form-control" id="name" placeholder="Email">
+                                        <input type="email" class="form-control" id="name" name="username" placeholder="Email" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <div class="form-group">
                                         <label for="password" class="sr-only">Password</label>
-                                        <input type="password" class="form-control" id="email" placeholder="Password">
+                                        <input type="password" class="form-control" id="email" name="password" placeholder="Password" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
@@ -242,7 +245,9 @@
                         </div>
                         <div class="row text-center">
                             <div class="col-md-8 col-md-offset-2">                                    
-                                    <p><a href="#" class="btn btn-primary btn-lg">Sign Up</a></p>
+                                    <p>No account?<a href="#" class="btn btn-primary ">Sign Up</a></p>
+                                    <!-- Another button option for sign up -->
+                                    <!-- <p>No account?<a href="#" class="btn btn-primary btn-lg">Sign Up</a></p> -->
 
                             </div>
                         </div>
@@ -251,8 +256,7 @@
                 </div>
                 <!-- END: Sign in -->
                 
-                <%-- adds js --%>
+                <!-- adds js -->                
                 <jsp:include page="includes/js.jsp" /> 
-
-                <%-- footer.jspf integrates here --%>
+                <!-- footer.jspf integrates here -->
                 

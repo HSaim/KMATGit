@@ -2,7 +2,7 @@
 package Model;
 
 /**
- * Query KMAT DB to confirm username and password
+ * Query KMAT DB to get and insert user's record
  * Insert new user 
  * 
  * @author Habiba Saim

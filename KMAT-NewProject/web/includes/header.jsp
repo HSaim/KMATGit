@@ -5,8 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<div id = "header">                    <!-- START header-section -->
+ 
+<div id = "header">                    
+    <!-- START header-section -->
     <header id="header-section">
         <!-- START container -->
         <div class="container">
@@ -17,10 +18,9 @@
                 <nav id="menu-wrap" role="navigation">
                     <ul class="sf-menu" id="primary-menu" >
 
-                        <li><a class="active" href="home.jsp">Home</a></li>
-                        <li><a href="">News</a></li>
+                        <li><a  href="KMATHome.jsp">Home</a></li>                        
                         <li>
-                            <a href="" class="fh5co-sub-ddown">Site Map </a>
+                            <a href="" class="fh5co-sub-ddown">News</a>
                             <ul class="sub-menu">
                                 <li><a href="">sub menu 1</a></li>
 
@@ -38,7 +38,7 @@
                             </ul>
                         </li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="Contact.jsp">Contact</a></li>
                     <li class="cta"><a href="#get-signin">Login</a></li>
                 </ul>
                 </nav>

@@ -876,14 +876,14 @@ figure {
 /* START: Page heading */
 .page-heading {
   text-align: center;
-  padding: 100px 0 60px 0;
+  padding: 0px 0 0px 0;
   letter-spacing: 2px;
-  text-transform: uppercase; 
+  /*text-transform: uppercase; */
 }
 
 .page-heading .page-heading-lead {
   position: relative;
-  padding-bottom: 20px; 
+  /*padding-bottom: 10px; */
 }
 
 .page-heading .page-heading-lead .border {
