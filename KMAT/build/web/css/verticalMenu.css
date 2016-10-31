@@ -110,6 +110,8 @@ span[class ^= "icon"]{
 #container {
     position: relative;
     margin-top: 0;
+    display: block;
+    height: 100%;
 }
 #navbar {
     float: left;

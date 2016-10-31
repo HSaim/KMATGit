@@ -1,0 +1,103 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 31, 2016, 9:43:00 AM
+    Author     : Habiba Saim
+*/
+
+#banner {
+  min-height: 700px;
+  background: #fff url(../images/loader.gif) no-repeat center center;
+}
+#banner .btn {
+  font-size: 24px;
+}
+#banner .btn.btn-primary {
+  padding: 14px 30px !important;
+}
+#banner .flexslider {
+  border: none;
+  z-index: 1;
+  margin-bottom: 0;
+  overflow: hidden;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  border-radius: 0px;
+}
+#banner .flexslider .slides {
+  position: relative;
+  overflow: hidden;
+}
+#banner .flexslider .slides li {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 700px;
+  position: relative;
+}
+#banner .flexslider .slides li:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: '';
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+#banner .flexslider .flex-control-nav {
+  bottom: 40px;
+  z-index: 1000;
+}
+#banner .flexslider .flex-control-nav li a {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+#banner .flexslider .flex-control-nav li a.flex-active {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.7);
+}
+#banner .flexslider .flex-direction-nav {
+  display: none;
+}
+#banner .flexslider .slider-text {
+  display: table;
+  opacity: 0;
+  min-height: 700px;
+  z-index: 9;
+}
+#banner .flexslider .slider-text a:hover {
+  color: #fff !important;
+}
+#banner .flexslider .slider-text > .slider-text-inner {
+  display: table-cell;
+  vertical-align: middle;
+  min-height: 700px;
+}
+#banner .flexslider .slider-text > .slider-text-inner h2 {
+  font-size: 60px;
+  font-weight: 400;
+  color: #fff;
+}
+@media screen and (max-width: 768px) {
+  #banner .flexslider .slider-text > .slider-text-inner h2 {
+    font-size: 40px;
+  }
+}
+#banner .flexslider .slider-text > .slider-text-inner p .btn:hover {
+  color: #fff !important;
+}
+#banner .flexslider .slider-text > .slider-text-inner .lead {
+  font-size: 20px;
+  color: #fff;
+}
+#banner .flexslider .slider-text > .slider-text-inner .lead .icon-heart {
+  color: #d9534f;
+}

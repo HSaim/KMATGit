@@ -156,7 +156,7 @@
                         -->
                     </div>
                     
-                    <div class="col-md-2 col-md-pull-10">
+                    <div class="col-md-2 col-md-pull-10" style="background-color:lavender;">
                     <div class="sidebox">
                         <!--<h3 class="sidebox-lead">KMAT Components</h3>	-->
                         <ul class="sidebox-menu">

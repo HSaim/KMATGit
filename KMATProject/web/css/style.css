@@ -3,6 +3,7 @@ Import of other css into main,so only main to be linked with the code
 */
 @import url(left-sidebar.css);
 @import url(sign-in.css);
+@import url(verticalMenu.css);
 
 @font-face {
   font-family: 'icomoon';
@@ -423,6 +424,7 @@ figure {
 .sf-menu ul li {
   background: transparent;
 }
+/* login button */
 .cta a {
     color: rgba(0, 0, 0, 0.8);
   
@@ -447,6 +449,13 @@ figure {
  
   font-weight: 400;
   text-transform: uppercase;
+}
+
+.uname a{
+    font-family: Georgia, Serif !important;
+    color: forestgreen;
+    
+     
 }
 #header nav ul li.cta a:hover {
   background: #fff;
@@ -876,17 +885,21 @@ figure {
 /* START: Page heading */
 .page-heading {
   text-align: center;
-  padding: 0px 0 0px 0;
+  padding: 10px 0 0px 0;
   letter-spacing: 2px;
-  /*text-transform: uppercase; */
+  text-transform: uppercase; 
 }
 
-.page-heading .page-heading-lead {
+.page-heading .page-heading-lead, .page-heading-lead {
   position: relative;
+  text-align: center;
+  padding: 10px 0 0px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase; 
   /*padding-bottom: 10px; */
 }
 
-.page-heading .page-heading-lead .border {
+.page-heading .page-heading-lead .border, .page-heading-lead .border {
   width: 50px;
   height: 3px;
   background: #000;

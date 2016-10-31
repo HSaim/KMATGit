@@ -8,7 +8,7 @@
 <!-- <link rel="stylesheet" type="text/css" href="css/sidebarMenu.css">-->
 <%-- Sidebar Menu Starts 
 <div id = "nav" >--%>
-<nav id = "container"> 
+<div id = "container"> 
     <div id = "navbar">
         <ul >
             <li class = "user">
@@ -45,7 +45,7 @@
             </li>            
          </ul>   
     </div>
-</nav >
+</div>
 <!-- Script for submenu to be diplayed and hidden on mouse click -->
 <script>
     $(document).ready(function () {

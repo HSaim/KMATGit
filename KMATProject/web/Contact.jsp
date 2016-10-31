@@ -33,6 +33,7 @@
 	<link rel="stylesheet" href="css/homeslider.css">-->
 	<link rel="stylesheet" href="css/style.css">
         
+        <link rel="stylesheet" href="css/top-banner.css">
         <!-- Modernizr JS -->
 <script type="text/javascript" src="js/modernizr-2.6.2.min.js"></script>
         
