@@ -1,7 +1,7 @@
 <%-- 
     Document   : left-sidebar
     Created on : Oct 31, 2016, 12:32:36 PM
-    Author     : Saim
+    Author     : Habiba Saim
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -53,22 +53,45 @@
             <div class="sidebox-menu-blurb">
                 Composition Ladders 
                 <ul>
-                    <li><a href="#">
+                    <li><a href="view-composition-ladders">
                             <div class="sidebox-menu-blurb-sub">
-                                View Ladders
+                                View Composition Ladders
                             </div>
                     </a></li>
                     <li><a href="#">
                             <div class="sidebox-menu-blurb-sub">
-                                Add a ladder
+                                Add Composition Ladder
                             </div>
                     </a></li>
                 </ul>
             </div>
 
         </li>
+        <li>
+            <div class="sidebox-menu-blurb">
+                Process Ladders 
+                <ul>
+                    <li><a href="NewProcessLadder.jsp">
+                            <div class="sidebox-menu-blurb-sub">
+                                View Process Ladders
+                            </div>
+                    </a></li>
+                    <li><a href="add-process-ladder">
+                            <div class="sidebox-menu-blurb-sub">
+                                Add Process Ladder
+                            </div>
+                    </a></li>
+                </ul>
+            </div>
+
+        </li>
+        <li>
+            <div class="add-spaces"> <!-- Spaces are added here to stretch the sidebar -->
+                <p></p>
+            </div>
+        </li>
     </ul>
 
 </div>
 
-                        </div>
+                     

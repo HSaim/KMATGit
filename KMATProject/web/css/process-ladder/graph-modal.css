@@ -127,8 +127,8 @@ and open the template in the editor.
 #modal-node-name
 {
 	text-align: center; 
-	height: 40px;
-	max-height: 40px;
+	height: 35px;
+	max-height: 35px;
 	/*padding-right: 5px;*/
 	margin-right: 20px;
 	overflow-y: scroll;
@@ -141,6 +141,8 @@ and open the template in the editor.
 {
 	max-height: 40px;
 	max-width: 96%;
+        
+        
 }
 
 .modal-body

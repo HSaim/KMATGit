@@ -1,9 +1,9 @@
 .settings-modal-dialog
 {
 	display: none; /* Hidden by default */
-	position: fixed;
+	position: fixed;        
 	z-index: 500; /* Sit on top */
-	/*padding-top:10%; /* Location of the box from top*/
+	padding-top:5%; /* Location of the box from top*/
 	padding-left: 5%; /* Location of the box from left*/
 	left: 0;
 	top: 0;

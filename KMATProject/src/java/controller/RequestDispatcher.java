@@ -5,22 +5,30 @@
  */
 package controller;
 
-import model.UserBean;
-import model.UserDAO;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Saim
  */
-public class LoginController extends HttpServlet {
+@WebServlet(name = "RequestDispatcher", 
+        loadOnStartup = 1,
+        urlPatterns = {"/home",
+                        "/NewProcessLadder",
+                        "/view-composition-ladders",
+                        "/UserContactUs",
+                        "/UserNews",
+                        "/AddUser",
+                        "/AddResource",
+                        "/add-process-ladder"
+                        })
+public class RequestDispatcher extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,10 +53,28 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session=request.getSession(); 
-        session.removeAttribute("CurrentSessionUser");
-        session.invalidate();  
-        response.sendRedirect("login.jsp");  
+        
+         String userPath = request.getServletPath();
+         
+           // if user home page is requested
+        if (userPath.equals("/home")) {
+            userPath = "/UserHome";
+        }
+        else if (userPath.equals("/add-process-ladder")){
+            userPath = "/AddProcessLadder";
+        }
+        
+        else if(userPath.equals("/view-composition-ladders")){
+            userPath = "/ViewCompositionLadders";
+        }
+        String url = "/WEB-INF/view" + userPath + ".jsp";
+
+        try {
+            request.getRequestDispatcher(url).forward(request, response);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
     }
 
     /**
@@ -62,34 +88,6 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       try{
-            UserBean user = new UserBean();
-            user.setUserName(request.getParameter("username"));
-            user.setPassword(request.getParameter("password"));
-            
-            user = UserDAO.login(user);
-            
-            if (user.isValid()){
-                HttpSession session = request.getSession(true);
-                session.setAttribute("CurrentSessionUser", user);//.getUsername());
-                //request.getRequestDispatcher("/WEB-INF/view/UserHome.jsp").forward(request, response);
-                //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/UserHome.jsp");
-                 //dispatcher.forward(request, response);  
-               response.sendRedirect("home");
-                           
-            }
-            else{
-                response.sendRedirect("LoginAgain.jsp");
-               // request.getRequestDispatcher("LoginAgain.jsp").forward(request, response);
-            }
-        }
-        catch (Throwable theException){ 	    
-       
-           theException.printStackTrace(); 
-        }
-        finally{
-            
-        }
         
     }
 

@@ -13,6 +13,8 @@ and open the template in the editor.
   float: left;
   width: 100%; 
   height: 100%;
+  
+   
 }
 
 .sidebox .sidebox-lead {
@@ -44,6 +46,9 @@ and open the template in the editor.
   padding-bottom: 20px;
   border-bottom: 1px solid #ccc; 
   
+}
+.sidebox-menu li:last-child{
+     border-bottom: none;
 }
 .sidebox-menu li ul{
     padding: 0;
@@ -120,4 +125,8 @@ and open the template in the editor.
 
 .sidebox-menu a:hover .sidebox-menu-media, .sidebox-menu a:hover .sidebox-menu-blurb, .sidebox-menu a:hover .sidebox-menu-meta, .sidebox-menu a:active .sidebox-menu-media, .sidebox-menu a:active .sidebox-menu-blurb, .sidebox-menu a:active .sidebox-menu-meta, .sidebox-menu a:focus .sidebox-menu-media, .sidebox-menu a:focus .sidebox-menu-blurb, .sidebox-menu a:focus .sidebox-menu-meta {
   text-decoration: none; 
+}
+
+.back-color{
+    background-color: #f9f9f9;
 }

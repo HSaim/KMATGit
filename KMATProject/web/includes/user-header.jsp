@@ -1,9 +1,10 @@
 <%-- 
     Document   : user-header
     Created on : Oct 31, 2016, 1:14:15 PM
-    Author     : Saim
+    Author     : Habiba Saim
 --%>
 
+<%@page import="model.UserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -18,8 +19,9 @@
                 <!-- START #menu-wrap -->
                 <nav id="menu-wrap" role="navigation">
                     <ul class="sf-menu" id="primary-menu" >
-                        <li class="uname"><a href= "">User Name</a></li>
-                        <li><a href="UserHome.jsp">Home</a></li>
+                        <!--<label id="uname" align = "left"><a href =""></a></label>-->
+                        <li id = "uname"><a>UserName</a></li>
+                        <li><a href="home">Home</a></li>
                         <li><a href="">News</a></li>
                         <li>
                             <a href="" class="sub-ddown">Site Map </a>
@@ -51,3 +53,16 @@
     </header>
     <!-- END header-section -->
 </div>
+
+<%--
+<script>
+    (function() {
+        <% UserBean currentUser = ((UserBean) (session.getAttribute("CurrentSessionUser"))); %>
+         var v1 = '<%= currentUser.getUsername() %>';                      
+         var label = document.getElementById("uname");
+
+         label.innerHTML = v1;
+         //label.style.display = "block";
+     })();
+</script>
+        --%>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
+    <!-- Servlet: LoginController-->
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
@@ -7,6 +9,29 @@
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- Servlet: RequestDispathcher -->
+    <servlet>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <servlet-class>controller.RequestDispatcher</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-process-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-composition-ladders</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/NewProcessLadder</url-pattern>
     </servlet-mapping>
     
     <session-config>
@@ -23,10 +48,11 @@
     <jsp-config>
         <jsp-property-group>
             <description>header and footer settings</description>
-            <!--<url-pattern>/WEB-INF/view/*</url-pattern>-->
+            <url-pattern>/WEB-INF/view/*</url-pattern>
             <url-pattern>/SignUp.jsp</url-pattern>
             <url-pattern>/Home.jsp</url-pattern>
             <url-pattern>/Contact.jsp</url-pattern>
+             <url-pattern>/NewProcessLadder.jsp</url-pattern>
             <!--
             <url-pattern>/News.jsp</url-pattern>            
             <url-pattern>/LoginAgain.jsp</url-pattern>

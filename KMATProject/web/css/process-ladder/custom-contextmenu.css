@@ -7,26 +7,28 @@ and open the template in the editor.
     Created on : Jul 1, 2016, 4:16:51 AM
     Author     : Maryam Khalid
 */
-
+/* body and .container are commented by Habiba Saim. Because they are disturbing actual container abd body css */
+/*
 body
 {
-	/*extra*/
+	//extra
 	color: #595959;
 	font-family: "Roboto", sans-serif;
-	/*font-size: 16px;*/
+	//font-size: 16px;
 	font-size: 12px;
 	font-weight: 300;
 	line-height: 1.5;
 }
-
+*/
+/*
 .container
 {
-	/*extra*/
+	//extra
 	margin: 0 auto;
 	padding: 0 24px;
 	max-width: 960px;
 }
-
+*/
 /* tasks */
 
 .task

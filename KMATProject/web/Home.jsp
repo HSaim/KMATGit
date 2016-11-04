@@ -20,8 +20,7 @@
         
         <jsp:include page="includes/link.jsp" /> 
         
-        <!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
+        
     </head>
     <body>
         <!-- START wrapper -->
@@ -116,7 +115,7 @@
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
                                 <div class="sub-feature">
                                     <figure>
-                                        <img src="images/slide_3.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                        <img src="images/slide_3.jpg" alt="slide" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
@@ -137,7 +136,7 @@
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
                                 <div class="sub-feature">
                                     <figure>
-                                        <img src="images/slide_2.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                        <img src="images/slide_2.jpg" alt="slide" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
@@ -158,7 +157,7 @@
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
                                 <div class="sub-feature">
                                     <figure>
-                                        <img src="images/slide_3.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                        <img src="images/slide_3.jpg" alt="slide" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">

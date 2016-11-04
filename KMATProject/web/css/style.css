@@ -18,6 +18,9 @@ Import of other css into main,so only main to be linked with the code
 *	Edit this section
 *
 * ======================================================= */
+body, html, .container-fluid {
+         height: 100%;
+    }
 body {
   font-family: "Open Sans", Arial, serif;
   line-height: 1.8;
@@ -26,6 +29,7 @@ body {
   color: #848484;
   font-weight: 300;
   overflow-x: hidden;
+  
 }
 body.offcanvas {
   overflow: hidden;
@@ -451,7 +455,7 @@ figure {
   text-transform: uppercase;
 }
 
-.uname a{
+#uname a{
     font-family: Georgia, Serif !important;
     color: forestgreen;
     
@@ -472,6 +476,18 @@ figure {
   #header nav ul li.cta {
     margin-left: 0px;
   }
+}
+
+/* User's pages heading */
+.heading-bg{
+    font-size: 20px;
+    overflow: hidden;
+    padding: 4px 0 6px 4px;
+    border-bottom: solid 5px #eee;
+    border-top: solid 5px #eee;
+    text-transform: uppercase; 
+    background-image: url("../images/heading-bg.png");
+    text-align: center;
 }
 
 .sf-arrows .sf-with-ul {
@@ -910,6 +926,12 @@ figure {
 }
 /* END: Page heading */
 
+/*  To add some space above */
+.add-spaces p{
+   
+  margin-top: 500px
+
+} 
 #services-section,
 #pricing-section,
 #blog-section,

@@ -113,12 +113,13 @@ p
      position: relative;
 }
 
+
 body
-{
+{/*
 	margin: 10px;
     padding: 10px;
 	overflow-y: hidden;
-	overflow-x: hidden;
+	overflow-x: hidden;*/
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -130,17 +131,18 @@ body
 /* Graph container */
 svg
 {
-	top: 11%;
-	right: 1.5%;
-	margin-top: 5px;
-	position: fixed;
-	width: 20%;
-	height: 25%;
+	top: 27%;
+	right: 1%;
+	/*margin-top: 5px;*/
+	position: absolute;
+	width: 72%;
+	height: 72%;
 	z-index: 1; /* Sit on top */
 	margin-bottom: 2em;
-	margin-left: 1em;
+	/*margin-left: 1em;*/
 	border: 2px solid #EEEEEE;
 	overflow: hidden;
+        float: left;
 }
 
 svg:hover, svg:focus
@@ -188,6 +190,7 @@ svg:hover, svg:focus
     bottom: 25px;
 	/*bottom: 65px;*/
     /*left: 240px;*/
+    margin-top: 40%;
     margin-bottom: 0.5em;
     margin-left: 1em;
     border: 2px solid #EEEEEE;
@@ -198,6 +201,7 @@ svg:hover, svg:focus
 
 #toolbox input
 {
+     position: relative;
     width: 30px;
     opacity: 0.4;
 	outline: none;
@@ -212,8 +216,8 @@ svg:hover, svg:focus
 #preview-input
 {
     margin-left: 0.5em;
-	margin-right: 0.4em;
-	outline: none;
+    margin-right: 0.4em;
+    outline: none;
 }
 
 /* Node text */
@@ -335,23 +339,26 @@ path.link.selected
 	bottom: 5%;
 	z-index: 5;
 	outline: none;
+        
+        margin-top: 40%;
+        
 }
 
 /* Tooltip text */
 .help-tooltiptext 
 {
-	font-size: medium;
-	display: none;
+    font-size: medium;
+    display: none;
     right: 10%;
     margin-top: -5px;
-	border: 1px solid #eee;
+    border: 1px solid #eee;
     width: 400px;
     background-color: #dfdfdf;
     text-align: left;
     padding: 0px 10px;
     border-radius: 6px;
-    position: absolute;
-    z-index: 500;
+    position: fixed;
+    z-index: 500;   
 }
 
 li.directions-list-item
