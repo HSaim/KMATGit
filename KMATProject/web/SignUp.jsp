@@ -18,9 +18,7 @@
         
         <jsp:include page="includes/link.jsp" />    
         
-        <title>Sign Up</title>
-        
-        <script src="js/signup-verifications.js"></script>
+        <title>Sign Up</title>       
         
     </head>
     
@@ -68,5 +66,5 @@
                 <!-- END: Signup Form -->
                  <%-- adds js --%>
                 <jsp:include page="includes/js.jsp" /> 
-
+                <script src="js/signup-verifications.js"></script>
                 <%-- footer.jspf integrates here --%>

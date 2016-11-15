@@ -20,7 +20,7 @@
             </div>
             <!-- </a>-->
             <ul>
-                <li class = "view-users"><a href="#">
+                <li class = "view-users"><a href="view-users">
                         <div class="sidebox-menu-blurb-sub">
                             View Users
                         </div>
@@ -37,12 +37,12 @@
                 Roles                                           
             </div>
             <ul>
-                <li class = "view-roles"><a href="#">
+                <li class = "view-roles"><a href="view-roles">
                         <div class="sidebox-menu-blurb-sub">
                             View Roles 
                         </div>
                 </a></li>
-                <li class = "add-role"><a href="#">
+                <li class = "add-role"><a href="add-role">
                         <div class="sidebox-menu-blurb-sub">
                             Add Role 
                         </div>

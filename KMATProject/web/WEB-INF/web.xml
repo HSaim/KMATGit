@@ -35,7 +35,19 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-users</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/add-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-roles</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-role</url-pattern>
     </servlet-mapping>
     
     <session-config>

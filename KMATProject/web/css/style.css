@@ -595,9 +595,18 @@ body.home #primary-menu li.home > a,
 body.news #primary-menu li.news > a,
 body.about #primary-menu li.about > a,
 body.contact #primary-menu li.contact > a,
+body.view-users #primary-menu li.home > a,
 body.add-user #primary-menu li.home > a,
+body.view-roles #primary-menu li.home > a,
+body.add-role #primary-menu li.home > a,
+body.view-c-ladders #primary-menu li.home > a,
+body.add-c-ladder #primary-menu li.home > a,
+body.view-p-ladders #primary-menu li.home > a,
 body.add-p-ladder #primary-menu li.home > a,
-body.view-c-ladders #primary-menu li.home > a{
+body.view-tools #primary-menu li.home > a,
+body.add-tool #primary-menu li.home > a,
+body.view-resources #primary-menu li.home > a,
+body.add-resource #primary-menu li.home > a{
     color: #00ADB5;
 }
 #primary-menu > li > ul li.active > a {

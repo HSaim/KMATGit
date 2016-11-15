@@ -146,8 +146,9 @@ body.view-tools .sidebox-menu li ul li.view-tools > a .sidebox-menu-blurb-sub,
 body.add-tool .sidebox-menu li ul li.add-tool > a .sidebox-menu-blurb-sub,
 body.view-resources .sidebox-menu li ul li.view-resources > a .sidebox-menu-blurb-sub,
 body.add-resource .sidebox-menu li ul li.add-resource > a .sidebox-menu-blurb-sub{
-    color : #FBB448;
-    
+    color : #d2be0e;
+    font-weight: bold;
+    font-size:large;    
 }
 
 .extend-sidebar p{

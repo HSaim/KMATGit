@@ -60,6 +60,22 @@ public class RequestDispatcher extends HttpServlet {
         if (userPath.equals("/home")) {
             userPath = "/UserHome";
         }
+        else if (userPath.equals("/view-users")) {
+            userPath = "/ViewUsers";
+        }
+        
+        else if(userPath.equals("/add-user")){
+            userPath = "/AddUser";
+        }
+        
+        else if(userPath.equals("/view-roles")){
+            userPath = "/ViewRoles";
+        }
+        
+        else if(userPath.equals("/add-role")){
+            userPath = "/AddRole";
+        }
+        
         else if (userPath.equals("/add-process-ladder")){
             userPath = "/AddProcessLadder";
         }
@@ -68,9 +84,7 @@ public class RequestDispatcher extends HttpServlet {
             userPath = "/ViewCompositionLadders";
         }
         
-        else if(userPath.equals("/add-user")){
-            userPath = "/AddUser";
-        }
+        
         String url = "/WEB-INF/view" + userPath + ".jsp";
 
         try {
