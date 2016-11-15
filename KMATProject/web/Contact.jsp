@@ -39,7 +39,7 @@
         
         <title>Contact Us</title>
     </head>
-    <body>
+    <body class="contact">
         <!-- START wrapper -->
         <div id = "wrapper">
             <!-- START page-->

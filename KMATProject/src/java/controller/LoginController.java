@@ -22,16 +22,7 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -48,7 +39,7 @@ public class LoginController extends HttpServlet {
         HttpSession session=request.getSession(); 
         session.removeAttribute("CurrentSessionUser");
         session.invalidate();  
-        response.sendRedirect("login.jsp");  
+        response.sendRedirect("Home.jsp");  
     }
 
     /**
@@ -75,12 +66,23 @@ public class LoginController extends HttpServlet {
                 //request.getRequestDispatcher("/WEB-INF/view/UserHome.jsp").forward(request, response);
                 //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/UserHome.jsp");
                  //dispatcher.forward(request, response);  
-               response.sendRedirect("home");
+                response.sendRedirect("home");
                            
             }
             else{
-                response.sendRedirect("LoginAgain.jsp");
-               // request.getRequestDispatcher("LoginAgain.jsp").forward(request, response);
+                response.setContentType("text/html;charset=UTF-8");
+                try {
+                    PrintWriter out = response.getWriter();
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Invalid username or password');");
+                    out.println("location='Home.jsp#get-signin';");
+                    out.println("</script>");                    
+                }
+                catch (Exception e){
+                    System.out.println("Alert could not be generated. Error: " + e);
+                }
+               // response.sendRedirect("Home.jsp#get-signin");
+                //request.getRequestDispatcher("Home.jsp#get-signin").forward(request, response);
             }
         }
         catch (Throwable theException){ 	    

@@ -8,7 +8,7 @@
 <!DOCTYPE html>
     
 
-<div class="sidebox">
+<div class="sidebox" id = "navbar">
     <!--<h3 class="sidebox-lead">KMAT Components</h3>	-->
     <ul class="sidebox-menu">
         <li>
@@ -20,12 +20,12 @@
             </div>
             <!-- </a>-->
             <ul>
-                <li><a href="#">
+                <li class = "view-users"><a href="#">
                         <div class="sidebox-menu-blurb-sub">
                             View Users
                         </div>
                 </a></li>
-                <li><a href="#">
+                <li class = "add-user"><a href="add-user">
                         <div class="sidebox-menu-blurb-sub">
                             Add User
                         </div>
@@ -37,14 +37,14 @@
                 Roles                                           
             </div>
             <ul>
-                <li><a href="#">
+                <li class = "view-roles"><a href="#">
                         <div class="sidebox-menu-blurb-sub">
-                            Sub-Item 1 
+                            View Roles 
                         </div>
                 </a></li>
-                <li><a href="#">
+                <li class = "add-role"><a href="#">
                         <div class="sidebox-menu-blurb-sub">
-                            Sub-Item 2 
+                            Add Role 
                         </div>
                 </a></li>
             </ul>                                    
@@ -53,30 +53,29 @@
             <div class="sidebox-menu-blurb">
                 Composition Ladders 
                 <ul>
-                    <li><a href="view-composition-ladders">
+                    <li class = "view-c-ladders"><a href="view-composition-ladders">
                             <div class="sidebox-menu-blurb-sub">
                                 View Composition Ladders
                             </div>
                     </a></li>
-                    <li><a href="#">
+                    <li class = "add-c-ladders"><a href="#">
                             <div class="sidebox-menu-blurb-sub">
                                 Add Composition Ladder
                             </div>
                     </a></li>
                 </ul>
             </div>
-
         </li>
         <li>
             <div class="sidebox-menu-blurb">
                 Process Ladders 
                 <ul>
-                    <li><a href="NewProcessLadder.jsp">
+                    <li class = "view-p-ladders"><a href="NewProcessLadder.jsp">
                             <div class="sidebox-menu-blurb-sub">
                                 View Process Ladders
                             </div>
                     </a></li>
-                    <li><a href="add-process-ladder">
+                    <li class = "add-p-ladder"><a href="add-process-ladder">
                             <div class="sidebox-menu-blurb-sub">
                                 Add Process Ladder
                             </div>
@@ -86,9 +85,45 @@
 
         </li>
         <li>
-            <div class="add-spaces"> <!-- Spaces are added here to stretch the sidebar -->
+            <div class="sidebox-menu-blurb">
+                Tools 
+                <ul>
+                    <li class = "view-tools"><a href="view-composition-ladders">
+                            <div class="sidebox-menu-blurb-sub">
+                                View Tools
+                            </div>
+                    </a></li>
+                    <li class = "add-tool"><a href="#">
+                            <div class="sidebox-menu-blurb-sub">
+                                Add Tool
+                            </div>
+                    </a></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="sidebox-menu-blurb">
+                Resources 
+                <ul>
+                    <li class = "view-resorces"><a href="view-composition-ladders">
+                            <div class="sidebox-menu-blurb-sub">
+                                View Tools
+                            </div>
+                    </a></li>
+                    <li class = "add-resource"><a href="#">
+                            <div class="sidebox-menu-blurb-sub">
+                                Add Tool
+                            </div>
+                    </a></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <%--
+            <div class="extend-sidebar"> <!-- Spaces are added here to stretch the sidebar -->
                 <p></p>
             </div>
+            --%>
         </li>
     </ul>
 

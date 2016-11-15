@@ -67,6 +67,10 @@ public class RequestDispatcher extends HttpServlet {
         else if(userPath.equals("/view-composition-ladders")){
             userPath = "/ViewCompositionLadders";
         }
+        
+        else if(userPath.equals("/add-user")){
+            userPath = "/AddUser";
+        }
         String url = "/WEB-INF/view" + userPath + ".jsp";
 
         try {

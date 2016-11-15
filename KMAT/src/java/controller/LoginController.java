@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet{
         HttpSession session=request.getSession(); 
         session.removeAttribute("CurrentSessionUser");
         session.invalidate();  
-        response.sendRedirect("login.jsp");     
+        response.sendRedirect("Home.jsp");     
         //response.setContentType("text/html");
         //PrintWriter out = response.getWriter();
         //Validate username  and password

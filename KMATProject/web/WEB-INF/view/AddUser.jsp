@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ViewCompositionLadders
-    Created on : Nov 3, 2016, 11:05:27 AM
+    Document   : AddUser
+    Created on : Nov 12, 2016, 7:18:13 PM
     Author     : Habiba Saim
 --%>
 
@@ -18,20 +18,22 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>  
+    <head>
         <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Composition Ladders</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Knowledge Management for All Tool (KMAT)" />
-	<meta name="keywords" content="KMAT, resource, concept, concept map, list, tool, composition, composition ladder" />
+	<meta name="keywords" content="KMAT, user, description, admin, knowledge engineer" />
 	<meta name="author" content="KMAT Team" />
         
         <jsp:include page="../../includes/link.jsp" /> 
+        <title>Add a new user</title>
+        
+        <script src="js/signup-verifications.js"></script>       
+        
     </head>
     
-    <body class = "view-c-ladders">
-        <!-- START wrapper -->
+    <body class = "add-user">
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">
@@ -43,27 +45,42 @@
                 <aside class="heading-bg" > <!--style="background: url(images/heading-bg1.jpg) repeat;">-->
                     <div class="container">
                         <!--<h1 class="page-heading-lead">-->
-                       Composition Ladders
+                        Add a new user
                             <!--<span class="border"></span>-->
                         <!--</h1>-->
                     </div>                        
                 </aside>
                 <!-- END: Page heading-->
                 
+                <!-- START: Page contents -->
                 <div class="container">
+                    <!-- START: Page contents main row -->
                     <div class="row">
+                        <!-- START: Add user form area -->
                         <div class="col-md-10 col-md-push-2">
+                            <br/>
+                            <form name = "signup" method="post" action="InsertUserController" onSubmit="return verifyEmail()">
+                                <input type="hidden" name="hidden" value="AddUser">
+                                <!-- Includes Sign Up Form -->
+                                <jsp:include page="../../includes/signup-form.jsp" />
+                            </form>
                         </div>
+                        <!-- END: Add user form area -->
+                        <!-- START: Side bar-->
                         <div class="col-md-2 col-md-pull-10 back-color" >
                             <%-- <jsp:include page="includes/verticalUserMenu.jsp" />  --%>
                             <!-- Left side bar includes here -->
                             <jsp:include page="../../includes/left-sidebar.jsp" />
-                        </div>         
-                        
+                        </div>
+                        <!-- END: Side bar -->
                     </div>
+                    <!-- START: Page contents main row -->
                 </div>
-                          
+                <!-- END: Page contents -->
+               
                 <!-- adds js -->                
                 <jsp:include page="../../includes/js.jsp" /> 
                 
+                
                 <!-- footer.jspf integrates here -->
+    

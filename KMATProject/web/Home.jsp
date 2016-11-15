@@ -22,7 +22,7 @@
         
         
     </head>
-    <body>
+    <body class = "home">
         <!-- START wrapper -->
         <div id = "wrapper">
             <!-- START page-->
@@ -185,8 +185,8 @@
                     <div class="container">
                         <div class="row text-center signin-heading">
                             <div class="col-md-8 col-md-offset-2">
-                                    <h2 class="text-styled">Sign in</h2>
-
+                                <!--<lable id = "invlalid-signin"></lable>-->
+                                <h2 class="text-styled">Sign in</h2>
                             </div>
                         </div>
                         <div class="get-signin">
@@ -210,7 +210,7 @@
                         </div>
                         <div class="row text-center">
                             <div class="col-md-8 col-md-offset-2">                                    
-                                    <p><a href="SignUp.jsp" class="btn btn-primary btn-lg">Sign Up</a></p>
+                                    <p>No account? <a href="SignUp.jsp" class="btn btn-primary btn-lg">Sign Up</a></p>
 
                             </div>
                         </div>

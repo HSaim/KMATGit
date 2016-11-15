@@ -21,28 +21,27 @@
                     <ul class="sf-menu" id="primary-menu" >
                         <!--<label id="uname" align = "left"><a href =""></a></label>-->
                         <li id = "uname"><a>UserName</a></li>
-                        <li><a href="home">Home</a></li>
-                        <li><a href="">News</a></li>
-                        <li>
-                            <a href="" class="sub-ddown">Site Map </a>
-                            <ul class="sub-menu">
-                                <li><a href="">sub menu 1</a></li>
-
-                                <li>
-                                    <a href="#" class="fh5co-sub-ddown">sub menu 2 </a>
-                                    <ul class="sub-menu">
+                        <li class ="home"><a href="home">Home</a></li>
+                        <li class="news">
+                            <a href="" class="fh5co-sub-ddown">News</a>
+                                <ul class="sub-menu">
+                                    <li><a href="">sub menu 1</a></li>
+                                    <li>
+                                        <a href="#" class="fh5co-sub-ddown">sub menu 2</a>
+                                        <ul class="sub-menu">
                                             <li><a href="" >Build</a></li>
                                             <li><a href="">Work</a></li>
                                             <li><a href="">Light</a></li>
                                             <li><a href="">Relic</a></li>
                                             <li><a href="">Display</a></li>
                                             <li><a href="">Sprint</a></li>
-                                    </ul>
-                                </li>                                                
-                            </ul>
+                                        </ul>
+                                    </li>                                                
+                                </ul>
                         </li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li class ="about"><a href="about.html">About</a></li>
+                    <li class = "contact"><a href="contact.html">Contact</a></li>
+                    <li class="cta"><a href="Home.jsp">Sign out</a></li>
 
                 </ul>
                 </nav>

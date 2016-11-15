@@ -19,7 +19,11 @@
         <jsp:include page="includes/link.jsp" />    
         
         <title>Sign Up</title>
+        
+        <script src="js/signup-verifications.js"></script>
+        
     </head>
+    
     <body>
         <!-- START wrapper -->
         <div id = "wrapper">
@@ -31,20 +35,20 @@
                 
                 <!-- START: Banner-->
                 <aside id="hero" class="js-fullheight">
-			<div class="flexslider js-fullheight">
-				<ul class="slides">
-			   	<li style="background-image: url(images/hero4.jpg);">
-			   		<div class="overlay-gradient"></div>
-			   		<div class="container">
-			   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
-			   				<div class="slider-text-inner desc">
-			   					<h2 class="heading-section">Sign up for KMAT</h2>			   					
-			   				</div>
-			   			</div>
-			   		</div>
-			   	</li>
-			  	</ul>
-		  	</div>
+                    <div class="flexslider js-fullheight">
+                        <ul class="slides">
+                            <li style="background-image: url(images/hero4.jpg);">
+                                <div class="overlay-gradient"></div>
+                                <div class="container">
+                                    <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+                                        <div class="slider-text-inner desc">
+                                               <h2 class="heading-section">Sign up for KMAT</h2>			   					
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
 		</aside>                
                 <!-- END: Banner-->
                 
@@ -54,77 +58,10 @@
                         <div class="row text-center">                            
                             <h2 >Create an account</h2>                            
                         </div>
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="First Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Last Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">                                            
-                                        <input type="text" class="form-control" placeholder="User Name">                                    
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                            <!--<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>-->
-                                            <input type="password" class="form-control" placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                            <!--<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>-->
-                                            <input type="password" class="form-control" placeholder="Re-enter Password">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Primary Email">
-                                        </div>
-                                </div>
-                                <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Secondary Email">
-                                        </div>
-                                </div>
-                                <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Postal Address">
-                                        </div>
-                                </div>
-                                <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Permanent Address">
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Work Phone">
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Mobile Phone">
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Home Phone">
-                                        </div>
-                                </div>
-                                <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="submit" value="Creat Account" class="btn btn-primary">
-                                        </div>
-                                </div>
-                            </div>
-
+                        <form name = "signup" method="post" action="InsertUserController" onSubmit="return verifyEmail()">
+                            <input type="hidden" name="hidden" value="SignUp">
+                            <!-- Includes Sign Up Form -->
+                            <jsp:include page="includes/signup-form.jsp" />
                         </form>
                     </div>
                 </div>

@@ -590,6 +590,16 @@ figure {
   float: right;
 }
 
+/* Changes color of active menu */
+body.home #primary-menu li.home > a,
+body.news #primary-menu li.news > a,
+body.about #primary-menu li.about > a,
+body.contact #primary-menu li.contact > a,
+body.add-user #primary-menu li.home > a,
+body.add-p-ladder #primary-menu li.home > a,
+body.view-c-ladders #primary-menu li.home > a{
+    color: #00ADB5;
+}
 #primary-menu > li > ul li.active > a {
   color: #00ADB5 !important;
 }

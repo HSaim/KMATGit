@@ -18,8 +18,8 @@
                 <!-- START #menu-wrap -->
                 <nav id="menu-wrap" role="navigation">
                     <ul class="sf-menu" id="primary-menu" >
-                        <li><a  href="Home.jsp">Home</a></li>                        
-                        <li>
+                        <li class = "home"><a  href="Home.jsp">Home</a></li>                        
+                        <li class = "news">
                             <a href="" class="fh5co-sub-ddown">News</a>
                             <ul class="sub-menu">
                                 <li><a href="">sub menu 1</a></li>
@@ -36,9 +36,9 @@
                                 </li>                                                
                             </ul>
                         </li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="Contact.jsp">Contact</a></li>
-                        <li class="cta"><a href="Home.jsp#get-signin">Login</a></li>
+                        <li class  = "about"><a href="about.html">About</a></li>
+                        <li class = "contact"><a href="Contact.jsp">Contact</a></li>
+                        <li class="cta home"><a href="Home.jsp#get-signin">Login</a></li>
                     </ul>
                 </nav>
                 <!-- END menu-wrap -->

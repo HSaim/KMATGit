@@ -4,6 +4,17 @@
     Author     : Habiba Saim
 --%>
 
+<!-- Code to prevent user from accessing any user specific page after logout/session-end -->
+<%
+    response.setHeader("Pragma","no-cache"); 
+    response.setHeader("Cache-Control","no-store");
+    response.setDateHeader("Expires",-1);
+    if(session.getAttribute("CurrentSessionUser")==null){
+    
+        response.sendRedirect("Home.jsp");
+    }
+%> 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,7 +31,7 @@
         <jsp:include page="../../includes/process-ladder-link.jsp" />        
     </head>
     
-    <body>
+    <body class = "add-p-ladder">
        
         <div id = "wrapper">
             <!-- START page-->
@@ -67,9 +78,10 @@
                                     <div id="graph-buttons">
                                         <input type="image" id="graph-help-icon" title="Help" src="images/help-icons/help-icon20.png"
                                                onclick="onClickHelpButton('Process', window.event.x, window.event.y)" 
-                                               onmousedown="onMouseDownHelpButton('Process')" onmouseup="onMouseUpHelpButton('Process')" onblur="onBlurHelpButton()" alt="Help">
+                                               onmousedown="onMouseDownHelpButton('Process')" onmouseup="onMouseUpHelpButton('Process')" 
+                                               onblur="onBlurHelpButton()" alt="Help">
                                         <input type="image" id="graph-settings-icon" title="Settings" src="images/icons/settings-icon.png" 
-                                               onclick="onClickSettingsButton('Process')" 
+                                               onclick="onClickSettingsButton('Process' , window.event.x, window.event.y)" 
                                                onmousedown="onMouseDownSettingsButton('Process')" onmouseup="onMouseUpSettingsButton('Process')" alt="Settings">
                                     </div>
                                 </div>
@@ -214,7 +226,7 @@
 
 		
                             <div class = "row">
-                                <div class="add-spaces"> <!-- SPaces are added here to keep prevent SVG from overlapping footer -->
+                                <div class="add-spaces"> <!-- Spaces are added here to keep prevent SVG from overlapping footer -->
                                     <p></p>
                                 </div>
                                 

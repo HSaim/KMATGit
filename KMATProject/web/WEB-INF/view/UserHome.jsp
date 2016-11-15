@@ -4,6 +4,17 @@
     Author     : Habiba Saim
 --%>
 
+<!-- Code to prevent user from accessing any user specific page after logout/session-end -->
+<%
+    response.setHeader("Pragma","no-cache"); 
+    response.setHeader("Cache-Control","no-store");
+    response.setDateHeader("Expires",-1);
+    if(session.getAttribute("CurrentSessionUser")==null){
+    
+        response.sendRedirect("Home.jsp");
+    }
+%> 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +29,7 @@
         
         <jsp:include page="../../includes/link.jsp" /> 
     </head>
-    <body>
+    <body class = "home">
         <!-- START wrapper -->
         <div id = "wrapper">
             <!-- START page-->
