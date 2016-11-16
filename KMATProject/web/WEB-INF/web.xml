@@ -21,18 +21,9 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RequestDispatcher</servlet-name>
-        <url-pattern>/add-process-ladder</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RequestDispatcher</servlet-name>
-        <url-pattern>/view-composition-ladders</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RequestDispatcher</servlet-name>
-        <url-pattern>/NewProcessLadder</url-pattern>
-    </servlet-mapping>
+    
+    
+   
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-users</url-pattern>
@@ -50,6 +41,38 @@
         <url-pattern>/add-role</url-pattern>
     </servlet-mapping>
     
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-composition-ladders</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-composition-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-process-ladders</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-process-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-tools</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-tool</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-resources</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-resource</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

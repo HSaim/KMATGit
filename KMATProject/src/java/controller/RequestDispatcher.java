@@ -75,14 +75,32 @@ public class RequestDispatcher extends HttpServlet {
         else if(userPath.equals("/add-role")){
             userPath = "/AddRole";
         }
-        
-        else if (userPath.equals("/add-process-ladder")){
-            userPath = "/AddProcessLadder";
-        }
-        
         else if(userPath.equals("/view-composition-ladders")){
             userPath = "/ViewCompositionLadders";
         }
+        else if(userPath.equals("/add-composition-ladder")){
+            userPath = "/AddCompositionLadder";
+        }
+        else if(userPath.equals("/view-process-ladders")){
+            userPath = "/ViewProcessLadders";
+        }
+        else if (userPath.equals("/add-process-ladder")){
+            userPath = "/AddProcessLadder";
+        }
+        else if(userPath.equals("/view-tools")){
+            userPath = "/ViewTools";
+        }
+        else if (userPath.equals("/add-tool")){
+            userPath = "/AddTool";
+        }
+        else if(userPath.equals("/view-resources")){
+            userPath = "/ViewResources";
+        }
+        else if (userPath.equals("/add-resource")){
+            userPath = "/AddResource";
+        }
+        
+        
         
         
         String url = "/WEB-INF/view" + userPath + ".jsp";

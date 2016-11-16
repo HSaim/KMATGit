@@ -148,7 +148,8 @@ body.view-resources .sidebox-menu li ul li.view-resources > a .sidebox-menu-blur
 body.add-resource .sidebox-menu li ul li.add-resource > a .sidebox-menu-blurb-sub{
     color : #d2be0e;
     font-weight: bold;
-    font-size:large;    
+    font-size:large;
+    text-decoration: underline;
 }
 
 .extend-sidebar p{

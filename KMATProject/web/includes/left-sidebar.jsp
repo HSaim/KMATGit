@@ -58,7 +58,7 @@
                                 View Composition Ladders
                             </div>
                     </a></li>
-                    <li class = "add-c-ladders"><a href="#">
+                    <li class = "add-c-ladders"><a href="add-composition-ladder">
                             <div class="sidebox-menu-blurb-sub">
                                 Add Composition Ladder
                             </div>
@@ -70,7 +70,7 @@
             <div class="sidebox-menu-blurb">
                 Process Ladders 
                 <ul>
-                    <li class = "view-p-ladders"><a href="NewProcessLadder.jsp">
+                    <li class = "view-p-ladders"><a href="view-process-ladders">
                             <div class="sidebox-menu-blurb-sub">
                                 View Process Ladders
                             </div>
@@ -88,12 +88,12 @@
             <div class="sidebox-menu-blurb">
                 Tools 
                 <ul>
-                    <li class = "view-tools"><a href="view-composition-ladders">
+                    <li class = "view-tools"><a href="view-tools">
                             <div class="sidebox-menu-blurb-sub">
                                 View Tools
                             </div>
                     </a></li>
-                    <li class = "add-tool"><a href="#">
+                    <li class = "add-tool"><a href="add-tool">
                             <div class="sidebox-menu-blurb-sub">
                                 Add Tool
                             </div>
@@ -105,14 +105,14 @@
             <div class="sidebox-menu-blurb">
                 Resources 
                 <ul>
-                    <li class = "view-resorces"><a href="view-composition-ladders">
+                    <li class = "view-resources"><a href="view-resources">
                             <div class="sidebox-menu-blurb-sub">
-                                View Tools
+                                View Resources
                             </div>
                     </a></li>
-                    <li class = "add-resource"><a href="#">
+                    <li class = "add-resource"><a href="add-resource">
                             <div class="sidebox-menu-blurb-sub">
-                                Add Tool
+                                Add Resource
                             </div>
                     </a></li>
                 </ul>
