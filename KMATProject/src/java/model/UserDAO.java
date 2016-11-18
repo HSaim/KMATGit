@@ -17,12 +17,13 @@ public class UserDAO {
   
     static Connection currentCon = null;
     static ResultSet rs = null;  
+    static Statement stmt = null;
 		
     //Validate username and password while login
-    public static UserBean login(UserBean bean) {
+    public static LoginUserBean login(LoginUserBean bean) {
 	
         //preparing some objects for connection 
-        Statement stmt = null;    
+            
 
         String username = bean.getUsername();    
         String password = bean.getPassword();   
@@ -44,15 +45,13 @@ public class UserDAO {
            boolean more = rs.next();
 
            // if user does not exist set the isValid variable to false
-           if (!more) 
-           {
+           if (!more) {           
               //System.out.println("Sorry, you are not a registered user! Please sign up first");
               bean.setValid(false);
            } 
 
            //if user exists set the isValid variable to true
-           else if (more) 
-           {
+           else if (more) {           
               //String firstName = rs.getString("FirstName");
               //String lastName = rs.getString("LastName");
 
@@ -98,18 +97,17 @@ public class UserDAO {
           }
 
         return bean;
-
     }	
     
     //Add a new user in KMAT DB
-    public static AddUserBean insertUser(AddUserBean bean) {
+    public static UserBean insertUser(UserBean bean) {
         
         
         //preparing some objects for connection 
         // Connection con = null;
         // ResultSet rs1 = null;  
 		
-        Statement stmt = null; 
+        //Statement stmt = null; 
         int user_tbl_Insertion = 0;
         int user_details_tbl_Insertion = 0;
         int userId  = 0;
@@ -214,6 +212,35 @@ public class UserDAO {
         
         return bean;
     }
+    
+    public static ArrayList<UserBean> getUsers(){
+        ArrayList<UserBean> list = new ArrayList();
+        String query = "Select * from u.username, u.password, u-det.first_name, u-det.last_name, u-det.email1, u-det.email2, "
+                + "u-det. address1, u-det.address2, u-det.work_phone, u-det.home_phone, u-det.mobile_phone "
+                + "from user_tbl u, user_details_tbl u-det "
+                + "where u.user_id = u-det.user_idfk";
+        
+        //preparing some objects for connection 
+        try{
+        currentCon = ConnectionManager.getConnection();
+        stmt=currentCon.createStatement();
+        rs = stmt.executeQuery(query);	        
+       // boolean more = rs.next();
+       while (rs.next()){
+           UserBean user = new UserBean();
+           user.setUserName(rs.getString("username"));
+           user.setPassword(rs.getString("password"));
+           user.setFirstName(rs.getString("first_name"));
+           
+           
+       }
+        }
+        catch(Exception ex){
+            
+        }
+        return list;
+    }
+    
 }
 
     

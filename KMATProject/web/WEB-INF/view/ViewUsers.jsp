@@ -54,7 +54,20 @@
                 
                 <div class="container">
                     <div class="row">
+                        
                         <div class="col-md-10 col-md-push-2">
+                            <h2>Users</h2>
+                            <div class = "row">
+                                <div class="col-md-8">
+                                     Name 1
+                                </div>
+                                <div class = "col-md-2">
+                                    <h2><i class="icon-edit"></i></h2>
+                                </div>
+                                <div class = "col-md-2">
+                                    <h2><i class="icon-remove-user"></i></h2>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-2 col-md-pull-10 back-color" >
                             <%-- <jsp:include page="includes/verticalUserMenu.jsp" />  --%>

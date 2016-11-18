@@ -4,7 +4,7 @@
     Author     : Habiba Saim
 --%>
 
-<%@page import="model.UserBean"%>
+<%@page import="model.LoginUserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -56,7 +56,7 @@
 <%--
 <script>
     (function() {
-        <% UserBean currentUser = ((UserBean) (session.getAttribute("CurrentSessionUser"))); %>
+        <% LoginUserBean currentUser = ((LoginUserBean) (session.getAttribute("CurrentSessionUser"))); %>
          var v1 = '<%= currentUser.getUsername() %>';                      
          var label = document.getElementById("uname");
 

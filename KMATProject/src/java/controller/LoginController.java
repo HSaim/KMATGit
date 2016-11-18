@@ -5,7 +5,7 @@
  */
 package controller;
 
-import model.UserBean;
+import model.LoginUserBean;
 import model.UserDAO;
 
 import java.io.IOException;
@@ -54,7 +54,7 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        try{
-            UserBean user = new UserBean();
+            LoginUserBean user = new LoginUserBean();
             user.setUserName(request.getParameter("username"));
             user.setPassword(request.getParameter("password"));
             
@@ -75,7 +75,7 @@ public class LoginController extends HttpServlet {
                     PrintWriter out = response.getWriter();
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('Invalid username or password');");
-                    out.println("location='Home.jsp#get-signin';");
+                    out.println("location='Home.jsp#name';");
                     out.println("</script>");                    
                 }
                 catch (Exception e){

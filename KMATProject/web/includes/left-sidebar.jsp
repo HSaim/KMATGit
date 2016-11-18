@@ -58,7 +58,7 @@
                                 View Composition Ladders
                             </div>
                     </a></li>
-                    <li class = "add-c-ladders"><a href="add-composition-ladder">
+                    <li class = "add-c-ladder"><a href="add-composition-ladder">
                             <div class="sidebox-menu-blurb-sub">
                                 Add Composition Ladder
                             </div>

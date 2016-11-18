@@ -5,7 +5,7 @@
  */
 package controller;
 
-import model.AddUserBean;
+import model.UserBean;
 import model.UserDAO;
 
 import java.io.IOException;
@@ -54,7 +54,7 @@ public class InsertUserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-            AddUserBean user = new AddUserBean();
+            UserBean user = new UserBean();
             //Get Signup form elements 
             user.setUserName(request.getParameter("user_name"));
             user.setPassword(request.getParameter("password"));
@@ -81,7 +81,7 @@ public class InsertUserController extends HttpServlet {
                     PrintWriter out = response.getWriter();
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('One record inserted successfully!');");
-                    out.println("location='UserHome';");
+                    out.println("location='home';");
                     out.println("</script>");                    
                 }
                 catch (Exception e){
@@ -97,7 +97,7 @@ public class InsertUserController extends HttpServlet {
                     PrintWriter out = response.getWriter();
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('One record inserted successfully!');");
-                    out.println("location='Home.jsp#get-signin';");
+                    out.println("location='Home.jsp#name';");
                     out.println("</script>");                    
                 }
                 catch (Exception e){
