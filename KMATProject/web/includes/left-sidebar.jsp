@@ -20,6 +20,7 @@
             </div>
             <!-- </a>-->
             <ul>
+                <!--<li class = "view-users"><a href="GetUsersController">-->
                 <li class = "view-users"><a href="view-users">
                         <div class="sidebox-menu-blurb-sub">
                             View Users

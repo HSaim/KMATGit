@@ -69,31 +69,8 @@ public class UserDAO {
 
         //some exception handling
         finally{
+            closeConnection();
             
-           if (rs != null){
-                try {
-                    rs.close();
-                } 
-                catch (Exception e) {}
-                    rs = null;
-            }
-
-           if (stmt != null) {
-                try {
-                   stmt.close();
-                } 
-                catch (Exception e) {}
-                   stmt = null;
-                }
-
-             if (currentCon != null) {
-                try {
-                   currentCon.close();
-                } 
-                catch (Exception e) {
-                }
-                currentCon = null;
-             }
           }
 
         return bean;
@@ -181,32 +158,9 @@ public class UserDAO {
         } 
 
         //some exception handling
-        finally{
+        finally{       
             
-           if (rs != null){
-                try {
-                    rs.close();
-                } 
-                catch (Exception e) {}
-                    rs = null;
-            }
-
-           if (stmt != null) {
-                try {
-                   stmt.close();
-                } 
-                catch (Exception e) {}
-                   stmt = null;
-                }
-
-             if (currentCon != null) {
-                try {
-                   currentCon.close();
-                } 
-                catch (Exception e) {
-                }
-                currentCon = null;
-             }
+            closeConnection();
           }
 
         
@@ -214,31 +168,60 @@ public class UserDAO {
     }
     
     public static ArrayList<UserBean> getUsers(){
-        ArrayList<UserBean> list = new ArrayList();
+        ArrayList<UserBean> list = new ArrayList<UserBean>();
         String query = "Select * from u.username, u.password, u-det.first_name, u-det.last_name, u-det.email1, u-det.email2, "
-                + "u-det. address1, u-det.address2, u-det.work_phone, u-det.home_phone, u-det.mobile_phone "
+                + "u-det.address1, u-det.address2, u-det.work_phone, u-det.home_phone, u-det.mobile_phone "
                 + "from user_tbl u, user_details_tbl u-det "
                 + "where u.user_id = u-det.user_idfk";
         
         //preparing some objects for connection 
         try{
-        currentCon = ConnectionManager.getConnection();
-        stmt=currentCon.createStatement();
-        rs = stmt.executeQuery(query);	        
-       // boolean more = rs.next();
-       while (rs.next()){
-           UserBean user = new UserBean();
-           user.setUserName(rs.getString("username"));
-           user.setPassword(rs.getString("password"));
-           user.setFirstName(rs.getString("first_name"));
-           
-           
-       }
+            currentCon = ConnectionManager.getConnection();
+            stmt=currentCon.createStatement();
+            rs = stmt.executeQuery(query);	        
+           // boolean more = rs.next();
+            while (rs.next()){
+               UserBean user = new UserBean();
+               user.setUserName(rs.getString("username"));
+               user.setPassword(rs.getString("password"));
+               user.setFirstName(rs.getString("first_name"));
+               user.setLastName (rs.getString("last_name"));
+               user.setPriEmail(rs.getString("email1"));
+               user.setSecEmail(rs.getString("email2"));
+               user.setPosAddress(rs.getString("address1"));
+               user.setPerAddress(rs.getString("address2"));
+               user.setWorkPhone(rs.getString("work_phone"));
+               user.setMobPhone(rs.getString("mobile_phone"));
+               user.setHomePhone(rs.getString("home_phone"));
+
+               list.add(user);    
+            }
         }
         catch(Exception ex){
             
         }
+        finally{
+            closeConnection();
+        }
         return list;
+    }
+    
+    private static void closeConnection(){
+        if (rs != null){
+            try {
+                rs.close();
+            } 
+            catch (Exception e) {}
+                rs = null;
+        }
+       if (stmt != null) {
+        try {
+           stmt.close();
+        } 
+        catch (Exception e) {}
+           stmt = null;
+        }   
+       ConnectionManager.putConnection(currentCon);
     }
     
 }

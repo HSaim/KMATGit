@@ -36,5 +36,22 @@ public class ConnectionManager {
           System.out.println(e);
         }
         return con;
-    }    
+    }  
+    
+    /*
+     * Close open database connection
+     */
+    public static void putConnection(Connection conn) 
+    {
+        if (conn != null) 
+        {
+            try {           
+                conn.close(); 
+            }
+          catch (SQLException e) {
+            System.out.println("Unable to close DB connection");
+            e.printStackTrace();
+          }
+        }
+    }
 }

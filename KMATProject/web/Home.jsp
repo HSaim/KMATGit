@@ -28,10 +28,12 @@
             <!-- START page-->
             <div id = "page">
                 <!-- START header -->
-                 <jsp:include page="includes/header.jsp" />    
+                 <%--<jsp:include page="includes/header.jsp" /> --%> 
+                 <%@ include file="includes/header.jsp" %>
                 <!-- END header -->
                  <!-- Slider Starts-->
-                <jsp:include page="includes/slider.jsp" /> 
+                
+                <%@ include file="includes/slider.jsp" %>
                 <!-- Slider Ends -->
                 
                 <!-- KMAT Components Starts-->
@@ -220,7 +222,7 @@
                 <!-- END: Sign in -->
                 
                 <!-- adds js -->                
-                <jsp:include page="includes/js.jsp" /> 
+                <%@ include file="includes/js.jsp" %>
                 
                 <!-- footer.jspf integrates here -->
                 
