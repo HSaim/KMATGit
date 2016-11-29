@@ -36,6 +36,42 @@ public class GetUsersController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String action =request.getParameter("action");
+        //String username = request.getParameter("userName");
+        if (action.equals("get-all-users")){
+        ArrayList<UserBean> users = new ArrayList<UserBean>();
+        users = UserDAO.getUsers();
+        try{
+            if (users!=null){
+        //PrintWriter out = response.getWriter();
+          //      out.println("<script type=\"text/javascript\">");
+            //    out.println("alert('Inside doPost of GetUsersController');");
+              //  out.println("location='view-users';");
+                //out.println("</script>");           
+                HttpSession session = request.getSession(true);
+                session.setAttribute("users", users);
+                response.sendRedirect("view-users");
+                //url = "/WEB-INF/view/ViewUsers.jsp";
+
+
+                //request.getRequestDispatcher(url).forward(request, response);
+            }
+        }
+        catch(Exception e){
+                e.printStackTrace();
+        }
+        }
+        
+        else if(action.equals("get-user")){
+            String username;
+            UserBean user = new UserBean();
+            username = request.getParameter("userName");
+            user = UserDAO.getUser(username);
+            request.setAttribute("user", user);
+           HttpSession session = request.getSession(true);
+            session.setAttribute("ret-user", user);
+            response.sendRedirect("edit-user");
+        }
     }
 
     /**
@@ -49,14 +85,21 @@ public class GetUsersController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        /*String url;
+        url = "/WEB-INF/view/ViewUsers.jsp";
         //response.sendRedirect("view-users");
         ArrayList<UserBean> users = new ArrayList<UserBean>();
         users = UserDAO.getUsers();
         try{
         //if (users!=null){
+            PrintWriter out = response.getWriter();
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Inside doPost of GetUsersController');");
+                    //out.println("location='Home.jsp#name';");
+                    out.println("</script>");           
             HttpSession session = request.getSession(true);
             session.setAttribute("users", users);
-            String url = "/WEB-INF/view/ViewUsers.jsp";
+            url = "/WEB-INF/view/ViewUsers.jsp";
 
         
             request.getRequestDispatcher(url).forward(request, response);
@@ -66,6 +109,7 @@ public class GetUsersController extends HttpServlet {
         catch(Exception e){
             e.printStackTrace();
         }
+        */
     }
 
     /**

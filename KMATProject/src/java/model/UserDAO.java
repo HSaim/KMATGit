@@ -36,8 +36,7 @@ public class UserDAO {
                        + "'";	    
        
 
-        try{            
-        
+        try{                
            //connect to DB 
            currentCon = ConnectionManager.getConnection();
            stmt=currentCon.createStatement();
@@ -62,15 +61,13 @@ public class UserDAO {
            }
         } 
 
-        catch (Exception ex) {
-        
+        catch (Exception ex) {        
            System.out.println("Log In failed: An Exception has occurred! " + ex);
         } 
 
         //some exception handling
         finally{
-            closeConnection();
-            
+            closeConnection();            
           }
 
         return bean;
@@ -166,19 +163,26 @@ public class UserDAO {
         
         return bean;
     }
-    
+    /*
+    Reurns an arraylist of all users
+    */
     public static ArrayList<UserBean> getUsers(){
         ArrayList<UserBean> list = new ArrayList<UserBean>();
-        String query = "Select * from u.username, u.password, u-det.first_name, u-det.last_name, u-det.email1, u-det.email2, "
+        String query = "Select u.username, u.password, u-det.first_name, u-det.last_name, u-det.email1, u-det.email2, "
                 + "u-det.address1, u-det.address2, u-det.work_phone, u-det.home_phone, u-det.mobile_phone "
                 + "from user_tbl u, user_details_tbl u-det "
                 + "where u.user_id = u-det.user_idfk";
-        
+         String query2 = "Select user_tbl.username, user_tbl.password, user_details_tbl.first_name, user_details_tbl.last_name, "
+                 + "user_details_tbl.email1, user_details_tbl.email2, "
+                + "user_details_tbl.address1,user_details_tbl.address2, user_details_tbl.work_phone, user_details_tbl.home_phone, user_details_tbl.mobile_phone "
+                + "from user_tbl, user_details_tbl  "
+                + "where user_tbl.user_id = user_details_tbl.user_idfk";
+        String query1= "Select u.username from user_tbl u where u.user_id = 15";
         //preparing some objects for connection 
         try{
             currentCon = ConnectionManager.getConnection();
             stmt=currentCon.createStatement();
-            rs = stmt.executeQuery(query);	        
+            rs = stmt.executeQuery(query2);	        
            // boolean more = rs.next();
             while (rs.next()){
                UserBean user = new UserBean();
@@ -204,6 +208,50 @@ public class UserDAO {
             closeConnection();
         }
         return list;
+    }
+    /*
+    Returns a user with respect to username
+    */
+    public static UserBean getUser(String userName){
+        UserBean user = new UserBean();
+        
+         String query = "Select user_tbl.username, user_tbl.password, user_details_tbl.first_name, user_details_tbl.last_name, "
+                 + "user_details_tbl.email1, user_details_tbl.email2, "
+                + "user_details_tbl.address1,user_details_tbl.address2, user_details_tbl.work_phone, user_details_tbl.home_phone, user_details_tbl.mobile_phone "
+                + "from user_tbl, user_details_tbl  "
+                + "where user_tbl.username = '"+ userName+"' AND user_tbl.user_id = user_details_tbl.user_idfk";
+                       
+        
+        //preparing some objects for connection 
+        try{
+            currentCon = ConnectionManager.getConnection();
+            stmt=currentCon.createStatement();
+            rs = stmt.executeQuery(query);	        
+           // boolean more = rs.next();
+            //while (rs.next()){
+              // UserBean user = new UserBean();
+            if (rs.next()){
+               user.setUserName(rs.getString("username"));
+               user.setPassword(rs.getString("password"));
+               user.setFirstName(rs.getString("first_name"));
+               user.setLastName (rs.getString("last_name"));
+               user.setPriEmail(rs.getString("email1"));
+               user.setSecEmail(rs.getString("email2"));
+               user.setPosAddress(rs.getString("address1"));
+               user.setPerAddress(rs.getString("address2"));
+               user.setWorkPhone(rs.getString("work_phone"));
+               user.setMobPhone(rs.getString("mobile_phone"));
+               user.setHomePhone(rs.getString("home_phone"));
+               //list.add(user);    
+            }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        finally{
+            closeConnection();
+        }
+        return user;
     }
     
     private static void closeConnection(){
