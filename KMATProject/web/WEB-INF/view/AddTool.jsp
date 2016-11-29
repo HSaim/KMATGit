@@ -55,6 +55,72 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10 col-md-push-2">
+                        <%-- Add Resource Block Starts --%> 
+
+
+
+<form method="post" action="AddResource" enctype="multipart/form-data">
+    <div class="col-md-12">
+        <div class="form-group">
+        <input type = "text" class="form-control"placeholder="Name of Tool">
+    
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <textarea class="form-control"placeholder="Description of Tool"rows="10"></textarea>
+    
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class = "form-group">
+            <input type="radio" class = "form-check-input">
+        </div>
+    </div>
+    <div class="col-md-11">
+        <div class="form-group">
+            
+        <input type = "file" class="form-control-file">
+    
+        </div>
+    </div>
+    <br/>
+    <div class="col-md-1">
+        <div class = "form-group">
+            <input type="radio" class = "form-check-input">
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="form-group">
+            
+        <input type = "text" class="form-control"placeholder="Link of Tool">
+    
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            
+        <input type = "button" class="form-control"value="Preview">
+    
+        </div>
+    </div>
+   <!-- <iframe src="http://www.wikipedia.org"></iframe>-->
+    
+   <row>
+              <div class="col-md-12" height="100%">   
+                <iframe src="https://google.com" style="width:100%; height:100%;"></iframe>
+                     </div>
+            
+       
+ </row>
+   <div class="col-md-12">
+                <div class="form-group">
+                    <input type="submit" value="Add Tool" class="btn btn-primary">
+                </div>
+        </div>
+
+</form>
+
                         </div>
                         <div class="col-md-2 col-md-pull-10 back-color" >
                             <%-- <jsp:include page="includes/verticalUserMenu.jsp" />  --%>
