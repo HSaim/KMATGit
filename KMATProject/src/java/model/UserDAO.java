@@ -163,29 +163,80 @@ public class UserDAO {
         
         return bean;
     }
+    
+    /*
+    Updates a user profile
+    */
+    public static UserBean updateUser(UserBean bean){
+       
+        String userId = bean.getUserId();
+        String userName = bean.getUserName();
+        String priEmail = bean.getPriEmail();
+        String secEmail = bean.getSecEmail();
+        String firstName = bean.getFirstName();
+        String lastName = bean.getLastName();
+        String password = bean.getPassword();       
+        String postalAddress = bean.getPosAddress();
+        String perAddress = bean.getPerAddress();
+        String workPhone = bean.getWorkPhone();
+        String homePhone = bean.getHomePhone();
+        String mobPhone = bean.getMobPhone();
+        /*
+        String searchUserName =
+              "select username from user_tbl where username='"
+                       + userName+"'";
+        */
+        String query1 = "Update user_tbl set  password ='" + password +"' , update_dt = NOW() where user_id = '" + userId +"'";
+        String query2 = "Update user_details_tbl set first_name ='" +firstName + "', last_name ='" + lastName +"', email1 ='" + priEmail 
+                +"', email2 ='" + secEmail+ "', address1 ='" + postalAddress + "', address2 ='" +perAddress + "', work_phone = '" + workPhone +"', "
+                + "mobile_phone ='" +mobPhone +"', home_phone ='" + homePhone + "', update_dt = NOW() where user_idfk = '" + userId +"'";
+        //preparing some objects for connection 
+        try{
+            currentCon = ConnectionManager.getConnection();
+            stmt=currentCon.createStatement();
+            //rs = stmt.executeQuery(query);
+           // rs = stmt.executeQuery(searchUserName);	        
+            //boolean more = rs.next();
+
+           // if(more){ // If username already exists 
+                //bean.setDuplicateUser(true);
+            //}
+            //else{
+             //   bean.setDuplicateUser(false);
+                stmt.executeUpdate(query1);
+                stmt.executeUpdate(query2);
+            //}
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        finally{
+            closeConnection();
+        }
+        
+        return bean;
+    }
     /*
     Reurns an arraylist of all users
     */
     public static ArrayList<UserBean> getUsers(){
         ArrayList<UserBean> list = new ArrayList<UserBean>();
-        String query = "Select u.username, u.password, u-det.first_name, u-det.last_name, u-det.email1, u-det.email2, "
-                + "u-det.address1, u-det.address2, u-det.work_phone, u-det.home_phone, u-det.mobile_phone "
-                + "from user_tbl u, user_details_tbl u-det "
-                + "where u.user_id = u-det.user_idfk";
-         String query2 = "Select user_tbl.username, user_tbl.password, user_details_tbl.first_name, user_details_tbl.last_name, "
+        
+         String query = "Select user_tbl.username, user_tbl.password, user_details_tbl.first_name, user_details_tbl.last_name, "
                  + "user_details_tbl.email1, user_details_tbl.email2, "
                 + "user_details_tbl.address1,user_details_tbl.address2, user_details_tbl.work_phone, user_details_tbl.home_phone, user_details_tbl.mobile_phone "
                 + "from user_tbl, user_details_tbl  "
                 + "where user_tbl.user_id = user_details_tbl.user_idfk";
-        String query1= "Select u.username from user_tbl u where u.user_id = 15";
+        
         //preparing some objects for connection 
         try{
             currentCon = ConnectionManager.getConnection();
             stmt=currentCon.createStatement();
-            rs = stmt.executeQuery(query2);	        
+            rs = stmt.executeQuery(query);	        
            // boolean more = rs.next();
             while (rs.next()){
                UserBean user = new UserBean();
+               
                user.setUserName(rs.getString("username"));
                user.setPassword(rs.getString("password"));
                user.setFirstName(rs.getString("first_name"));
@@ -215,7 +266,7 @@ public class UserDAO {
     public static UserBean getUser(String userName){
         UserBean user = new UserBean();
         
-         String query = "Select user_tbl.username, user_tbl.password, user_details_tbl.first_name, user_details_tbl.last_name, "
+         String query = "Select user_tbl.user_id, user_tbl.username, user_tbl.password, user_details_tbl.first_name, user_details_tbl.last_name, "
                  + "user_details_tbl.email1, user_details_tbl.email2, "
                 + "user_details_tbl.address1,user_details_tbl.address2, user_details_tbl.work_phone, user_details_tbl.home_phone, user_details_tbl.mobile_phone "
                 + "from user_tbl, user_details_tbl  "
@@ -231,6 +282,7 @@ public class UserDAO {
             //while (rs.next()){
               // UserBean user = new UserBean();
             if (rs.next()){
+               user.setUserId(rs.getString("user_id"));
                user.setUserName(rs.getString("username"));
                user.setPassword(rs.getString("password"));
                user.setFirstName(rs.getString("first_name"));

@@ -41,7 +41,7 @@
         <title>Edit User</title>
     </head>
     
-   <body class = "edit-user">
+   <body class = "view-users">
         <!-- START wrapper -->
         <div id = "wrapper">
             <!-- START page-->
@@ -70,13 +70,13 @@
                             //user = request.getParameter("user");
                             user = (UserBean) session.getAttribute("ret-user");
                             %>
-                            
+                            <%--
                            <c:set var="currentUser" value="${user}" />
                            <c:out value="${currentUser.getUserName()}"/>
-                         
+                            --%>
                     
                            <br/>
-                           <form name = "editUser" method="post" action="GetUsersController" onSubmit="return verifyEmail()">
+                           <form name = "editUser" method="post" action="GetUsersController?action=update-user&userId=<%=user.getUserId()%>" onSubmit="return verifyEmail()">
                                 <input type="hidden" name="hidden" value="AddUser">
                                 <%-- Includes Sign Up Form 
                                 <jsp:include page="../../includes/signup-form.jsp" /> --%>
@@ -89,13 +89,13 @@
                                      </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="firstname"  value = "<%=user.getFirstName() %>" required>
+                                            <input type="text" class="form-control" name="firstname" placeholder ="null" placeholder ="null" value = "<%=user.getFirstName() %>" required>
                                             
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="lastname"  value = "<%=user.getLastName() %>"  required>
+                                            <input type="text" class="form-control" name="lastname" placeholder ="null" value = "<%=user.getLastName() %>"  required>
                                           
                                         </div>
                                     </div>
@@ -104,16 +104,17 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">                                            
-                                            <input type="text" class="form-control" name="user_name"  value = "<%=user.getUserName() %>"  required>                                    
+                                            <input type="text" class="form-control" name="user_name" placeholder ="null"  readonly value = "<%=user.getUserName() %>"  required>                                    
                                         </div>
                                     </div>
+                                        
                                     <div class="col-md-12">
                                         Password*
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                                 <!--<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>-->
-                                                <input type="text" class="form-control" name="password"  id = "password"  value = "<%=user.getPassword() %>" required> 
+                                                <input type="text" class="form-control" name="password"  placeholder ="null" id = "password"  value = "<%=user.getPassword() %>" required> 
                                         </div>
                                     </div>
                                      <%--
@@ -126,6 +127,7 @@
                                             </div>
                                     </div>
                                      --%>
+                                     
                                     <div class="col-md-6">
                                        Primary Email*
                                     </div>
@@ -134,14 +136,15 @@
                                     </div>
                                     <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="email" class="form-control" name="p_email"  value = "<%=user.getPriEmail()%>" required>
+                                                <input type="email" class="form-control" name="p_email" placeholder ="null" value = "<%=user.getPriEmail()%>" required>
                                             </div>
                                     </div>
                                     <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="email" class="form-control" name="s_email"  value = "<%=user.getSecEmail()%>">
+                                                <input type="email" class="form-control" name="s_email" placeholder ="null"  value = "<%=user.getSecEmail()%>">
                                             </div>
                                     </div>
+                                            
                                     <div class="col-md-6">
                                        Postal Address
                                     </div>
@@ -149,14 +152,14 @@
                                        Permanent Address
                                     </div>
                                     <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="postal_address"  value = "<%=user.getPosAddress()%>">
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="postal_address" placeholder ="null"  value = "<%=user.getPosAddress()%>">
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="per_address" value = "<%=user.getPerAddress()%>">
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="per_address" placeholder ="null" value = "<%=user.getPerAddress()%>">
+                                        </div>
                                     </div>
                                     
                                     <div class="col-md-4">
@@ -169,24 +172,24 @@
                                         Home Phone
                                     </div>
                                     <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="w_phone"   value = "<%=user.getWorkPhone()%>">
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="w_phone"   placeholder ="null" value = "<%=user.getWorkPhone()%>">
+                                        </div>
                                     </div>
                                     <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="m_phone" value = "<%=user.getMobPhone()%>">
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="m_phone" placeholder ="null" value = "<%=user.getMobPhone()%>">
+                                        </div>
                                     </div>
                                     <div class="col-md-4">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="h_phone"  value = "<%=user.getHomePhone()%>">
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="h_phone"  placeholder ="null" value = "<%=user.getHomePhone()%>">
+                                        </div>
                                     </div>
                                     <div class="col-md-12">
-                                            <div class="form-group">
-                                                <input type="submit" value="Update Account" class="btn btn-primary">
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="Update Account" class="btn btn-primary">
+                                        </div>
                                     </div>
                                 </div>
                             </form>
