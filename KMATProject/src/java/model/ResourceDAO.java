@@ -35,16 +35,40 @@ public class ResourceDAO {
         
         String resourceName = bean.getResourceName();
         String resourceDiscription = bean.getResourceDiscription();
-        String resourcePath = bean.getResourcePath();
-        String resourceType = bean.getResourceType();
-        String resourceFormat = bean.getResourceFormat();
-        String resourceSize = bean.getResourceSize();
-        String resourceLink = bean.getResourceLink();
+        
+        //String userID = bean.getUserID();
         
         
         String searchResourceName ="select resourcename from resource_tbl where resource_name='"+resourceName+"'";
         
-        //String insertQuery1 = "insert into resource_tbl(resource_name,description,create_dt,update_dt)"+"VALUES('")";
+        String insertQuery1 = "insert into resource_tbl(resource_name,description,create_dt,update_dt)"+"VALUES('"+resourceName+"',"
+                + "'"+resourceDiscription+"')";
+        String searchResourceId = "select resource_id from resource_tbl where resource_name ='"+resourceName+"'";
+        
+        try{
+            if(resourceName!="" && resourceDiscription!=""){
+            currentCon = ConnectionManager.getConnection();
+            stmt = currentCon.createStatement();
+            rs = stmt.executeQuery(searchResourceName);
+            boolean more = rs.next();
+            
+            if(more){
+                bean.setDuplicateResource(true);                
+            }
+            else{
+                bean.setDuplicateResource(false);
+                //insertion in resource table
+                resource_tbl_Insertion = stmt.executeUpdate(insertQuery1);
+                rs = stmt.executeQuery(searchResourceId);
+                //if
+            }
+            
+        }
+        }
+        catch(Exception ex){
+            
+        }
+        
         
         
         

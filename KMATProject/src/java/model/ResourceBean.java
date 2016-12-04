@@ -17,12 +17,29 @@ public class ResourceBean implements java.io.Serializable{
     private String resourcepath;
     private String resourcetype;
     private String resourceformat;
-    private String resourcesize;
+    private long resourcesize;
     private String resourcelink;
+    private String resourcefile;
+    private String userid;
     private String hidden;
     
     public boolean added;
     public boolean duplicateResource;
+    
+    public String getUserID(){
+        return userid;
+    }
+    public void setUserID(String uid){
+        userid = uid;
+    }
+    
+    public String getFileName(){
+        return resourcefile;
+    }
+    public void setFileName(String fname){
+        userid = fname;
+    }
+            
     
     public String getResourceName(){
         return resourcename;
@@ -52,10 +69,10 @@ public class ResourceBean implements java.io.Serializable{
         resourcetype = type;
     }
     
-    public String getResourceSize(){
+    public long getResourceSize(){
         return resourcesize;
     }
-    public void setResourceSize(String size){
+    public void setResourceSize(long size){
         resourcesize = size;
     }
     
