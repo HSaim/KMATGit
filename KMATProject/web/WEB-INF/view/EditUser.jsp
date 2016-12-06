@@ -186,9 +186,14 @@
                                             <input type="text" class="form-control" name="h_phone"  placeholder ="null" value = "<%=user.getHomePhone()%>">
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="submit" value="Update Account" class="btn btn-primary">
+                                            <input type="submit" value="Update" class="btn btn-primary">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="button" value="Cancel" class="btn btn-primary" onclick="window.location='view-users'" >
                                         </div>
                                     </div>
                                 </div>

@@ -109,6 +109,7 @@ public class GetUsersController extends HttpServlet {
             kmatPassword = context.getInitParameter("pass");
             String recipientEmail = request.getParameter("p_email");
             String recipientName = request.getParameter("firstname");
+            //String updateAccount = 
             String subject = "Account update";
             String content = "Dear " + recipientName + 
                     ",\n\nYour account has been updated successfully." + 
