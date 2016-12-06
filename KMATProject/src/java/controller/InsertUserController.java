@@ -114,7 +114,7 @@ public class InsertUserController extends HttpServlet {
                     String userName= user.getUserName();
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('User name: " + user.getUserName() +" already exists, choose a new one!');");
-                    out.println("location='AddUser';");
+                    out.println("location='add-user';");
                     out.println("</script>");                    
                 }
                 catch (Exception e){

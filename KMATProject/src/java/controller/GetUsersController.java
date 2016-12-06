@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EmailUtility;
+import model.LoginUserBean;
 
 /**
  *
@@ -28,6 +29,8 @@ public class GetUsersController extends HttpServlet {
     private String port;
     private String kmatUsername;
     private String kmatPassword;
+    String currentUsername;
+    LoginUserBean currentUser ;
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -57,30 +60,33 @@ public class GetUsersController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-       String action =request.getParameter("action");
-        //String username = request.getParameter("userName");
+        String action =request.getParameter("action");
+        //currentUsername = request.getParameter("currentuser");
+        currentUser = (LoginUserBean) request.getSession(false).getAttribute("CurrentSessionUser");
+        currentUsername = currentUser.getUsername();
         if (action.equals("get-all-users")){
-        ArrayList<UserBean> users = new ArrayList<UserBean>();
-        users = UserDAO.getUsers();
-        try{
-            if (users!=null){
-        //PrintWriter out = response.getWriter();
-          //      out.println("<script type=\"text/javascript\">");
-            //    out.println("alert('Inside doPost of GetUsersController');");
-              //  out.println("location='view-users';");
-                //out.println("</script>");           
-                HttpSession session = request.getSession(true);
-                session.setAttribute("users", users);
-                response.sendRedirect("view-users");
-                //url = "/WEB-INF/view/ViewUsers.jsp";
+            
+            ArrayList<UserBean> users = new ArrayList<UserBean>();
+            users = UserDAO.getUsers(currentUsername);
+            try{
+                if (users!=null){
+            //PrintWriter out = response.getWriter();
+              //      out.println("<script type=\"text/javascript\">");
+                //    out.println("alert('Inside doPost of GetUsersController');");
+                  //  out.println("location='view-users';");
+                    //out.println("</script>");           
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("users", users);
+                    response.sendRedirect("view-users");
+                    //url = "/WEB-INF/view/ViewUsers.jsp";
 
 
-                //request.getRequestDispatcher(url).forward(request, response);
+                    //request.getRequestDispatcher(url).forward(request, response);
+                }
             }
-        }
-        catch(Exception e){
-                e.printStackTrace();
-        }
+            catch(Exception e){
+                    e.printStackTrace();
+            }
         }
         
         else if(action.equals("get-user")){
@@ -173,6 +179,40 @@ public class GetUsersController extends HttpServlet {
             }
             catch (Exception e){
                 e.printStackTrace();
+            }
+        }
+        else if (action.equals("del-user")){
+            String username;
+            int deleted;
+            username = request.getParameter("userName");
+            deleted = UserDAO.deleteUser(username);
+            response.setContentType("text/html;charset=UTF-8");
+            //response.sendRedirect("GetUsersController?action=get-all-users");
+            if (deleted !=0){
+                try {
+                    PrintWriter out = response.getWriter();
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('User " +username+ " has been deleted succesfully.');");
+                    out.println("location='GetUsersController?action=get-all-users';");
+                    
+                    out.println("</script>");                    
+                }
+                catch (Exception e){
+                    System.out.println("Alert could not be generated. Error: " + e);
+                }
+            }
+            else{
+                try {
+                    PrintWriter out = response.getWriter();
+                    out.println("<script type=\"text/javascript\">");
+                    
+                    out.println("location='GetUsersController?action=get-all-users';");
+                    out.println("alert('User '" +username+ "' could not be deleted.');");
+                    out.println("</script>");                    
+                }
+                catch (Exception e){
+                    System.out.println("Alert could not be generated. Error: " + e);
+                }
             }
         }
     }

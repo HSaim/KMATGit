@@ -219,14 +219,14 @@ public class UserDAO {
     /*
     Reurns an arraylist of all users
     */
-    public static ArrayList<UserBean> getUsers(){
+    public static ArrayList<UserBean> getUsers(String currentUsername){
         ArrayList<UserBean> list = new ArrayList<UserBean>();
-        
+        //LoginUserBean currentUser = (LoginUserBean) session.getAttribute("CurrentSessionUser");
          String query = "Select user_tbl.username, user_tbl.password, user_details_tbl.first_name, user_details_tbl.last_name, "
                  + "user_details_tbl.email1, user_details_tbl.email2, "
                 + "user_details_tbl.address1,user_details_tbl.address2, user_details_tbl.work_phone, user_details_tbl.home_phone, user_details_tbl.mobile_phone "
                 + "from user_tbl, user_details_tbl  "
-                + "where user_tbl.user_id = user_details_tbl.user_idfk";
+                + "where user_tbl.user_id = user_details_tbl.user_idfk AND user_tbl.username<> '" + currentUsername +"'";
         
         //preparing some objects for connection 
         try{
@@ -306,21 +306,66 @@ public class UserDAO {
         return user;
     }
     
+    
+    public static int deleteUser(String userName){
+        PreparedStatement ps1, ps2;
+        int userId=0;
+        int done=0; //deletion done or not flag
+        String searchUserId =
+                "select user_id from user_tbl where username='"
+                       + userName+"'"; 
+        String deleteFromUserDetailsTable = 
+                "delete from user_details_tbl where user_idfk =  ?";
+        String deleteFromUserTable = 
+                "delete from user_tbl where user_id = ?";        
+        
+        try{ 
+            currentCon = ConnectionManager.getConnection();  
+            stmt=currentCon.createStatement();
+            rs = stmt.executeQuery(searchUserId);
+            
+           if(rs.next())  {  
+                userId = rs.getInt("user_id");
+                ps1 =currentCon.prepareStatement(deleteFromUserDetailsTable);
+                ps1.setInt(1, userId);
+                done = ps1.executeUpdate();
+                if (done!=0){
+                    done =0;
+                    ps2 =currentCon.prepareStatement(deleteFromUserTable);
+                    ps2.setInt(1, userId);
+                    done = ps2.executeUpdate();
+                }
+                //stmt.executeUpdate(deleteFromUserDetailsTable);
+                //stmt.executeUpdate(deleteFromUserTable); 
+            
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            closeConnection();
+        }
+        return done;
+    }
+    
     private static void closeConnection(){
         if (rs != null){
             try {
                 rs.close();
             } 
-            catch (Exception e) {}
-                rs = null;
+            catch (Exception e) {
+            rs = null;
+            }
         }
-       if (stmt != null) {
-        try {
-           stmt.close();
-        } 
-        catch (Exception e) {}
-           stmt = null;
-        }   
+        if (stmt != null) {
+            try {
+               stmt.close();
+            } 
+            catch (Exception e) {
+               stmt = null;
+            } 
+        }
        ConnectionManager.putConnection(currentCon);
     }
     

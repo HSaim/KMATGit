@@ -83,7 +83,7 @@
                                 </div>
                                 </b>
                             </div>
-                            <hr/>
+                            <hr style="height:1px;border:none;color:#333;background-color:#a9a9a9;" />
                             
                             <c:forEach var="user" items="${users}">
                                 <div class = "row">
@@ -101,11 +101,12 @@
                                         </a>
                                     </div>
                                     <div class = "col-md-3">
-                                        <a href ="">
+                                        <a href ="GetUsersController?action=del-user&userName=${user.getUserName()}">
                                         <h2><i class="icon-remove-user"></i></h2>
                                         </a>
                                     </div>
                                 </div>
+                                <hr/>
                             </c:forEach>
                             <%--
                             <% 
