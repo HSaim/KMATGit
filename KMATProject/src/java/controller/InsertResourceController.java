@@ -22,33 +22,73 @@ import org.apache.commons.fileupload.disk.*;
 import org.apache.commons.fileupload.servlet.*;
 import org.apache.commons.io.output.*;
 import java.sql.*;
+import javax.servlet.annotation.WebServlet;
+import model.ConnectionManager;
+import model.LoginUserBean;
 import model.ResourceBean;
 import model.ResourceDAO;
+
 
 /**
  *
  * @author Fahad Akhtar
  */
+@WebServlet(name = "InsertResourceController", urlPatterns = {"/insert-resource"})
 public class InsertResourceController extends HttpServlet {
-    protected void doGET(HttpServletRequest request, HttpServletResponse response)
+    
+    static Connection currentCon = null;
+    static ResultSet rs = null;  
+    static Statement stmt = null;
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException{
         PrintWriter out = response.getWriter();
         out.println("resource controller handling request from GET");
         }
-    
-    protected void doPOST(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException{
+        
+            
+        
         PrintWriter out = response.getWriter();
         out.println("resource controller handling request from POST");
-        
+        out.println(request.getParameter("add-name"));
+        out.println(request.getParameter("add-description"));
         File file;
+        
         int maxFileSize = 5000*1024;
         int maxMemSize = 5000*1024;
+        
         ServletContext context = request.getServletContext();
+        //String contentType = request.getContentType();
+        String filePath = context.getInitParameter("datafile");
         String contentType = request.getContentType();
-        String filePath = context.getInitParameter("file-upload");
         String ext = "";
+        LoginUserBean currentUser = (LoginUserBean)request.getSession(false).getAttribute("CurrentSessionUser");
+        String name = currentUser.getUsername();
+        String searchUserID = "select user_id from user_tbl where username='"+ name+"'";
         long sizeInBytes = 0;
+        String radio = request.getParameter("chk");
+        String fileType="";
+        String uid = "";
+        currentCon = ConnectionManager.getConnection();
+        boolean more;
+        
+        try
+        {
+            stmt=currentCon.createStatement();
+            rs = stmt.executeQuery("searchUserID");	        
+            more = rs.next();
+            if(more){
+                uid = rs.getString("user_id");
+            }
+        }
+        catch(SQLException ex){
+        //todo: Handle Sql Exception
+        }
+        
 
         if ((contentType.indexOf("multipart/form-data") >= 0)){
             DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -60,16 +100,18 @@ public class InsertResourceController extends HttpServlet {
             ServletFileUpload upload = new ServletFileUpload(factory);
             // maximum file size to be uploaded.
             upload.setSizeMax( maxFileSize );
+        
             try{
                 // Parse the request to get file items.
                 List fileItems = upload.parseRequest(request);
                 // Process the uploaded file items
-                Iterator i = fileItems.iterator();/*
+                Iterator i = fileItems.iterator();
                 out.println("<html>");
                 out.println("<head>");
                 out.println("<title>JSP File upload</title>");
                 out.println("</head>");
-                out.println("<body>");*/
+                out.println("<body>");
+                
                 while ( i.hasNext () ){
                     FileItem fi = (FileItem)i.next();
                     if ( !fi.isFormField () ){
@@ -87,12 +129,17 @@ public class InsertResourceController extends HttpServlet {
                             }
                         fi.write( file ) ;
                         out.println("Uploaded Filename: " + filePath + fileName + "<br>");
+                       // 
+                       // out.println(request.getParameter("datafile"));
+                        //out.println(request.getParameter("add-link"));
                         ext = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
                         out.println(ext);
                         out.println(sizeInBytes);
-                        String fileType = typeID(ext);
+                        fileType = typeID(ext);
                         out.println(fileType);
                         }
+                    
+                    
                     }
                 out.println("</body>");
                 out.println("</html>");
@@ -114,19 +161,30 @@ public class InsertResourceController extends HttpServlet {
         try{
             ResourceBean resource = new ResourceBean();
             //GET ADD RESOURCE ELEMENT
+            resource.setUserID(uid);
             resource.setResourceName(request.getParameter("add-name"));
             resource.setResourceDiscription(request.getParameter("add-description"));
-            resource.setResourceLink(request.getParameter("add-link"));
-            resource.setFileName(request.getParameter("datafile"));
-            resource.setResourceFormat(ext);
-            resource.setResourcePath(filePath);
-            resource.setResourceSize(sizeInBytes);
+            if(radio.equals("file")){
+                resource.setFileName(request.getParameter("datafile"));
+                resource.setResourceFormat(ext);
+                resource.setResourcePath(filePath);
+                resource.setResourceSize(sizeInBytes);
+                resource.setResourceType(fileType);
+                
+            }
+            else if(radio.equals("link")){
+                resource.setResourceLink(request.getParameter("add-link"));
+                
+            }
+            
+            
             resource.setHidden(request.getParameter("hidden"));
             
+           // out.println();
             resource = ResourceDAO.insertResource(resource);
             
             //If insertion done successfully and done by existing user
-            if (resource.isAdded() && resource.getHidden().equalsIgnoreCase("adduser")){
+            if (resource.isAdded() && resource.getHidden().equalsIgnoreCase("AddResource")){
                 //HttpSession session = request.getSession(true);
                 //session.setAttribute("CurrentSessionUser", user);//.getUsername());
                 //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/UserHome.jsp");
@@ -151,7 +209,7 @@ public class InsertResourceController extends HttpServlet {
                     //PrintWriter out = response.getWriter();
                     String resourceName= resource.getResourceName();
                     out.println("<script type=\"text/javascript\">");
-                    out.println("alert('User name: " + resource.getResourceName() +" already exists, choose a new one!');");
+                    out.println("alert('Resource name: " + resource.getResourceName() +" already exists, choose a new one!');");
                     out.println("location='AddUser';");
                     out.println("</script>");                    
                 }
@@ -159,15 +217,14 @@ public class InsertResourceController extends HttpServlet {
                     System.out.println("Alert could not be generated. Error: " + e);
                 }
             }
-            
-            
+               
       
             
             
             
             
             
-            
+           
         }
         catch(Throwable theException){
             theException.printStackTrace();

@@ -5,14 +5,12 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>GetUsersController</servlet-name>
-        <servlet-class>controller.GetUsersController</servlet-class>
-    </servlet>
+    
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
     </servlet-mapping>
+     
     <!-- Servlet: RequestDispathcher -->
     <servlet>
         <servlet-name>RequestDispatcher</servlet-name>
@@ -25,6 +23,10 @@
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-users</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-user</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
@@ -70,9 +72,23 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/add-resource</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>GetUsersController</servlet-name>
+        <servlet-class>controller.GetUsersController</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>GetUsersController</servlet-name>
         <url-pattern>/GetUsersController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InsertResourceController</servlet-name>
+        <servlet-class>controller.InsertResourceController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertResourceController</servlet-name>
+        <url-pattern>/insert-resource</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -100,4 +116,22 @@
         </jsp-property-group>
     </jsp-config>
     <!--END: Footer -->
+    
+    <!-- SMTP settings -->
+    <context-param>
+        <param-name>host</param-name>
+        <param-value>smtp.gmail.com</param-value>
+    </context-param>
+    <context-param>
+        <param-name>port</param-name>
+        <param-value>587</param-value>
+    </context-param>
+    <context-param>
+        <param-name>user</param-name>
+        <param-value>kmat.main@gmail.com</param-value>
+    </context-param>
+    <context-param>
+        <param-name>pass</param-name>
+        <param-value>kmatadmin123</param-value>
+    </context-param>
 </web-app>

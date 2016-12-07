@@ -33,25 +33,14 @@
         <title>Add Resource</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
-            function preview()
+            function preview(){
+                document.getElementById("frame-1").src = document.getElementById("add-link").value;
+            }
+            function enableDisable(bEnable, otherID){
+                document.getElementById(otherID).disabled = !bEnable;
+            }
 
-{
-
-document.getElementById("frame-1").src = document.getElementById("add-link").value;
-
-}
-
-function enableDisable(bEnable, otherID)
-
-{
-
-
-
-document.getElementById(otherID).disabled = !bEnable;
-
-}
-
-</script>
+        </script>
 
 
     </head>
@@ -86,7 +75,8 @@ document.getElementById(otherID).disabled = !bEnable;
 
 
 
-<form method="post" action="AddResource" enctype="multipart/form-data">
+<form method="Post" action="insert-resource" enctype="multipart/form-data">
+     <input type="hidden" name="hidden" value="AddResource">
     <row>
     <div class="col-md-12">
         <div class="form-group">
@@ -107,7 +97,7 @@ document.getElementById(otherID).disabled = !bEnable;
     <row>
     <div class="col-md-1">
         <div class = "form-group">
-            <input type="radio" class = "form-check-input" name="chk" id="chk1" onclick="enableDisable(this.checked,'inputbtn')">
+            <input type="radio" class = "form-check-input" name="chk" value="file" id="chk1" onclick="enableDisable(this.checked,'inputbtn')">
         </div>
     </div>
     <div class="col-md-11">
@@ -122,7 +112,7 @@ document.getElementById(otherID).disabled = !bEnable;
      <row>
     <div class="col-md-1">
         <div class = "form-group">
-            <input type="radio" name="chk" id="chk1" onclick="enableDisable(this.checked,'view')" class = "form-check-input">
+            <input type="radio" name="chk" id="chk1" onclick="enableDisable(this.checked,'view')"value="link" class = "form-check-input">
         </div>
     </div>
    

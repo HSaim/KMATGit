@@ -66,6 +66,7 @@ public class InsertUserController extends HttpServlet {
             user.setPerAddress(request.getParameter("per_address"));
             user.setWorkPhone(request.getParameter("w_phone"));
             user.setHomePhone (request.getParameter("h_phone"));
+            user.setMobPhone(request.getParameter("m_phone"));
             user.setHidden(request.getParameter("hidden"));
             
             user = UserDAO.insertUser(user);
