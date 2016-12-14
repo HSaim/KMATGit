@@ -58,9 +58,14 @@
                 
                 <!--Access users from session -->
                 <% 
-                    ArrayList<UserBean> users = new ArrayList<UserBean>();
-                    if (session.getAttribute("users") != null) {
-                        users = (ArrayList<UserBean> ) session.getAttribute("users");
+                    ArrayList<UserBean> rusers = new ArrayList<UserBean>();
+                     ArrayList<UserBean> uusers = new ArrayList<UserBean>();
+                    if (session.getAttribute("rusers") != null) {
+                        rusers = (ArrayList<UserBean> ) session.getAttribute("rusers");
+                    }
+                    
+                    if (session.getAttribute("uusers") != null) {
+                        uusers = (ArrayList<UserBean> ) session.getAttribute("uusers");
                     }
                     //else{
                       //   users = (ArrayList<UserBean> ) session.getAttribute("users");
@@ -69,14 +74,19 @@
                 <div class="container">
                     <div class="row">                        
                         <div class="col-md-10 col-md-push-2">
-                            <!-- Display of user names, edit and delete buttons -->
+                            <!-- Display of user names, edit and delete buttons for registered users-->
+                            <h2 class="page-heading-lead">
+                                <span class="border"></span>
+                                Registered Users
+                                <span class="border"></span>
+                            </h2>
                             <div class = "row">
                                 <b>
                                 <div class="col-md-6">
                                     <b>User Name</b>                                    
                                 </div>
                                 <div class = "col-md-3">
-                                    Edit
+                                    View/Edit Details
                                 </div>
                                 <div class = "col-md-3">
                                     Delete
@@ -84,16 +94,16 @@
                                 </b>
                             </div>
                             <hr style="height:1px;border:none;color:#333;background-color:#a9a9a9;" />
-                            
-                            <c:forEach var="user" items="${users}">
+                         
+                            <c:forEach var="user" items="${rusers}" varStatus="loop">
                                 <div class = "row">
                                     <div class="col-md-6">
                                         <h3><c:out value="${user.getUserName()}" /></h3>
                                         <%--<input type = "hidden" value = "${user.getUserName()}" name = "hidden">--%>
-                                        <input type = "hidden" value = "username" name = "hide">
+                                        <%--<input type = "hidden" value = "username" name = "hide">--%>
                                     </div>
                                     <div class = "col-md-3">
-                                        <input type = "hidden" value = "username" name = "hidden">
+                                        <%--<input type = "hidden" value = "username" name = "hidden">--%>
                                         
                                         <%--<a href = "edit-user?x=${user.getUserName()}">--%>
                                         <a href = "GetUsersController?action=get-user&userName=${user.getUserName()}">
@@ -102,11 +112,12 @@
                                     </div>
                                     <div class = "col-md-3">
                                         <a href ="GetUsersController?action=del-user&userName=${user.getUserName()}">
-                                        <h2><i class="icon-remove-user"></i></h2>
+                                            <h2><i class="icon-remove-user"></i></h2>
                                         </a>
                                     </div>
                                 </div>
-                                <hr/>
+                                
+                                <c:if test="${not loop.last}"><hr/></c:if> <%-- Add an <hr/ > if it is not the last item --%>
                             </c:forEach>
                             <%--
                             <% 
@@ -139,6 +150,51 @@
                                 </table>
                             </div>
                             --%>
+                            <!-- Display of user names, edit and delete buttons for unregistered users-->
+                            <hr style="height:2px;border:none;color:#00c5cf;background-color:#00c5cf;" />
+                            <h2 class="page-heading-lead">
+                                <span class="border"></span>
+                                Unregistered Users
+                                <span class="border"></span>
+                            </h2>
+                            <div class = "row">
+                                <b>
+                                <div class="col-md-6">
+                                    <b>User Name</b>                                    
+                                </div>
+                                <div class = "col-md-3">
+                                    Register
+                                </div>
+                                <div class = "col-md-3">
+                                    Delete
+                                </div>
+                                </b>
+                            </div>
+                            <hr style="height:1px;border:none;color:#333;background-color:#a9a9a9;" />
+                            
+                            <c:forEach var="uuser" items="${uusers}">
+                                <div class = "row">
+                                    <div class="col-md-6">
+                                        <h3><c:out value="${uuser.getUserName()}" /></h3>
+                                        <%--<input type = "hidden" value = "${user.getUserName()}" name = "hidden">--%>
+                                        <%--<input type = "hidden" value = "username" name = "hide">--%>
+                                    </div>
+                                    <div class = "col-md-3">
+                                        <%--<input type = "hidden" value = "username" name = "hidden">--%>
+                                        
+                                        <%--<a href = "edit-user?x=${user.getUserName()}">--%>
+                                        <a href = "GetUsersController?action=get-uuser&userName=${uuser.getUserName()}">
+                                            <h2><i class="icon-add-user"></i></h2>
+                                        </a>
+                                    </div>
+                                    <div class = "col-md-3">
+                                        <a href ="GetUsersController?action=del-user&userName=${uuser.getUserName()}">
+                                            <h2><i class="icon-remove-user"></i></h2>
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr/>
+                            </c:forEach>
                         </div>
                                         
                         <div class="col-md-2 col-md-pull-10 back-color" >

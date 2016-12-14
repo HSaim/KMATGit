@@ -29,6 +29,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/register-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/add-user</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

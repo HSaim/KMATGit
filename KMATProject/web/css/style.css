@@ -931,17 +931,19 @@ body.add-resource #primary-menu li.home > a{
   padding: 10px 0 0px 0;
   letter-spacing: 2px;
   text-transform: uppercase; 
+  color: #00c5cf;
   /*padding-bottom: 10px; */
 }
 
 .page-heading .page-heading-lead .border, .page-heading-lead .border {
   width: 50px;
   height: 3px;
-  background: #000;
+  background: #00c5cf;
   margin-left: -25px;
   left: 50%;
   bottom: 0;
   position: absolute; 
+  
 }
 /* END: Page heading */
 

@@ -34,13 +34,19 @@ public class UserDAO {
                        + "' AND password='"
                        + password
                        + "'";	    
-       
+        String searchQuery1 =
+              "select * from user_tbl where username='"
+                       + username
+                       + "' AND password='"
+                       + password
+                       + "' AND NOT EXISTS" 
+                       + "(SELECT  null FROM    unregistered_user_tbl WHERE   user_tbl.user_id = unregistered_user_tbl.user_idfk)" ;	 
 
         try{                
            //connect to DB 
            currentCon = ConnectionManager.getConnection();
            stmt=currentCon.createStatement();
-           rs = stmt.executeQuery(searchQuery);	        
+           rs = stmt.executeQuery(searchQuery1);	        
            boolean more = rs.next();
 
            // if user does not exist set the isValid variable to false
@@ -139,6 +145,7 @@ public class UserDAO {
                         user_details_tbl_Insertion = stmt.executeUpdate(insertQuery2);
                         
                         if (user_tbl_Insertion != 0 && user_details_tbl_Insertion != 0) {
+                            bean.setUserId(userId);
                             bean.setAdded(true);                            
                         }
                         else{
@@ -163,14 +170,34 @@ public class UserDAO {
         
         return bean;
     }
+    /*
+    On signup request, insert unregistered user in unregistered_user_tbl
+    
+    */
+     public static void insertUnregisteredUser(int userId){
+         
+        String insertQuery = 
+                "insert into unregistered_user_tbl (user_idfk) values (" + userId + ")";
+        try{
+            currentCon = ConnectionManager.getConnection();
+            stmt=currentCon.createStatement();
+            stmt.executeUpdate(insertQuery);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            closeConnection();
+        }
+     }
     
     /*
     Updates a user profile
     */
     public static UserBean updateUser(UserBean bean){
        
-        String userId = bean.getUserId();
-        String userName = bean.getUserName();
+        int userId = bean.getUserId();
+        //String userName = bean.getUserName();
         String priEmail = bean.getPriEmail();
         String secEmail = bean.getSecEmail();
         String firstName = bean.getFirstName();
@@ -216,17 +243,112 @@ public class UserDAO {
         
         return bean;
     }
+    
+     public static UserBean registerUser(UserBean bean){
+        bean = updateUser(bean);
+        PreparedStatement ps1;
+        int userId=0;
+        int done=0; //deletion done or not flag
+        String searchUserId =
+                "select user_id from user_tbl where username='"
+                       + bean.getUserName()+"'"; 
+        String deleteFromUnregisteredUserTable = 
+                "delete from unregistered_user_tbl where user_idfk =  ?";
+               
+        
+        try{ 
+            currentCon = ConnectionManager.getConnection();  
+            stmt=currentCon.createStatement();
+            rs = stmt.executeQuery(searchUserId);
+            
+           if(rs.next())  {  
+                userId = rs.getInt("user_id");
+                ps1 =currentCon.prepareStatement(deleteFromUnregisteredUserTable);
+                ps1.setInt(1, userId);
+                done = ps1.executeUpdate();
+                /*if (done!=0){
+                    done =0;
+                    ps2 =currentCon.prepareStatement(deleteFromUserTable);
+                    ps2.setInt(1, userId);
+                    done = ps2.executeUpdate();
+                }*/
+                //stmt.executeUpdate(deleteFromUserDetailsTable);
+                //stmt.executeUpdate(deleteFromUserTable); 
+            
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            closeConnection();
+        }
+         return bean;
+         
+     }
+    
     /*
-    Reurns an arraylist of all users
+    Reurns an arraylist of all registered users
     */
-    public static ArrayList<UserBean> getUsers(String currentUsername){
+    public static ArrayList<UserBean> getRegisteredUsers(String currentUsername){
         ArrayList<UserBean> list = new ArrayList<UserBean>();
         //LoginUserBean currentUser = (LoginUserBean) session.getAttribute("CurrentSessionUser");
          String query = "Select user_tbl.username, user_tbl.password, user_details_tbl.first_name, user_details_tbl.last_name, "
                  + "user_details_tbl.email1, user_details_tbl.email2, "
                 + "user_details_tbl.address1,user_details_tbl.address2, user_details_tbl.work_phone, user_details_tbl.home_phone, user_details_tbl.mobile_phone "
                 + "from user_tbl, user_details_tbl  "
-                + "where user_tbl.user_id = user_details_tbl.user_idfk AND user_tbl.username<> '" + currentUsername +"'";
+                + "where user_tbl.user_id = user_details_tbl.user_idfk "
+                 + "AND user_tbl.username<> '" + currentUsername +"'"
+                 + "AND NOT EXISTS" 
+                       + "(SELECT  null FROM    unregistered_user_tbl WHERE   user_tbl.user_id = unregistered_user_tbl.user_idfk)";
+        
+        //preparing some objects for connection 
+        try{
+            currentCon = ConnectionManager.getConnection();
+            stmt=currentCon.createStatement();
+            rs = stmt.executeQuery(query);	        
+           // boolean more = rs.next();
+            while (rs.next()){
+               UserBean user = new UserBean();
+               
+               user.setUserName(rs.getString("username"));
+               user.setPassword(rs.getString("password"));
+               user.setFirstName(rs.getString("first_name"));
+               user.setLastName (rs.getString("last_name"));
+               user.setPriEmail(rs.getString("email1"));
+               user.setSecEmail(rs.getString("email2"));
+               user.setPosAddress(rs.getString("address1"));
+               user.setPerAddress(rs.getString("address2"));
+               user.setWorkPhone(rs.getString("work_phone"));
+               user.setMobPhone(rs.getString("mobile_phone"));
+               user.setHomePhone(rs.getString("home_phone"));
+
+               list.add(user);    
+            }
+        }
+        catch(Exception ex){
+            
+        }
+        finally{
+            closeConnection();
+        }
+        return list;
+    }
+    
+    /*
+    Reurns an arraylist of all registered users
+    */
+    public static ArrayList<UserBean> geUnregisteredUsers(String currentUsername){
+        ArrayList<UserBean> list = new ArrayList<UserBean>();
+        //LoginUserBean currentUser = (LoginUserBean) session.getAttribute("CurrentSessionUser");
+         String query = "Select user_tbl.username, user_tbl.password, user_details_tbl.first_name, user_details_tbl.last_name, "
+                 + "user_details_tbl.email1, user_details_tbl.email2, "
+                + "user_details_tbl.address1,user_details_tbl.address2, user_details_tbl.work_phone, user_details_tbl.home_phone, user_details_tbl.mobile_phone "
+                + "from user_tbl, user_details_tbl  "
+                + "where user_tbl.user_id = user_details_tbl.user_idfk "
+                 + "AND user_tbl.username<> '" + currentUsername +"'"
+                 + "AND  EXISTS" 
+                       + "(SELECT  null FROM    unregistered_user_tbl WHERE   user_tbl.user_id = unregistered_user_tbl.user_idfk)";
         
         //preparing some objects for connection 
         try{
@@ -282,7 +404,7 @@ public class UserDAO {
             //while (rs.next()){
               // UserBean user = new UserBean();
             if (rs.next()){
-               user.setUserId(rs.getString("user_id"));
+               user.setUserId(rs.getInt("user_id"));
                user.setUserName(rs.getString("username"));
                user.setPassword(rs.getString("password"));
                user.setFirstName(rs.getString("first_name"));

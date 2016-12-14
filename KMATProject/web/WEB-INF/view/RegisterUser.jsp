@@ -1,8 +1,7 @@
 <%-- 
-    Document   : EditUser
-    Created on : Nov 25, 2016, 11:03:10 AM
+    Document   : RegisterUser
+    Created on : Dec 13, 2016, 2:18:35 PM
     Author     : Habiba Saim
-    Displays selected user profile to be edited by the knowledge engineer
 --%>
 
 <%@page import="model.UserBean"%> 
@@ -33,13 +32,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Tools available in Knowledge Management for All Tool - KMAT" />
-	<meta name="keywords" content="KMAT, users, roles, knowledge engineers, concept map, list, tool, composition, composition ladder" />
+	<meta name="keywords" content="KMAT, users, roles, knowledge engineers, concept map, list, tool, register" />
 	<meta name="author" content="KMAT Team" />
         
         <!-- css includes here -->
         <jsp:include page="../../includes/link.jsp" />
         
-        <title>Edit User</title>
+        <title>Register User</title>
     </head>
     
    <body class = "view-users">
@@ -55,7 +54,7 @@
                 <aside class="heading-bg" > <!--style="background: url(images/heading-bg1.jpg) repeat;">-->
                     <div class="container">
                         <!--<h1 class="page-heading-lead">-->
-                        Edit User
+                        Register User
                             <!--<span class="border"></span>-->
                         <!--</h1>-->
                     </div>                        
@@ -77,7 +76,7 @@
                             --%>
                     
                            <br/>
-                           <form name = "editUser" method="post" action="GetUsersController?action=update-user&&userId=<%=user.getUserId()%>" onSubmit="return verifyEmail()">                               
+                           <form name = "registerUser" method="post" action="GetUsersController?action=register-user&userId=<%=user.getUserId()%>" onSubmit="return verifyEmail()">                               
                                 
                                  <div class="row">
                                      <div class="col-md-6">
@@ -187,7 +186,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="submit" value="Update" class="btn btn-primary">
+                                            <input type="submit" value="Register" class="btn btn-primary">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
