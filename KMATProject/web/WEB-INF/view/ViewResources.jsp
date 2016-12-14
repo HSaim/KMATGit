@@ -52,6 +52,7 @@
                 </aside>
                 <!-- END: Page heading-->
                 
+                <!--Start Page contents -->
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10 col-md-push-2">
@@ -63,7 +64,7 @@
                         </div>                        
                     </div>
                 </div>
-                          
+                <!--End Page contents -->        
                 <!-- adds js -->                
                 <jsp:include page="../../includes/js.jsp" /> 
                 
