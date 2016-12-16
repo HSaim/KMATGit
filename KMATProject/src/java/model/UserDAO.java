@@ -471,6 +471,55 @@ public class UserDAO {
         return done;
     }
     
+    public static int deleteUnregisteredUser(String userName){
+        PreparedStatement ps1, ps2, ps3;
+        int userId=0;
+        int done=0; //deletion done or not flag
+        String searchUserId =
+                "select user_id from user_tbl where username='"
+                       + userName+"'"; 
+        String deleteFromUserDetailsTable = 
+                "delete from user_details_tbl where user_idfk =  ?";
+        String deleteFromUserTable = 
+                "delete from user_tbl where user_id = ?";        
+        String deleteFromUnregUserTable =
+                "delete from unregistered_user_tbl where user_idfk = ?";
+        try{ 
+            currentCon = ConnectionManager.getConnection();  
+            stmt=currentCon.createStatement();
+            rs = stmt.executeQuery(searchUserId);
+            
+           if(rs.next())  {  
+                userId = rs.getInt("user_id");
+                ps1 =currentCon.prepareStatement(deleteFromUserDetailsTable);
+                ps1.setInt(1, userId);
+                done = ps1.executeUpdate();
+                if (done!=0){
+                    done =0;
+                    ps2 =currentCon.prepareStatement(deleteFromUserTable);
+                    ps2.setInt(1, userId);
+                    done = ps2.executeUpdate();
+                }
+                if (done != 0){
+                    done =0;
+                    ps3 =currentCon.prepareStatement(deleteFromUnregUserTable);
+                    ps3.setInt(1, userId);
+                    done = ps3.executeUpdate();
+                }
+                //stmt.executeUpdate(deleteFromUserDetailsTable);
+                //stmt.executeUpdate(deleteFromUserTable); 
+            
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            closeConnection();
+        }
+        return done;
+    }
+    
     private static void closeConnection(){
         if (rs != null){
             try {

@@ -188,7 +188,7 @@
                                         </a>
                                     </div>
                                     <div class = "col-md-3">
-                                        <a href ="GetUsersController?action=del-user&userName=${uuser.getUserName()}">
+                                        <a href ="GetUsersController?action=del-uuser&userName=${uuser.getUserName()}&userEmail=${uuser.getPriEmail()}&userFName=${uuser.getFirstName()}">
                                             <h2><i class="icon-remove-user"></i></h2>
                                         </a>
                                     </div>
