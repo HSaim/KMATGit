@@ -240,9 +240,13 @@ figure {
 }
 
 #header {
-  position: relative;
+  
+  position: fixed;
   margin-bottom: 0;
   z-index: 9999999;
+  width: 100%;
+  /*background-image: images/hero.jpg; */
+  background-color:  transparent;
 }
 
 .cover,
@@ -250,6 +254,7 @@ figure {
   position: relative;
   height: 800px;
 }
+
 @media screen and (max-width: 768px) {
   .cover,
   .hero {
@@ -708,13 +713,17 @@ body.add-resource #primary-menu li.home > a{
   min-height: 700px;
   background: #fff url(../images/loader.gif) no-repeat center center;
 }
+#hero1 {
+  min-height: 400px;
+  background: #fff url(../images/loader.gif) no-repeat center center;
+}
 #hero .btn {
   font-size: 24px;
 }
 #hero .btn.btn-primary {
   padding: 14px 30px !important;
 }
-#hero .flexslider {
+#hero1 .flexslider, #hero .flexslider {
   border: none;
   z-index: 1;
   margin-bottom: 0;
@@ -959,7 +968,7 @@ body.add-resource #primary-menu li.home > a{
 #counter-section,
 #about-section,
 #contact-section {
-  padding: 7em 0;
+  padding: 4em 0;
 }
 
 .portfolio-section {

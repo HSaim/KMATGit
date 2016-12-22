@@ -480,10 +480,11 @@ public class UserDAO {
                        + userName+"'"; 
         String deleteFromUserDetailsTable = 
                 "delete from user_details_tbl where user_idfk =  ?";
-        String deleteFromUserTable = 
-                "delete from user_tbl where user_id = ?";        
         String deleteFromUnregUserTable =
                 "delete from unregistered_user_tbl where user_idfk = ?";
+        String deleteFromUserTable = 
+                "delete from user_tbl where user_id = ?";        
+        
         try{ 
             currentCon = ConnectionManager.getConnection();  
             stmt=currentCon.createStatement();
@@ -494,18 +495,19 @@ public class UserDAO {
                 ps1 =currentCon.prepareStatement(deleteFromUserDetailsTable);
                 ps1.setInt(1, userId);
                 done = ps1.executeUpdate();
-                if (done!=0){
+                if (done != 0){
                     done =0;
-                    ps2 =currentCon.prepareStatement(deleteFromUserTable);
+                    ps2 =currentCon.prepareStatement(deleteFromUnregUserTable);
                     ps2.setInt(1, userId);
                     done = ps2.executeUpdate();
                 }
-                if (done != 0){
+                if (done!=0){
                     done =0;
-                    ps3 =currentCon.prepareStatement(deleteFromUnregUserTable);
+                    ps3 =currentCon.prepareStatement(deleteFromUserTable);
                     ps3.setInt(1, userId);
                     done = ps3.executeUpdate();
                 }
+                
                 //stmt.executeUpdate(deleteFromUserDetailsTable);
                 //stmt.executeUpdate(deleteFromUserTable); 
             

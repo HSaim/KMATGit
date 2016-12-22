@@ -89,36 +89,7 @@
 
 	};
         
-        //top banner
-        /*
-        var bannerMain = function() {
-		
-	  	$('#banner .flexslider').flexslider({
-			animation: "fade",
-			slideshowSpeed: 5000,
-			directionNav: true,
-			start: function(){
-				setTimeout(function(){
-					$('.slider-text').removeClass('animated fadeInUp');
-					$('.flex-active-slide').find('.slider-text').addClass('animated fadeInUp');
-				}, 500);
-			},
-			before: function(){
-				setTimeout(function(){
-					$('.slider-text').removeClass('animated fadeInUp');
-					$('.flex-active-slide').find('.slider-text').addClass('animated fadeInUp');
-				}, 500);
-			}
-
-	  	});
-
-	  	$('#banner .flexslider .slides > li').css('height', $(window).height());	
-	  	$(window).resize(function(){
-	  		$('#banner .flexslider .slides > li').css('height', $(window).height());	
-	  	});
-
-	};
-        */
+       
 
 	// Offcanvas and cloning of the main menu
 	var offcanvas = function() {
