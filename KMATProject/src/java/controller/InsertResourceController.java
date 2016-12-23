@@ -49,27 +49,77 @@ public class InsertResourceController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException{
-        
-            
-        
+        DiskFileItemFactory factory1 = new DiskFileItemFactory();
+
+        // Configure a repository (to ensure a secure temp location is used)
+        ServletContext servletContext = this.getServletConfig().getServletContext();
+        File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+        factory1.setRepository(repository);
+
+        // Create a new file upload handler
+        ServletFileUpload upload1 = new ServletFileUpload(factory1);
+
+        List items;
         PrintWriter out = response.getWriter();
+        /*try
+        {
+            
+            items = upload1.parseRequest(request);
+            
+            Iterator iter = items.iterator();
+            out.println(items.size());
+            while(iter.hasNext()){
+                FileItem item = (FileItem) iter.next();
+
+                /*if (item.isFormField()) {
+
+                  String name = item.getFieldName();//text1
+                  String value = item.getString();
+                  
+                  out.println(name + " : " + value);
+                  if(name.equals("addname")){
+                      resource.setResourceName(value);
+                  }
+                  else if(name.equals("add-description")){
+                      resource.setResourceDiscription(value);
+                  }
+                  
+                  
+                  
+
+                } else {
+                    //processUploadedFile(item);
+                }
+            
+            }
+        
+        }
+        catch(Exception ex){
+            out.println(ex.getMessage() + "\n" + ex.getStackTrace());
+        }
+        */
+        
+        String resourcename = request.getParameter("addname");
+        //PrintWriter out = response.getWriter();
         out.println("resource controller handling request from POST");
-        out.println(request.getParameter("add-name"));
-        out.println(request.getParameter("add-description"));
+       // out.println(request.getParameter("addname"));
+        //out.println(request.getParameter("add-description"));
         File file;
         
         int maxFileSize = 5000*1024;
         int maxMemSize = 5000*1024;
+    
         
         ServletContext context = request.getServletContext();
+        ResourceBean resource = new ResourceBean();
         //String contentType = request.getContentType();
-        String filePath = context.getInitParameter("datafile");
+        String filePath = context.getInitParameter("file-upload");
         String contentType = request.getContentType();
         String ext = "";
         LoginUserBean currentUser = (LoginUserBean)request.getSession(false).getAttribute("CurrentSessionUser");
         String name = currentUser.getUsername();
         String searchUserID = "select user_id from user_tbl where username='"+ name+"'";
-        long sizeInBytes = 0;
+        int sizeInBytes = 0;
         String radio = request.getParameter("chk");
         String fileType="";
         String uid = "";
@@ -79,10 +129,11 @@ public class InsertResourceController extends HttpServlet {
         try
         {
             stmt=currentCon.createStatement();
-            rs = stmt.executeQuery("searchUserID");	        
+            rs = stmt.executeQuery(searchUserID);	        
             more = rs.next();
             if(more){
                 uid = rs.getString("user_id");
+                resource.setUserID(uid);
             }
         }
         catch(SQLException ex){
@@ -108,18 +159,41 @@ public class InsertResourceController extends HttpServlet {
                 Iterator i = fileItems.iterator();
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<title>JSP File upload</title>");
+               // out.println("<title>JSP File upload</title>");
                 out.println("</head>");
                 out.println("<body>");
                 
                 while ( i.hasNext () ){
                     FileItem fi = (FileItem)i.next();
+                    
+
+                    if (fi.isFormField()) {
+
+                      name = fi.getFieldName();//text1
+                      String value = fi.getString();
+
+                      out.println(name + " : " + value);
+                      if(name.equals("addname")){
+                        
+                        resource.setResourceName(value);
+                      }
+                      else if(name.equals("add-description")){
+                          resource.setResourceDiscription(value);
+                      }
+                      else if(name.equals("add-link")){
+                          resource.setResourceLink(value);
+                          resource.setFileName("none");
+                          
+                          
+                      }
+                    }
                     if ( !fi.isFormField () ){
+                        
                         // Get the uploaded file parameters
                         String fieldName = fi.getFieldName();
                         String fileName = fi.getName();
                         boolean isInMemory = fi.isInMemory();
-                        sizeInBytes = fi.getSize();
+                        sizeInBytes = (int)fi.getSize();
                         // Write the file
                         if( fileName.lastIndexOf("\\") >= 0 ){
                             file = new File( filePath + fileName.substring( fileName.lastIndexOf("\\"))) ;
@@ -129,13 +203,20 @@ public class InsertResourceController extends HttpServlet {
                             }
                         fi.write( file ) ;
                         out.println("Uploaded Filename: " + filePath + fileName + "<br>");
+                        resource.setResourcePath(filePath);
+                        resource.setFileName(fileName);
+                        resource.setResourceLink("none");
+                        
                        // 
                        // out.println(request.getParameter("datafile"));
                         //out.println(request.getParameter("add-link"));
                         ext = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
                         out.println(ext);
+                        resource.setResourceFormat(ext);
+                        resource.setResourceSize(sizeInBytes);
                         out.println(sizeInBytes);
                         fileType = typeID(ext);
+                        resource.setResourceType(fileType);
                         out.println(fileType);
                         }
                     
@@ -159,9 +240,9 @@ public class InsertResourceController extends HttpServlet {
             out.println("</html>");
             }
         try{
-            ResourceBean resource = new ResourceBean();
+            //ResourceBean resource = new ResourceBean();
             //GET ADD RESOURCE ELEMENT
-            resource.setUserID(uid);
+          /*  resource.setUserID(uid);
             resource.setResourceName(request.getParameter("add-name"));
             resource.setResourceDiscription(request.getParameter("add-description"));
             if(radio.equals("file")){
@@ -175,10 +256,10 @@ public class InsertResourceController extends HttpServlet {
             else if(radio.equals("link")){
                 resource.setResourceLink(request.getParameter("add-link"));
                 
-            }
+            }*/
             
             
-            resource.setHidden(request.getParameter("hidden"));
+            //resource.setHidden(request.getParameter("hidden"));
             
            // out.println();
             resource = ResourceDAO.insertResource(resource);
@@ -254,6 +335,9 @@ public class InsertResourceController extends HttpServlet {
                 ||extention.equals("xlsx")||extention.equals("xltx")){
             typeOfFile = "Document";
             }
+        else{
+            typeOfFile = "File Type not Identified.";
+        }
         return (typeOfFile);
         }
     /**

@@ -75,17 +75,17 @@
 
 
 
-<form method="Post" action="insert-resource" enctype="multipart/form-data">
+<form method="post" action="insert-resource" enctype="multipart/form-data">
      <input type="hidden" name="hidden" value="AddResource">
     <row>
     <div class="col-md-12">
         <div class="form-group">
-            <input type = "text" class="form-control"placeholder="Name of Resource" name="add-name" id="add-name">
+            <input type = "text" class="form-control"placeholder="Name of Resource" name="addname" id="add-name">
     
         </div>
     </div>
         </row>
-    
+   
     <row>
     <div class="col-md-12">
         <div class="form-group">
@@ -139,6 +139,7 @@
             
        
  </row>
+    
     <div class="col-md-12">
                 <div class="form-group">
                     <input type="submit" value="Add Resource" class="btn btn-primary">

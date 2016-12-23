@@ -90,6 +90,10 @@
         <servlet-name>InsertResourceController</servlet-name>
         <url-pattern>/insert-resource</url-pattern>
     </servlet-mapping>
+    <!--<servlet-mapping>
+        <servlet-name>InsertToolController</servlet-name>
+        <url-pattern>/insert-tool</url-pattern>
+    </servlet-mapping>-->
     <session-config>
         <session-timeout>
             30
@@ -133,5 +137,12 @@
     <context-param>
         <param-name>pass</param-name>
         <param-value>kmatadmin123</param-value>
+    </context-param>
+    <context-param> 
+    <description>Location to store uploaded file</description> 
+    <param-name>file-upload</param-name> 
+    <param-value>
+         c:\apache-tomcat-5.5.29\webapps\data\
+     </param-value> 
     </context-param>
 </web-app>

@@ -17,7 +17,7 @@ public class ResourceBean implements java.io.Serializable{
     private String resourcepath;
     private String resourcetype;
     private String resourceformat;
-    private long resourcesize;
+    private int resourcesize;
     private String resourcelink;
     private String resourcefile;
     private String userid;
@@ -37,7 +37,7 @@ public class ResourceBean implements java.io.Serializable{
         return resourcefile;
     }
     public void setFileName(String fname){
-        userid = fname;
+        resourcefile = fname;
     }
             
     
@@ -52,7 +52,7 @@ public class ResourceBean implements java.io.Serializable{
         return resourcedescription;
     }
     public void setResourceDiscription(String discrp){
-        resourcename = discrp;
+        resourcedescription = discrp;
     }
     
     public String getResourcePath(){
@@ -69,10 +69,10 @@ public class ResourceBean implements java.io.Serializable{
         resourcetype = type;
     }
     
-    public long getResourceSize(){
+    public int getResourceSize(){
         return resourcesize;
     }
-    public void setResourceSize(long size){
+    public void setResourceSize(int size){
         resourcesize = size;
     }
     

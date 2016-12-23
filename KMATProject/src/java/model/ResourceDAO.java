@@ -39,17 +39,17 @@ public class ResourceDAO {
         String resourceType = bean.getResourceType();
         String resourceLink = bean.getResourceLink();
         String resourceFile = bean.getFileName();
-        long resourceSize = bean.getResourceSize();
+        int resourceSize = bean.getResourceSize();
         String resourceFormat = bean.getResourceFormat();
         String resourcePath = bean.getResourcePath();
         
         //String userID = bean.getUserID();
         
         
-        String searchResourceName ="select resourcename from resource_tbl where resource_name='"+resourceName+"'";
+        String searchResourceName ="select resource_name from resource_tbl where resource_name='"+resourceName+"'";
         
         String insertQuery1 = "insert into resource_tbl(user_idfk,resource_name,description,create_dt,update_dt)"+"VALUES('"+userID+"','"+resourceName+"',"
-                + "'"+resourceDiscription+"')";
+                + "'"+resourceDiscription+"',NOW(),NOW())";
         String searchResourceId = "select resource_id from resource_tbl where resource_name ='"+resourceName+"'";
         
         
@@ -70,16 +70,29 @@ public class ResourceDAO {
                 rs = stmt.executeQuery(searchResourceId);
                 if(rs.next()){
                     resourceId=rs.getInt("resource_id");
-                    if(resourceFile.equals("")){
-                        String insertQuery2 = "INSERT INTO resource_link_tbl(resource_idfk,link)VALUES('"+resourceId +"','"+resourceLink+"')";
-                        resource_link_tbl_Insertion = stmt.executeUpdate(insertQuery2);
+                    if(resourceFile.equals("none")){
+                        String insertQuery2 = "Insert into resource_link_tbl (resource_idfk, link) Values (?, ?)";
+                        //resource_link_tbl_Insertion = stmt.executeUpdate(insertQuery2);
+                        PreparedStatement pst=currentCon.prepareStatement(insertQuery2);
+                        pst.setInt(1,resourceId);
+                        pst.setString(2,resourceLink);
+                        pst.executeUpdate();
                         
                     }
-                    else if(resourceLink.equals("")){
-                       String insertQuery3 = "INSERT INTO resource_upload_tbl(rsource_idfk,path,type,format,Size)VALUES('"+resourceId+"','"+resourcePath+"','"+resourceType+"','"+resourceFormat+"','"+resourceSize+"')";
-                       resource_upload_tbl_Insertion = stmt.executeUpdate(insertQuery3);
+                    else if(resourceLink.equals("none")){
+                      // String insertQuery3 = "INSERT INTO resource_upload_tbl(resource_idfk, path, type, format, Size) VALUES("+resourceId+", '"+resourcePath+"', '"+resourceType+"', '"+resourceFormat+"', "+resourceSize+")";
+                       //String inserQ = "Insert into resource_upload_tbl (resource_idfk, path) Values (" +resourceId +", 'c:\\resourcePath\\cvbvb\\')";
+                       String inserQ2 = "Insert into resource_upload_tbl (resource_idfk, path, type, format, Size) Values (?, ?, ?, ?, ?)";
+                       //resource_upload_tbl_Insertion = stmt.executeUpdate(inserQ);
+                       PreparedStatement pst=currentCon.prepareStatement(inserQ2);
+                        pst.setInt(1,resourceId);
+                        pst.setString(2,resourcePath);
+                        pst.setString(3, resourceType);
+                        pst.setString(4, resourceFormat);
+                        pst.setInt(5, resourceSize);
+                        pst.executeUpdate();
                     }
-                    if(resource_tbl_Insertion != 0&& resource_upload_tbl_Insertion != 0&& resource_link_tbl_Insertion != 0){
+                    if(resource_tbl_Insertion != 0&& (resource_upload_tbl_Insertion != 0 || resource_link_tbl_Insertion != 0)){
                         bean.setAdded(true);
                         
                     }
@@ -127,6 +140,14 @@ private static void closeConnection(){
         }   
        ConnectionManager.putConnection(currentCon);
     }
+public static ArrayList<ResourceBean> getResources(){
+    ArrayList<ResourceBean> list = new ArrayList<ResourceBean>();
+    return list;
+}
+public static ResourceBean getResource(String resourceName){
+    ResourceBean resource = new ResourceBean();
+    return resource;
+}
     
 }
 
