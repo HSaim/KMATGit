@@ -23,9 +23,7 @@ import javax.servlet.http.HttpServletResponse;
                         "/NewProcessLadder",
                         "/view-composition-ladders",
                         "/UserContactUs",
-                        "/UserNews",
-                        "/AddUser",
-                        "/AddResource",
+                        "/UserNews",                        
                         "/add-process-ladder"
                         })
 public class RequestDispatcher extends HttpServlet {
@@ -65,6 +63,9 @@ public class RequestDispatcher extends HttpServlet {
         }
         else if (userPath.equals("/edit-user")) {
             userPath = "/EditUser";
+        }
+        else if (userPath.equals("/register-user")) {
+            userPath = "/RegisterUser";
         }
         else if(userPath.equals("/add-user")){
             userPath = "/AddUser";

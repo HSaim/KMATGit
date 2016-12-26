@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp codebase="file:/D:/KMAT/KMATGit/WebStartTest/dist/" href="launch.jnlp" spec="1.0+">
+    <information>
+        <title>WebStartTest</title>
+        <vendor>Saim</vendor>
+        <homepage href=""/>
+        <description>WebStartTest</description>
+        <description kind="short">WebStartTest</description>
+    </information>
+    <update check="always"/>
+    <resources>
+        <j2se version="1.8+"/>
+        <jar href="WebStartTest.jar" main="true"/>
+    </resources>
+    <application-desc main-class="webstarttest.WebStartTest">
+    </application-desc>
+</jnlp>

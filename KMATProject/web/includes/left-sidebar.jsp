@@ -4,6 +4,7 @@
     Author     : Habiba Saim
 --%>
 
+<%@page import="model.LoginUserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
     
@@ -20,7 +21,8 @@
             </div>
             <!-- </a>-->
             <ul>
-                <li class = "view-users"><a href="GetUsersController?action=get-all-users">
+                
+                <li class = "view-users"><a href="GetUsersController?action=get-all-users"> 
                 <!--<li class = "view-users"><a href="view-users"> -->
                         <div class="sidebox-menu-blurb-sub">
                             View Users

@@ -12,7 +12,7 @@ package model;
 public class UserBean implements java.io.Serializable {
     
     //Variables Declaration
-    private String userId;    
+    private int userId;    
     private String username;
     private String password;
     private String priEmail;
@@ -30,11 +30,11 @@ public class UserBean implements java.io.Serializable {
     public boolean duplicateUser;
     
     //Getters and Setters
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
     

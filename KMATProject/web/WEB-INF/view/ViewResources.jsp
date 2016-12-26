@@ -64,6 +64,10 @@
                       //   users = (ArrayList<UserBean> ) session.getAttribute("users");
                     //}
                %>
+
+                
+                <!--Start Page contents -->
+
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10 col-md-push-2">
@@ -93,7 +97,7 @@
                                     </div>
                                     <div class = "col-md-3">
                                         <input type = "hidden" value = "resourcename" name = "hidden">
-                                        
+                        
                                         <%--<a href = "edit-user?x=${user.getUserName()}">--%>
                                         <a href = "GetResourceController?action=get-user&userName=${resource.getResourceName()}">
                                             <h2><i class="icon-edit"></i></h2>
@@ -106,7 +110,7 @@
                                     </div>
                                 </div>
                             </c:forEach>
-                        
+                       
                         <%--
                             <% 
                                 ArrayList<UserBean> users = new ArrayList<UserBean>();
@@ -132,11 +136,11 @@
                                             <%--<td><c:out value="${user.name}" /></td>
                                             <td><c:out value="${user.email}" /></td>
                                             <td><c:out value="${user.profession}" /></td>
-                                           
+                        
                                         </tr>
                                     </c:forEach>
                                 </table>
-                            </div>
+                        </div>
                                             --%>
                         </div>
                         
@@ -147,8 +151,12 @@
                         </div>                        
                     </div>
                 </div>
+
                 
                           
+
+                <!--End Page contents -->        
+
                 <!-- adds js -->                
                 <jsp:include page="../../includes/js.jsp" /> 
                 
