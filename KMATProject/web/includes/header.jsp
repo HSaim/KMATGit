@@ -38,8 +38,8 @@
                         </li>
                         <li class  = "about"><a href="about.html">About</a></li>
                         <li class = "contact"><a href="Contact.jsp">Contact</a></li>
-                        <li class="cta home"><a href="Home.jsp#get-signin">Login</a></li>
-                        <%--<li class="cta home"><a href="Home.jsp#name">Login</a></li>--%>
+                        <%--<li class="cta home"><a href="Home.jsp#get-signin">Login</a></li>--%>
+                        <li class="cta home"><a href="Home.jsp#name">Login</a></li>
                     </ul>
                 </nav>
                 <!-- END menu-wrap -->

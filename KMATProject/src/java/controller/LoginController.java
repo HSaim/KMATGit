@@ -75,7 +75,7 @@ public class LoginController extends HttpServlet {
                     PrintWriter out = response.getWriter();
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('Invalid username or password');");
-                    out.println("location='Home.jsp#get-signin';");
+                    out.println("location='Home.jsp#name';");
                     out.println("</script>");                    
                 }
                 catch (Exception e){
