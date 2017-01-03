@@ -140,8 +140,28 @@ private static void closeConnection(){
         }   
        ConnectionManager.putConnection(currentCon);
     }
-public static ArrayList<ResourceBean> getResources(){
+public static ArrayList<ResourceBean> getResources(String currentUsername){
     ArrayList<ResourceBean> list = new ArrayList<ResourceBean>();
+    String query = "Select user_tbl.user_id from user-tbl where user_tbl.username<>'"+currentUsername+"'";
+    String query1 = "Select resource_tbl.resource_id, resource_tbl.resource_name, resource_tbl.description, resource_link_tbl.link"
+            + "where ";
+    String uid="";
+    try{
+        boolean more;
+        stmt=currentCon.createStatement();
+        rs = stmt.executeQuery(query);	        
+        more = rs.next();
+        if(more){
+            uid = rs.getString("user_id");
+            
+        }
+    }
+    catch(Exception ex){
+        
+    }
+    finally{
+        
+    }
     return list;
 }
 public static ResourceBean getResource(String resourceName){

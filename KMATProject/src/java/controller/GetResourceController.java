@@ -7,6 +7,7 @@ package controller;
 
 import model.ResourceBean;
 import model.ResourceDAO;
+import model.EmailUtility;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,17 +18,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.EmailUtility;
+import model.LoginUserBean;
+import model.UserBean;
+import model.UserDAO;
+
 
 /**
  *
  * @author Fahad Akhtar
  */
-public class GetResourceContrller extends HttpServlet{
+public class GetResourceController extends HttpServlet{
     private String host;
     private String port;
     private String kmatUsername;
     private String kmatPassword;
+    String currentUsername;
+    LoginUserBean currentUser ;
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -57,11 +63,16 @@ public class GetResourceContrller extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        currentUser = (LoginUserBean) request.getSession(false).getAttribute("CurrentSessionUser");
+        currentUsername = currentUser.getUsername();
         
         if (action.equals("get-all-resources")){
         ArrayList<ResourceBean> resource = new ArrayList<ResourceBean>();
-        resource = ResourceDAO.getResources();
-        try{
+       
+        ArrayList<UserBean> registeredUsers = new ArrayList<UserBean>();
+        resource = ResourceDAO.getResources(currentUsername);
+            //registeredUsers = UserDAO.getRegisteredUsers(currentUsername);
+        try{ 
             if (resource!=null){
         //PrintWriter out = response.getWriter();
           //      out.println("<script type=\"text/javascript\">");
@@ -70,7 +81,7 @@ public class GetResourceContrller extends HttpServlet{
                 //out.println("</script>");           
                 HttpSession session = request.getSession(true);
                 session.setAttribute("resource", resource);
-                response.sendRedirect("view-resource");
+                response.sendRedirect("view-resources");
                 //url = "/WEB-INF/view/ViewUsers.jsp";
 
 

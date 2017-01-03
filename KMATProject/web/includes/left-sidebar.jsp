@@ -108,7 +108,7 @@
             <div class="sidebox-menu-blurb">
                 Resources 
                 <ul>
-                    <li class = "view-resources"><a href="view-resources">
+                    <li class = "view-resources"><a href="GetResourceController?action=get-all-resources">
                             <div class="sidebox-menu-blurb-sub">
                                 View Resources
                             </div>

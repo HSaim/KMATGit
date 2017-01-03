@@ -94,6 +94,14 @@
         <servlet-name>InsertResourceController</servlet-name>
         <url-pattern>/insert-resource</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetResourceController</servlet-name>
+        <servlet-class>controller.GetResourceController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetResourceController</servlet-name>
+        <url-pattern>/GetResourceController</url-pattern>
+    </servlet-mapping>
     <!--<servlet-mapping>
         <servlet-name>InsertToolController</servlet-name>
         <url-pattern>/insert-tool</url-pattern>
