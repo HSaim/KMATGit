@@ -28,8 +28,18 @@ public class UserBean implements java.io.Serializable {
     
     public boolean added;
     public boolean duplicateUser;
-    
+    public boolean validUser;
+     
     //Getters and Setters
+    public boolean isValidUser() {
+        return validUser;
+    }
+
+    public void setValidUser(boolean validUser) {
+        this.validUser = validUser;
+    }
+    
+   
     public void setUserId(int userId) {
         this.userId = userId;
     }

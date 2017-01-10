@@ -344,5 +344,12 @@ public class GetUsersController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    private void setEmailHeader(ServletContext context){
+        host = context.getInitParameter("host");
+        port = context.getInitParameter("port");
+        kmatUsername = context.getInitParameter("user");
+        kmatPassword = context.getInitParameter("pass");
+    }
 
 }

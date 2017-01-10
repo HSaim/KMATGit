@@ -2,7 +2,7 @@
 package model;
 
 /**
- * Query KMAT DB to get and insert user's record
+ * Query KMAT DB to get, delete, update and insert user's record
  * Insert new user 
  * 
  * @author Habiba Saim
@@ -18,6 +18,7 @@ public class UserDAO {
     static Connection currentCon = null;
     static ResultSet rs = null;  
     static Statement stmt = null;
+    static PreparedStatement pst = null;
 		
     //Validate username and password while login
     public static LoginUserBean login(LoginUserBean bean) {
@@ -79,6 +80,64 @@ public class UserDAO {
         return bean;
     }	
     
+    
+    public static UserBean recoverAccount(UserBean bean, String newPassword) {
+        
+        String userName = bean.getUserName();
+        String priEmail = bean.getPriEmail();
+        String searchUserName =
+              "select user_id from user_tbl where username=?"; 
+                     
+        String searchPriEmail = "Select first_name, email1 from user_details_tbl where user_idfk = ? and email1 = ?";
+        String updatePassword = "Update user_tbl set  password = ?, update_dt = NOW() where username = ?";
+        int userId;
+        try{ 
+            
+            currentCon = ConnectionManager.getConnection();
+                     
+            pst =currentCon.prepareStatement(searchUserName);
+            pst.setString(1, userName);
+            rs = pst.executeQuery();
+            //If user id exists then check his primary email
+            if (rs.next()){
+                userId = rs.getInt("user_id");
+                pst =currentCon.prepareStatement(searchPriEmail);
+                pst.setInt(1, userId);
+                pst.setString(2, priEmail);
+                rs = pst.executeQuery();
+                //If primary email and user id belong to one user then reset his password in DB
+                if (rs.next()){
+                    bean.setFirstName(rs.getString("first_name"));
+                    bean.setValidUser(true);
+                    //If valid user, then update his password
+                    pst =currentCon.prepareStatement(updatePassword);
+                    pst.setString(1, newPassword);
+                    pst.setString(2, userName);
+                    pst.executeUpdate();
+                    pst.close();
+                }
+                else{
+                    bean.setValidUser(false);
+                }
+            }
+            else{
+                bean.setValidUser(false);
+            }
+            //return bean;
+            
+        }
+        catch (Exception ex) {
+        
+           ex.printStackTrace();
+        } 
+
+        //some exception handling
+        finally{       
+            
+            closeConnection();
+        }
+        return bean;
+    }
     //Add a new user in KMAT DB
     public static UserBean insertUser(UserBean bean) {
         

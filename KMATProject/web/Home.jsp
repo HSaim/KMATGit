@@ -191,8 +191,9 @@
                                 <h2 class="text-styled">Sign in</h2>
                             </div>
                         </div>
+                        
                         <div class="get-signin">
-                            <form class="form-inline" method="post" action="LoginController" >
+                            <form class="form-inline" method="post" action="LoginController?action=login" >
                                 <div class="col-md-4 col-sm-4">
                                     <div class="form-group">
                                         <label for="username" class="sr-only">User Name</label>
@@ -210,10 +211,13 @@
                                 </div>
                             </form>                            
                         </div>
+                        <br/><br/>
                         <div class="row text-center">
-                            <div class="col-md-8 col-md-offset-2">                                    
-                                    <p>No account? <a href="SignUp.jsp" class="btn btn-primary btn-lg">Sign Up</a></p>
-
+                            <div class="col-md-6 ">                                    
+                                    <p>No account? <a href="SignUp.jsp" class="btn btn-default btn-block">Sign Up</a></p>
+                            </div>
+                            <div class="col-md-6 ">
+                                <p>Forgotten password? <a href = "RecoverAccount.jsp" class="btn btn-default btn-block">Recover account</a></p>
                             </div>
                         </div>
                         
