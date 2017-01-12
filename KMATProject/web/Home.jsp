@@ -180,7 +180,7 @@
                         </div>
                     </div>
                 </div>            
-            <!-- END: KMAT Components -->
+                <!-- END: KMAT Components -->
            
                 <!-- START: Sign in -->
                 <div id="get-signin">
@@ -213,11 +213,14 @@
                         </div>
                         <br/><br/>
                         <div class="row text-center">
-                            <div class="col-md-6 ">                                    
+                            <div class="col-md-3 ">                                    
                                     <p>No account? <a href="SignUp.jsp" class="btn btn-default btn-block">Sign Up</a></p>
                             </div>
-                            <div class="col-md-6 ">
+                            
+                            <div class="col-md-3 ">
                                 <p>Forgotten password? <a href = "RecoverAccount.jsp" class="btn btn-default btn-block">Recover account</a></p>
+                            </div>
+                            <div class="col-md-6 "> 
                             </div>
                         </div>
                         

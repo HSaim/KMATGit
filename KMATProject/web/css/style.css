@@ -590,6 +590,46 @@ figure {
   }
 }
 
+/* Logged in username on menu bar */
+#userName {
+  font-size: 22px;
+  /*text-transform: uppercase;*/
+  font-weight: 700;
+  float: left;
+  margin-bottom: 0;
+  margin-top: 1.4em;
+}
+#userName a {
+  /*color: rgba(21, 31, 44, 0.8);*/
+  /*border: 2px solid #00ADB5;*/
+ /* padding: 0 7px;*/
+  position: relative;
+  font-family: Georgia, Serif !important;
+    color: forestgreen;
+    text-indent: 3em;
+}
+#userName a i {
+  color: #00ADB5;
+  font-size: 30px;
+  padding-right: 12px;
+}
+#userName a:hover, #userName a:focus {
+  color: rgba(0, 0, 0, 0.9) !important;
+}
+#userName span {
+  padding: 0;
+  margin: 0;
+  font-weight: 100;
+}
+@media screen and (max-width: 768px) {
+  #userName {
+    width: 100%;
+    float: none;
+    margin-top: 0;
+  }
+}
+
+
 #menu-wrap {
   position: relative;
   z-index: 2;
