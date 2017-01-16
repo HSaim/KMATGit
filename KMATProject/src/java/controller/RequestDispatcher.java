@@ -23,16 +23,11 @@ import javax.servlet.http.HttpServletResponse;
                         "/NewProcessLadder",
                         "/view-composition-ladders",
                         "/UserContactUs",
-<<<<<<< HEAD
                         "/UserNews",
                         "/AddUser",
                         "/AddResource",
                         "/add-process-ladder",
 						"/edit-process-ladder"
-=======
-                        "/UserNews",                        
-                        "/add-process-ladder"
->>>>>>> origin/dev
                         })
 public class RequestDispatcher extends HttpServlet {
 
