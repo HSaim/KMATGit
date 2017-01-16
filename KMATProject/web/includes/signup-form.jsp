@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-12">
             <div class="form-group">                                            
-                <input type="text" class="form-control" name="user_name" placeholder="User Name*" required>                                    
+                <input type="text" class="form-control" id ="user_name" name="user_name" placeholder="User Name*" required>                                    
             </div>
         </div>
         <div class="col-md-12">
@@ -78,4 +78,5 @@
                     <input type="submit" value="Creat Account" class="btn btn-primary">
                 </div>
         </div>
+        
     </div>

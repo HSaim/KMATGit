@@ -4,6 +4,9 @@
     Author     : Habiba Saim
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.LadderBean"%>
+
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
     response.setHeader("Pragma","no-cache"); 
@@ -26,9 +29,11 @@
 	<meta name="description" content="Knowledge Management for All Tool (KMAT)" />
 	<meta name="keywords" content="KMAT, resource, concept, concept map, list, tool, composition, composition ladder" />
 	<meta name="author" content="KMAT Team" />
-        
-        <jsp:include page="../../includes/link.jsp" /> 
-    </head>
+    
+	<link rel="stylesheet" href="css/process-ladder/graph-creator.css">
+	<jsp:include page="../../includes/link.jsp" /> 
+	
+</head>
     
     <body class = "view-c-ladders">
         <!-- START wrapper -->

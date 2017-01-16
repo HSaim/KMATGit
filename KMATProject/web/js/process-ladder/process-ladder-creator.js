@@ -14,13 +14,53 @@ var graphCreationErrors = [{errorId:1, nodeId:2, nodeName:"Role 1", errorMessage
 						   {errorId:3, nodeId:1, nodeName:"Instructors", errorMessage:"This is a very long error message for node 1 ... a long long long long long message! It doesn't stop here .... this is a very long error message for node 1 ... a long long long long long message!"},
 						   {errorId:4, nodeId:2, nodeName:"Students", errorMessage:"This is error message 4"},
 						   {errorId:5, nodeId:3, nodeName:"HoD", errorMessage:"This is error message 5"}];
-					   
+
+var ladderChange = null;		//for keeping track of any changes made to the original ladder - is null if initial ladder is null
+var selectedNode = null;		//for keeping track of last selected circle - for modal
+var selectedEdge = null;			//for keeping track of last selected edge - for modal
+var isNodeSelected = false;
+var isEdgeSelected = false;
+					
 document.onload = (function(d3) 
 {
 	"use strict";
 	
+	var result = null,
+	tmp = [];
+	var items = location.search.substr(1).split("&");
+	for (var index = 0; index < items.length; index++) 
+	{
+		tmp = items[index].split("=");
+		if (tmp[0] === "ladder") 
+			result = decodeURIComponent(tmp[1]);
+	}
+	
+	var aLadder = {};
+	var ladderAllNodes = [];
+	var ladderAllEdges = [];
+	
+	aLadder = JSON.parse(result);
+	if(aLadder !== null)
+	{
+		//set ladder name, nodes and edges
+		document.getElementById("name-input").value = aLadder.name;
+		ladderAllNodes = JSON.parse(JSON.stringify(aLadder.nodes));
+		ladderAllEdges = JSON.parse(JSON.stringify(aLadder.edges));
+	}
+	
+	//set source and target of all edges (replace node ids with nodes)
+	for(var i = 0; i < ladderAllEdges.length; i++)
+	{
+		var src = ladderAllEdges[i].source.valueOf();
+		var target = ladderAllEdges[i].target.valueOf();
+		ladderAllEdges[i].source = ladderAllNodes.filter(function(n){return n.id === src;})[0];
+		ladderAllEdges[i].target = ladderAllNodes.filter(function(n){return n.id === target;})[0];
+	}
+	//console.log(ladderAllNodes);
+	//console.log(ladderAllEdges);
+	
 	// define graphcreator object
-	var GraphCreator = function(svg, nodes, edges) 
+	var GraphCreator = function(svg, nodes, edges, ladder) 
 	{
 		var thisGraph = this;
 		thisGraph.idct = 0;		//keep trak of node ids
@@ -36,7 +76,10 @@ document.onload = (function(d3)
 		thisGraph.minZoom = 0.5;
 		thisGraph.maxZoom = 3;
 		thisGraph.firstNodeData = null;	//root node
-		thisGraph.numTotalNodes = 0;
+		//set root node rootNodeId
+		thisGraph.firstNodeData = nodes.filter(function(n){return n.id === ladder.rootNodeId;})[0];
+		thisGraph.numTotalNodes = nodes.length;
+		thisGraph.ladder = ladder;
 		
 		thisGraph.state = 
 		{
@@ -271,6 +314,7 @@ document.onload = (function(d3)
 		d3.select("#center-input").on("click", function()
 			{
 				d3.event.stopPropagation();
+
 				if(thisGraph.firstNodeData !== null)
 				{
 					//if there are nodes present
@@ -290,21 +334,58 @@ document.onload = (function(d3)
 					zoomSvg.scale(1);
 					zoomSvg.translate([0, 0]);
 				}
+				return false;
 			});
 		// handle download data
 		d3.select("#preview-input").on("click", function() 
 			{
 				console.log("Preview");
+				
+				/*var ladderString = "{\"id\":5,\"name\":\"MK LADDER\",\"ladderType\":\"PROCESS\",\"description\":\"\",\"rootNodeId\":0,\"nodes\":[{\"id\":0,\"nodeType\":\"PROCESS\",\"description\":\"\",\"title\":\"MK1\",\"tools\":[],\"resources\":[],\"users\":[],\"x\":246.0,\"y\":82.8125},{\"id\":1,\"nodeType\":\"PROCESS\",\"description\":\"MK DESC2\",\"title\":\"MK2\",\"tools\":[1,3,5],\"resources\":[2,3],\"users\":[1],\"x\":569.0,\"y\":122.8125},{\"id\":2,\"nodeType\":\"PROCESS\",\"description\":\"\",\"title\":\"MK3\",\"tools\":[],\"resources\":[],\"users\":[],\"x\":418.0,\"y\":247.8125}],\"edges\":[{\"id\":0,\"title\":\"New Link\",\"description\":\"\",\"edgeType\":\"EMPTY\",\"tools\":[],\"resources\":[],\"users\":[],\"source\":0,\"target\":1},{\"id\":1,\"title\":\"MK EDGE1\",\"description\":\"MK EDGE1 DESC\",\"edgeType\":\"PROCESS\",\"tools\":[5],\"resources\":[2,3],\"users\":[1],\"source\":2,\"target\":1}]}";
+				
+				try
+				{
+					var jsonLadderObj = JSON.parse(ladderString);
+					thisGraph.deleteGraph(true);
+					thisGraph.nodes = jsonLadderObj.nodes;
+					thisGraph.setIdCt(jsonLadderObj.nodes.length);
+					
+					var saveEdges = [];
+					saveEdges = jsonLadderObj.edges;
+					//console.log(jsonLadderObj.edges);
+					//console.log(thisGraph.nodes);
+					
+					for(var i = 0; i < saveEdges.length; i++)
+					{
+						var src = saveEdges[i].source.valueOf();
+						var target = saveEdges[i].target.valueOf();
+						saveEdges[i].source = thisGraph.nodes.filter(function(n){return n.id === src;})[0];
+						saveEdges[i].target = thisGraph.nodes.filter(function(n){return n.id === target;})[0];
+					}
+					//console.log(saveEdges);
+					thisGraph.edges = saveEdges;
+					thisGraph.updateGraph();
+				}
+				catch(err)
+				{
+					window.alert("Error parsing: " + err.message);
+				}
+				//return false;*/
+				return;
 			});
 		
 		d3.select("#save-input").on("click", function() 
 			{
+				console.log("Saving!");
 				var errorButton = document.getElementById("error-button");
+				//errorButton.style.display = "block";
+				errorButton.style.display = "none";
 				
+//TODO: error button re-adjust - showing at the bottom!!				
 //TODO: check for errors in current graph and fill graphCreationErrors array accordingly
 				
 				//if there are errors, then display the error button
-				if(graphCreationErrors !== null && graphCreationErrors.length > 0)
+				/*if(graphCreationErrors !== null && graphCreationErrors.length > 0)
 				{
 					//display stuff in array, on modal
 					var errorList = document.getElementById("error-modal-list");
@@ -338,10 +419,71 @@ document.onload = (function(d3)
 					beatIcon(errorButton, errorButton.width, errorButton.height);
 					
 					errorButton.style.display = "block";
+				}*/
+				if(document.getElementById("name-input").value === "")
+				{
+					alert("Specify name of ladder");
+				}
+				else if(thisGraph.idct === 0 || thisGraph.nodes.length === 0)
+				{
+					alert("Create a ladder to save");
 				}
 				else
 				{
 					errorButton.style.display = "none";
+					//Save graph to Database
+					var saveEdges = [];
+					
+					thisGraph.edges.forEach(function(val, i)
+					{
+						saveEdges.push({id: val.id,
+										title: val.title,
+										description: val.description,
+										edgeType: val.edgeType,
+										tools: val.tools,
+										resources: val.resources,
+										users: val.users,
+										source: val.source.id, 
+										target: val.target.id});
+					});
+					
+					var description = "";
+					description = document.getElementById("graph-settings-description").value;
+					//get ladder name, description, links
+					ladder = window.JSON.stringify({"id": thisGraph.ladder.id,
+													"name": document.getElementById("name-input").value,
+													"ladderType": LadderType.PROCESS,
+													"description": description,
+													"rootNodeId": thisGraph.firstNodeData.id,
+													"nodes": thisGraph.nodes, 
+													"edges": saveEdges});
+					//console.log(ladder);
+					
+					var xhttp = new XMLHttpRequest();
+					xhttp.onload = function() 
+					{
+						if(xhttp.status === 200) 
+						{
+							//alert('Success! Response: ' + xhttp.responseText);
+							alert('Ladder Saved!');
+						}
+						else
+						{
+							alert('Request failed.  Returned status of ' + xhttp.status);
+						}
+					};
+					
+					if(thisGraph.ladder.id > 0)
+					{
+						alert("TODO: update ladder in database");
+					}
+					else
+					{
+						xhttp.open("POST", "InsertLadderController", true);
+						xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+						ladder = "newLadder=" + ladder;
+						xhttp.send(ladder);
+					}
 				}
 			});
 			
@@ -349,8 +491,53 @@ document.onload = (function(d3)
 		d3.select("#delete-graph").on("click", function()
 			{
 				d3.event.stopPropagation();
-				thisGraph.deleteGraph(false);
+				thisGraph.deleteGraph(true);
 			});
+		
+		document.getElementById("save-button-modal").addEventListener("click", function()
+		{
+			if(isNodeSelected)
+			{
+				//add to list of node data - nodes in graph
+				for(var i = 0; i < thisGraph.nodes.length; i++)
+				{
+					if(thisGraph.nodes[i].id === selectedNode.id)
+					{
+						thisGraph.nodes[i] = JSON.parse(JSON.stringify(selectedNode));
+					}
+				}
+//TODO: change circles data accordingly				
+				//change text of node on graph
+				var d3Node = thisGraph.circles.filter(function (dval)
+					{
+						return dval.id === selectedNode.id;
+					});
+				
+				var d3txt = thisGraph.changeTextOfNode(d3Node, selectedNode);
+				var txtNode = d3txt.node();
+				thisGraph.selectElementContents(txtNode);
+					
+				txtNode.focus();
+				alert("Node Details Saved");
+			}
+			else if(isEdgeSelected)
+			{
+				//add to list of edge data - edges in graph
+				for(var i = 0; i < thisGraph.edges.length; i++)
+				{
+					if(thisGraph.edges[i].id === selectedEdge.id)
+					{
+						thisGraph.edges[i] = JSON.parse(JSON.stringify(selectedEdge));
+					}
+				}
+				alert("Edge Details Saved");
+			}
+			thisGraph.updateGraph();
+			thisGraph.isNodeSelected = false;
+			thisGraph.isEdgeSelected = false;
+			isNodeSelected = false;
+			isEdgeSelected = false;
+		});
 	};
 	
 	function onMouseDownErrorListItem(evt)
@@ -455,7 +642,7 @@ document.onload = (function(d3)
 			//dragging node
 			d.x += d3.event.dx;
 			d.y += d3.event.dy;
-			//console.log(d.x);
+
 			if(d.id === thisGraph.firstNodeData.id)
 			{
 				thisGraph.firstNodeData = d;
@@ -466,7 +653,8 @@ document.onload = (function(d3)
 	
 	GraphCreator.prototype.deleteGraph = function(skipPrompt)
 	{
-		var thisGraph = this, doDelete = true;
+		var thisGraph = this, 
+				doDelete = true;
 		
 		if(!skipPrompt) 
 		{
@@ -479,7 +667,18 @@ document.onload = (function(d3)
 			thisGraph.firstNodeData = null;
 			thisGraph.selectedGraphCircle = null;
 			thisGraph.selectedGraphEdge = null;
+			selectedNode = null;
+			selectedEdge = null;
+			thisGraph.isNodeSelected = false;
+			thisGraph.isEdgeSelected = false;
+			isNodeSelected = false;
+			isEdgeSelected = false;
 			thisGraph.updateGraph();
+			
+			if(thisGraph.ladder !== null && thisGraph.ladder.id !== null && thisGraph.ladder.id !== 0)
+			{
+				alert("TODO: delete from database");
+			}
 		}
 	};
 
@@ -545,7 +744,7 @@ document.onload = (function(d3)
 		{
 			thisGraph.removeSelectFromNode();
 		}
-		thisGraph.state.selectedNode = nodeData;
+		thisGraph.state.selectedNode = JSON.parse(JSON.stringify(nodeData));
 	};
 
 	GraphCreator.prototype.removeSelectFromNode = function()
@@ -615,6 +814,8 @@ document.onload = (function(d3)
 			consts = thisGraph.consts,
 			htmlEl = d3node.node();
 		
+		var trans = thisGraph.zoomSvgParameter.translate();
+		
 		d3node.selectAll("text").remove();
 		var nodeBCR = htmlEl.getBoundingClientRect(),
 			curScale = nodeBCR.width / consts.nodeRadius,
@@ -625,9 +826,8 @@ document.onload = (function(d3)
 			.data([d])
 			.enter()
 			.append("foreignObject")
-			.attr("x", nodeBCR.left - 230 + placePad)
-			//.attr("y", nodeBCR.top - 20 + placePad)
-			.attr("y", nodeBCR.top - 50 + placePad)
+			.attr("x", (d.x * thisGraph.zoomSvgParameter.scale()) + trans[0])
+			.attr("y", (d.y * thisGraph.zoomSvgParameter.scale()) + trans[1])
 			.attr("height", 2 * useHW)
 			.attr("width", useHW)
 			.append("xhtml:p")
@@ -653,7 +853,7 @@ document.onload = (function(d3)
 				d3.select(this.parentElement).remove();
 			});
 			
-			d3txt.style("font", "14px Helvetica, arial");
+		d3txt.style("font", "14px Helvetica, arial");
 		return d3txt;
 	};
 
@@ -680,11 +880,15 @@ document.onload = (function(d3)
 			// we're in a different node: create new edge for mousedown edge and add to graph
 			var newEdge = 
 						{
-//TODO: update idLink
-							id: 1,
+							id: thisGraph.idLinks++,
+							title: "New Link",
+							description: "",
+							edgeType: edgeType.PROCESS,
+							tools: [],
+							resources: [],
+							users: [],
 							source: mouseDownNode, 
-							target: d,
-							title: "New Link"
+							target: d
 						};
 			var filtRes = thisGraph.paths.filter(function (d)
 				{
@@ -729,7 +933,7 @@ document.onload = (function(d3)
 						thisGraph.removeSelectFromEdge();
 					}
 					
-					var prevNode = state.selectedNode;
+					var prevNode = JSON.parse(JSON.stringify(state.selectedNode));
 					if(!prevNode || prevNode.id !== d.id)
 					{
 						//remove selection from other nodes
@@ -769,8 +973,13 @@ document.onload = (function(d3)
 			thisGraph.numTotalNodes++;
 			var xycoords = d3.mouse(thisGraph.svgG.node()),
 				d = {
-						title: "New Process " + thisGraph.numTotalNodes,
 						id: thisGraph.idct++,
+						nodeType: nodeType.PROCESS,
+						description: "",
+						title: "New Process " + thisGraph.numTotalNodes,
+						tools: [],
+						resources: [],
+						users: [],
 						x: xycoords[0], 
 						y: xycoords[1]
 					};
@@ -810,15 +1019,28 @@ document.onload = (function(d3)
 		thisGraph.modalJustClosed = true;
 		if(thisGraph.isNodeSelected)
 		{
-			if(window.sessionStorage.lastNodeName === null)
-				window.sessionStorage.lastNodeName = "New Process";
-			document.getElementById("modal-node-name").innerHTML = window.sessionStorage.lastNodeName;
+			document.getElementById("modal-node-name").innerHTML = thisGraph.state.selectedNode.title;
+			//copy node data to global variable
+			isNodeSelected = thisGraph.isNodeSelected === false ? false : true;
+			selectedNode = JSON.parse(JSON.stringify(thisGraph.state.selectedNode));
+			
+			document.getElementById("modal-description-id").value = selectedNode.description;
+			//load linked tools, users and resources on modal
+			onLoadModal("accordion1-panel", selectedNode.tools);
+			onLoadModal("accordion2-panel", selectedNode.resources);
+			onLoadModal("accordion3-panel", selectedNode.users);
 		}
 		else if(thisGraph.isEdgeSelected)
 		{
-			if(window.sessionStorage.lastEdgeName === null)
-				window.sessionStorage.lastEdgeName = "New Link";
-			document.getElementById("modal-node-name").innerHTML = window.sessionStorage.lastEdgeName;
+			document.getElementById("modal-node-name").innerHTML = thisGraph.state.selectedEdge.title;
+			isEdgeSelected = thisGraph.isEdgeSelected === false ? false : true;
+			selectedEdge = JSON.parse(JSON.stringify(thisGraph.state.selectedEdge));
+			
+			document.getElementById("modal-description-id").value = selectedEdge.description;
+			//load linked tools, users and resources on modal
+			onLoadModal("accordion1-panel", selectedEdge.tools);
+			onLoadModal("accordion2-panel", selectedEdge.resources);
+			onLoadModal("accordion3-panel", selectedEdge.users);
 		}
 	};
 	
@@ -836,8 +1058,8 @@ document.onload = (function(d3)
 				return;
 
 			state.lastKeyDown = d3.event.keyCode;
-			var selectedNode = state.selectedNode,
-				selectedEdge = state.selectedEdge;
+			var selectedNodeSVG = JSON.parse(JSON.stringify(state.selectedNode)),
+				selectedEdgeSVG = state.selectedEdge;
 
 			switch(d3.event.keyCode)
 			{
@@ -845,11 +1067,11 @@ document.onload = (function(d3)
 				case consts.BACKSPACE_KEY:
 				case consts.DELETE_KEY:
 					d3.event.stopPropagation();
-					if(selectedNode && !thisGraph.modalJustClosed)
+					if(selectedNodeSVG && !thisGraph.modalJustClosed)
 					{
 						d3.event.preventDefault();
-						thisGraph.nodes.splice(thisGraph.nodes.indexOf(selectedNode), 1);
-						thisGraph.spliceLinksForNode(selectedNode);
+						thisGraph.nodes.splice(thisGraph.nodes.indexOf(selectedNodeSVG), 1);
+						thisGraph.spliceLinksForNode(selectedNodeSVG);
 						state.selectedNode = null;
 						
 						if(thisGraph.nodes === null || thisGraph.length === 0 || thisGraph.nodes[0] === null)
@@ -862,10 +1084,10 @@ document.onload = (function(d3)
 						thisGraph.selectedGraphEdge = null;
 						thisGraph.updateGraph();
 					}
-					else if(selectedEdge && !thisGraph.modalJustClosed)
+					else if(selectedEdgeSVG && !thisGraph.modalJustClosed)
 					{
 						d3.event.preventDefault();
-						thisGraph.edges.splice(thisGraph.edges.indexOf(selectedEdge), 1);
+						thisGraph.edges.splice(thisGraph.edges.indexOf(selectedEdgeSVG), 1);
 						state.selectedEdge = null;
 						thisGraph.selectedGraphEdge = null;
 						thisGraph.updateGraph();
@@ -932,15 +1154,6 @@ document.onload = (function(d3)
 					thisGraph.selectedGraphEdge = d3.select(this);
 					thisGraph.state.selectedEdge = d;
 					
-					//save name of node to display on modal
-					if(typeof(Storage) !== "undefined")
-					{
-						window.sessionStorage.lastEdgeName = "Test New Link";
-					}
-					else
-					{
-						console.error("Storage not supported by browser!");
-					}
 					var dcx1 = (window.innerWidth/4-d.source.x*thisGraph.zoomSvgParameter.scale());
 					var dcy1 = (window.innerHeight/2-d.source.y*thisGraph.zoomSvgParameter.scale());
 					var dcx2 = (window.innerWidth/4-d.target.x*thisGraph.zoomSvgParameter.scale());
@@ -1028,17 +1241,7 @@ document.onload = (function(d3)
 					
 					d3.select(this).classed("selected circle", true);
 					thisGraph.selectedGraphCircle = d3.select(this);
-					thisGraph.state.selectedNode = d;
-					
-					//save name of node to display on modal
-					if(typeof(Storage) !== "undefined")
-					{
-						window.sessionStorage.lastNodeName = d.title;
-					}
-					else
-					{
-						console.error("Storage not supported by browser!");
-					}
+					thisGraph.state.selectedNode = JSON.parse(JSON.stringify(d));
 					
 					var dcx = (window.innerWidth/4-d.x*thisGraph.zoomSvgParameter.scale());
 					var dcy = (window.innerHeight/2-d.y*thisGraph.zoomSvgParameter.scale());
@@ -1088,17 +1291,28 @@ document.onload = (function(d3)
 	};
 
 	/**** MAIN ****/
-
-	// initial node data
-	var nodes = [];
-	var edges = [];
-
+	// warn the user when leaving
+	window.onbeforeunload = function()
+	{
+		return "Make sure to save your graph locally before leaving :-)";
+	};
+	
+	document.getElementById("error-button").style.display = "none";
 	/** MAIN SVG **/
-	var svg = d3.select("body")
+	var svg = d3.select("#svg-row")
 				.append("svg")
 				.attr("id", "main-svg");
-	var graph = new GraphCreator(svg, nodes, edges);
-	//graph.setIdCt(2);
+				//.attr("class", "col-md-12");
+	/*var svg = d3.select("#svg-row")
+				.append("svg")
+				.attr("id", "main-svg")
+				.attr("class", "col-md-11 col-md-offset-1");*/
+	//var svg = d3.select("#main-svg");
+	var graph = new GraphCreator(svg, ladderAllNodes, ladderAllEdges, aLadder);
+	if(ladderAllNodes !== null)
+	{
+		graph.setIdCt(ladderAllNodes.length);
+	}
 	graph.updateGraph();
 	
 })(window.d3);

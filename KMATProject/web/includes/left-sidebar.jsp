@@ -4,6 +4,7 @@
     Author     : Habiba Saim
 --%>
 
+<%@page import="model.LoginUserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
     
@@ -20,8 +21,9 @@
             </div>
             <!-- </a>-->
             <ul>
-                <!--<li class = "view-users"><a href="GetUsersController">-->
-                <li class = "view-users"><a href="view-users">
+                
+                <li class = "view-users"><a href="GetUsersController?action=get-all-users"> 
+                <!--<li class = "view-users"><a href="view-users"> -->
                         <div class="sidebox-menu-blurb-sub">
                             View Users
                         </div>
@@ -72,6 +74,7 @@
                 Process Ladders 
                 <ul>
                     <li class = "view-p-ladders"><a href="view-process-ladders">
+					<!--<li class = "view-p-ladders"><a href="GetLaddersController?action=get-all-process-ladders">-->
                             <div class="sidebox-menu-blurb-sub">
                                 View Process Ladders
                             </div>
@@ -106,7 +109,7 @@
             <div class="sidebox-menu-blurb">
                 Resources 
                 <ul>
-                    <li class = "view-resources"><a href="view-resources">
+                    <li class = "view-resources"><a href="GetResourceController?action=get-all-resources">
                             <div class="sidebox-menu-blurb-sub">
                                 View Resources
                             </div>

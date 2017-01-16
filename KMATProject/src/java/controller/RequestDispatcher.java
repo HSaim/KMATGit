@@ -23,10 +23,16 @@ import javax.servlet.http.HttpServletResponse;
                         "/NewProcessLadder",
                         "/view-composition-ladders",
                         "/UserContactUs",
+<<<<<<< HEAD
                         "/UserNews",
                         "/AddUser",
                         "/AddResource",
+                        "/add-process-ladder",
+						"/edit-process-ladder"
+=======
+                        "/UserNews",                        
                         "/add-process-ladder"
+>>>>>>> origin/dev
                         })
 public class RequestDispatcher extends HttpServlet {
 
@@ -63,7 +69,12 @@ public class RequestDispatcher extends HttpServlet {
         else if (userPath.equals("/view-users")) {
             userPath = "/ViewUsers";
         }
-        
+        else if (userPath.equals("/edit-user")) {
+            userPath = "/EditUser";
+        }
+        else if (userPath.equals("/register-user")) {
+            userPath = "/RegisterUser";
+        }
         else if(userPath.equals("/add-user")){
             userPath = "/AddUser";
         }
@@ -84,8 +95,14 @@ public class RequestDispatcher extends HttpServlet {
         else if(userPath.equals("/view-process-ladders")){
             userPath = "/ViewProcessLadders";
         }
+		else if (userPath.equals("/view-a-process-ladder")){
+            userPath = "/ViewAProcessLadder";
+        }
         else if (userPath.equals("/add-process-ladder")){
             userPath = "/AddProcessLadder";
+        }
+		else if (userPath.equals("/edit-process-ladder")){
+            userPath = "/EditProcessLadder";
         }
         else if(userPath.equals("/view-tools")){
             userPath = "/ViewTools";

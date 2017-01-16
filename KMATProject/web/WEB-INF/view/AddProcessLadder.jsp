@@ -31,8 +31,7 @@
         <jsp:include page="../../includes/process-ladder-link.jsp" />        
     </head>
     
-    <body class = "add-p-ladder">
-       
+    <body class = "add-p-ladder" id = "add-process-ladder-body">
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">
@@ -57,25 +56,26 @@
                     <div class="row">
                         <!-- START: Process ladder-svg and its menus area-->
                         <div class="col-md-10 col-md-push-2">
-                             
+							<br>
                             <div class="row">
 
-                                <div class="col-md-6">
+                                <div class="col-md-5 col-md-offset-3">
                                    
                                     <div class="field-name-wrapper">
                                     <!--<form accept-charset="UTF-8" action="/d3/d3/search" class="field-name-form" method="get">-->
                                         <span id="id-header-label" class="field-name-border">
                                             <label id="label-ladder-name" class="field-name-label">Ladder Name: </label>
                                             <input id="name-input" type="text" class="field-name-value" data-hotkey="s" name="q" placeholder="Enter name" tabindex="1" onclick="changeNameTextFieldColor()" onblur="nameTextFieldColorOriginal()">
-                                            <label id="graph-name-error" style="display: none; position: absolute; padding-left: 10px; color: red">*</label>
+                                            <!-- TODO: error on ladder name
+											<label id="graph-name-error" style="display: none; position: absolute; padding-left: 10px; color: red">*</label>-->
                                         </span>
                                     <!--</form>-->
                                     </div>
                                     
                                 </div>
 
-                                <div class = "col-md-4">                                    
-                                    <div id="graph-buttons">
+                                <div class = "col-md-3 col-md-offset-1">
+                                    <div id="graph-buttons" class="pull-right">
                                         <input type="image" id="graph-help-icon" title="Help" src="images/help-icons/help-icon20.png"
                                                onclick="onClickHelpButton('Process', window.event.x, window.event.y)" 
                                                onmousedown="onMouseDownHelpButton('Process')" onmouseup="onMouseUpHelpButton('Process')" 
@@ -85,23 +85,29 @@
                                                onmousedown="onMouseDownSettingsButton('Process')" onmouseup="onMouseUpSettingsButton('Process')" alt="Settings">
                                     </div>
                                 </div>
-                            </div>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            
-                           
-                            <div id="toolbox">
-                                <input type="image" id="center-input" title="Move to Root Node" src="images/icons/center-icon.ico" alt="Initial Position">
-                                <input type="image" id="preview-input" title="Preview Ladder" src="images/icons/preview-icon.ico" alt="Preview Ladder">
-                                <input type="image" id="save-input" title="Save Ladder" src="images/icons/backup-icon.ico" alt="Save Ladder">
-                                <!--<input type="image" id="open-input" title="open graph" src="resources/open-icon.png" alt="open graph">-->
-                                <input type="image" id="delete-graph" title="Delete Ladder" src="images/icons/delete-icon.png" alt="Delete Ladder">
+								<br>
+								<br>
                             </div>
                             
-                            <input type="image" id="error-button" title="" src="images/icons/error-icon.ico" width="20" height="20" onclick="onClickErrorButton('Process')" onmousedown="onMouseDownErrorButton('Process')" onmouseup="onMouseUpErrorButton('Process')" onblur="onBlurErrorButton()" alt="Error">
-                            
+							<!--<div class="row" id="svg-row">
+								
+							</div>-->
+
+							<div class="row" id="svg-row">
+							</div>
+							
+							<div id="toolbox">
+								<input type="image" id="center-input" title="Move to Root Node" src="images/icons/center-icon.ico" alt="Initial Position">
+								<input type="image" id="preview-input" title="Preview Ladder" src="images/icons/preview-icon.ico" alt="Preview Ladder">
+								<!--<form class="inline-toolbox-form" name = "add-edit-process" method="post" action="InsertLadderController" onSubmit="">
+									<input id="newLadderId" type="hidden" name="newLadder" value="">-->
+									<input type="image" id="save-input" title="Save Ladder" src="images/icons/backup-icon.ico" alt="Save Ladder">
+								<!--</form>-->
+								<input class="form-inline" type="image" id="delete-graph" title="Delete Ladder" src="images/icons/delete-icon.png" alt="Delete Ladder">
+							</div>
+							
+							<input type="image" id="error-button" title="" src="images/icons/error-icon.ico" width="20" height="20" onclick="onClickErrorButton('Process')" onmousedown="onMouseDownErrorButton('Process')" onmouseup="onMouseUpErrorButton('Process')" onblur="onBlurErrorButton()" alt="Error">
+								
                             <!-- START: The Modal -->
                             <div id="node-modal" class="modal">
                                 <!-- Modal content -->
@@ -143,11 +149,11 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <input id="modal-checkbox1" type="checkbox" name="rating" value="allowRating"/> <label for="modal-checkbox1">Allow Rating</label> <br><br>
+                                        <!--<input id="modal-checkbox1" type="checkbox" name="rating" value="allowRating"/> <label for="modal-checkbox1">Allow Rating</label> <br><br>
                                         <input id="modal-checkbox2" type="checkbox" name="comments" value="allowComments"> <label for="modal-checkbox2">Allow Comments</label> <br><br>
-                                        <input id="modal-checkbox3" type="checkbox" name="list" value="addToList"> <label for="modal-checkbox2">Add to List</label>
+                                        <input id="modal-checkbox3" type="checkbox" name="list" value="addToList"> <label for="modal-checkbox2">Add to List</label>-->
 
-                                        <button class="modal-save-button" onclick="saveNodeDetails()">Save</button>
+                                        <button id="save-button-modal" class="modal-save-button" onclick="saveNodeDetails()">Save</button>
                                     </div>
 
                                 </div>
@@ -188,7 +194,7 @@
                             
                             <!-- START: help tool tips-->
                             <div class="help-tooltiptext" id="help-tooltiptext">
-                                <h3>Directions</h3>
+                                <h3 style='padding:5px'>Directions</h3>
                                 <ul>
                                     <li class="directions-list-item">Drag/scroll to translate/zoom the graph</li>
                                     <li class="directions-list-item">Shift-click on graph to create a node</li>
@@ -203,34 +209,28 @@
                                 <ul id="error-modal-list">
                                 </ul>
                             </div>
-                            
+	   
                             <!-- START: Graph Settings Modal-->		
                             <div id="graph-settings-modal" class="settings-modal-dialog">
                                 <!--<div class="modal-content">-->
                                 <div class="modal-settings-content">
                                     <span id="settings-modal-close" class="close-settings" onclick="settingsButtonOnClose()">X</span>
                                     <div class="modal-body" style='padding:0px'>
-                                        <h2>Settings</h2>
-                                        <input id="settings-modal-checkbox1" type="checkbox" name="rating" value="allowRating"/> <label for="settings-modal-checkbox1">Enable Rating</label> <br><br>
-                                        <input id="settings-modal-checkbox2" type="checkbox" name="comments" value="allowComments"> <label for="settings-modal-checkbox2">Enable Comments</label> <br><br>
-                                        <input id="settings-modal-checkbox3" type="checkbox" name="rating" value="allowRating"/> <label for="settings-modal-checkbox3">Enable Rating in Nodes</label> <br><br>
-                                        <input id="settings-modal-checkbox4" type="checkbox" name="comments" value="allowComments"> <label for="settings-modal-checkbox4">Enable Comments in Nodes</label> <br><br>
-                                        <input id="settings-modal-checkbox5" type="checkbox" name="list" value="addToList"> <label for="settings-modal-checkbox5">Add to List</label>
-                                        <br><br>
+                                        <h2 style='padding:5px'>Settings</h2>
                                         <label style='font-family: Verdana, Geneva, sans-serif; font-size: 14.5px;'>Description:</label>
                                         <br>
-                                        <textarea class="modal-description" style='margin: 10px 0px; width: 95%;' id="settings-modal-description-id" rows="15" cols="54"></textarea>               
+                                        <textarea id="graph-settings-description" class="modal-description" style='margin: 10px 0px; width: 95%;' id="settings-modal-description-id" rows="15" cols="54"></textarea>               
                                     </div>
                                 </div>
                             </div>
 
-		
+							<%--
                             <div class = "row">
                                 <div class="add-spaces"> <!-- Spaces are added here to keep prevent SVG from overlapping footer -->
                                     <p></p>
                                 </div>
                                 
-                            </div>
+                            </div>--%>
                                
                         </div>
                         <!-- END: Process ladder-svg and its menus area-->
@@ -250,4 +250,4 @@
                 <jsp:include page="../../includes/js.jsp" /> 
                 <jsp:include page="../../includes/process-ladder-js.jsp" /> 
                 
-                <!-- footer.jspf integrates here -->
+                <!-- footer.jsp integrates here -->

@@ -26,7 +26,7 @@
                                 <li>
                                     <a href="#" class="fh5co-sub-ddown">sub menu 2</a>
                                     <ul class="sub-menu">
-                                        <li><a href="" >Build</a></li>
+                                        <li><a href="" onclick="open">Build</a></li>
                                         <li><a href="">Work</a></li>
                                         <li><a href="">Light</a></li>
                                         <li><a href="">Relic</a></li>
@@ -38,7 +38,8 @@
                         </li>
                         <li class  = "about"><a href="about.html">About</a></li>
                         <li class = "contact"><a href="Contact.jsp">Contact</a></li>
-                        <li class="cta home"><a href="Home.jsp#name">Login</a></li>
+                        <li class="cta home"><a href="Home.jsp#get-signin">Login</a></li>
+                        <%--<li class="cta home"><a href="Home.jsp#name">Login</a></li>--%>
                     </ul>
                 </nav>
                 <!-- END menu-wrap -->
@@ -48,3 +49,11 @@
     </header> 
     <!-- END header-section -->
 </div>
+
+<script>
+	function callMatlabScript()
+	{
+		alert("Opening MATLAB");
+		
+	}
+</script>

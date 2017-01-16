@@ -46,21 +46,21 @@ function onBlurHelpButton()
 function loadHelpButtonOriginal(callerGraphType)
 {
 	if(callerGraphType === "Roles")
-		document.getElementById('graph-help-icon').src='resources/help-icons/help-icon18.png';
+		document.getElementById('graph-help-icon').src='images/help-icons/help-icon18.png';
 	else if(callerGraphType === "Composition")
-		document.getElementById('graph-help-icon').src='resources/help-icons/help-icon19.png';
+		document.getElementById('graph-help-icon').src='images/help-icons/help-icon19.png';
 	else if(callerGraphType === "Process")
-		document.getElementById('graph-help-icon').src='resources/help-icons/help-icon20.png';
+		document.getElementById('graph-help-icon').src='images/help-icons/help-icon20.png';
 }
 
 function loadHelpButtonPressed(callerGraphType)
 {
 	if(callerGraphType === "Roles")
-		document.getElementById('graph-help-icon').src='resources/help-icons/help-icon18-pressed.png';
+		document.getElementById('graph-help-icon').src='images/help-icons/help-icon18-pressed.png';
 	else if(callerGraphType === "Composition")
-		document.getElementById('graph-help-icon').src='resources/help-icons/help-icon19-pressed.png';
+		document.getElementById('graph-help-icon').src='images/help-icons/help-icon19-pressed.png';
 	else if(callerGraphType === "Process")
-		document.getElementById('graph-help-icon').src='resources/help-icons/help-icon20-pressed.png';
+		document.getElementById('graph-help-icon').src='images/help-icons/help-icon20-pressed.png';
 }
 
 
@@ -100,12 +100,12 @@ function settingsButtonOnClose()
 //loading images of Settings button
 function loadSettingsButtonOriginal()
 {
-	document.getElementById('graph-settings-icon').src='resources/settings-icon.png';
+	document.getElementById('graph-settings-icon').src='images/icons/settings-icon.png';
 }
 
 function loadSettingsButtonPressed()
 {
-	document.getElementById('graph-settings-icon').src='resources/settings-icon-pressed.ico';
+	document.getElementById('graph-settings-icon').src='images/icons/settings-icon-pressed.ico';
 }
 
 
@@ -123,11 +123,11 @@ function onMouseUpErrorButton(callerGraphType)
 
 function onClickErrorButton(callerGraphType)
 {
-	loadErrorButtonPressed();
+	/*loadErrorButtonPressed();
 	setTimeout(function()
 	{
 		onClickErrorButtonCallBack(callerGraphType);
-	}, 200);
+	}, 200);*/
 }
 
 function onClickErrorButtonCallBack()
@@ -147,10 +147,10 @@ function onBlurErrorButton()
 //loading images of Error button
 function loadErrorButtonOriginal()
 {
-	document.getElementById('error-button').src='resources/error-icon.ico';
+	document.getElementById('error-button').src='images/icons/error-icon.ico';
 }
 
 function loadErrorButtonPressed()
 {
-	document.getElementById('error-button').src='resources/error-icon-pressed.ico';
+	document.getElementById('error-button').src='images/icons/error-icon-pressed.ico';
 }

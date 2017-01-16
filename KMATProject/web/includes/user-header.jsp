@@ -15,12 +15,19 @@
         <div class="container">
             <div class="nav-header">
                 <a href="#" class="js-nav-toggle nav-toggle"><i></i></a>
+                <div>
                 <h1 id="logo"><a href="Home.jsp">KMAT</a></h1>
+                </div>
+                
+                <div>
+                <h2 id="userName"><a href ="SignUp.jsp"><label id="uname"  ></label></a></h2>
+                </div>
                 <!-- START #menu-wrap -->
                 <nav id="menu-wrap" role="navigation">
                     <ul class="sf-menu" id="primary-menu" >
                         <!--<label id="uname" align = "left"><a href =""></a></label>-->
-                        <li id = "uname"><a>UserName</a></li>
+                        <!--<h2 id="userName"><a href ="SignUp.jsp"><label id="uname" align = "left"></label></a></h2>-->
+                        <!--<li id = "uname"><a>UserName</a></li>-->
                         <li class ="home"><a href="home">Home</a></li>
                         <li class="news">
                             <a href="" class="fh5co-sub-ddown">News</a>
@@ -53,7 +60,7 @@
     <!-- END header-section -->
 </div>
 
-<%--
+
 <script>
     (function() {
         <% LoginUserBean currentUser = ((LoginUserBean) (session.getAttribute("CurrentSessionUser"))); %>
@@ -64,4 +71,3 @@
          //label.style.display = "block";
      })();
 </script>
-        --%>

@@ -1,8 +1,13 @@
 <%-- 
     Document   : ViewResources
     Created on : Nov 16, 2016, 10:43:19 AM
-    Author     : Habiba Saim
+    Author     : Habiba Saim, Fahad Akhtar
 --%>
+
+<%@page import="model.UserBean"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.ResourceBean"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
@@ -29,7 +34,7 @@
         <!-- css includes here -->
         <jsp:include page="../../includes/link.jsp" />
         
-        <title>View Resources</title>
+        <title>Resources</title>
     </head>
     
    <body class = "view-resources">
@@ -51,19 +56,87 @@
                     </div>                        
                 </aside>
                 <!-- END: Page heading-->
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10 col-md-push-2">
-                        </div>
-                        <div class="col-md-2 col-md-pull-10 back-color" >
-                            <%-- <jsp:include page="includes/verticalUserMenu.jsp" />  --%>
-                            <!-- Left side bar includes here -->
+                 <!--Access users from session -->
+                <% 
+                    ArrayList<ResourceBean> resource = new ArrayList<ResourceBean>();
+                    if (session.getAttribute("resource") != null) {
+                        resource = (ArrayList<ResourceBean> ) session.getAttribute("resource");
+                    }
+                    ArrayList<UserBean> user = new ArrayList<UserBean>();
+                    if (session.getAttribute("user") != null) {
+                        user = (ArrayList<UserBean> ) session.getAttribute("user");
+                    }
+                   
+               %>
+               <div class="container">
+                   <div class="row">
+                       <div class="col-md-10 col-md-push-2">
+                           <!--Display of Resource Names, Edit and Delete Buttons. -->
+                           <h2 class="page-heading-lead">
+                               <span class="border"></span>
+                               Resources
+                               <span class="border"></span>
+                           </h2>
+                           <div class="row">
+                               <b>
+                                   <div class="col-md-6">
+                                       <b>Resource Name</b>
+                                   </div>
+                                   <div class="col-md-3">
+                                       <b>View/Edit Details</b>
+                                   </div>
+                                   <div class="col-md-3">
+                                       <b>Delete</b>
+                                   </div>
+                               </b>
+                           </div>
+                           <hr style="height:1px;border: none;color: #333;background-color: #a9a9a9;"/>
+                           
+                           <c:forEach var="resourceAdded" items="${resource}" varStatus="loop">
+                               <div class="row">
+                                   <div class="col-md-6">
+                                       <h3><c:out value="${resource.getresourceName()}"/></h3>                                       
+                                   </div>
+                                   <div class="col-md-3">
+                                       <a href="GetResourceController?action=get-resource&resourceName=${resource.getResourceName()}">
+                                           <h2><i class="icon-edit"</h2>
+                                       </a>
+                                           
+                                   </div>
+                                    <div class="col-md-3">
+                                       <a href="GetResourceController?action=del-resource&resourceName=${resource.getResourceName()}">
+                                           <h2><i class="icon-remove-user"</h2>
+                                       </a>
+                                           
+                                   </div>       
+                                           
+                                       
+                                     
+                               </div>
+                                       <c:if test="${not loop.last}"><hr/></c:if>
+                           </c:forEach>
+                                        
+                       </div>
+                       <div class="col-md-2 col-md-pull-10 back-color" >
                             <jsp:include page="../../includes/left-sidebar.jsp" />
-                        </div>                        
-                    </div>
-                </div>
+                       
+                       </div>
+                      
+                   </div>
+                   
+               </div>
+               
+
+                
+                
+
+                
+
+                
                           
+
+                <!--End Page contents -->        
+
                 <!-- adds js -->                
                 <jsp:include page="../../includes/js.jsp" /> 
                 

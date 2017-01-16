@@ -17,7 +17,7 @@
         
         
         <jsp:include page="includes/link.jsp" />    
-        
+        <link rel="stylesheet" href="css/banner.css">
         <title>Sign Up</title>       
         
     </head>
@@ -32,6 +32,7 @@
                 <!-- END: header -->
                 
                 <!-- START: Banner-->
+                <%--
                 <aside id="hero" class="js-fullheight">
                     <div class="flexslider js-fullheight">
                         <ul class="slides">
@@ -47,7 +48,22 @@
                             </li>
                         </ul>
                     </div>
-		</aside>                
+		</aside>   
+                --%>
+                <aside id="banner" style="background-image: url(images/banner1.jpg);">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="banner-wrap">
+                                    <div class="banner-intro">
+                                        <h2>Sign up for <span></span></h2>
+                                        <h1>KMAT</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+		</aside>
                 <!-- END: Banner-->
                 
                 <!-- START: Signup Form -->
