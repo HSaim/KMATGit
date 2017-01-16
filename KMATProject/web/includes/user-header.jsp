@@ -16,11 +16,11 @@
             <div class="nav-header">
                 <a href="#" class="js-nav-toggle nav-toggle"><i></i></a>
                 <div>
-                <h1 id="logo"><a href="Home.jsp">KMAT</a></h1>
+                <h1 id="logo"><a href="home">KMAT</a></h1>
                 </div>
                 
                 <div>
-                <h2 id="userName"><a href ="SignUp.jsp"><label id="uname"  ></label></a></h2>
+                <h2 id="userName"><a href ="my-profile"><label id="uname"  ></label></a></h2>
                 </div>
                 <!-- START #menu-wrap -->
                 <nav id="menu-wrap" role="navigation">

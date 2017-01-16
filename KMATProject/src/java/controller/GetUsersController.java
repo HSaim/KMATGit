@@ -333,6 +333,10 @@ public class GetUsersController extends HttpServlet {
                 }
             }
         }
+        
+        else if (action.equals("my-profile")){
+            
+        }
     }
 
     /**
