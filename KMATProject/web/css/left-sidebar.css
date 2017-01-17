@@ -148,7 +148,15 @@ body.view-resources .sidebox-menu li ul li.view-resources > a .sidebox-menu-blur
 body.add-resource .sidebox-menu li ul li.add-resource > a .sidebox-menu-blurb-sub{
     color : #d2be0e;
     font-weight: bold;
-    font-size:large;
+    /*font-size:large;*/
+    text-decoration: underline;
+}
+
+body.edit-profile .sidebox-menu  li.edit-profile > a .sidebox-menu-blurb-sub,
+body.change-password .sidebox-menu  li.change-password > a .sidebox-menu-blurb-sub{
+    color : #d2be0e;
+    font-weight: bold;
+    /*font-size:large;*/
     text-decoration: underline;
 }
 

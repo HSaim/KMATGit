@@ -111,6 +111,12 @@ public class RequestDispatcher extends HttpServlet {
         else if (userPath.equals("/add-resource")){
             userPath = "/AddResource";
         }
+        else if (userPath.equals("/my-profile")){
+            userPath = "/MyProfile";
+        }
+        else if (userPath.equals("/change-password")){
+            userPath = "/ChangePassword";
+        }
         
         
         

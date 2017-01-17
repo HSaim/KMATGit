@@ -22,17 +22,21 @@
             <!-- </a>-->
             <ul>
                 
-                <li class = "view-users"><a href="GetUsersController?action=get-all-users"> 
+                <li class = "view-users">
+                    <a href="GetUsersController?action=get-all-users"> 
                 <!--<li class = "view-users"><a href="view-users"> -->
                         <div class="sidebox-menu-blurb-sub">
                             View Users
                         </div>
-                </a></li>
-                <li class = "add-user"><a href="add-user">
+                    </a>
+                </li>
+                <li class = "add-user">
+                    <a href="add-user">
                         <div class="sidebox-menu-blurb-sub">
                             Add User
                         </div>
-                </a></li>
+                    </a>
+                </li>
             </ul>
         </li>
         <li>
@@ -40,16 +44,20 @@
                 Roles                                           
             </div>
             <ul>
-                <li class = "view-roles"><a href="view-roles">
+                <li class = "view-roles">
+                    <a href="view-roles">
                         <div class="sidebox-menu-blurb-sub">
                             View Roles 
                         </div>
-                </a></li>
-                <li class = "add-role"><a href="add-role">
+                    </a>
+                </li>
+                <li class = "add-role">
+                    <a href="add-role">
                         <div class="sidebox-menu-blurb-sub">
                             Add Role 
                         </div>
-                </a></li>
+                    </a>
+                </li>
             </ul>                                    
         </li>
         <li>
@@ -114,11 +122,13 @@
                                 View Resources
                             </div>
                     </a></li>
-                    <li class = "add-resource"><a href="add-resource">
+                    <li class = "add-resource">
+                        <a href="add-resource">
                             <div class="sidebox-menu-blurb-sub">
                                 Add Resource
                             </div>
-                    </a></li>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </li>
