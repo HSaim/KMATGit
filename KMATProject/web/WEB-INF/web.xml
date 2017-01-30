@@ -87,6 +87,14 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-process-ladder</url-pattern>
     </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-concept-map</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-concept-maps</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-tools</url-pattern>
