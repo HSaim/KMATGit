@@ -77,16 +77,29 @@ public class RequestDispatcher extends HttpServlet {
         else if(userPath.equals("/view-roles")){
             userPath = "/ViewRoles";
         }
-        
+		else if (userPath.equals("/view-a-roles-hierarchy")){
+			userPath = "/ViewARolesHierarchy";
+        }
         else if(userPath.equals("/add-role")){
             userPath = "/AddRole";
         }
+		else if (userPath.equals("/edit-roles-hierarchy")){
+            userPath = "/EditRolesHierarchy";
+        }
+		
         else if(userPath.equals("/view-composition-ladders")){
             userPath = "/ViewCompositionLadders";
+        }
+		else if (userPath.equals("/view-a-composition-ladder")){
+            userPath = "/ViewACompositionLadder";
         }
         else if(userPath.equals("/add-composition-ladder")){
             userPath = "/AddCompositionLadder";
         }
+		else if (userPath.equals("/edit-composition-ladder")){
+            userPath = "/EditCompositionLadder";
+        }
+		
         else if(userPath.equals("/view-process-ladders")){
             userPath = "/ViewProcessLadders";
         }
@@ -99,6 +112,7 @@ public class RequestDispatcher extends HttpServlet {
 		else if (userPath.equals("/edit-process-ladder")){
             userPath = "/EditProcessLadder";
         }
+		
         else if(userPath.equals("/view-tools")){
             userPath = "/ViewTools";
         }

@@ -20,15 +20,15 @@
 <html>
     <head>
         <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Add Process Ladder</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Knowledge Management for All Tool (KMAT)" />
-	<meta name="keywords" content="KMAT, process ladder, description, help" />
-	<meta name="author" content="KMAT Team" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Add Process Ladder</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Knowledge Management for All Tool (KMAT)" />
+		<meta name="keywords" content="KMAT, process ladder, description, help" />
+		<meta name="author" content="KMAT Team" />
         
         <jsp:include page="../../includes/link.jsp" /> 
-        <jsp:include page="../../includes/process-ladder-link.jsp" />        
+		<jsp:include page="../../includes/process-ladder-link.jsp" />
     </head>
     
     <body class = "add-p-ladder" id = "add-process-ladder-body">
@@ -98,7 +98,6 @@
 							
 							<div id="toolbox">
 								<input type="image" id="center-input" title="Move to Root Node" src="images/icons/center-icon.ico" alt="Initial Position">
-								<input type="image" id="preview-input" title="Preview Ladder" src="images/icons/preview-icon.ico" alt="Preview Ladder">
 								<!--<form class="inline-toolbox-form" name = "add-edit-process" method="post" action="InsertLadderController" onSubmit="">
 									<input id="newLadderId" type="hidden" name="newLadder" value="">-->
 									<input type="image" id="save-input" title="Save Ladder" src="images/icons/backup-icon.ico" alt="Save Ladder">

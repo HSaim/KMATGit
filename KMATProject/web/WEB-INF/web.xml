@@ -39,17 +39,33 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-roles</url-pattern>
     </servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-roles-hierarchy</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/add-role</url-pattern>
+    </servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-roles-hierarchy</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-composition-ladders</url-pattern>
     </servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-composition-ladder</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/add-composition-ladder</url-pattern>
+    </servlet-mapping>
+	<servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-composition-ladder</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
@@ -71,7 +87,6 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-process-ladder</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-tools</url-pattern>
@@ -92,7 +107,6 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/change-password</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>GetUsersController</servlet-name>
         <servlet-class>controller.GetUsersController</servlet-class>

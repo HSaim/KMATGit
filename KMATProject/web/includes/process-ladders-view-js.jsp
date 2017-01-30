@@ -6,4 +6,4 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" href="css/ladder-view.css">
+<script src="js/process-ladder/process-ladders-view.js"></script>

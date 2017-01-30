@@ -8,13 +8,6 @@
     Author     : Maryam Khalid
 */
 
-//errorId, nodeId, nodeName, errorMessage, 
-var graphCreationErrors = [{errorId:1, nodeId:2, nodeName:"Role 1", errorMessage:"This is error message 1"},
-						   {errorId:2, nodeId:5, nodeName:"Role 7", errorMessage:"This is error message 2"},
-						   {errorId:3, nodeId:1, nodeName:"Instructors", errorMessage:"This is a very long error message for node 1 ... a long long long long long message! It doesn't stop here .... this is a very long error message for node 1 ... a long long long long long message!"},
-						   {errorId:4, nodeId:2, nodeName:"Students", errorMessage:"This is error message 4"},
-						   {errorId:5, nodeId:3, nodeName:"HoD", errorMessage:"This is error message 5"}];
-
 var ladderChange = null;		//for keeping track of any changes made to the original ladder - is null if initial ladder is null
 var selectedNode = null;		//for keeping track of last selected circle - for modal
 var selectedEdge = null;			//for keeping track of last selected edge - for modal
@@ -45,7 +38,9 @@ document.onload = (function(d3)
 	if(aLadder !== null)
 	{
 		//set ladder name, nodes and edges
-		document.getElementById("name-input").value = aLadder.name;
+		document.getElementById("view-ladder-name").innerHTML = "Name: " + aLadder.name;
+		document.getElementById("graph-settings-description").innerHTML = aLadder.description;
+		document.getElementById("graph-settings-description").readOnly = true;
 		ladderAllNodes = JSON.parse(JSON.stringify(aLadder.nodes));
 		ladderAllEdges = JSON.parse(JSON.stringify(aLadder.edges));
 	}
@@ -109,13 +104,6 @@ document.onload = (function(d3)
 			.append('svg:path')
 			.attr('d', 'M0,-5L10,0L0,5');
 	
-		
-		//CSS Shadows on node hover and select
-		//from: http://bl.ocks.org/rveciana/8246015
-		//values explained here: https://developer.mozilla.org/en/docs/Web/CSS/filter
-		/*var filter = svg.("defs")
-						.append("filter")
-						.attr("id", "drop-shadow");*/
 		var filter = defs.append("filter")
 						.attr("id", "drop-shadow");
 		filter.append("feGaussianBlur")
@@ -148,14 +136,9 @@ document.onload = (function(d3)
 		radialGradientNormalNode.append("stop")
 				.attr("offset", "0")
 				.attr("stop-color", "#F6FBFF");
-				//.attr("stop-color", "#F6FBFF");
 		radialGradientNormalNode.append("stop")
 				.attr("offset", "100%")
-				//.attr("stop-color", "#92C7C7"); //light and stands out but combination is a bit weird
-				//.attr("stop-color", "#728FCE"); //better but more like blue
-				//.attr("stop-color", "#737CA1"); //darker but stands out more
-				.attr("stop-color", "#85b2d3");
-	  
+				.attr("stop-color", "#885b8b");
 	  
 		//gradient on node select
 		var radialGradientSelectNode = defs.append("radialGradient")
@@ -172,7 +155,7 @@ document.onload = (function(d3)
 
 		radialGradientSelectNode.append("stop")
 			.attr("offset", "100%")
-			.attr("stop-color", "rgba(89,148,202,1)");
+			.attr("stop-color", "#c8a2c8");
 	
 		//Gradient for modal
 		var linearGradientModal = defs.append("linearGradient")
@@ -223,20 +206,8 @@ document.onload = (function(d3)
 			})
 			.on("drag", function(args)
 			{
-				toggleMenuOff();
 				thisGraph.state.justDragged = true;
 				thisGraph.dragmove.call(thisGraph, args);
-			});
-
-
-		// listen for key events
-		d3.select(window).on("keydown", function() 
-			{
-				thisGraph.svgKeyDown.call(thisGraph);
-			})
-			.on("keyup", function() 
-			{
-				thisGraph.svgKeyUp.call(thisGraph);
 			});
 		
 		svg.on("mousedown", function(d) 
@@ -302,7 +273,7 @@ document.onload = (function(d3)
 					return false;
 				} 
 				else 
-				{	
+				{
 					thisGraph.zoomed.call(thisGraph);
 				}
 				return true;
@@ -312,281 +283,7 @@ document.onload = (function(d3)
 			.on("dblclick.zoom", null);
 		
 		thisGraph.zoomSvgParameter = zoomSvg;
-		
-		//center graph
-		d3.select("#center-input").on("click", function()
-			{
-				d3.event.stopPropagation();
-
-				if(thisGraph.firstNodeData !== null)
-				{
-					//if there are nodes present
-					var dcx = (window.innerWidth/4 - thisGraph.firstNodeData.x * thisGraph.zoomSvgParameter.scale());
-					var dcy = (window.innerHeight/2 - thisGraph.firstNodeData.y * thisGraph.zoomSvgParameter.scale());
-					thisGraph.zoomSvgParameter.translate([dcx,dcy]);
-					d3.select("." + thisGraph.consts.graphClass)
-							.transition()
-							.duration(750)
-							.attr("transform", "translate("+ dcx + "," + dcy  + ")scale(" + thisGraph.zoomSvgParameter.scale() + ")");
-				}
-				else
-				{
-					//if no nodes present
-					d3.select("." + thisGraph.consts.graphClass)
-						.attr("transform", "translate(" + 0 + "," + 0 + ")scale(" + 1 + ")");
-					zoomSvg.scale(1);
-					zoomSvg.translate([0, 0]);
-				}
-				return false;
-			});
-		
-		d3.select("#save-input").on("click", function() 
-			{
-				console.log("Saving!");
-				var errorButton = document.getElementById("error-button");
-				//errorButton.style.display = "block";
-				errorButton.style.display = "none";
-				
-//TODO: error button re-adjust - showing at the bottom!!				
-//TODO: check for errors in current graph and fill graphCreationErrors array accordingly
-				
-				//if there are errors, then display the error button
-				/*if(graphCreationErrors !== null && graphCreationErrors.length > 0)
-				{
-					//display stuff in array, on modal
-					var errorList = document.getElementById("error-modal-list");
-					for(var i = 0; i < graphCreationErrors.length; i++)
-					{
-						var errorListItem = document.createElement("li");
-						errorListItem.data = graphCreationErrors[i];
-						errorListItem.appendChild(document.createTextNode(errorListItem.data.errorMessage));
-						var itemId = "error-modal-list-item" + errorListItem.data.errorId;
-						errorListItem.setAttribute("id", itemId);
-						errorListItem.setAttribute("class", "error-modal-line");
-						
-						if(window.addEventListener)
-						{
-							errorListItem.addEventListener('mousedown', function()
-								{
-									onMouseDownErrorListItem(this);
-								});
-						}
-						else if(window.attachEvent)
-						{
-							errorListItem.attachEvent('onmousedown', function()
-								{
-									onMouseDownErrorListItem(this);
-								});
-						}
-						errorList.appendChild(errorListItem);
-					}
-					
-					//animate on appear
-					beatIcon(errorButton, errorButton.width, errorButton.height);
-					
-					errorButton.style.display = "block";
-				}*/
-				if(document.getElementById("name-input").value === "")
-				{
-					alert("Specify name of ladder");
-				}
-				else if(thisGraph.idct === 0 || thisGraph.nodes.length === 0)
-				{
-					alert("Create a ladder to save");
-				}
-				else
-				{
-					errorButton.style.display = "none";
-					//Save graph to Database
-					var saveEdges = [];
-					
-					thisGraph.edges.forEach(function(val, i)
-					{
-						saveEdges.push({id: val.id,
-										title: val.title,
-										description: val.description,
-										edgeType: val.edgeType,
-										tools: val.tools,
-										resources: val.resources,
-										users: val.users,
-										source: val.source.id, 
-										target: val.target.id});
-					});
-					
-					var description = "";
-					description = document.getElementById("graph-settings-description").value;
-					var id = 0;
-					//var date = new Date();
-					var createDt = new Date().getTime();
-					createDt = createDt + "";
-					var updateDt = new Date().getTime();
-					updateDt = updateDt + "";
-					if(thisGraph.ladder !== null && thisGraph.ladder.id !== null)
-					{
-						id = thisGraph.ladder.id;
-						createDt = thisGraph.ladder.createDt + "";
-						updateDt = thisGraph.ladder.updateDt + "";
-					}
-					//get ladder name, description, links
-					ladder = window.JSON.stringify({"id": id,
-													"name": document.getElementById("name-input").value,
-													"ladderType": LadderType.PROCESS,
-													"description": description,
-													"rootNodeId": thisGraph.firstNodeData.id,
-													"nodes": thisGraph.nodes, 
-													"edges": saveEdges,
-													"ownerId": 0,
-													"createDt": createDt,
-													"updateDt": updateDt});
-					//console.log(ladder);
-					thisGraph.ladder = JSON.parse(ladder);
-					
-					var xhttp = new XMLHttpRequest();
-					xhttp.onload = function() 
-					{
-						if(xhttp.status === 200) 
-						{
-							if(thisGraph.ladder.id === 0)
-							{
-								thisGraph.ladder.id = parseInt(xhttp.responseText);
-								alert('Ladder Saved!');
-							}
-							else
-							{
-								alert('Ladder Updated!');
-							}
-						}
-						else
-						{
-							alert('Request failed.  Returned status of ' + xhttp.status);
-						}
-					};
-					xhttp.open("POST", "InsertLadderController", true);
-					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					var action = "action=save-ladder&newLadder=" + ladder;
-					xhttp.send(action);
-				}
-			});
-			
-		// handle delete graph
-		d3.select("#delete-graph").on("click", function()
-			{
-				d3.event.stopPropagation();
-				thisGraph.deleteGraph(false);
-			});
-		
-		document.getElementById("save-button-modal").addEventListener("click", function()
-		{
-			if(isNodeSelected)
-			{
-				//add to list of node data - nodes in graph
-				for(var i = 0; i < thisGraph.nodes.length; i++)
-				{
-					if(thisGraph.nodes[i].id === selectedNode.id)
-					{
-						thisGraph.nodes[i] = JSON.parse(JSON.stringify(selectedNode));
-					}
-				}
-				
-				//change text of node on graph
-				var d3Node = thisGraph.circles.filter(function (dval)
-					{
-						return dval.id === selectedNode.id;
-					});
-				
-				var d3txt = thisGraph.changeTextOfNode(d3Node, selectedNode);
-				var txtNode = d3txt.node();
-				thisGraph.selectElementContents(txtNode);
-					
-				txtNode.focus();
-				alert("Node Details Saved");
-			}
-			else if(isEdgeSelected)
-			{
-				//add to list of edge data - edges in graph
-				for(var i = 0; i < thisGraph.edges.length; i++)
-				{
-					if(thisGraph.edges[i].id === selectedEdge.id)
-					{
-						thisGraph.edges[i] = JSON.parse(JSON.stringify(selectedEdge));
-					}
-				}
-				alert("Edge Details Saved");
-			}
-			thisGraph.updateGraph();
-			thisGraph.isNodeSelected = false;
-			thisGraph.isEdgeSelected = false;
-			isNodeSelected = false;
-			isEdgeSelected = false;
-		});
 	};
-	
-	function onMouseDownErrorListItem(evt)
-	{
-		console.log("Item Mouse Down: " + evt.id);
-//TODO:
-	}
-	
-	function beatIcon(el, width, height)
-	{
-		el.style.opacity = 0;
-		var isIncreasing = true;
-		var isOpacityMax = false;
-
-		var tick = function()
-		{
-			if(!isOpacityMax)
-				el.style.opacity = +el.style.opacity + 0.02;
-
-			if(isIncreasing)
-			{
-				if(isOpacityMax && el.width > 20)
-				{
-					el.width = el.width - 1;
-					el.height = el.height - 1;
-				}
-				else if(el.width < 30)
-				{
-					el.width = el.width + 1;
-					el.height = el.height + 1;
-				}
-				else
-				{
-					isIncreasing = false;
-				}
-			}
-			else 
-			{
-				if(el.width >= 20)
-				{
-					el.width = el.width - 1;
-					el.height = el.height - 1;
-					if(isOpacityMax && el.width === 20)
-					{
-						return;
-					}
-				}
-				else
-				{
-					isIncreasing = true;
-				}
-			}
-
-			if (!isOpacityMax)
-			{
-				if(+el.style.opacity >= 1)
-				{
-					isOpacityMax = true;
-					el.style.opacity = 1;
-				}
-				(window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 200);
-			}
-		};
-
-		tick();
-		el.width = width;
-		el.height = height;
-	}
 	
 	GraphCreator.prototype.setIdCt = function(idct) 
 	{
@@ -604,7 +301,6 @@ document.onload = (function(d3)
 		BACKSPACE_KEY: 8,
 		DELETE_KEY: 46,
 		ENTER_KEY: 13,
-		//nodeRadius: 20
 		nodeRadius: 50
 	};
 
@@ -664,37 +360,7 @@ document.onload = (function(d3)
 			//clear ladder name + clear ladder settings
 			document.getElementById("name-input").value = "";
 			document.getElementById("graph-settings-description").value = "";
-			if(thisGraph.ladder !== null && thisGraph.ladder.id !== null && thisGraph.ladder.id !== 0)
-			{
-				var xhttp = new XMLHttpRequest();
-				xhttp.onload = function() 
-				{
-					if(xhttp.status === 200) 
-					{
-						thisGraph.ladder = null;
-						alert('Ladder Deleted!');
-					}
-					else
-					{
-						alert('Request failed.  Returned status of ' + xhttp.status);
-					}
-				};
-				xhttp.open("POST", "InsertLadderController", true);
-				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				var action = "action=delete-ladder&ladderId="+thisGraph.ladder.id;
-				xhttp.send(action);
-			}
 		}
-	};
-
-	/* select all text in element: taken from http://stackoverflow.com/questions/6139107/programatically-select-text-in-a-contenteditable-html-element */
-	GraphCreator.prototype.selectElementContents = function(el)
-	{
-		var range = document.createRange();
-		range.selectNodeContents(el);
-		var sel = window.getSelection();
-		sel.removeAllRanges();
-		sel.addRange(range);
 	};
 
 	/* insert svg line breaks: taken from http://stackoverflow.com/questions/13241475/how-do-i-include-newlines-in-labels-in-d3-charts */
@@ -749,7 +415,7 @@ document.onload = (function(d3)
 		{
 			thisGraph.removeSelectFromNode();
 		}
-		thisGraph.state.selectedNode = nodeData;
+		thisGraph.state.selectedNode = JSON.parse(JSON.stringify(nodeData));
 	};
 
 	GraphCreator.prototype.removeSelectFromNode = function()
@@ -805,9 +471,6 @@ document.onload = (function(d3)
 		if(d3.event.shiftKey)
 		{
 			state.shiftNodeDrag = d3.event.shiftKey;
-			// reposition dragged directed edge
-			thisGraph.dragLine.classed('hidden', false)
-				.attr('d', 'M' + d.x + ',' + d.y + 'L' + d.x + ',' + d.y);
 			return;
 		}
 	};
@@ -818,8 +481,6 @@ document.onload = (function(d3)
 		var thisGraph = this,
 			consts = thisGraph.consts,
 			htmlEl = d3node.node();
-		
-		var trans = thisGraph.zoomSvgParameter.translate();
 		
 		d3node.selectAll("text").remove();
 		var nodeBCR = htmlEl.getBoundingClientRect(),
@@ -858,7 +519,7 @@ document.onload = (function(d3)
 				d3.select(this.parentElement).remove();
 			});
 			
-		d3txt.style("font", "14px Helvetica, arial");
+			d3txt.style("font", "14px Helvetica, arial");
 		return d3txt;
 	};
 
@@ -880,36 +541,7 @@ document.onload = (function(d3)
 
 		thisGraph.dragLine.classed("hidden", true);
 
-		if(mouseDownNode !== d)
-		{
-			// we're in a different node: create new edge for mousedown edge and add to graph
-			var newEdge = 
-						{
-							id: thisGraph.idLinks++,
-							title: "New Link",
-							description: "",
-							edgeType: edgeType.PROCESS,
-							tools: [],
-							resources: [],
-							users: [],
-							source: mouseDownNode, 
-							target: d
-						};
-			var filtRes = thisGraph.paths.filter(function (d)
-				{
-					if(d.source === newEdge.target && d.target === newEdge.source)
-					{
-						thisGraph.edges.splice(thisGraph.edges.indexOf(d), 1);
-					}
-					return d.source === newEdge.source && d.target === newEdge.target;
-				});
-			if(!filtRes[0].length)
-			{
-				thisGraph.edges.push(newEdge);
-				thisGraph.updateGraph();
-			}
-		}
-		else
+		if(mouseDownNode === d)
 		{
 			// we're in the same node
 			if (state.justDragged)
@@ -922,12 +554,6 @@ document.onload = (function(d3)
 				// clicked, not dragged
 				if(d3.event.shiftKey)
 				{
-					// shift-clicked node: edit text content
-					var d3txt = thisGraph.changeTextOfNode(d3node, d);
-					var txtNode = d3txt.node();
-					thisGraph.selectElementContents(txtNode);
-					
-					txtNode.focus();
 				}
 				else
 				{
@@ -938,16 +564,11 @@ document.onload = (function(d3)
 						thisGraph.removeSelectFromEdge();
 					}
 					
-					var prevNode = state.selectedNode;
+					var prevNode = JSON.parse(JSON.stringify(state.selectedNode));
 					if(!prevNode || prevNode.id !== d.id)
 					{
 						//remove selection from other nodes
 						thisGraph.replaceSelectNode(d3node, d);
-					}
-					else
-					{
-						//if the same node selected again, remove selection from this node
-						//thisGraph.removeSelectFromNode();
 					}
 				}
 			}
@@ -974,36 +595,6 @@ document.onload = (function(d3)
 		}
 		else if(state.graphMouseDown && d3.event.shiftKey)
 		{
-			// clicked not dragged from svg
-			thisGraph.numTotalNodes++;
-			var xycoords = d3.mouse(thisGraph.svgG.node()),
-				d = {
-						id: thisGraph.idct++,
-						nodeType: nodeType.PROCESS,
-						description: "",
-						title: "New Process " + thisGraph.numTotalNodes,
-						tools: [],
-						resources: [],
-						users: [],
-						x: xycoords[0], 
-						y: xycoords[1]
-					};
-			
-			if(thisGraph.firstNodeData === null)
-				thisGraph.firstNodeData = JSON.parse(JSON.stringify(d));
-			
-			thisGraph.nodes.push(d);
-			
-			thisGraph.updateGraph();
-			// make title of text immediently editable using selectElementContents
-			var d3txt = thisGraph.changeTextOfNode(thisGraph.circles.filter(function (dval)
-				{
-					return dval.id === d.id;
-				}), d),
-				txtNode = d3txt.node();
-			
-			thisGraph.selectElementContents(txtNode);
-			txtNode.focus();
 		}
 		else if(state.shiftNodeDrag)
 		{
@@ -1018,7 +609,7 @@ document.onload = (function(d3)
 	{
 		d3.select("body")
 			.style("overflow", "hidden");
-
+			
 		document.getElementById("node-modal").style.display = "block";
 		var thisGraph = this;
 		thisGraph.modalJustClosed = true;
@@ -1063,44 +654,6 @@ document.onload = (function(d3)
 				return;
 
 			state.lastKeyDown = d3.event.keyCode;
-			//var selectedNodeSVG = JSON.parse(JSON.stringify(state.selectedNode)),
-			var selectedNodeSVG = state.selectedNode,
-				selectedEdgeSVG = state.selectedEdge;
-
-			switch(d3.event.keyCode)
-			{
-				//Both cases to delete node of graph and all edges connected to the nodes
-				case consts.BACKSPACE_KEY:
-				case consts.DELETE_KEY:
-					d3.event.stopPropagation();
-					if(selectedNodeSVG && !thisGraph.modalJustClosed)
-					{
-						d3.event.preventDefault();
-						thisGraph.nodes.splice(thisGraph.nodes.indexOf(selectedNodeSVG), 1);
-//TODO: ask if the user wants to delete selected edges as well?
-						thisGraph.spliceLinksForNode(selectedNodeSVG);
-						state.selectedNode = null;
-						
-						if(thisGraph.nodes === null || thisGraph.length === 0 || thisGraph.nodes[0] === null)
-							thisGraph.firstNodeData = null;
-						else
-						{
-							thisGraph.firstNodeData = JSON.parse(JSON.stringify(thisGraph.nodes[0]));
-						}
-						thisGraph.selectedGraphCircle = null;
-						thisGraph.selectedGraphEdge = null;
-						thisGraph.updateGraph();
-					}
-					else if(selectedEdgeSVG && !thisGraph.modalJustClosed)
-					{
-						d3.event.preventDefault();
-						thisGraph.edges.splice(thisGraph.edges.indexOf(selectedEdgeSVG), 1);
-						state.selectedEdge = null;
-						thisGraph.selectedGraphEdge = null;
-						thisGraph.updateGraph();
-					}
-					break;
-			}
 		}
 	};
 
@@ -1143,7 +696,6 @@ document.onload = (function(d3)
 			})
 			.on("dblclick", function(d)
 			{
-				toggleMenuOff();
 				if(!d3.event.shiftKey && !thisGraph.state.shiftNodeDrag)
 				{
 					d3.event.stopPropagation();
@@ -1232,7 +784,6 @@ document.onload = (function(d3)
 			})
 			.on("dblclick", function(d)
 			{
-				toggleMenuOff();
 				if(!thisGraph.state.justDragged && !d3.event.shiftKey && !thisGraph.state.shiftNodeDrag)
 				{
 					d3.event.stopPropagation();
@@ -1248,7 +799,7 @@ document.onload = (function(d3)
 					
 					d3.select(this).classed("selected circle", true);
 					thisGraph.selectedGraphCircle = d3.select(this);
-					thisGraph.state.selectedNode = d;
+					thisGraph.state.selectedNode = JSON.parse(JSON.stringify(d));
 					
 					var dcx = (window.innerWidth/4-d.x*thisGraph.zoomSvgParameter.scale());
 					var dcy = (window.innerHeight/2-d.y*thisGraph.zoomSvgParameter.scale());
@@ -1265,13 +816,6 @@ document.onload = (function(d3)
 									});
 				}
 			})
-			.on("contextmenu", function(d)
-			{
-				toggleMenuOn();
-				positionMenu(window.event.x, window.event.y, thisGraph.zoomSvgParameter.scale());
-				//to ensure that the default contextmenu doesn't open
-				window.event.returnValue = false;
-			})
 			.on("focus", function(d)
 			{
 				d3.select(this).style("outline", "none");
@@ -1280,7 +824,7 @@ document.onload = (function(d3)
 	
 		newGs.append("circle")
 			.attr("r", String(consts.nodeRadius));
-
+	
 		newGs.each(function (d)
 			{
 				thisGraph.insertTitleLinebreaks(d3.select(this), d.title);
@@ -1303,18 +847,12 @@ document.onload = (function(d3)
 	{
 		return "Make sure to save your graph locally before leaving :-)";
 	};
-	
-	document.getElementById("error-button").style.display = "none";
+
 	/** MAIN SVG **/
 	var svg = d3.select("#svg-row")
 				.append("svg")
 				.attr("id", "main-svg");
-				//.attr("class", "col-md-12");
-	/*var svg = d3.select("#svg-row")
-				.append("svg")
-				.attr("id", "main-svg")
-				.attr("class", "col-md-11 col-md-offset-1");*/
-	//var svg = d3.select("#main-svg");
+
 	var graph = new GraphCreator(svg, ladderAllNodes, ladderAllEdges, aLadder);
 	if(ladderAllNodes !== null)
 	{

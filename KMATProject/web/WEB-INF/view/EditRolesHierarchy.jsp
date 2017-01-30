@@ -1,7 +1,7 @@
 <%-- 
-    Document   : AddRole
-    Created on : Nov 15, 2016, 12:24:36 PM
-    Author     : Habiba Saim
+    Document   : EditRolesHierarchy
+    Created on : Jan 29, 2017, 7:15:25 AM
+    Author     : Maryam Khalid
 --%>
 
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
@@ -21,7 +21,7 @@
     <head>
         <meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Add Roles</title>
+		<title>Edit Roles</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Roles in Knowledge Management for All Tool - KMAT" />
 		<meta name="keywords" content="KMAT, users, roles, knowledge engineers, concept map, list, tool, composition, composition ladder" />
@@ -33,7 +33,7 @@
         
     </head>
     
-    <body class = "add-role" id = "add-process-ladder-body">
+    <body id = "add-process-ladder-body">
         <!-- START wrapper -->
         <div id = "wrapper">
             <!-- START page-->
@@ -46,7 +46,7 @@
                 <aside class="heading-bg" > <!--style="background: url(images/heading-bg1.jpg) repeat;">-->
                     <div class="container">
                         <!--<h1 class="page-heading-lead">-->
-                       Add Roles
+                       Edit Roles
                             <!--<span class="border"></span>-->
                         <!--</h1>-->
                     </div>                        
@@ -230,4 +230,3 @@
                 <jsp:include page="../../includes/roles-hierarchy-js.jsp" /> 
                 
                 <!-- footer.jsp integrates here -->
-

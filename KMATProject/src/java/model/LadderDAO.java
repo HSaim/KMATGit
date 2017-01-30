@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -51,7 +53,7 @@ public class LadderDAO
 	private static final String REL_EDGE_RESOURCE_TBL = "rel_edge_resource_tbl";
 	private static final String REL_EDGE_TOOL_TBL = "rel_edge_tool_tbl";
 	
-	public static void insertLadder(LadderBean ladder)
+	public static int insertLadder(LadderBean ladder)
 	{
 		int newLadderId = 0;
 		
@@ -97,6 +99,7 @@ public class LadderDAO
 				insertRow(queryLinkResource);
 			}
 		}
+		return newLadderId;
 	}
 	
 	public static void insertNode(NodeBean node)
@@ -167,35 +170,6 @@ public class LadderDAO
 				insertRow(queryLinkResource);
 			}
 		}
-	}
-	
-	public static void updateLadder(LadderBean ladder)
-	{
-		//update entry in ladder table
-		
-		//delete previous nodes and edges
-		//delete links to users, resources, tools
-		//add all of them again
-	}
-	
-	public static void deleteLadder(LadderBean ladder)
-	{
-		//delete ladder
-		//delete nodes
-		//delete edges
-		//delete links to users, resources, tools
-	}
-	
-	public static void deleteNode(NodeBean node)
-	{
-		//delete node entry
-		//delete links to users, resources and tools
-	}
-	
-	public static void deleteEdge(EdgeBean edge)
-	{
-		//delete edge entry
-		//delete links to users, resources and tools
 	}
 	
 	//get all ladders of given type
@@ -597,6 +571,204 @@ public class LadderDAO
 		return id;
 	}
 	
+	public static LadderBean updateLadder(LadderBean aLadder)
+	{
+		//update ladder details
+		Date utilDate = new java.util.Date();
+		aLadder.setUpdateDate(new Timestamp(utilDate.getTime()));
+
+		String updateLadderQuery = "UPDATE " + SCHEMA_NAME + "." + LADDERS_TBL
+						+ " SET root_node_idfk = '" + aLadder.getRootNodeId() + "', owner_idfk = '" + aLadder.getOwnerId()
+						+ "', ladder_name = '" + aLadder.getName() + "', description = '" + aLadder.getDescription() + "', ladder_type = '" + aLadder.getLadderType()
+						+ "', create_dt = '" + aLadder.getCreateDate() + "', update_dt = '" + aLadder.getUpdateDate()
+						+ "' WHERE ladder_id = " + aLadder.getId();
+		updateRow(updateLadderQuery);
+		//delete old links - ladder-user, ladder-tools, ladder-resources
+		String delLadderToolsQuery = "DELETE FROM " + SCHEMA_NAME + "." + REL_LADDER_TOOL_TBL + " WHERE ladder_idfk = '" + aLadder.getId() + "'";
+		deleteRow(delLadderToolsQuery);
+		String delLadderResourceQuery = "DELETE FROM " + SCHEMA_NAME + "." + REL_LADDER_RESOURCE_TBL + " WHERE ladder_idfk = '" + aLadder.getId() + "'";
+		deleteRow(delLadderResourceQuery);
+		String delLadderUserQuery = "DELETE FROM " + SCHEMA_NAME + "." + REL_LADDER_USER_TBL + " WHERE ladder_idfk = '" + aLadder.getId() + "'";
+		deleteRow(delLadderUserQuery);
+		
+		//DUMMY data
+		/*aLadder.getSharedUserIds().add(1);
+		aLadder.getSharedUserIds().add(2);
+		aLadder.getSharedUserIds().add(3);
+		aLadder.getToolIds().add(1);
+		aLadder.getToolIds().add(2);
+		aLadder.getResourceIds().add(1);*/
+		
+		//add new links - insert links to resources, tools and users
+		for(int i = 0; i < aLadder.getSharedUserIds().size(); i++)
+		{
+			String queryLinkUser = "INSERT INTO " + SCHEMA_NAME + "." + REL_LADDER_USER_TBL + "(ladder_idfk, user_idfk)";
+			queryLinkUser += "VALUES('" + aLadder.getId() + "', '" + aLadder.getSharedUserIds().get(i) + "')";
+			insertRow(queryLinkUser);
+		}
+		for(int i = 0; i < aLadder.getToolIds().size(); i++)
+		{
+			String queryLinkTool = "INSERT INTO " + SCHEMA_NAME + "." + REL_LADDER_TOOL_TBL + "(ladder_idfk, tool_idfk)";
+			queryLinkTool += "VALUES('" + aLadder.getId() + "', '" + aLadder.getToolIds().get(i) + "')";
+			insertRow(queryLinkTool);
+		}
+		for(int i = 0; i < aLadder.getResourceIds().size(); i++)
+		{
+			String queryLinkResource = "INSERT INTO " + SCHEMA_NAME + "." + REL_LADDER_RESOURCE_TBL + "(ladder_idfk, resource_idfk)";
+			queryLinkResource += "VALUES('" + aLadder.getId() + "', '" + aLadder.getResourceIds().get(i) + "')";
+			insertRow(queryLinkResource);
+		}
+		
+		//delete all old edges from database alongwith all links
+		deleteEdgesWithLadderId(aLadder.getId());
+		//insert all new edges with links to database
+		for(int i = 0; i < aLadder.getEdges().size(); i++)
+		{
+			aLadder.getEdges().get(i).setParentId(aLadder.getId());
+			insertEdge(aLadder.getEdges().get(i));
+		}
+		
+		//delete all old nodes from database alongwith all links
+		deleteNodesWithLadderId(aLadder.getId());
+		//insert all new nodes with links to database
+		for(int i = 0; i < aLadder.getNodes().size(); i++)
+		{
+			aLadder.getNodes().get(i).setLadderId(aLadder.getId());
+			insertNode(aLadder.getNodes().get(i));
+		}
+
+		//match updated node with original
+			//if no match - add node to database
+			//if match - mark as matched in original
+					//- update node details in database
+					//- delete all entries from links
+					//- add all entries of links
+		return aLadder;
+	}
+	
+	private static void updateRow(String query)
+	{
+		conn = ConnectionManager.getConnection();
+		if (conn != null)
+		{
+			try
+			{
+				pst = conn.prepareStatement(query);
+				pst.executeUpdate();
+			}
+			catch (SQLException e)
+			{
+				System.err.println("Update command not executed with following error:");
+				System.err.println(e.getMessage());
+				//e.printStackTrace();
+			}
+			finally
+			{
+				closeConnection();
+			}
+		}
+		else
+		{
+			System.err.println("The System is not connected to database. Cannot update row.");
+		}
+	}
+	
+	public static void deleteLadder(int id)
+	{
+		//delete query
+		String delLadderQuery = "DELETE FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " WHERE ladder_id = '" + id + "'";
+		deleteRow(delLadderQuery);
+		
+		//delete links - ladder-user, ladder-tools, ladder-resources
+		String delLadderToolsQuery = "DELETE FROM " + SCHEMA_NAME + "." + REL_LADDER_TOOL_TBL + " WHERE ladder_idfk = '" + id + "'";
+		deleteRow(delLadderToolsQuery);
+		String delLadderResourceQuery = "DELETE FROM " + SCHEMA_NAME + "." + REL_LADDER_RESOURCE_TBL + " WHERE ladder_idfk = '" + id + "'";
+		deleteRow(delLadderResourceQuery);
+		String delLadderUserQuery = "DELETE FROM " + SCHEMA_NAME + "." + REL_LADDER_USER_TBL + " WHERE ladder_idfk = '" + id + "'";
+		deleteRow(delLadderUserQuery);
+		
+		//delete nodes
+		deleteNodesWithLadderId(id);
+		//delete edges
+		deleteEdgesWithLadderId(id);
+	}
+	
+	private static void deleteEdgesWithLadderId(int ladderId)
+	{
+		//get all edges
+		ArrayList<EdgeBean> allEdges = getEdges(ladderId);
+		if(allEdges == null || allEdges.isEmpty())
+			return;
+		
+		//delete all links for each edge id
+		String delLinkQuery = null;
+		for(int i = 0; i < allEdges.size(); i++)
+		{
+			EdgeBean anEdge = allEdges.get(i);
+			delLinkQuery = "DELETE FROM " + SCHEMA_NAME + "." + REL_EDGE_USER_TBL + " WHERE edge_tbl_idfk = '" + anEdge.getId() + "'";
+			deleteRow(delLinkQuery);
+			delLinkQuery = "DELETE FROM " + SCHEMA_NAME + "." + REL_EDGE_RESOURCE_TBL + " WHERE edge_tbl_idfk = '" + anEdge.getId() + "'";
+			deleteRow(delLinkQuery);
+			delLinkQuery = "DELETE FROM " + SCHEMA_NAME + "." + REL_EDGE_TOOL_TBL + " WHERE edge_tbl_idfk = '" + anEdge.getId() + "'";
+			deleteRow(delLinkQuery);
+		}
+		
+		//delete all edges 
+		String delEdgeQuery = "DELETE FROM " + SCHEMA_NAME + "." + EDGES_TBL + " WHERE parent_idfk = '" + ladderId + "'";
+		deleteRow(delEdgeQuery);
+	}
+	
+	private static void deleteNodesWithLadderId(int ladderId)
+	{
+		//get all nodes
+		ArrayList<NodeBean> allNodes = getNodes(ladderId);
+		if(allNodes == null || allNodes.isEmpty())
+			return;
+		
+		//delete all links for each node id
+		String delLinkQuery = null;
+		for(int i = 0; i < allNodes.size(); i++)
+		{
+			NodeBean aNode = allNodes.get(i);
+			delLinkQuery = "DELETE FROM " + SCHEMA_NAME + "." + REL_NODE_USER_TBL + " WHERE node_tbl_idfk = '" + aNode.getId() + "'";
+			deleteRow(delLinkQuery);
+			delLinkQuery = "DELETE FROM " + SCHEMA_NAME + "." + REL_NODE_RESOURCE_TBL + " WHERE node_tbl_idfk = '" + aNode.getId() + "'";
+			deleteRow(delLinkQuery);
+			delLinkQuery = "DELETE FROM " + SCHEMA_NAME + "." + REL_NODE_TOOL_TBL + " WHERE node_tbl_idfk = '" + aNode.getId() + "'";
+			deleteRow(delLinkQuery);
+		}
+		
+		//delete all nodes 
+		String delEdgeQuery = "DELETE FROM " + SCHEMA_NAME + "." + NODES_TBL + " WHERE ladder_idfk = '" + ladderId + "'";
+		deleteRow(delEdgeQuery);
+	}
+	
+	private static void deleteRow(String query)
+	{
+		conn = ConnectionManager.getConnection();
+		if (conn != null)
+		{
+			try
+			{
+				pst = conn.prepareStatement(query);
+				pst.execute();
+			}
+			catch (SQLException e)
+			{
+				System.err.println("Delete command not executed with following error:");
+				System.err.println(e.getMessage());
+			}
+			finally
+			{
+				closeConnection();
+			}
+		}
+		else
+		{
+			System.err.println("The System is not connected to database. Cannot delete row.");
+		}
+	}
+	
 	private static void closeConnection()
 	{
 		if (result != null)
@@ -711,6 +883,9 @@ public class LadderDAO
 				.add("ladderType", ladder.getLadderType().toString())
 				.add("description", ladder.getDescription())
 				.add("rootNodeId", ladder.getRootNodeId())
+				.add("ownerId", ladder.getOwnerId())
+				.add("createDt", ladder.getCreateDate().getTime()+"")
+				.add("updateDt", ladder.getUpdateDate().getTime()+"")
 				.add("nodes", jsonNodesBuilder.build())
 				.add("edges", jsonEdgesBuilder.build())
 				.build();

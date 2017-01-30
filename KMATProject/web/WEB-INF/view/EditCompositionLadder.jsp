@@ -1,7 +1,7 @@
 <%-- 
-    Document   : AddRole
-    Created on : Nov 15, 2016, 12:24:36 PM
-    Author     : Habiba Saim
+    Document   : EditCompositionLadder
+    Created on : Jan 27, 2017, 7:14:30 AM
+    Author     : Maryam Khalid
 --%>
 
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
@@ -18,23 +18,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
+	<head>
+		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Add Roles</title>
+		<title>Edit Composition Ladder</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Roles in Knowledge Management for All Tool - KMAT" />
+		<meta name="description" content="Create a new composition ladder for Knowledge Management for All Tool - KMAT" />
 		<meta name="keywords" content="KMAT, users, roles, knowledge engineers, concept map, list, tool, composition, composition ladder" />
 		<meta name="author" content="KMAT Team" />
         
         <!-- css includes here -->
         <jsp:include page="../../includes/link.jsp" />
-		<jsp:include page="../../includes/process-ladder-link.jsp" />
-        
+        <jsp:include page="../../includes/process-ladder-link.jsp" />        
     </head>
     
-    <body class = "add-role" id = "add-process-ladder-body">
-        <!-- START wrapper -->
+   <body id = "add-process-ladder-body">
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">
@@ -45,10 +43,7 @@
                 <!-- START: Page heading-->
                 <aside class="heading-bg" > <!--style="background: url(images/heading-bg1.jpg) repeat;">-->
                     <div class="container">
-                        <!--<h1 class="page-heading-lead">-->
-                       Add Roles
-                            <!--<span class="border"></span>-->
-                        <!--</h1>-->
+                       Edit Composition Ladder
                     </div>                        
                 </aside>
                 <!-- END: Page heading-->
@@ -60,41 +55,52 @@
                             <div class="row">
 
                                 <div class="col-md-5 col-md-offset-3">
+                                   
                                     <div class="field-name-wrapper">
+                                    <!--<form accept-charset="UTF-8" action="/d3/d3/search" class="field-name-form" method="get">-->
                                         <span id="id-header-label" class="field-name-border">
-                                            <label id="label-ladder-name" class="field-name-label">Hierarchy Name: </label>
+                                            <label id="label-ladder-name" class="field-name-label">Ladder Name: </label>
                                             <input id="name-input" type="text" class="field-name-value" data-hotkey="s" name="q" placeholder="Enter name" tabindex="1" onclick="changeNameTextFieldColor()" onblur="nameTextFieldColorOriginal()">
                                             <!-- TODO: error on ladder name
 											<label id="graph-name-error" style="display: none; position: absolute; padding-left: 10px; color: red">*</label>-->
                                         </span>
+                                    <!--</form>-->
                                     </div>
+                                    
                                 </div>
 
                                 <div class = "col-md-3 col-md-offset-1">
                                     <div id="graph-buttons" class="pull-right">
-                                        <input type="image" id="graph-help-icon" title="Help" src="images/help-icons/help-icon18.png"
-                                               onclick="onClickHelpButton('Role', window.event.x, window.event.y)" 
-                                               onmousedown="onMouseDownHelpButton('Role')" onmouseup="onMouseUpHelpButton('Role')" 
+                                        <input type="image" id="graph-help-icon" title="Help" src="images/help-icons/help-icon19.png"
+                                               onclick="onClickHelpButton('Composition', window.event.x, window.event.y)" 
+                                               onmousedown="onMouseDownHelpButton('Composition')" onmouseup="onMouseUpHelpButton('Composition')" 
                                                onblur="onBlurHelpButton()" alt="Help">
                                         <input type="image" id="graph-settings-icon" title="Settings" src="images/icons/settings-icon.png" 
-                                               onclick="onClickSettingsButton('Role' , window.event.x, window.event.y)" 
-                                               onmousedown="onMouseDownSettingsButton('Role')" onmouseup="onMouseUpSettingsButton('Role')" alt="Settings">
+                                               onclick="onClickSettingsButton('Composition' , window.event.x, window.event.y)" 
+                                               onmousedown="onMouseDownSettingsButton('Composition')" onmouseup="onMouseUpSettingsButton('Composition')" alt="Settings">
                                     </div>
                                 </div>
 								<br>
 								<br>
                             </div>
+                            
+							<!--<div class="row" id="svg-row">
+								
+							</div>-->
 
 							<div class="row" id="svg-row">
 							</div>
 							
 							<div id="toolbox">
 								<input type="image" id="center-input" title="Move to Root Node" src="images/icons/center-icon.ico" alt="Initial Position">
-								<input type="image" id="save-input" title="Save Roles" src="images/icons/backup-icon.ico" alt="Save Roles">
-								<input class="form-inline" type="image" id="delete-graph" title="Delete Roles" src="images/icons/delete-icon.png" alt="Delete Roles">
+								<!--<form class="inline-toolbox-form" name = "add-edit-process" method="post" action="InsertLadderController" onSubmit="">
+									<input id="newLadderId" type="hidden" name="newLadder" value="">-->
+									<input type="image" id="save-input" title="Save Ladder" src="images/icons/backup-icon.ico" alt="Save Ladder">
+								<!--</form>-->
+								<input class="form-inline" type="image" id="delete-graph" title="Delete Ladder" src="images/icons/delete-icon.png" alt="Delete Ladder">
 							</div>
 							
-							<input type="image" id="error-button" title="" src="images/icons/error-icon.ico" width="20" height="20" onclick="onClickErrorButton('Role')" onmousedown="onMouseDownErrorButton('Role')" onmouseup="onMouseUpErrorButton('Role')" onblur="onBlurErrorButton()" alt="Error">
+							<input type="image" id="error-button" title="" src="images/icons/error-icon.ico" width="20" height="20" onclick="onClickErrorButton('Composition')" onmousedown="onMouseDownErrorButton('Composition')" onmouseup="onMouseUpErrorButton('Composition')" onblur="onBlurErrorButton()" alt="Error">
 								
                             <!-- START: The Modal -->
                             <div id="node-modal" class="modal">
@@ -173,8 +179,8 @@
                                 <ul class="context-menu__items">
                                     <li class="context-menu__item">
                                             <a href="#" class="context-menu__link" data-action="View" 
-												title="Set this node as root node" onclick="setRootNode()"> 
-												<img id="root-icon" src="images/icons/root-node-button-icon1.png" alt=""> Make Root Node</a>
+                                               title="Set this node as root node of ladder" onclick="setRootNode()"> 
+                                                <img id="root-icon" src="images/icons/root-node-button-icon1.png" alt=""> Make Root Node</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -211,11 +217,12 @@
                                     </div>
                                 </div>
                             </div>
-   
+                               
                         </div>
-                        <!-- END: Roles hierarchy-svg and its menus area-->
+                        <!-- END: Process ladder-svg and its menus area-->
                         <!-- START: Side bar-->
                         <div class="col-md-2 col-md-pull-10 back-color" >
+                            <%-- <jsp:include page="includes/verticalUserMenu.jsp" />  --%>
                             <!-- Left side bar includes here -->
                             <jsp:include page="../../includes/left-sidebar.jsp" />
                         </div>
@@ -227,7 +234,6 @@
                
                 <!-- adds js -->                
                 <jsp:include page="../../includes/js.jsp" /> 
-                <jsp:include page="../../includes/roles-hierarchy-js.jsp" /> 
+                <jsp:include page="../../includes/composition-ladder-js.jsp" /> 
                 
                 <!-- footer.jsp integrates here -->
-

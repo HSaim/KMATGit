@@ -53,26 +53,32 @@ public class GetLaddersController extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		String action =request.getParameter("action");
-		System.out.println("Get Ladders Controller: " + action);
-		if(action.equals("get-all-process-ladders"))
+		String action = request.getParameter("action");
+		if(action.equals("get-all-process-ladders") || action.equals("get-all-composition-ladders") || action.equals("get-all-roles-hierarchies"))
 		{
-			ArrayList<LadderBean> processLadders = new ArrayList<LadderBean>();
-            processLadders = LadderDAO.getLadders(LadderBean.LadderType.PROCESS.toString());
-			//System.out.println("Number of Process Ladders: " + processLadders.size());
+			ArrayList<LadderBean> allLadders = new ArrayList<LadderBean>();
+			if(action.equals("get-all-process-ladders"))
+				allLadders = LadderDAO.getLadders(LadderBean.LadderType.PROCESS.toString());
+			else if(action.equals("get-all-composition-ladders"))
+				allLadders = LadderDAO.getLadders(LadderBean.LadderType.COMPOSITION.toString());
+			else if(action.equals("get-all-roles-hierarchies"))
+				allLadders = LadderDAO.getLadders(LadderBean.LadderType.ROLES.toString());
 			
-			String allProcessLaddersJson = null;
-			if (processLadders != null)
-				allProcessLaddersJson = LadderDAO.jsonAllLaddersString(processLadders);
+			String allLaddersJson = null;
+			if (allLadders != null)
+				allLaddersJson = LadderDAO.jsonAllLaddersString(allLadders);
             try
 			{
 				HttpSession session = request.getSession(true);
-				if (allProcessLaddersJson != null)
-				{                   
-					session.setAttribute("process-ladders", allProcessLaddersJson);                                        
+				if (allLaddersJson != null)
+				{
+					if(action.equals("get-all-process-ladders"))
+						session.setAttribute("process-ladders", allLaddersJson);
+					else if(action.equals("get-all-composition-ladders"))
+						session.setAttribute("composition-ladders", allLaddersJson);
+					else if(action.equals("get-all-roles-hierarchies"))
+						session.setAttribute("roles-hierarchies", allLaddersJson);
 				}
-				
-				//response.sendRedirect("view-process-ladders");
 			}
 			catch(Exception e)
 			{
@@ -80,13 +86,19 @@ public class GetLaddersController extends HttpServlet
 			}
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			//System.out.println(allProcessLaddersJson);
-			out.print(allProcessLaddersJson);
+			out.print(allLaddersJson);
 		}
-		else if(action.equals("delete-ladder-from-view-ladders"))
+		else if(action.equals("delete-process-ladder-from-view-ladders") || action.equals("delete-composition-ladder-from-view-ladders") || action.equals("delete-roles-hierarchy-from-view-ladders"))
 		{
-			System.out.println("Delete Ladder");
-			response.sendRedirect("/view-process-ladders");
+			String ladderId = request.getParameter("ladder_id");
+			LadderDAO.deleteLadder(Integer.parseInt(ladderId));
+			
+			/*response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+			out.println("location='view-process-ladders';");
+			out.println("</script>");*/
+			//response.sendRedirect("/view-process-ladders");
 		}
 	}
 

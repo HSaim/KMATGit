@@ -23,17 +23,16 @@
 <html>
     <head>
         <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">	
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Roles in Knowledge Management for All Tool - KMAT" />
-	<meta name="keywords" content="KMAT, users, roles, knowledge engineers, concept map, list, tool, composition, composition ladder" />
-	<meta name="author" content="KMAT Team" />
-		
-		
-        <!-- css includes here -->
-        <jsp:include page="../../includes/link.jsp" />
-        
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Roles in Knowledge Management for All Tool - KMAT" />
+		<meta name="keywords" content="KMAT, users, roles, knowledge engineers, concept map, list, tool, composition, composition ladder" />
+		<meta name="author" content="KMAT Team" />
         <title>Process Ladders</title>
+		<!-- css includes here -->
+        <jsp:include page="../../includes/link.jsp" />
+        <jsp:include page="../../includes/view-ladder-link.jsp" />
+		
     </head>
 
     <body class = "view-p-ladders">
@@ -102,97 +101,6 @@
                         </div>                        
                     </div>
                 </div>
-				<script>
-					var xhttp = new XMLHttpRequest();
-					var allProcessLadders = [];
-					xhttp.onreadystatechange = function() 
-					{
-						if (xhttp.readyState === 4 || xhttp.readyState === "complete")
-						{   
-							allProcessLadders = JSON.parse(xhttp.responseText);
-							//alert(allProcessLadders.length);
-							for(var i = 0; i < allProcessLadders.length; i++)
-							{
-								//console.log(allProcessLadders[i].name);
-
-								var rowDiv = document.createElement('div');
-								rowDiv.setAttribute("class", "row ladder-view-table-row");
-								
-								//** Ladder names **//
-								var col1 = document.createElement('div');
-								col1.setAttribute("class", "col-md-6 table-row-div-align");
-								var col1href = document.createElement('a');
-								col1href.setAttribute("class", "ladder-view-table-link w3-display-middle");
-								col1href.innerHTML = allProcessLadders[i].name;
-//TODO: check if window.sessionStorage would be a better option
-								//set link to view ladder 
-								var url1 = "window.location.href='view-a-process-ladder?ladder=" + JSON.stringify(allProcessLadders[i]) + "'";
-								//col1href.setAttribute("onclick", "window.location.href='view-a-process-ladder'");
-								col1href.setAttribute("onclick", url1);
-								var col1h5 = document.createElement('h5');
-								col1.style.left = "20px";
-								col1h5.appendChild(col1href);
-								col1.appendChild(col1h5);
-
-								//** Edit Ladder **//
-								var col2 = document.createElement('div');
-								col2.setAttribute("class", "col-md-3 center-block text-center talign-center table-row-div-align");
-								var col2href = document.createElement('a');
-								//set link to edit process ladder - passing on the ladder
-								var url2 = "window.location.href='edit-process-ladder?ladder=" + JSON.stringify(allProcessLadders[i]) + "'";
-								col2href.setAttribute("onclick", url2);
-								col2href.setAttribute("class", "ladder-view-table-link");
-								var col2h3 = document.createElement('h5');
-								var col2i = document.createElement('i');
-								col2i.setAttribute("class", "icon-edit ladder-view-table-link ladder-view-table-icons");
-								col2href.appendChild(col2i);
-								col2h3.appendChild(col2href);
-								col2.appendChild(col2h3);
-
-								//** Delete Ladder **//
-								var col3 = document.createElement('div');
-								col3.setAttribute("class", "col-md-3 center-block text-center talign-center table-row-div-align");
-								var col3href = document.createElement('a');
-								//set link to get ladders controller with action: delete-ladder-from-view-ladders
-								col3href.setAttribute("onclick", "deleteLadder("+ allProcessLadders[i].id + "); return false;");
-								//var url3 = "view-process-ladders";
-								//col3href.setAttribute("href", url3);
-								col3href.setAttribute("class", "ladder-view-table-link");
-								var col3h3 = document.createElement('h5');
-								var col3i = document.createElement('i');
-								col3i.setAttribute("class", "icon-trash ladder-view-table-link ladder-view-table-icons");
-								col3href.appendChild(col3i);
-								col3h3.appendChild(col3href);
-								col3.appendChild(col3h3);
-
-								rowDiv.appendChild(col1);
-								rowDiv.appendChild(col2);
-								rowDiv.appendChild(col3);
-
-								document.getElementById("inner-body").appendChild(rowDiv);
-							}
-						}
-						else
-						{
-							//alert('Request failed.  Returned status of ' + xhttp.status);
-						}
-					};
-
-					function deleteLadder(ladderId)
-					{
-						var userResponse = window.confirm("Delete Ladder?");
-						if(userResponse)
-						{
-							alert("TODO: delete ladder: " + ladderId);
-							//TODO: delet ladder according to ladder id and refresh this page
-						}
-					}
-					xhttp.open("POST", "GetLaddersController", true);
-					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					var action = "action=get-all-process-ladders";
-					xhttp.send(action);
-					
-				</script>
                 <!-- EXTRA
 				<script>
 					function download()
@@ -202,7 +110,8 @@
 						//window.location.assign("Users/maryamkhalid/Desktop/gridWorld.pdf");
 					}
 				</script>-->
-                <!-- adds js -->                
+                <!-- adds js --> 
+				<jsp:include page="../../includes/process-ladders-view-js.jsp" /> 
                 <jsp:include page="../../includes/js.jsp" /> 
                 
                 <!-- footer.jspf integrates here -->

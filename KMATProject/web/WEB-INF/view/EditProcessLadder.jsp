@@ -99,7 +99,6 @@
 							
 							<div id="toolbox">
 								<input type="image" id="center-input" title="Move to Root Node" src="images/icons/center-icon.ico" alt="Initial Position">
-								<input type="image" id="preview-input" title="Preview Ladder" src="images/icons/preview-icon.ico" alt="Preview Ladder">
 								<!--<form class="inline-toolbox-form" name = "add-edit-process" method="post" action="InsertLadderController" onSubmit="">
 									<input id="newLadderId" type="hidden" name="newLadder" value="">-->
 									<input type="image" id="save-input" title="Save Ladder" src="images/icons/backup-icon.ico" alt="Save Ladder">
