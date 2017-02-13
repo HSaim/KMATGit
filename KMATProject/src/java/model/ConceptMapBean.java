@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Maryam Khalid
  */
 
-public class LadderBean implements java.io.Serializable
+public class ConceptMapBean implements java.io.Serializable
 {
 	private int id;
 	private int ownerId;
@@ -21,13 +21,15 @@ public class LadderBean implements java.io.Serializable
 	private String name;
 	private String description;
 	private LadderType ladderType;
-	private ArrayList<NodeBean> nodes;
+	//private ArrayList<NodeBean> nodes;
+        private ArrayList<ConceptNodeBean> nodes;
 	private ArrayList<EdgeBean> edges;
 	private ArrayList<Integer> toolIds;
 	private ArrayList<Integer> resourceIds;
 	private ArrayList<Integer> sharedUserIds;
 	private Timestamp createDate;
 	private Timestamp updateDate;
+        private String classforSelection;
 
 	public enum LadderType
 	{
@@ -37,7 +39,7 @@ public class LadderBean implements java.io.Serializable
 		ROLES
 	};
 	
-	public LadderBean(String name)
+	public ConceptMapBean(String name)
 	{
 		this.name = name;
 		this.ownerId = 0;
@@ -49,13 +51,14 @@ public class LadderBean implements java.io.Serializable
 		this.sharedUserIds = new ArrayList<>();
 	}
 
-	public LadderBean(int id, int ownerId, int rootNodeId, String name, String description, LadderType ladderType, Timestamp createDate, Timestamp updateDate)
+	public ConceptMapBean(int id, int ownerId, int rootNodeId, String name, String description, LadderType ladderType, Timestamp createDate, Timestamp updateDate, String classforSelection)
 	{
 		this.id = id;
 		this.ownerId = ownerId;
 		this.rootNodeId = rootNodeId;
 		this.name = name;
 		this.description = description;
+                this.classforSelection = classforSelection;
 		this.ladderType = ladderType;
 		this.createDate = createDate;
 		this.updateDate = updateDate;
@@ -126,12 +129,22 @@ public class LadderBean implements java.io.Serializable
 		this.ladderType = ladderType;
 	}
         
-	public ArrayList<NodeBean> getNodes()
+        public String getClassforSelection()
+	{
+		return classforSelection;
+	}
+
+	public void setClassforSelection(String classforSelection)
+	{
+		this.classforSelection = classforSelection;
+	}
+
+	public ArrayList<ConceptNodeBean> getNodes()
 	{
 		return nodes;
 	}
 
-	public void setNodes(ArrayList<NodeBean> nodes)
+	public void setNodes(ArrayList<ConceptNodeBean> nodes)
 	{
 		this.nodes = nodes;
 	}
@@ -199,7 +212,7 @@ public class LadderBean implements java.io.Serializable
 	@Override
 	public String toString()
 	{
-		return "LadderBean{" + "id=" + id + ", ownerId=" + ownerId + ", rootNodeId=" + rootNodeId + ", name=" + name + ", description=" + description + ", ladderType=" + ladderType + ", nodes=" + nodes + ", edges=" + edges + ", toolIds=" + toolIds + ", resourceIds=" + resourceIds + ", sharedUserIds=" + sharedUserIds + ", createDate=" + createDate + ", updateDate=" + updateDate + '}';
+		return "ConceptMapBean{" + "id=" + id + ", ownerId=" + ownerId + ", rootNodeId=" + rootNodeId + ", name=" + name + ", description=" + description + ", ladderType=" + ladderType + ", classforSelection=" + classforSelection + ", nodes=" + nodes + ", edges=" + edges + ", toolIds=" + toolIds + ", resourceIds=" + resourceIds + ", sharedUserIds=" + sharedUserIds + ", createDate=" + createDate + ", updateDate=" + updateDate + ", classforSelection="+classforSelection+'}';
 	}
 
 }
