@@ -22,7 +22,7 @@
                         </div>
                 </div>
             </li>
-            <li style="background-image: url(images/slide_2.jpg);">
+            <li style="background-image: url(images/slide_6.jpg);">
                     <div class="overlay-gradient"></div>
                 <div class="container">
                         <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
@@ -33,7 +33,7 @@
                         </div>
                 </div>
             </li>
-            <li style="background-image: url(images/slide_3.jpg);">
+            <li style="background-image: url(images/slide_7.jpg);">
                 <div class="overlay-gradient"></div>
                 <div class="container">
                         <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">

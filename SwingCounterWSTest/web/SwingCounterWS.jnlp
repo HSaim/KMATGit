@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<jnlp spec="1.0+" codebase="http://localhost:12401/" href="SwingCounterWS.jnlp"> -->
+<jnlp spec="1.0+" codebase="http://localhost:12401" href="SwingCounterWS.jnlp">
+  
+   <information>
+      <title>Swing Counter Web Start</title>
+      <vendor>ME</vendor>
+      <description>Swing Counter Web Start</description>
+      <offline-allowed/>
+   </information>
+   <resources>
+      <j2se version="1.7+" />
+      <jar href="SwingCounterWS.jar" />
+   </resources>
+   <application-desc main-class="swingcounterws.SwingCounterWS">
+   </application-desc>
+</jnlp>

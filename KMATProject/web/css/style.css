@@ -464,10 +464,9 @@ figure {
 
 #uname a{
     font-family: Georgia, Serif !important;
-    color: forestgreen;
-    
-     
+    color: forestgreen;     
 }
+
 #header nav ul li.cta a:hover {
   background: #fff;
   color: #118DF0;
@@ -592,19 +591,21 @@ figure {
 
 /* Logged in username on menu bar */
 #userName {
-  font-size: 22px;
-  /*text-transform: uppercase;*/
-  font-weight: 700;
-  float: left;
-  margin-bottom: 0;
-  margin-top: 1.4em;
+    font-size: 22px;
+    /*text-transform: uppercase;*/
+    font-weight: 700;
+    float: right;
+    
+    margin-top: 1.4em;
+    position: relative;
+    margin-bottom: 1em;
 }
 #userName a {
-  /*color: rgba(21, 31, 44, 0.8);*/
-  /*border: 2px solid #00ADB5;*/
- /* padding: 0 7px;*/
-  position: relative;
-  font-family: Georgia, Serif !important;
+    /*color: rgba(21, 31, 44, 0.8);*/
+    /*border: 2px solid #00ADB5;*/
+   /* padding: 0 7px;*/
+    position: relative;
+    font-family: Georgia, Serif !important;
     color: forestgreen;
     text-indent: 3em;
 }

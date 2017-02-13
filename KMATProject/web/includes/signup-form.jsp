@@ -36,7 +36,7 @@
                     <input type="password" class="form-control" id = "re-password" placeholder="Re-enter Password*" onChange="validatePassword();" required>
             </div>
             <div class="registrationFormAlert" id="divCheckPasswordMatch">
-                </div>
+            </div>
         </div>
         <div class="col-md-6">
                 <div class="form-group">

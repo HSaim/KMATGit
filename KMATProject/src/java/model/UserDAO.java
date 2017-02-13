@@ -57,14 +57,12 @@ public class UserDAO {
            } 
 
            //if user exists set the isValid variable to true
-           else if (more) {           
-              //String firstName = rs.getString("FirstName");
-              //String lastName = rs.getString("LastName");
-
-              System.out.println("Welcome " + username);
-              //bean.setFirstName(firstName);
-             // bean.setLastName(lastName);
-              bean.setValid(true);
+           else if (more) {         
+              
+                //System.out.println("Welcome " + username);
+              
+                bean.setUserId(rs.getInt("user_id"));
+                bean.setValid(true);
            }
         } 
 
@@ -251,7 +249,7 @@ public class UserDAO {
      }
     
     /*
-    Updates a user profile
+    From KE to updates a user profile
     */
     public static UserBean updateUser(UserBean bean){
        
@@ -291,6 +289,59 @@ public class UserDAO {
              //   bean.setDuplicateUser(false);
                 stmt.executeUpdate(query1);
                 stmt.executeUpdate(query2);
+            //}
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        finally{
+            closeConnection();
+        }
+        
+        return bean;
+    }
+    
+     /*
+    From KE to updates a user profile
+    */
+    public static UserBean updateProfile(UserBean bean){
+       
+        int userId = bean.getUserId();
+        //String userName = bean.getUserName();
+        String priEmail = bean.getPriEmail();
+        String secEmail = bean.getSecEmail();
+        String firstName = bean.getFirstName();
+        String lastName = bean.getLastName();
+       // String password = bean.getPassword();       
+        String postalAddress = bean.getPosAddress();
+        String perAddress = bean.getPerAddress();
+        String workPhone = bean.getWorkPhone();
+        String homePhone = bean.getHomePhone();
+        String mobPhone = bean.getMobPhone();
+        /*
+        String searchUserName =
+              "select username from user_tbl where username='"
+                       + userName+"'";
+        */
+        //String query1 = "Update user_tbl set  password ='" + password +"' , update_dt = NOW() where user_id = '" + userId +"'";
+        String query = "Update user_details_tbl set first_name ='" +firstName + "', last_name ='" + lastName +"', email1 ='" + priEmail 
+                +"', email2 ='" + secEmail+ "', address1 ='" + postalAddress + "', address2 ='" +perAddress + "', work_phone = '" + workPhone +"', "
+                + "mobile_phone ='" +mobPhone +"', home_phone ='" + homePhone + "', update_dt = NOW() where user_idfk = '" + userId +"'";
+        //preparing some objects for connection 
+        try{
+            currentCon = ConnectionManager.getConnection();
+            stmt=currentCon.createStatement();
+            //rs = stmt.executeQuery(query);
+           // rs = stmt.executeQuery(searchUserName);	        
+            //boolean more = rs.next();
+
+           // if(more){ // If username already exists 
+                //bean.setDuplicateUser(true);
+            //}
+            //else{
+             //   bean.setDuplicateUser(false);
+                //stmt.executeUpdate(query1);
+                stmt.executeUpdate(query);
             //}
         }
         catch(Exception ex){
@@ -581,6 +632,90 @@ public class UserDAO {
         return done;
     }
     
+    public static int resetPassword(int userId, String newPassword){
+        int done =0;
+        String updatePassword = "Update user_tbl set  password = ?, update_dt = NOW() where userId = ?";
+        
+        try{ 
+            
+            currentCon = ConnectionManager.getConnection();
+            pst =currentCon.prepareStatement(updatePassword);
+            pst.setString(1, newPassword);
+            pst.setInt(2, userId);
+            pst.executeUpdate();
+            pst.close();
+            done = 1;
+        }
+        catch (Exception ex) {
+        
+           ex.printStackTrace();
+        } 
+
+        //some exception handling
+        finally{       
+            
+            closeConnection();
+        }   
+        /*
+        String userName = bean.getUserName();
+        String priEmail = bean.getPriEmail();
+        String searchUserName =
+              "select user_id from user_tbl where username=?"; 
+                     
+        String searchPriEmail = "Select first_name, email1 from user_details_tbl where user_idfk = ? and email1 = ?";
+        String updatePassword = "Update user_tbl set  password = ?, update_dt = NOW() where username = ?";
+        int userId;
+        try{ 
+            
+            currentCon = ConnectionManager.getConnection();
+                     
+            pst =currentCon.prepareStatement(searchUserName);
+            pst.setString(1, userName);
+            rs = pst.executeQuery();
+            //If user id exists then check his primary email
+            if (rs.next()){
+                userId = rs.getInt("user_id");
+                pst =currentCon.prepareStatement(searchPriEmail);
+                pst.setInt(1, userId);
+                pst.setString(2, priEmail);
+                rs = pst.executeQuery();
+                //If primary email and user id belong to one user then reset his password in DB
+                if (rs.next()){
+                    bean.setFirstName(rs.getString("first_name"));
+                    bean.setValidUser(true);
+                    //If valid user, then update his password
+                    pst =currentCon.prepareStatement(updatePassword);
+                    pst.setString(1, newPassword);
+                    pst.setString(2, userName);
+                    pst.executeUpdate();
+                    pst.close();
+                }
+                else{
+                    bean.setValidUser(false);
+                }
+            }
+            else{
+                bean.setValidUser(false);
+            }
+            //return bean;
+            
+        }
+        catch (Exception ex) {
+        
+           ex.printStackTrace();
+        } 
+
+        //some exception handling
+        finally{       
+            
+            closeConnection();
+        }
+        return bean;
+        */
+        
+        return done;
+        
+    }
     private static void closeConnection(){
         if (rs != null){
             try {

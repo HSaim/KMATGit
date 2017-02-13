@@ -88,7 +88,7 @@ public class GetUsersController extends HttpServlet {
                     e.printStackTrace();
             }
         }
-        
+        //For KE, to edit the profile of registered user
         else if(action.equals("get-user")){
             String username;
             UserBean user = new UserBean();
@@ -99,6 +99,8 @@ public class GetUsersController extends HttpServlet {
             session.setAttribute("ret-user", user);
             response.sendRedirect("edit-user");
         }
+        
+        //For unregistered user
         else if(action.equals("get-uuser")){
             String username;
             UserBean user = new UserBean();
@@ -139,7 +141,7 @@ public class GetUsersController extends HttpServlet {
                 user.setPosAddress(request.getParameter("postal_address"));
                 user.setPerAddress(request.getParameter("per_address"));
                 user.setWorkPhone(request.getParameter("w_phone"));
-                user.setMobPhone(request.getParameter("h_phone"));
+                user.setMobPhone(request.getParameter("m_phone"));
                 user.setHomePhone (request.getParameter("h_phone"));
                 //user.setHidden(request.getParameter("hidden"));
 
@@ -249,6 +251,7 @@ public class GetUsersController extends HttpServlet {
                 e.printStackTrace();
             }
         }
+        //Delete a registered user from DB
         else if (action.equals("del-user")){
             String username;
             int deleted;
@@ -334,9 +337,108 @@ public class GetUsersController extends HttpServlet {
             }
         }
         
-        else if (action.equals("my-profile")){
+        //To get the profile details of logged-in user
+        else if(action.equals("get-current-user")){
+           String data = request.getParameter("message");
+            try{
+                UserBean user = new UserBean();
+
+                user = UserDAO.getUser(currentUsername);
+                //request.setAttribute("user", user);
+                HttpSession session = request.getSession(true);
+
+                session.setAttribute("current-user", user);
+                response.sendRedirect("my-profile");
+                session.setAttribute("updateData", data);
+            }
+             catch(Exception e){
+                 e.printStackTrace();
+             }
             
         }
+        
+        //Updates the profile of logged-in user, displays a message on the edit profile page and 
+        else if (action.equals("update-profile")){
+            String msg = "Update successful!";
+             try{
+                
+                UserBean user = new UserBean();
+                //Get update form elements 
+                String user_id = request.getParameter("userId");
+                user.setUserId(( Integer.parseInt(user_id)));
+                user.setUserName(request.getParameter("user_name"));
+                //user.setPassword(request.getParameter("password"));
+                user.setFirstName(request.getParameter("firstname"));
+                user.setLastName(request.getParameter("lastname"));
+                user.setPriEmail(request.getParameter("p_email"));
+                user.setSecEmail(request.getParameter("s_email"));
+                user.setPosAddress(request.getParameter("postal_address"));
+                user.setPerAddress(request.getParameter("per_address"));
+                user.setWorkPhone(request.getParameter("w_phone"));
+                user.setMobPhone(request.getParameter("m_phone"));
+                user.setHomePhone (request.getParameter("h_phone"));                
+
+                user = UserDAO.updateProfile(user);
+                //request.setAttribute("data", data);
+                //String url = "/WEB-INF/view/MyProfile.jsp";
+                //request.getRequestDispatcher(url).forward(request, response);
+                
+               // HttpSession session = request.getSession(true);
+               // session.setAttribute("updateData", msg);
+                response.sendRedirect("GetUsersController?action=get-current-user&&message=" + msg);
+             }
+             catch(Exception e){
+                 e.printStackTrace();
+             }
+        }
+        
+        else if (action.equals("resetPassword")){
+            String msg;
+            int userId;
+            String oldPassword;
+            String newPassword;
+            String savedPassword;  //Users password saved in DB
+            int updateSuccessful =0;
+            
+            try{
+                
+                UserBean user = new UserBean();
+                user = UserDAO.getUser(currentUsername);
+                oldPassword = request.getParameter("oldPassword");
+                newPassword = request.getParameter("newPassword");
+                savedPassword = user.getPassword();
+                userId = user.getUserId();
+                HttpSession session = request.getSession(true);
+                
+                if (oldPassword.equals(savedPassword)){
+                    //user.setPassword(newPassword);
+                    updateSuccessful = UserDAO.resetPassword(userId, newPassword);
+                    
+                    if (updateSuccessful == 1){
+                        
+                        msg = "Password reset successful!";
+                        //response.sendRedirect("change-password?&resetMessage=" + msg);
+                    }
+                    else{
+                        msg = "Password reset unsuccessful! Try again later.";
+                        //response.sendRedirect("change-password?&resetMessage=" + msg);
+                    }
+                }
+                else{
+                    msg = "Invalid current password!";
+                    //response.sendRedirect("change-password?&resetMessage=" + msg);
+                }
+                session.setAttribute("resetMessage", msg);
+                response.sendRedirect("change-password");
+            }
+            catch(Exception e){
+                 e.printStackTrace();
+            }  
+            
+        }
+        
+        
+        
     }
 
     /**

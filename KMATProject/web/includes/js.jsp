@@ -28,5 +28,7 @@
 <!-- Main JS  -->
 <script type="text/javascript" src="js/main.js"></script>
 
+<script src="js/signup-verifications.js"></script>
+
 
 

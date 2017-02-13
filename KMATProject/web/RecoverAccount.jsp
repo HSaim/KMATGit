@@ -35,7 +35,7 @@
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="banner-wrap">
                                     <div class="banner-intro">
-                                        <h2>Recover yout KMAT account <span></span></h2>
+                                        <h2>Recover your KMAT account <span></span></h2>
                                         
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                             <h2 >Recover  account</h2> 
                             
                         </div>
-                        <span style="background-color: #FFFF00"> ${data}</span>
+                        <span style="color: #4CAF50"> ${data}</span>
                         <form name = "signup" method="post" action="LoginController?action=recover-account" onSubmit="return verifyEmail()">
                             <div class="row">
                                 <div class="col-md-6">

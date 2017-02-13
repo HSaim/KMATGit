@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp codebase="D:\KMAT\KMATGit\ConverterPrj\test" href="launch.jnlp" spec="1.0+">
+    <information>
+        <title>ConverterPrj</title>
+        <vendor>Habiba Saim</vendor>
+        <homepage href=""/>
+        <description>ConverterPrj</description>
+        <description kind="short">ConverterPrj</description>
+        
+        
+    </information>
+    <update check="always"/>
+    <security>
+<all-permissions/>
+</security>
+    <resources>
+        <j2se version="1.5+"/>
+        <jar href="ConverterPrj.jar" main="true"/>
+        
+        
+    </resources>
+    <application-desc main-class="Converter">
+        
+    </application-desc>
+</jnlp>

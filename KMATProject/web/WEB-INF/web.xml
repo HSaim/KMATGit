@@ -90,6 +90,7 @@
         <servlet-name>GetUsersController</servlet-name>
         <url-pattern>/GetUsersController</url-pattern>
     </servlet-mapping>
+    
     <servlet>
         <servlet-name>InsertResourceController</servlet-name>
         <servlet-class>controller.InsertResourceController</servlet-class>
