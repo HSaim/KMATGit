@@ -21,7 +21,7 @@ public class ResourceBean implements java.io.Serializable{
     private int resourcesize;
     private String resourcelink;
     private String resourcefile;
-    private String userid;
+    private int userid;
     private String hidden;
     private String fileType;
     
@@ -41,10 +41,10 @@ public class ResourceBean implements java.io.Serializable{
     public void setFileType(String fType){
         fileType = fType;
     }
-    public String getUserID(){
+    public int getUserID(){
         return userid;
     }
-    public void setUserID(String uid){
+    public void setUserID(int uid){
         userid = uid;
     }
     

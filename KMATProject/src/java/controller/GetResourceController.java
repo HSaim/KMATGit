@@ -111,7 +111,7 @@ public class GetResourceController extends HttpServlet{
             String resourcename;
             ResourceBean resource = new ResourceBean();
             resourcename = request.getParameter("resourceName");
-            resource = ResourceDAO.getResource(resourcename);
+           // resource = ResourceDAO.getResource(resourcename);
             request.setAttribute("resource", resource);
             HttpSession session = request.getSession(true);
             session.setAttribute("ret-resource", resource);

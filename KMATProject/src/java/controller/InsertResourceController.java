@@ -123,7 +123,7 @@ public class InsertResourceController extends HttpServlet {
         int sizeInBytes = 0;
         String radio = request.getParameter("chk");
         String fileType="";
-        String uid = "";
+        int uid = 0;
         currentCon = ConnectionManager.getConnection();
         boolean more;
         
@@ -133,7 +133,7 @@ public class InsertResourceController extends HttpServlet {
             rs = stmt.executeQuery(searchUserID);	        
             more = rs.next();
             if(more){
-                uid = rs.getString("user_id");
+                uid = rs.getInt("user_id");
                 resource.setUserID(uid);
             }
         }

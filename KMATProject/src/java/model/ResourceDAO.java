@@ -35,7 +35,7 @@ public class ResourceDAO {
         
         String resourceName = bean.getResourceName();
         String resourceDiscription = bean.getResourceDiscription();
-        String userID = bean.getUserID();
+        int userID = bean.getUserID();
         String resourceType = bean.getResourceType();
         String resourceLink = bean.getResourceLink();
         String resourceFile = bean.getFileName();
@@ -90,11 +90,12 @@ public class ResourceDAO {
                     else if(resourceType.equals("file")){
                       // String insertQuery3 = "INSERT INTO resource_upload_tbl(resource_idfk, path, type, format, Size) VALUES("+resourceId+", '"+resourcePath+"', '"+resourceType+"', '"+resourceFormat+"', "+resourceSize+")";
                        //String inserQ = "Insert into resource_upload_tbl (resource_idfk, path) Values (" +resourceId +", 'c:\\resourcePath\\cvbvb\\')";
-                       String inserQ2 = "Insert into resource_upload_tbl (resource_name,resource_idfk, path, type, format, Size) Values (?,?,?,?,?,?)";
+                       String inserQ2 = "Insert into resource_upload_tbl (resource_idfk, file_name, path, type, format, Size) Values (?,?,?,?,?,?)";
                        //resource_upload_tbl_Insertion = stmt.executeUpdate(inserQ);
                        PreparedStatement pst=currentCon.prepareStatement(inserQ2);
-                       pst.setString(1,resourceFile);
-                       pst.setInt(2,resourceId);
+                       
+                       pst.setInt(1,resourceId);
+                       pst.setString(2,resourceFile);
                         pst.setString(3,resourcePath);
                         pst.setString(4, filetype);
                         pst.setString(5, resourceFormat);
@@ -133,9 +134,86 @@ public class ResourceDAO {
     }
 private static ResourceBean getResource(String resourceName){
     ResourceBean resource = new ResourceBean();
-    String query ="Select resource_tbl.resource_id, resource_tbl.resource_name, ";
+
+    String query1 ="Select resource_tbl.resource_id, resource_tbl.user_idfk, resource_tbl.resource_name, resource_tbl.description, resource_tbl.resource_type"
+            +"resource_upload_tbl.file_name, resource_upload_tbl.path, resource_upload_tbl.type, resource_upload_tbl.format, resource_upload_tbl.Size"
+            +"resource_link_tbl.link"
+            +"from resource_tbl,resource_upload_tbl, resource_link_tbl"
+            +"where resource_tbl.resource_name='"+resourceName+"' AND resource_tbl.resource_id = resource_upload_tbl.resource_idfk AND resource_tbl.resource_id = resource_link_tbl.resource_idfk";
+    
+    try{
+        currentCon = ConnectionManager.getConnection();
+        stmt = currentCon.createStatement();
+        rs = stmt.executeQuery(query1);
+        if(rs.next()){
+            resource.setUserID(rs.getInt("user_idfk"));
+            resource.setResourceName(rs.getString("resource_name"));
+            resource.setResourceDiscription(rs.getString("description"));
+            resource.setResourceType(rs.getString("resource_type"));
+            if(resource.getResourceType().equals("link")){
+                 resource.setResourceLink(rs.getString("link"));                
+            }
+            else if(resource.getResourceType().equals("file")){
+                resource.setResourcePath(rs.getString("path"));
+                resource.setFileType(rs.getString("type"));
+                resource.setResourceFormat(rs.getString("format"));
+                resource.setResourceSize(rs.getInt("Size"));
+                resource.setFileName(rs.getString("file_name"));
+                
+            }
+            
+            
+            
+        }
+    }
+    catch(Exception ex){
+        ex.printStackTrace();
+    }
+    finally{
+        closeConnection();
+    }
     
     return resource;
+}
+
+public static int deleteResource(String resourceName){
+    int done = 0;
+    int resourceID = 0;
+    PreparedStatement ps1, ps2, ps3;
+    String searchResourceId = "select resource_id from resource_tbl where resource_name ='"+resourceName+"'";
+    String deleteFromResource_tbl ="delete from resource_tbl where resource_id = ?";
+    String deleteFromResourceUpload_tbl = "delete from resource_upload_tbl where resource_idfk = ?";
+    String deleteFromResourceLink_tbl = "delete from resource_link_tbl where resource_idfk = ?";
+    try{
+        currentCon = ConnectionManager.getConnection();  
+        stmt=currentCon.createStatement();
+        rs = stmt.executeQuery(searchResourceId);
+        if(rs.next()){
+            resourceID = rs.getInt("resource_id");
+            ps1 = currentCon.prepareStatement(deleteFromResource_tbl);
+            ps1.setInt(1,resourceID);
+            done = ps1.executeUpdate();
+            if(done != 0){
+                done = 0;
+                ps2 = currentCon.prepareStatement(deleteFromResourceUpload_tbl);
+                ps2.setInt(1,resourceID);
+                done = ps2.executeUpdate();
+            }
+            if(done!=0){
+                done = 0;
+                ps3 = currentCon.prepareStatement(deleteFromResourceLink_tbl);
+                ps3.setInt(1,resourceID);
+                done = ps3.executeUpdate();
+            }
+        }
+    }
+    catch(Exception e){
+        e.printStackTrace();
+    }
+    finally{
+        closeConnection();
+    }
+    return done;
 }
 private static void closeConnection(){
         if (rs != null){
@@ -159,8 +237,11 @@ public static ArrayList<ResourceBean> getResources(String currentUsername){
     String query = "Select user_tbl.user_id from user-tbl where user_tbl.username<>'"+currentUsername+"'";
     String uid="";
     String query1 = "Select resource_tbl.resource_id, resource_tbl.resource_name, resource_tbl.description, resource_link_tbl.link"
-            + "where ";
-    
+            +"resource_upload_tbl.path, resource_upload_tbl.type, resource_upload_tbl.format, resource_upload_tbl.Size"
+            +"resource_link_tbl.link"
+            +"from resource_tbl, resource_link_tbl, resource_upload_tbl"
+            +"where resource_tbl.useridfk = '"+uid+"' AND resource_tbl.resource_id = resource_upload_tbl.resourceidfk"
+            +"AND resource_tbl.resource_id = resource_link_tbl.resource_idfk";    
     try{
         boolean more;
         stmt=currentCon.createStatement();
@@ -170,12 +251,39 @@ public static ArrayList<ResourceBean> getResources(String currentUsername){
             uid = rs.getString("user_id");
             
         }
+        rs = stmt.executeQuery(query1);
+        while(rs.next()){
+            ResourceBean resource = new ResourceBean();
+            
+            resource.setResourceName(rs.getString("resource_name"));
+            resource.setResourceDiscription(rs.getString("description"));
+            resource.setResourceType(rs.getString("resource_type"));
+            if(resource.getResourceType().equals("link")){
+                 resource.setResourceLink(rs.getString("link"));                
+            }
+            else if(resource.getResourceType().equals("file")){
+                resource.setResourcePath(rs.getString("path"));
+                resource.setFileType(rs.getString("type"));
+                resource.setResourceFormat(rs.getString("format"));
+                resource.setResourceSize(rs.getInt("Size"));
+                resource.setFileName(rs.getString("file_name"));
+                
+            }
+            
+           
+            
+            list.add(resource);
+            
+        }
+        
+            
+        
     }
     catch(Exception ex){
         
     }
     finally{
-        
+        closeConnection();
     }
     return list;
 }
