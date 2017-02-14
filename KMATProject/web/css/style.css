@@ -651,6 +651,10 @@ body.view-c-ladders #primary-menu li.home > a,
 body.add-c-ladder #primary-menu li.home > a,
 body.view-p-ladders #primary-menu li.home > a,
 body.add-p-ladder #primary-menu li.home > a,
+
+body.view-c-maps #primary-menu li.home > a,
+body.add-c-map #primary-menu li.home > a,
+
 body.view-tools #primary-menu li.home > a,
 body.add-tool #primary-menu li.home > a,
 body.view-resources #primary-menu li.home > a,

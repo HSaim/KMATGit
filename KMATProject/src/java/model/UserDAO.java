@@ -634,7 +634,7 @@ public class UserDAO {
     
     public static int resetPassword(int userId, String newPassword){
         int done =0;
-        String updatePassword = "Update user_tbl set  password = ?, update_dt = NOW() where userId = ?";
+        String updatePassword = "Update user_tbl set  password = ?, update_dt = NOW() where user_Id = ?";
         
         try{ 
             

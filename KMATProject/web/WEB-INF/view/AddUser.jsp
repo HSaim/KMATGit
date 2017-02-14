@@ -59,6 +59,7 @@
                         <div class="col-md-10 col-md-push-2">
                             <br/>
                             <form name = "signup" method="post" action="InsertUserController" onSubmit="return verifyEmail()">
+								<!--To add hidden variable: hidden with value:AddUser-->
                                 <input type="hidden" name="hidden" value="AddUser">
                                 <!-- Includes Sign Up Form -->
                                 <jsp:include page="../../includes/signup-form.jsp" />
@@ -82,4 +83,3 @@
                 <script src="js/signup-verifications.js"></script>  
                 
                 <!-- footer.jspf integrates here -->
-    

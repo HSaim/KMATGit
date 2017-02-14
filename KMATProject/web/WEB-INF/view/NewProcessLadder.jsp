@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="../../css/process-ladder/graph-settings-modal.css">
 
         <!--Main icon of the page (appears on the tab)-->
-        <link rel="shortcut icon" href="../../resources/process-icons/process-icon-pressed.png">
+        <!--<link rel="shortcut icon" href="../../resources/process-icons/process-icon-pressed.png">-->
         <!--<link rel="shortcut icon" href="resources/fav-icon.png">-->
         
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->

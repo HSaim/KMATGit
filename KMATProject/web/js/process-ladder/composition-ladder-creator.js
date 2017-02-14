@@ -14,7 +14,7 @@ var graphCreationErrors = [{errorId:1, nodeId:2, nodeName:"Role 1", errorMessage
 						   {errorId:3, nodeId:1, nodeName:"Instructors", errorMessage:"This is a very long error message for node 1 ... a long long long long long message! It doesn't stop here .... this is a very long error message for node 1 ... a long long long long long message!"},
 						   {errorId:4, nodeId:2, nodeName:"Students", errorMessage:"This is error message 4"},
 						   {errorId:5, nodeId:3, nodeName:"HoD", errorMessage:"This is error message 5"}];
-
+					   
 var ladderChange = null;		//for keeping track of any changes made to the original ladder - is null if initial ladder is null
 var selectedNode = null;		//for keeping track of last selected circle - for modal
 var selectedEdge = null;			//for keeping track of last selected edge - for modal
@@ -154,7 +154,7 @@ document.onload = (function(d3)
 				//.attr("stop-color", "#92C7C7"); //light and stands out but combination is a bit weird
 				//.attr("stop-color", "#728FCE"); //better but more like blue
 				//.attr("stop-color", "#737CA1"); //darker but stands out more
-				.attr("stop-color", "#85b2d3");
+				.attr("stop-color", "#EDC272");
 	  
 	  
 		//gradient on node select
@@ -172,7 +172,8 @@ document.onload = (function(d3)
 
 		radialGradientSelectNode.append("stop")
 			.attr("offset", "100%")
-			.attr("stop-color", "rgba(89,148,202,1)");
+			//.attr("stop-color", "rgba(89,148,202,1)");
+			.attr("stop-color", "#DB9340");
 	
 		//Gradient for modal
 		var linearGradientModal = defs.append("linearGradient")
@@ -302,7 +303,7 @@ document.onload = (function(d3)
 					return false;
 				} 
 				else 
-				{	
+				{
 					thisGraph.zoomed.call(thisGraph);
 				}
 				return true;
@@ -342,12 +343,10 @@ document.onload = (function(d3)
 		
 		d3.select("#save-input").on("click", function() 
 			{
-				console.log("Saving!");
 				var errorButton = document.getElementById("error-button");
 				//errorButton.style.display = "block";
 				errorButton.style.display = "none";
 				
-//TODO: error button re-adjust - showing at the bottom!!				
 //TODO: check for errors in current graph and fill graphCreationErrors array accordingly
 				
 				//if there are errors, then display the error button
@@ -426,11 +425,11 @@ document.onload = (function(d3)
 						id = thisGraph.ladder.id;
 						createDt = thisGraph.ladder.createDt + "";
 						updateDt = thisGraph.ladder.updateDt + "";
-					}
+				}
 					//get ladder name, description, links
 					ladder = window.JSON.stringify({"id": id,
 													"name": document.getElementById("name-input").value,
-													"ladderType": LadderType.PROCESS,
+													"ladderType": LadderType.COMPOSITION,
 													"description": description,
 													"rootNodeId": thisGraph.firstNodeData.id,
 													"nodes": thisGraph.nodes, 
@@ -858,7 +857,7 @@ document.onload = (function(d3)
 				d3.select(this.parentElement).remove();
 			});
 			
-		d3txt.style("font", "14px Helvetica, arial");
+			d3txt.style("font", "14px Helvetica, arial");
 		return d3txt;
 	};
 
@@ -888,7 +887,7 @@ document.onload = (function(d3)
 							id: thisGraph.idLinks++,
 							title: "New Link",
 							description: "",
-							edgeType: edgeType.PROCESS,
+							edgeType: edgeType.COMPOSITION,
 							tools: [],
 							resources: [],
 							users: [],
@@ -978,10 +977,10 @@ document.onload = (function(d3)
 			thisGraph.numTotalNodes++;
 			var xycoords = d3.mouse(thisGraph.svgG.node()),
 				d = {
-						id: thisGraph.idct++,
-						nodeType: nodeType.PROCESS,
+						id: thisGraph.idct++, 
+						nodeType: nodeType.COMPOSITION,
 						description: "",
-						title: "New Process " + thisGraph.numTotalNodes,
+						title: "New Node " + thisGraph.numTotalNodes,
 						tools: [],
 						resources: [],
 						users: [],
@@ -1018,7 +1017,7 @@ document.onload = (function(d3)
 	{
 		d3.select("body")
 			.style("overflow", "hidden");
-
+			
 		document.getElementById("node-modal").style.display = "block";
 		var thisGraph = this;
 		thisGraph.modalJustClosed = true;
@@ -1280,7 +1279,7 @@ document.onload = (function(d3)
 	
 		newGs.append("circle")
 			.attr("r", String(consts.nodeRadius));
-
+	
 		newGs.each(function (d)
 			{
 				thisGraph.insertTitleLinebreaks(d3.select(this), d.title);
@@ -1303,7 +1302,7 @@ document.onload = (function(d3)
 	{
 		return "Make sure to save your graph locally before leaving :-)";
 	};
-	
+
 	document.getElementById("error-button").style.display = "none";
 	/** MAIN SVG **/
 	var svg = d3.select("#svg-row")

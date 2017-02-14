@@ -1,40 +1,38 @@
 <%-- 
-    Document   : AddCompositionLadder
-    Created on : Nov 16, 2016, 9:48:31 AM
-    Author     : Habiba Saim
+    Document   : EditProcessLadder
+    Created on : Dec 2, 2016, 10:42:03 PM
+    Author     : Maryam Khalid
 --%>
 
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
-    response.setHeader("Cache-Control","no-cache");  //Forces caches to obtain a new copy of the page from the origin server
-    response.setHeader("Cache-Control","no-store");  //Directs caches not to store the page under any circumstance
-    response.setDateHeader("Expires",-1);            //Causes the proxy cache to see the page as "stale"
-    response.setHeader("Pragma","no-cache");         //HTTP 1.0 backward compatibility
-    
+    response.setHeader("Pragma","no-cache"); 
+    response.setHeader("Cache-Control","no-store");
+    response.setDateHeader("Expires",-1);
     if(session.getAttribute("CurrentSessionUser")==null){
     
         response.sendRedirect("Home.jsp");
     }
-%>  
+%> 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Add Composition Ladder</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Create a new composition ladder for Knowledge Management for All Tool - KMAT" />
-		<meta name="keywords" content="KMAT, users, roles, knowledge engineers, concept map, list, tool, composition, composition ladder" />
-		<meta name="author" content="KMAT Team" />
+    <head>
+        <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Edit Process Ladder</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Knowledge Management for All Tool (KMAT)" />
+	<meta name="keywords" content="KMAT, process ladder, description, help" />
+	<meta name="author" content="KMAT Team" />
         
-        <!-- css includes here -->
-        <jsp:include page="../../includes/link.jsp" />
+        <jsp:include page="../../includes/link.jsp" /> 
         <jsp:include page="../../includes/process-ladder-link.jsp" />        
     </head>
     
-   <body class = "add-c-ladder" id = "add-process-ladder-body">
+    <!--<body class = "add-p-ladder" id = "add-process-ladder-body">-->
+	<body id = "add-process-ladder-body">
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">
@@ -46,15 +44,18 @@
                 <aside class="heading-bg" > <!--style="background: url(images/heading-bg1.jpg) repeat;">-->
                     <div class="container">
                         <!--<h1 class="page-heading-lead">-->
-                       Add A New Composition Ladder
+                        Edit Process Ladder
                             <!--<span class="border"></span>-->
                         <!--</h1>-->
                     </div>                        
                 </aside>
                 <!-- END: Page heading-->
                 
+                <!-- START: Page contents -->
                 <div class="container">
+                    <!-- START: Page contents main row -->
                     <div class="row">
+                        <!-- START: Process ladder-svg and its menus area-->
                         <div class="col-md-10 col-md-push-2">
 							<br>
                             <div class="row">
@@ -76,13 +77,13 @@
 
                                 <div class = "col-md-3 col-md-offset-1">
                                     <div id="graph-buttons" class="pull-right">
-                                        <input type="image" id="graph-help-icon" title="Help" src="images/help-icons/help-icon19.png"
-                                               onclick="onClickHelpButton('Composition', window.event.x, window.event.y)" 
-                                               onmousedown="onMouseDownHelpButton('Composition')" onmouseup="onMouseUpHelpButton('Composition')" 
+                                        <input type="image" id="graph-help-icon" title="Help" src="images/help-icons/help-icon20.png"
+                                               onclick="onClickHelpButton('Process', window.event.x, window.event.y)" 
+                                               onmousedown="onMouseDownHelpButton('Process')" onmouseup="onMouseUpHelpButton('Process')" 
                                                onblur="onBlurHelpButton()" alt="Help">
                                         <input type="image" id="graph-settings-icon" title="Settings" src="images/icons/settings-icon.png" 
-                                               onclick="onClickSettingsButton('Composition' , window.event.x, window.event.y)" 
-                                               onmousedown="onMouseDownSettingsButton('Composition')" onmouseup="onMouseUpSettingsButton('Composition')" alt="Settings">
+                                               onclick="onClickSettingsButton('Process' , window.event.x, window.event.y)" 
+                                               onmousedown="onMouseDownSettingsButton('Process')" onmouseup="onMouseUpSettingsButton('Process')" alt="Settings">
                                     </div>
                                 </div>
 								<br>
@@ -105,7 +106,7 @@
 								<input class="form-inline" type="image" id="delete-graph" title="Delete Ladder" src="images/icons/delete-icon.png" alt="Delete Ladder">
 							</div>
 							
-							<input type="image" id="error-button" title="" src="images/icons/error-icon.ico" width="20" height="20" onclick="onClickErrorButton('Composition')" onmousedown="onMouseDownErrorButton('Composition')" onmouseup="onMouseUpErrorButton('Composition')" onblur="onBlurErrorButton()" alt="Error">
+							<input type="image" id="error-button" title="" src="images/icons/error-icon.ico" width="20" height="20" onclick="onClickErrorButton('Process')" onmousedown="onMouseDownErrorButton('Process')" onmouseup="onMouseUpErrorButton('Process')" onblur="onBlurErrorButton()" alt="Error">
 								
                             <!-- START: The Modal -->
                             <div id="node-modal" class="modal">
@@ -222,6 +223,14 @@
                                     </div>
                                 </div>
                             </div>
+
+							<%--
+                            <div class = "row">
+                                <div class="add-spaces"> <!-- Spaces are added here to keep prevent SVG from overlapping footer -->
+                                    <p></p>
+                                </div>
+                                
+                            </div>--%>
                                
                         </div>
                         <!-- END: Process ladder-svg and its menus area-->
@@ -238,9 +247,5 @@
                 <!-- END: Page contents -->
                
                 <!-- adds js -->                
-                <jsp:include page="../../includes/js.jsp" /> 
-                <jsp:include page="../../includes/composition-ladder-js.jsp" /> 
-                
-                <!-- footer.jsp integrates here -->
-
-
+                <jsp:include page="../../includes/js.jsp" />
+                <jsp:include page="../../includes/process-ladder-js.jsp" /> 

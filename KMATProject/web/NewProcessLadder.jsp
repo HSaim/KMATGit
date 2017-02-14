@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="css/process-ladder/graph-settings-modal.css">
 
         <!--Main icon of the page (appears on the tab)-->
-        <link rel="shortcut icon" href="resources/process-icons/process-icon-pressed.png">
+        <!--<link rel="shortcut icon" href="resources/process-icons/process-icon-pressed.png">-->
         <!--<link rel="shortcut icon" href="resources/fav-icon.png">-->
         
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -123,7 +123,7 @@
                                     <div class="field-name-wrapper">
                             <!--<form accept-charset="UTF-8" action="/d3/d3/search" class="field-name-form" method="get">-->
                                         <span id="id-header-label" class="field-name-border">
-                                                <label id="label-ladder-name" class="field-name-label">Ladder Name: </label>
+                                                <label id="label-ladder-name" class="field-name-label">Ladde Name: </label>
                                                 <input id="name-input" type="text" class="field-name-value" data-hotkey="s" name="q" placeholder="Enter name" tabindex="1" onclick="changeNameTextFieldColor()" onblur="nameTextFieldColorOriginal()">
                                                 <label id="graph-name-error" style="display: none; position: absolute; padding-left: 10px; color: red">*</label>
                                         </span>

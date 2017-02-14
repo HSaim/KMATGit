@@ -1,16 +1,14 @@
 <%-- 
-    Document   : AddCompositionLadder
-    Created on : Nov 16, 2016, 9:48:31 AM
-    Author     : Habiba Saim
+    Document   : EditCompositionLadder
+    Created on : Jan 27, 2017, 7:14:30 AM
+    Author     : Maryam Khalid
 --%>
 
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
-    response.setHeader("Cache-Control","no-cache");  //Forces caches to obtain a new copy of the page from the origin server
-    response.setHeader("Cache-Control","no-store");  //Directs caches not to store the page under any circumstance
-    response.setDateHeader("Expires",-1);            //Causes the proxy cache to see the page as "stale"
-    response.setHeader("Pragma","no-cache");         //HTTP 1.0 backward compatibility
-    
+    response.setHeader("Pragma","no-cache"); 
+    response.setHeader("Cache-Control","no-store");
+    response.setDateHeader("Expires",-1);
     if(session.getAttribute("CurrentSessionUser")==null){
     
         response.sendRedirect("Home.jsp");
@@ -23,7 +21,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Add Composition Ladder</title>
+		<title>Edit Composition Ladder</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Create a new composition ladder for Knowledge Management for All Tool - KMAT" />
 		<meta name="keywords" content="KMAT, users, roles, knowledge engineers, concept map, list, tool, composition, composition ladder" />
@@ -34,7 +32,7 @@
         <jsp:include page="../../includes/process-ladder-link.jsp" />        
     </head>
     
-   <body class = "add-c-ladder" id = "add-process-ladder-body">
+   <body id = "add-process-ladder-body">
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">
@@ -45,10 +43,7 @@
                 <!-- START: Page heading-->
                 <aside class="heading-bg" > <!--style="background: url(images/heading-bg1.jpg) repeat;">-->
                     <div class="container">
-                        <!--<h1 class="page-heading-lead">-->
-                       Add A New Composition Ladder
-                            <!--<span class="border"></span>-->
-                        <!--</h1>-->
+                       Edit Composition Ladder
                     </div>                        
                 </aside>
                 <!-- END: Page heading-->
@@ -242,5 +237,3 @@
                 <jsp:include page="../../includes/composition-ladder-js.jsp" /> 
                 
                 <!-- footer.jsp integrates here -->
-
-

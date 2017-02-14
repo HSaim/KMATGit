@@ -82,6 +82,7 @@
                 Process Ladders 
                 <ul>
                     <li class = "view-p-ladders"><a href="view-process-ladders">
+					<!--<li class = "view-p-ladders"><a href="GetLaddersController?action=get-all-process-ladders">-->
                             <div class="sidebox-menu-blurb-sub">
                                 View Process Ladders
                             </div>
@@ -95,6 +96,28 @@
             </div>
 
         </li>
+        
+        <!--Changes by Zohaa-->
+        <li>
+            <div class="sidebox-menu-blurb">
+                Concept Maps
+                <ul>
+                    <li class = "view-c-maps"><a href="view-concept-maps">
+                            <div class="sidebox-menu-blurb-sub">
+                                    View Concept Maps
+                            </div>
+                    </a></li>
+                    <li class = "add-c-map"><a href="add-concept-map">
+                            <div class="sidebox-menu-blurb-sub">
+                                Add Concept Map
+                            </div>
+                    </a></li>
+                </ul>
+            </div>
+
+        </li>
+        
+        
         <li>
             <div class="sidebox-menu-blurb">
                 Tools 

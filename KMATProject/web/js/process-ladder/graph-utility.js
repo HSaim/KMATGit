@@ -17,14 +17,14 @@
 //test cases: - get from database
 var listOfTools =	[{id: 1, name: "Adobe Acrobat", description: ""}, 
 					//{id: 2, name: "Test Tool2", description: ""},
-					//{id: 3, name: "Test Long Long Long Tool3 Test Long Long Long Tool3", description: ""},
+					{id: 3, name: "Test Long Long Long Tool3 Test Long Long Long Tool3", description: ""},
 					//{id: 4, name: "Test Tool3", description: ""},
 					{id: 5, name: "Netbeans", description: ""}];
 var listOfResources = [{id: 2, name: "Resource2", description: ""},
 					{id: 3, name: "Test Long Long Long Resource3", description: ""}];
 var listOfUsers = [{id: 1, name: "User 1", description: "", email:"maryam.khalid.86@gmail.com"}];
 
-// get these links fron database
+// get these links from database
 var searchResultTools = [];
 var searchResultResources = [];
 var searchResultUsers = [];
@@ -171,8 +171,6 @@ function delAccordionItem(el)
 	//delete the accordion item
 	el.parentNode.parentNode.removeChild(el.parentNode);
 	//el.parentNode.style.display = "none";
-	
-	//TODO: delete links from database
 }
 
 //In outer modal accordions: set "Done" to "Edit" and disable it - fade
@@ -356,9 +354,9 @@ function addNewItem(panelId, item, itemId)
 	//create view and delete icons for the div element
 	var delClassName = "accordion-delete-icon-" + panelId;
 	var viewClassName = "accordion-view-icon-" + panelId;
-	var iconDelete = createAccordionActionItemIcons("image", delClassName, "delAccordionItem(this); return false;", "Delete", "resources/accordion-delete-icon.png", "D");
+	var iconDelete = createAccordionActionItemIcons("image", delClassName, "delAccordionItem(this); return false;", "Delete", "resources/icons/accordion-delete-icon.png", "D");
 	iconDelete.id = itemId;
-	var iconView = createAccordionActionItemIcons("image", viewClassName, "viewAccordionItem(); return false;", "View Details", "resources/accordion-preview-icon.png", "V");
+	var iconView = createAccordionActionItemIcons("image", viewClassName, "viewAccordionItem(); return false;", "View Details", "resources/icons/accordion-preview-icon.png", "V");
 	
 	if(isNaN(accordionPanel.isEditAccordionItemsSelected) || accordionPanel.isEditAccordionItemsSelected === null)
 		accordionPanel.isEditAccordionItemsSelected = 0;
@@ -371,6 +369,44 @@ function addNewItem(panelId, item, itemId)
 	newDiv.appendChild(iconView);
 	
 	accordionPanel.insertBefore(newDiv, accordionPanel.childNodes[accordionPanel.numListElements]);
+}
+
+//Setting edge/node data on modal - when modal opens
+function onLoadModal(callingNodeId, linkedObjectsList)
+{
+	if(linkedObjectsList === null || linkedObjectsList.length === 0)
+	{
+		return;
+	}
+	
+	var completeItemsList = [];
+	
+	if(callingNodeId === "accordion1-panel")
+	{
+		completeItemsList = listOfTools;
+	}
+	else if(callingNodeId === "accordion2-panel")
+	{
+		completeItemsList = listOfResources;
+	}
+	else if(callingNodeId === "accordion3-panel")
+	{
+		completeItemsList = listOfUsers;
+	}
+	document.getElementById(callingNodeId).isEditAccordionItemsSelected = 0;
+	document.getElementById(callingNodeId).numListElements = 0;
+	
+	//check if id from linkedObjectsList matches id of completeItemsList
+	for(var i = 0; i < linkedObjectsList.length; i++)
+	{
+		for(var j = 0; j < completeItemsList.length; j++)
+		{
+			if(linkedObjectsList[i] === completeItemsList[j].id)
+			{
+				addNewItem(callingNodeId, completeItemsList[j], j);
+			}
+		}
+	}
 }
 
 //helper function for the function "addNewTool" to create view and delete icons for the new div element
@@ -386,17 +422,94 @@ function createAccordionActionItemIcons(iconType, iconClass, iconOnclick, iconTi
 	return newIcon;
 }
 
+//Outer Modal - Save Button onclick for both edges and nodes
 function saveNodeDetails()
 {
-	//TODO: 
-	console.log("Save details");
+	//console.log("Save Button Pressed - default method");
+	if(isNodeSelected)
+	{
+		if(selectedNode === null)
+		{
+			alert("Add details to save");
+		}
+		else
+		{
+			selectedNode.title = document.getElementById("modal-node-name").innerHTML;
+			var description = "";
+			description = document.getElementById("modal-description-id").value;
+			selectedNode.description = description;
+			if(selectedNode.tools === null)
+				selectedNode.tools = [];
+			if(selectedNode.resources === null)
+				selectedNode.resources = [];
+			if(selectedNode.users === null)
+				selectedNode.users = [];
+			for(var i = 0; i < searchResultTools.length; i++)
+			{
+				if(searchResultTools[i] === 1)
+				{
+					selectedNode.tools.push(listOfTools[i].id);
+				}
+			}
+			for(var i = 0; i < searchResultResources.length; i++)
+			{
+				if(searchResultResources[i] === 1)
+				{
+					selectedNode.resources.push(listOfResources[i].id);
+				}
+			}
+			for(var i = 0; i < searchResultUsers.length; i++)
+			{
+				if(searchResultUsers[i] === 1)
+				{
+					selectedNode.users.push(listOfUsers[i].id);
+				}
+			}
+		}
+	}
+	else if(isEdgeSelected)
+	{
+		if(selectedEdge === null)
+		{
+			alert("Add details to save");
+		}
+		else
+		{
+			selectedEdge.title = document.getElementById("modal-node-name").innerHTML;
+			selectedEdge.description = document.getElementById("modal-description-id").value;
+			if(selectedEdge.tools === null)
+				selectedEdge.tools = [];
+			if(selectedEdge.resources === null)
+				selectedEdge.resources = [];
+			if(selectedEdge.users === null)
+				selectedEdge.users = [];
+			for(var i = 0; i < searchResultTools.length; i++)
+			{
+				if(searchResultTools[i] === 1)
+				{
+					selectedEdge.tools.push(listOfTools[i].id);
+				}
+			}
+			for(var i = 0; i < searchResultResources.length; i++)
+			{
+				if(searchResultResources[i] === 1)
+				{
+					selectedEdge.resources.push(listOfResources[i].id);
+				}
+			}
+			for(var i = 0; i < searchResultUsers.length; i++)
+			{
+				if(searchResultUsers[i] === 1)
+				{
+					selectedEdge.users.push(listOfUsers[i].id);
+				}
+			}
+		}
+	}
 }
 
 function closeModal()
-{
-	window.sessionStorage.lastEdgeName = null;
-	window.sessionStorage.lastNodeName = null;
-	
+{	
 	var graphModal = document.getElementById('node-modal');
 	
 	var acc = document.getElementsByClassName("accordion");
@@ -422,6 +535,7 @@ function closeModal()
 	
 	resetModalState();
 	graphModal.style.display = "none";
+	document.getElementById("add-process-ladder-body").style.overflow = "scroll";
 	
 	//TODO: prompt if details have changed but have not been saved
 }
@@ -444,18 +558,20 @@ function resetModalState()
 	var accordion2 = document.getElementById("accordion2-panel");
 	var accordion3 = document.getElementById("accordion3-panel");
 	
-	var editButtonText1 = document.getElementById("tools-edit-button");
-	editButtonText1.style.left = "77%";
-	editButtonText1.innerHTML = "Edit";
-	
-	var editButtonText2 = document.getElementById("resources-edit-button");
-	editButtonText2.style.left = "69.5%";
-	editButtonText2.innerHTML = "Edit";
-	
-	var editButtonText3 = document.getElementById("share-edit-button");
-	editButtonText3.style.left = "81.5%";
-	editButtonText3.innerHTML = "Edit";
-	
+	if(document.getElementById("view-ladder-name") === null)
+	{
+		var editButtonText1 = document.getElementById("tools-edit-button");
+		editButtonText1.style.left = "77%";
+		editButtonText1.innerHTML = "Edit";
+
+		var editButtonText2 = document.getElementById("resources-edit-button");
+		editButtonText2.style.left = "69.5%";
+		editButtonText2.innerHTML = "Edit";
+
+		var editButtonText3 = document.getElementById("share-edit-button");
+		editButtonText3.style.left = "81.5%";
+		editButtonText3.innerHTML = "Edit";
+	}
 	accordion1.isEditAccordionItemsSelected = 0;
 	accordion2.isEditAccordionItemsSelected = 0;
 	accordion3.isEditAccordionItemsSelected = 0;
@@ -465,9 +581,9 @@ function resetModalState()
 	accordion3.numListElements = 0;
 	
 	//remove selection from checkboxes
-	document.getElementById("modal-checkbox1").checked = false;
-	document.getElementById("modal-checkbox2").checked = false;
-	document.getElementById("modal-checkbox3").checked = false;
+	//document.getElementById("modal-checkbox1").checked = false;
+	//document.getElementById("modal-checkbox2").checked = false;
+	//document.getElementById("modal-checkbox3").checked = false;
 }
 
 function closeInnerModal()
@@ -571,9 +687,9 @@ function addSearchItemsToList(calledFromId, itemsList, searchItemsList, itemsLab
 		
 //TODO: if the calling accordion is for Sharing - this button should display access rights
 
-		var iconAdd = createAccordionActionItemIcons("image", "search-add-icon", "addSearchItem(this); return false;", addIconTitleString, "resources/search-add-icon.png", "A");
-		var iconDelete = createAccordionActionItemIcons("image", "search-delete-icon", "deleteSearchItem(this); return false;", deleteIconTitleString, "resources/search-delete-icon.png", "V");
-		var iconView = createAccordionActionItemIcons("image", "search-view-icon", "viewSearchItem(); return false;", "View Details", "resources/accordion-preview-icon.png", "V");
+		var iconAdd = createAccordionActionItemIcons("image", "search-add-icon", "addSearchItem(this); return false;", addIconTitleString, "resources/icons/search-add-icon.png", "A");
+		var iconDelete = createAccordionActionItemIcons("image", "search-delete-icon", "deleteSearchItem(this); return false;", deleteIconTitleString, "resources/icons/search-delete-icon.png", "V");
+		var iconView = createAccordionActionItemIcons("image", "search-view-icon", "viewSearchItem(); return false;", "View Details", "resources/icons/accordion-preview-icon.png", "V");
 
 		//set data so that add and delete icons can be obained by id in other functions
 		iconAdd.parentId = calledFromId;
@@ -655,13 +771,13 @@ function viewSearchItem()
 
 function modalHeaderFull()
 {
-	if(window.sessionStorage.lastNodeName !== null)
+	if(isNodeSelected && selectedNode.title !== null)
 	{
-		document.getElementById("modal-node-name").innerHTML = window.sessionStorage.lastNodeName;
+		document.getElementById("modal-node-name").innerHTML = selectedNode.title;
 	}
-	else if(window.sessionStorage.lastEdgeName !== null)
+	else if(isEdgeSelected && selectedEdge.title !== null)
 	{
-		document.getElementById("modal-node-name").innerHTML = window.sessionStorage.lastEdgeName;
+		document.getElementById("modal-node-name").innerHTML = selectedEdge.title;
 	}
 }
 
@@ -669,13 +785,14 @@ function modalHeaderClip()
 {
 	var headerName = document.getElementById("modal-node-name").innerHTML;
 	headerName = headerName.trim();
-	if(window.sessionStorage.lastNodeName !== null)
+	
+	if(isNodeSelected && selectedNode.title !== null)
 	{
-		window.sessionStorage.lastNodeName = headerName;
+		selectedNode.title = headerName;
 	}
-	else if(window.sessionStorage.lastEdgeName !== null)
+	else if(isEdgeSelected && selectedEdge.title !== null)
 	{
-		window.sessionStorage.lastEdgeName = headerName;
+		selectedEdge.title = headerName;
 	}
 	
 	var headerLines = headerName.split("<div>");
@@ -691,4 +808,55 @@ function modalHeaderClip()
 		else
 			document.getElementById("modal-node-name").innerHTML = headerFirstLine;
 	}
+}
+
+function closeViewModal()
+{	
+	var graphModal = document.getElementById('node-modal');
+	
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++)
+	{
+		if(acc[i].isClose)
+		{
+			acc[i].classList.toggle("active");
+			acc[i].nextElementSibling.classList.toggle("show");
+			acc[i].isClose = false;
+		}
+	}
+	
+	openedLastAccordion = false;
+	acc3.style.borderBottomLeftRadius = "10px";
+	acc3.style.borderBottomRightRadius = "10px";
+	
+	searchResultTools.length = 0;
+	searchResultResources.length = 0;
+	searchResultUsers.length = 0;
+
+	//remove description
+	document.getElementById("modal-description-id").value = "";
+	
+	//for each accordion, remove accordion items (same as in delete) + set state of accordions (as in delete)
+	var accordionEls = document.getElementsByClassName("accordion-inner-panel");
+	//console.log("Number of items: " + accordionEls.length);
+	while(accordionEls[0])
+	{
+		accordionEls[0].parentNode.removeChild(accordionEls[0]);
+	}
+	
+	var accordion1 = document.getElementById("accordion1-panel");
+	var accordion2 = document.getElementById("accordion2-panel");
+	var accordion3 = document.getElementById("accordion3-panel");
+	
+	accordion1.isEditAccordionItemsSelected = 0;
+	accordion2.isEditAccordionItemsSelected = 0;
+	accordion3.isEditAccordionItemsSelected = 0;
+	
+	accordion1.numListElements = 0;
+	accordion2.numListElements = 0;
+	accordion3.numListElements = 0;
+	
+	graphModal.style.display = "none";
 }

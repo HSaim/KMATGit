@@ -5,7 +5,6 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
     </servlet>
-    
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -42,7 +41,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-roles-hierarchy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/add-role</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-roles-hierarchy</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
@@ -50,7 +57,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-composition-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/add-composition-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-composition-ladder</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
@@ -58,7 +73,27 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-process-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/add-process-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-process-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-process-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-concept-map</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-concept-maps</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
@@ -85,12 +120,38 @@
         <servlet-name>GetUsersController</servlet-name>
         <servlet-class>controller.GetUsersController</servlet-class>
     </servlet>
-    
     <servlet-mapping>
         <servlet-name>GetUsersController</servlet-name>
         <url-pattern>/GetUsersController</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>RunToolController</servlet-name>
+        <url-pattern>/RunToolController</url-pattern>
+    </servlet-mapping>
+	<servlet>
+        <servlet-name>RunToolController</servlet-name>
+        <servlet-class>controller.RunToolController</servlet-class>
+    </servlet>
     
+    <servlet>
+        <servlet-name>InsertLadderController</servlet-name>
+        <servlet-class>controller.InsertLadderController</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>GetLaddersController</servlet-name>
+        <servlet-class>controller.GetLaddersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertLadderController</servlet-name>
+        <url-pattern>/InsertLadderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetLaddersController</servlet-name>
+        <url-pattern>/GetLaddersController</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>InsertResourceController</servlet-name>
         <servlet-class>controller.InsertResourceController</servlet-class>
@@ -99,6 +160,7 @@
         <servlet-name>InsertResourceController</servlet-name>
         <url-pattern>/insert-resource</url-pattern>
     </servlet-mapping>
+    
     <servlet>
         <servlet-name>GetResourceController</servlet-name>
         <servlet-class>controller.GetResourceController</servlet-class>

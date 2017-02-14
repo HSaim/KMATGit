@@ -4,6 +4,9 @@
     Author     : Habiba Saim
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.LadderBean"%>
+
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
     response.setHeader("Pragma","no-cache"); 
@@ -20,16 +23,17 @@
 <html>
     <head>
         <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">	
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Roles in Knowledge Management for All Tool - KMAT" />
-	<meta name="keywords" content="KMAT, users, roles, knowledge engineers, concept map, list, tool, composition, composition ladder" />
-	<meta name="author" content="KMAT Team" />
-        
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Roles in Knowledge Management for All Tool - KMAT" />
+		<meta name="keywords" content="KMAT, users, roles, knowledge engineers, concept map, list, tool, composition, composition ladder" />
+		<meta name="author" content="KMAT Team" />
+        <title>Roles</title>
+		
         <!-- css includes here -->
         <jsp:include page="../../includes/link.jsp" />
-        
-        <title>Roles</title>
+		<jsp:include page="../../includes/view-ladder-link.jsp" />
+		
     </head>
     
     <body class = "view-roles">
@@ -54,10 +58,26 @@
                 
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-10 col-md-push-2">
+                        <div id="inner-body" class="col-md-10 col-md-push-2">
+							
+							<hr style="height:1px;border:none;color:#333;background-color:#a9a9a9;" />
+							<div class = "row">
+                                <b>
+                                <div class="col-md-6 center-block text-center talign-center">
+                                    <b>Name</b>                                    
+                                </div>
+                                <div class = "col-md-3 center-block text-center talign-center">
+                                    Edit
+                                </div>
+                                <div class = "col-md-3 center-block text-center talign-center">
+                                    Delete
+                                </div>
+                                </b>
+                            </div>
+                            <hr style="height:1px;border:none;color:#333;background-color:#a9a9a9;" />
                         </div>
+						
                         <div class="col-md-2 col-md-pull-10 back-color" >
-                            <%-- <jsp:include page="includes/verticalUserMenu.jsp" />  --%>
                             <!-- Left side bar includes here -->
                             <jsp:include page="../../includes/left-sidebar.jsp" />
                         </div>         
@@ -65,7 +85,8 @@
                     </div>
                 </div>
                           
-                <!-- adds js -->                
+                <!-- adds js -->
+				<jsp:include page="../../includes/roles-view-js.jsp" />
                 <jsp:include page="../../includes/js.jsp" /> 
                 
                 <!-- footer.jspf integrates here -->
