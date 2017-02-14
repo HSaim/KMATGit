@@ -25,7 +25,9 @@ and open the template in the editor.
 	font-size:large;
 	cursor: pointer;
 	cursor: hand;
+
 	/*color:black;*/
+
 }
 
 .ladder-view-table-row:hover,
@@ -37,8 +39,10 @@ and open the template in the editor.
 .table-row-div-align
 {
 	display: inline-block;
-	/*padding-top: 1.2em;
-	//padding-bottom: 0;*/
+
+/*	padding-top: 1.2em;
+	padding-bottom: 0;*/
+
 	vertical-align: middle;
 }
 

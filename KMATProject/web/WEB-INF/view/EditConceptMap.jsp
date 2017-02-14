@@ -1,7 +1,7 @@
 <%-- 
-    Document   : AddConceptMaps
-    Created on : Jan 24, 2017, 6:10:07 PM
-    Author     : ricelab
+    Document   : EditConceptMap
+    Created on : Dec 2, 2016, 10:42:03 PM
+    Author     : Maryam Khalid
 --%>
 
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
@@ -21,18 +21,18 @@
     <head>
         <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Add Concept Map</title>
+	<title>Edit Process Ladder</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Create a new cocnept map for Knowledge Management for All Tools - KMAT" />
+	<meta name="description" content="Knowledge Management for All Tool (KMAT)" />
 	<meta name="keywords" content="KMAT, concept map, description, help" />
 	<meta name="author" content="KMAT Team" />
         
         <jsp:include page="../../includes/link.jsp" /> 
-        <jsp:include page="../../includes/concept-map-link.jsp" />   
-         <jsp:include page="../../includes/js.jsp" /> 
+        <jsp:include page="../../includes/concept-map-link.jsp" />        
     </head>
     
-    <body class = "add-c-map" id = "add-concept-map-body">
+    <!--<body class = "add-p-ladder" id = "add-process-ladder-body">-->
+	<body id = "add-process-ladder-body">
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">
@@ -44,7 +44,7 @@
                 <aside class="heading-bg" > <!--style="background: url(images/heading-bg1.jpg) repeat;">-->
                     <div class="container">
                         <!--<h1 class="page-heading-lead">-->
-                        Add a new concept map
+                        Edit Concept Map
                             <!--<span class="border"></span>-->
                         <!--</h1>-->
                     </div>                        
@@ -74,7 +74,7 @@
                                     </div>
                                     
                                 </div>
-<!-- update theses for concept maps -->
+
                                 <div class = "col-md-3 col-md-offset-1">
                                     <div id="graph-buttons" class="pull-right">
                                         <input type="image" id="graph-help-icon" title="Help" src="images/help-icons/help-icon21.png"
@@ -96,21 +96,18 @@
 
 							<div class="row" id="svg-row">
 							</div>
-				
-                <!-- Update for Concept maps-->
+							
 							<div id="toolbox">
 								<input type="image" id="center-input" title="Move to Root Node" src="images/icons/center-icon.ico" alt="Initial Position">
-								<!--<input type="image" id="preview-input" title="Preview Map" src="images/icons/preview-icon.ico" alt="Preview Map">-->
 								<!--<form class="inline-toolbox-form" name = "add-edit-process" method="post" action="InsertLadderController" onSubmit="">
 									<input id="newLadderId" type="hidden" name="newLadder" value="">-->
-									<input type="image" id="save-input" title="Save Map" src="images/icons/backup-icon.ico" alt="Save Map">
+									<input type="image" id="save-input" title="Save Ladder" src="images/icons/backup-icon.ico" alt="Save Ladder">
 								<!--</form>-->
-								<input class="form-inline" type="image" id="delete-graph" title="Delete Map" src="images/icons/delete-icon.png" alt="Delete Map">
+								<input class="form-inline" type="image" id="delete-graph" title="Delete Ladder" src="images/icons/delete-icon.png" alt="Delete Ladder">
 							</div>
 							
 							<input type="image" id="error-button" title="" src="images/icons/error-icon.ico" width="20" height="20" onclick="onClickErrorButton('Concept')" onmousedown="onMouseDownErrorButton('Concept')" onmouseup="onMouseUpErrorButton('Concept')" onblur="onBlurErrorButton()" alt="Error">
-		
-         <!-- visible only if a concept map-->
+								
                             <!-- START: The Modal -->
                             <div id="node-modal" class="modal">
                                 <!-- Modal content -->
@@ -162,8 +159,7 @@
                                 </div>
                             </div>
                             <!-- END: The Modal -->
-                      
-                            <!--Could not understand this-->
+                            
                             <!-- START: Inner Modal -->
                             <div id="inner-modal-id" class="inner-modal">
                                 <!-- Modal content -->
@@ -196,7 +192,6 @@
                             </nav>
                             <!-- END: context menu for each node - to reassign root --> 
                             
-                            <!-- Need to be changed for Concept maps -->
                             <!-- START: help tool tips-->
                             <div class="help-tooltiptext" id="help-tooltiptext">
                                 <h3 style='padding:5px'>Directions</h3>
@@ -247,7 +242,8 @@
                             <!-- Left side bar includes here -->
                             <jsp:include page="../../includes/left-sidebar.jsp" />
                         </div>
-                        </div>
+                        <!-- END: Side bar -->
+                    </div>
                         <div class = "row">
                             <div class="col-md-6">
                                 <div id="inner-body">
@@ -261,12 +257,10 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
                     <!-- START: Page contents main row -->
-                
+                </div>
                 <!-- END: Page contents -->
                
                 <!-- adds js -->                
-                <jsp:include page="../../includes/js.jsp" /> 
-                <jsp:include page="../../includes/concept-map-js.jsp" />
-                <!-- footer.jsp integrates here -->
+                <jsp:include page="../../includes/js.jsp" />
+                <jsp:include page="../../includes/concept-map-js.jsp" /> 

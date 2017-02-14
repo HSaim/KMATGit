@@ -97,6 +97,14 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-concept-map</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-concept-map</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-tools</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

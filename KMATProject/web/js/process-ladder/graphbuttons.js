@@ -51,6 +51,8 @@ function loadHelpButtonOriginal(callerGraphType)
 		document.getElementById('graph-help-icon').src='images/help-icons/help-icon19.png';
 	else if(callerGraphType === "Process")
 		document.getElementById('graph-help-icon').src='images/help-icons/help-icon20.png';
+        else if(callerGraphType === "Concept")
+		document.getElementById('graph-help-icon').src='images/help-icons/help-icon21.png';
 }
 
 function loadHelpButtonPressed(callerGraphType)
@@ -61,6 +63,8 @@ function loadHelpButtonPressed(callerGraphType)
 		document.getElementById('graph-help-icon').src='images/help-icons/help-icon19-pressed.png';
 	else if(callerGraphType === "Process")
 		document.getElementById('graph-help-icon').src='images/help-icons/help-icon20-pressed.png';
+        else if(callerGraphType === "Concept")
+		document.getElementById('graph-help-icon').src='images/help-icons/help-icon21-pressed.png';
 }
 
 
