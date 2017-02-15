@@ -53,7 +53,7 @@
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
-                                        <h3><a href="#">Process Ladders</a></h3>
+                                        <h3><a href="ProcessLadder.jsp">Process Ladders</a></h3>
                                         <div class="price-status">
                                             <span class="price">Organization's processes</span>
                                         </div>

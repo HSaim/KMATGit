@@ -199,6 +199,7 @@
             <url-pattern>/Contact.jsp</url-pattern>
             <url-pattern>/NewProcessLadder.jsp</url-pattern>
             <url-pattern>/RecoverAccount.jsp</url-pattern>
+            <url-pattern>/ProcessLadder.jsp</url-pattern>
             <!--
             <url-pattern>/News.jsp</url-pattern>            
             <url-pattern>/LoginAgain.jsp</url-pattern>

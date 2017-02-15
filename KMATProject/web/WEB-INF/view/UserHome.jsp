@@ -54,43 +54,33 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10 col-md-push-2">
-                            
-                            <h2>Knowledge Management for All Tool (K-MAT) basic features </h2>
+                            <p>
+                                <h3>Knowledge Management for All Tool (K-MAT) is the right tool for you because KMAT:</h3>
+                            </p>
+                            <p>
+                                <ul>
+                                    <li>Readily integrates to most common existing DIMS, and legacy systems</li>
+                                
+                                    <li>Adapts to any SME sector with complete KM control</li>
+                                
+                                    <li>Provides industry with a low cost KM software solution for SMEs</li>
+                                
+                                    <li>Is easily manageable by SMEs, without incurring specialized human resource cost</li>
+                                
+                                
+                                </ul>
+                            </p>
                             
                             <p>
-                               <br/>
-                                * Provide industry with a low cost KM software solution for SMEs
-                                <br/>
-                                * Readily integrate to most common existing DIMS, and legacy systems
-                                <br/>
-                                * Adapt to any SME sector with complete KM control
-                                <br/>
-                                * Will be easily manageable by SMEs without incurring specialized human resource cost.
-                                
-                                <br/>
-                                * Provide industry with a low cost KM software solution for SMEs
-                                <br/>
-                                * Readily integrate to most common existing DIMS, and legacy systems
-                                <br/>
-                                * Adapt to any SME sector with complete KM control
-                                <br/>
-                                * Will be easily manageable by SMEs without incurring specialized human resource cost.<br/>
-                                * Provide industry with a low cost KM software solution for SMEs
-                                <br/>
-                                * Readily integrate to most common existing DIMS, and legacy systems
-                                <br/>
-                                * Adapt to any SME sector with complete KM control
-                                <br/>
-                                * Will be easily manageable by SMEs without incurring specialized human resource cost.
-                                
-                                <br/>
-                                * Provide industry with a low cost KM software solution for SMEs
-                                <br/>
-                                * Readily integrate to most common existing DIMS, and legacy systems
-                                <br/>
-                                * Adapt to any SME sector with complete KM control
-                                <br/>
-                                * Will be easily manageable by SMEs without incurring specialized human resource cost.
+                                <h3>KM process can be divided into four major steps:</h3>
+                            </p>
+                            <p>
+                                <ul>
+                                    <li>Create knowledge, this also includes maintenance and update</li>
+                                    <li>Store and retrieve knowledge</li>
+                                    <li>Transfer and share knowledge</li>
+                                    <li>Apply knowledge</li>
+                                </ul>
                             </p>
                             
                         </div>

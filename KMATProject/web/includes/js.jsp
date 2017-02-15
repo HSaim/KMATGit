@@ -30,5 +30,5 @@
 
 <script src="js/signup-verifications.js"></script>
 
-<script src = "js/space-disallow.js">
+<script src = "js/space-disallow.js"></script>
 

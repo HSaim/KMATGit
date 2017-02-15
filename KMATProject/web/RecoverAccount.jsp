@@ -1,7 +1,7 @@
 <%-- 
     Document   : RecoverAccount
     Created on : Jan 5, 2017, 12:29:04 PM
-    Author     : Saim
+    Author     : Habiba Saim
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
