@@ -11,17 +11,17 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <input type="text" class="form-control" name="firstname" placeholder="First Name*" required>
+                <input type="text" class="form-control" name="firstname" placeholder="First Name*" onkeyup="nospaces(this);" required>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <input type="text" class="form-control" name="lastname" placeholder="Last Name*" required>
+                <input type="text" class="form-control" name="lastname" placeholder="Last Name*" onkeyup="nospaces(this);" required>
             </div>
         </div>
         <div class="col-md-12">
             <div class="form-group">                                            
-                <input type="text" class="form-control" id ="user_name" name="user_name" placeholder="User Name*" required>                                    
+                <input type="text" class="form-control" id ="user_name" name="user_name" placeholder="User Name*" onkeyup="nospaces(this);" required>                                    
             </div>
         </div>
         <div class="col-md-12">

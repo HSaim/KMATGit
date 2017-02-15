@@ -79,7 +79,7 @@
                                         </div>
                                         <div class="registrationFormAlert" id="divCheckPasswordMatch">
                                         </div>
-                                        </div>
+                                    </div>
                                     
                                 </div>
                                 <div class = "row">

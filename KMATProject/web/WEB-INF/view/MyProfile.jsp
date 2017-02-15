@@ -7,9 +7,11 @@
 <%@page import="model.LoginUserBean"%>
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
-    response.setHeader("Pragma","no-cache"); 
-    response.setHeader("Cache-Control","no-store");
-    response.setDateHeader("Expires",-1);
+    response.setHeader("Cache-Control","no-cache");  //Forces caches to obtain a new copy of the page from the origin server
+    response.setHeader("Cache-Control","no-store");  //Directs caches not to store the page under any circumstance
+    response.setDateHeader("Expires",-1);            //Causes the proxy cache to see the page as "stale"
+    response.setHeader("Pragma","no-cache");         //HTTP 1.0 backward compatibility
+    
     if(session.getAttribute("CurrentSessionUser")==null){
     
         response.sendRedirect("Home.jsp");
@@ -117,8 +119,8 @@
                          //label.style.display = "block";
                      })();
                 </script>
-          --%>  
-                <jsp:include page="../../includes/user-profile-header.jsp" />       
+              --%>
+            <jsp:include page="../../includes/user-profile-header.jsp" />       
                 <!-- END header -->
                 
                 <!-- START: Page heading-->
@@ -149,16 +151,15 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="firstname">First Name*</label>
-                                            <input type="text" class="form-control" id = "firstname" name="firstname" placeholder ="null" placeholder ="null" value = "<%=user.getFirstName() %>" required>
-                                            
-                                        </div>
+                                            <input type="text" class="form-control" id = "firstname" name="firstname" placeholder ="null" value = "<%=user.getFirstName() %>" onkeyup="nospaces(this);"  required>                                            
+                                        </div>                                        
                                     </div>
                                             
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="lastname">Last Name*</label>
-                                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder ="null" value = "<%=user.getLastName() %>"  required>                                          
-                                        </div>
+                                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder ="null" value = "<%=user.getLastName() %>"  onkeyup="nospaces(this);" required>                                          
+                                        </div>                                        
                                     </div>
                                     
                                     <div class="col-md-12">
@@ -256,6 +257,7 @@
                           
                 <!-- adds js -->                
                 <jsp:include page="../../includes/js.jsp" /> 
+                <script src="../../js/signup-verifications.js"></script> 
                 <%--<script type="text/javascript" src="../../js/current-user-name.js"></script>--%>
                 <!-- footer.jspf integrates here -->
 

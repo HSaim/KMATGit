@@ -20,9 +20,24 @@
                     <h1 id="logo"><a href="home">KMAT</a></h1>
                 </div>
                 
+                
                 <div>
-                    <h2 id="userName"><a href = "GetUsersController?action=get-current-user"><label id="uname"  ></label></a></h2>
+                    <h3 id="userName">
+                        <a href = "GetUsersController?action=get-current-user">
+                            <button type = "button " title = "Profile" id="uname"  ></button>
+                        </a>
+                        |
+                        <a href = "LoginController">
+                            Sign out
+                        </a>
+                    </h3>
                 </div>
+                <nav id="menu-wrap" role="navigation">
+                    <ul class="sf-menu" id="primary-menu" >
+                        
+                        <li class ="home"><a href="home">Home</a></li>
+                    </ul>
+                </nav>
                 
             </div>
         </div>

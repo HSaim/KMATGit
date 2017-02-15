@@ -86,24 +86,22 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="firstname">First Name*</label>
-                                            <input type="text" class="form-control" id = "firstname" name="firstname" placeholder ="null" placeholder ="null" value = "<%=user.getFirstName() %>" required>
-                                            
-                                        </div>
+                                            <input type="text" class="form-control" id = "firstname" name="firstname" placeholder ="null" placeholder ="null" value = "<%=user.getFirstName() %>" onkeyup="nospaces(this);"  required>                                            
+                                        </div>                                        
                                     </div>
                                             
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="lastname">Last Name*</label>
-                                            <input type="text" class="form-control" id = "lastname" name="lastname" placeholder ="null" value = "<%=user.getLastName() %>"  required>
-                                          
-                                        </div>
+                                            <input type="text" class="form-control" id = "lastname" name="lastname" placeholder ="null" value = "<%=user.getLastName() %>"  onkeyup="nospaces(this);"  required>                                          
+                                        </div>                                        
                                     </div>
                                             
                                     <div class="col-md-12">
                                         <div class="form-group">   
                                             <label for="user_name">User Name/User Id*</label>
-                                            <input type="text" class="form-control" id = "user_name" name="user_name" placeholder ="null"  readonly value = "<%=user.getUserName() %>"  required>                                    
-                                        </div>
+                                            <input type="text" class="form-control" id = "user_name" name="user_name" placeholder ="null"  readonly value = "<%=user.getUserName() %>"   required>                                    
+                                        </div>                                        
                                     </div>                                        
                                     
                                     <div class="col-md-12">
@@ -140,8 +138,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for ="postal_address">Postal Address</label>
-                                            <input type="text" class="form-control" id="postal_address" name="postal_address" placeholder ="null"  value = "<%=user.getPosAddress()%>">
-                                        </div>
+                                            <input type="text" class="form-control" id="postal_address" name="postal_address" placeholder ="null"  value = "<%=user.getPosAddress()%>" onkeyup="nospaces(this);" >
+                                        </div>                                        
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">

@@ -55,16 +55,20 @@
                         <span style="color: #4CAF50"> ${data}</span>
                         <form name = "signup" method="post" action="LoginController?action=recover-account" onSubmit="return verifyEmail()">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="username" placeholder="User Name*" required>
+                                        <input type="text" class="form-control" name="username" placeholder="User Name*" onkeyup="nospaces(this);" required>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                </div>
+                             <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="pri-email" placeholder="Primary Email*" required>
+                                        <input type="email" class="form-control" name="pri-email" placeholder="Primary Email*" required>
                                     </div>
                                 </div>
+                                </div>
+                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <input type="submit" value="Recover Account" class="btn btn-primary">

@@ -6,9 +6,11 @@
 
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
-    response.setHeader("Pragma","no-cache"); 
-    response.setHeader("Cache-Control","no-store");
-    response.setDateHeader("Expires",-1);
+    response.setHeader("Cache-Control","no-cache");  //Forces caches to obtain a new copy of the page from the origin server
+    response.setHeader("Cache-Control","no-store");  //Directs caches not to store the page under any circumstance
+    response.setDateHeader("Expires",-1);            //Causes the proxy cache to see the page as "stale"
+    response.setHeader("Pragma","no-cache");         //HTTP 1.0 backward compatibility
+    
     if(session.getAttribute("CurrentSessionUser")==null){
     
         response.sendRedirect("Home.jsp");
@@ -42,7 +44,7 @@
                 <aside class="heading-bg" > <!--style="background: url(images/heading-bg1.jpg) repeat;">-->
                     <div class="container">
                         <!--<h1 class="page-heading-lead">-->
-                        User home page
+                        Welcome to KMAT
                             <!--<span class="border"></span>-->
                         <!--</h1>-->
                     </div>                        

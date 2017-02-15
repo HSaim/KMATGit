@@ -591,9 +591,9 @@ figure {
 
 /* Logged in username on menu bar */
 #userName {
-    font-size: 22px;
-    /*text-transform: uppercase;*/
-    font-weight: 700;
+    font-size: 20px;
+    /*text-transform: uppercase;
+    font-weight: 700;*/
     float: right;
     
     margin-top: 1.4em;
