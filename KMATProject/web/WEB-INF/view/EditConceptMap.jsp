@@ -265,4 +265,4 @@
                
                 <!-- adds js -->                
                 <jsp:include page="../../includes/js.jsp" />
-                <jsp:include page="../../includes/concept-map-js.jsp" /> 
+                <jsp:include page="../../includes/concept-map-js-edit.jsp" /> 
