@@ -22,11 +22,12 @@ body, html, .container-fluid {
          height: 100%;
     }
 body {
-  font-family: "Open Sans", Arial, serif;
+  font-family: Georgia, serif; /* "Open Sans", Arial, serif;*/
   line-height: 1.8;
   font-size: 16px;
   background: #fff;
-  color: #848484;
+  /*color: #848484;*/
+  color: #545454;
   font-weight: 300;
   overflow-x: hidden;
   
@@ -77,6 +78,18 @@ figure {
 ::selection {
   color: #fcfcfc;
   background: #00ADB5;
+}
+
+.subTitle {
+
+    font-size: 25px;
+    font-family: Georgia, serif;
+    color: #5F9EA0 ;
+}
+#component_img
+{
+	width: 250px;
+    	height: 250px;
 }
 
 .btn {
@@ -753,6 +766,8 @@ body.add-resource #primary-menu li.home > a{
   color: #00ADB5 !important;
   background: none !important;
 }
+
+
 
 
 

@@ -5,7 +5,7 @@ and open the template in the editor.
 */
 /* 
     Created on : Dec 21, 2016, 3:33:13 PM
-    Author     : Saim
+    Author     : Habiba Saim
 */
 
 #banner {
@@ -20,6 +20,10 @@ and open the template in the editor.
   right: 0;
   z-index: 5;
   color: #ffffff;
+  width: 100%;
+  display: block;
+  position: relative;
+	
 }
 @media screen and (max-width: 768px) {
   #banner {
@@ -96,4 +100,25 @@ body.inner-page #banner .banner-wrap {
     padding: 4em 0 3em 0;
     height: inherit !important;
   }
+}
+
+.da-slider {
+	width: 100%;
+	min-width: 520px;
+	display: block;
+/*	height: 400px;*/
+	position: relative;
+	/*margin: 30px auto;*/
+	overflow: hidden;
+	background-repeat:no-repeat; 
+   	background-position:center;
+	background-color: #cccccc;
+	/*border-top:  solid #ddd;
+	border-bottom:  solid #ddd;*/
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.2), 0px -2px 1px #fff;
+	-webkit-transition: background-position 1.4s ease-in-out 0.3s;
+	-moz-transition: background-position 1.4s ease-in-out 0.3s;
+	-o-transition: background-position 1.4s ease-in-out 0.3s;
+	-ms-transition: background-position 1.4s ease-in-out 0.3s;
+	transition: background-position 1.4s ease-in-out 0.3s;
 }

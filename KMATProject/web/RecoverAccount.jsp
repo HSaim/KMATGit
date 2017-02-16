@@ -49,10 +49,11 @@
                 <div id="contact-section">
                     <div class="container">
                         <div class="row text-center">                            
-                            <h2 >Recover  account</h2> 
-                            
+                            <h2 >Recover  account</h2>                             
                         </div>
+                        
                         <span style="color: #4CAF50"> ${data}</span>
+                        
                         <form name = "signup" method="post" action="LoginController?action=recover-account" onSubmit="return verifyEmail()">
                             <div class="row">
                                 <div class="col-md-12">

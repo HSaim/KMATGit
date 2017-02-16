@@ -49,13 +49,13 @@
                                 <div class="sub-feature">
 
                                     <figure>
-                                        <img src="images/slide_3.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                        <img src="images/process.jpeg" alt="Process Ladder" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
                                         <h3><a href="ProcessLadder.jsp">Process Ladders</a></h3>
                                         <div class="price-status">
-                                            <span class="price">Organization's processes</span>
+                                            <span class="price">Program in excitation</span>
                                         </div>
                                         <p>Represent the processes being run in an organization</p>
                                     </div>
@@ -71,15 +71,15 @@
                                 <div class="sub-feature">
 
                                     <figure>
-                                        <img src="images/slide_2.jpg" alt="Composition Ladder" class="img-responsive">
+                                        <img src="images/CompositionLadder1.jpg" alt="Composition Ladder" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
-                                        <h3><a href="#">Composition Ladders</a></h3>
+                                        <h3><a href="CompositionLadder.jsp">Composition Ladders</a></h3>
                                         <div class="price-status">
-                                            <span class="price">Organization's processes</span>
+                                            <span class="price">Hierarchies</span>
                                         </div>
-                                        <p>Represent the processes being run in an organization</p>
+                                        <p>Parts of knowledge objects and their hierarchy of composition</p>
                                     </div>
                                     <p class="sub-feature-specification">
                                             <!--
@@ -99,7 +99,7 @@
                                     <div class="sub-feature-innter">
                                         <h3><a href="#">Concept Maps</a></h3>
                                         <div class="price-status">
-                                            <span class="price">Organization's processes</span>
+                                            <span class="price">Relations between ladders and other components</span>
                                         </div>
                                         <p>Represent the processes being run in an organization</p>
                                     </div>

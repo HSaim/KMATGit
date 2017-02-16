@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ProcessLadder
-    Created on : Feb 15, 2017, 4:30:44 PM
+    Document   : CompositionLadder
+    Created on : Feb 16, 2017, 12:07:49 PM
     Author     : Habiba Saim
 --%>
 
@@ -11,14 +11,14 @@
         <meta charset="utf-8">        
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="KMAT Process Ladder Introduction" />
-	<meta name="keywords" content="KMAT, process, ladder, function" />
+	<meta name="description" content="KMAT Composition Ladder Introduction" />
+	<meta name="keywords" content="KMAT, composition, ladder, hierarchy" />
 	<meta name="author" content="KMAT Team" />
         
         
         <jsp:include page="includes/link.jsp" />    
         <link rel="stylesheet" href="css/banner.css">
-        <title>Process Ladder</title>       
+        <title>Composition Ladder</title>       
     </head>
     
     <body>
@@ -30,46 +30,54 @@
                 <!-- END: header -->
                 
                 <!-- START: Banner -->
-                 <aside id="banner" style="background-image: url(images/magicprocess-small.jpg);">
-                    <%--
+                
+                 <div id="banner" style="background-image:  url(images/CompositionLadder3.jpg); background-repeat: no-repeat; background-position:center;">
+                    
                      <div class="container">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="banner-wrap">
                                     <div class="banner-intro">
-                                        <h2>Process Ladders<span></span></h2>
+                                        <h2>Composition Ladders<span></span></h2>
                                         
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    --%>
-		</aside>
+                    
+		</div>
+                
+                <!--<div class="da-slider" style="background-image: url(images/CompositionLadder3.jpg); background-repeat: no-repeat; background-position:center;"></div>
                 <!-- END: Banner-->
                 
                 <!-- START: Recover Account Form -->
                 <div id="contact-section">
                     <div class="container">
                         <div class="row text-center">                            
-                            <h1 class = "subTitle">What is a Process Ladder?</h1>
+                            <h1 class = "subTitle">What is a Composition Ladder?</h1>
                         </div>
                         
                         <table class=" tWiz" style="width: 100%" cellPadding=5 align=left>
                             <tbody>
                                 <tr>
-                                    A Process is a set of interrelated activities that interact to achieve a result, and is simply known as "program in excitation".
-                            
-                            It is a data structure that can be used to model a complete process such as student’s course enrollment, Point-of-Sale transaction, forest preservation/management etc.
+                                   A composition ladder is a useful way of understanding complex entities such as machines, organizations and documents. 
                                 </tr>
                                 <tr>
-                                    <td style="width: 40%; vertical-align: top; text-align:  center">
-                                            <img id="component_img" src="images/process-ladder-example.png">
-                                    </td>
-                                    <td style="vertical-align: top; text-align: left">
-                                        The process ladder is composed of pre-existing or already defined functions that let users complete a job. 
-                                        An example of a process ladder is shown in the figure, where the process for monitoring crops health is given.
+                                    
+                                    <td style="width: 50%; vertical-align: top; text-align: left">
+                                        A composition is basically the proportion of different parts to make a whole; 
+                                        or the general makeup of something. 
+                                        It is a data structure that shows the parts a knowledge object is made of and 
+                                        the hierarchy of composition that they form. 
+                                        All relationships in the ladder are the ‘has’ part or part-of relationship. 
+                                        An example is in linguistics, where the formation of compound words from separate words 
+                                        make such a ladder. Figure 2 shows an example of a composition ladder for a human brain.
 
+                                    </td>
+                                    <br/><br/>
+                                    <td style="vertical-align: top; text-align:  center">
+                                            <img id="component_img" src="images/composition-ladder-example.png">
                                     </td>
                                 </tr>
                             </tbody>
