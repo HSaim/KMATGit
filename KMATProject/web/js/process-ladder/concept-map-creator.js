@@ -1087,7 +1087,8 @@ document.onload = (function(d3)
 						users: [],
 						x: xycoords[0], 
 						y: xycoords[1],
-                                                classforSelection: thisGraph.consts.selectedClass
+                                                classforSelection: thisGraph.consts.selectedClass,
+                                                classforNode: thisGraph.consts.circleGClass
 					};
 			
 			if(thisGraph.firstNodeData === null)
@@ -1125,7 +1126,8 @@ document.onload = (function(d3)
 						users: [],
 						x: xycoords[0], 
 						y: xycoords[1],
-                                                classforSelection: thisGraph.consts.selectedClass
+                                                classforSelection: thisGraph.consts.selectedClass,
+                                                classforNode: thisGraph.consts.circleGClass
 					};
 			
 			if(thisGraph.firstNodeData === null)
@@ -1162,7 +1164,8 @@ document.onload = (function(d3)
 						users: [],
 						x: xycoords[0], 
 						y: xycoords[1],
-                                                classforSelection: thisGraph.consts.selectedClass
+                                                classforSelection: thisGraph.consts.selectedClass,
+                                                classforNode: thisGraph.consts.circleGClass
 					};
 			
 			if(thisGraph.firstNodeData === null)

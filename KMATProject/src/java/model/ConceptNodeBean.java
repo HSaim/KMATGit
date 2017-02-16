@@ -36,6 +36,7 @@ public class ConceptNodeBean implements java.io.Serializable
 	private Timestamp createDate;
 	private Timestamp updateDate;
         private String classforSelection;
+        private String classforNode;
 	
 	public ConceptNodeBean(String name, double posX, double posY)
 	{
@@ -49,7 +50,7 @@ public class ConceptNodeBean implements java.io.Serializable
 		this.nodePosition = new Position(posX, posY);
 	}
 
-	public ConceptNodeBean(int id, int nodeId, int ladderId, int ownerId, ConceptNodeBean.NodeType nodeType, String name, String description, double posX, double posY, Timestamp createdt, Timestamp updatedt, String classforSelection)
+	public ConceptNodeBean(int id, int nodeId, int ladderId, int ownerId, ConceptNodeBean.NodeType nodeType, String name, String description, double posX, double posY, Timestamp createdt, Timestamp updatedt, String classforSelection, String classforNode)
 	{
 		this.id = id;
 		this.nodeId = nodeId;
@@ -65,6 +66,7 @@ public class ConceptNodeBean implements java.io.Serializable
 		resourceIds = new ArrayList<>();
 		sharedUserIds = new ArrayList<>();
                 this.classforSelection = classforSelection;
+                this.classforNode = classforNode;
 	}
 	
 	public int getId()
@@ -142,6 +144,16 @@ public class ConceptNodeBean implements java.io.Serializable
 		this.classforSelection = classforSelection;
 	}
         
+        public String getClassforNode()
+	{
+		return classforNode;
+	}
+
+	public void setClassforNode(String classforNode)
+	{
+		this.classforNode = classforNode;
+	}
+        
 	public void setDescription(String description)
 	{
 		this.description = description;
@@ -210,7 +222,7 @@ public class ConceptNodeBean implements java.io.Serializable
 	@Override
 	public String toString()
 	{
-		return "ConceptNodeBean{" + "id=" + id + ", nodeId=" + nodeId + ", ladderId=" + ladderId + ", ownerId=" + ownerId + ", nodeType=" + nodeType + ", name=" + name + ", description=" + description + ", toolIds=" + toolIds + ", resourceIds=" + resourceIds + ", sharedUserIds=" + sharedUserIds + ", nodePosition=(" + nodePosition.getX() + "," + nodePosition.getY() + "), createDate=" + createDate + ", updateDate=" + updateDate + ", classforSelection="+classforSelection+'}';
+		return "ConceptNodeBean{" + "id=" + id + ", nodeId=" + nodeId + ", ladderId=" + ladderId + ", ownerId=" + ownerId + ", nodeType=" + nodeType + ", name=" + name + ", description=" + description + ", toolIds=" + toolIds + ", resourceIds=" + resourceIds + ", sharedUserIds=" + sharedUserIds + ", nodePosition=(" + nodePosition.getX() + "," + nodePosition.getY() + "), createDate=" + createDate + ", updateDate=" + updateDate + ", classforSelection=" + classforSelection + ", classforNode=" + classforNode + '}';
 	}
 
 	//Inner class for setting position of node

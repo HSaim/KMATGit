@@ -30,6 +30,7 @@ public class ConceptMapBean implements java.io.Serializable
 	private Timestamp createDate;
 	private Timestamp updateDate;
         private String classforSelection;
+        private String classforNode;
 
 	public enum LadderType
 	{
@@ -51,7 +52,7 @@ public class ConceptMapBean implements java.io.Serializable
 		this.sharedUserIds = new ArrayList<>();
 	}
 
-	public ConceptMapBean(int id, int ownerId, int rootNodeId, String name, String description, LadderType ladderType, Timestamp createDate, Timestamp updateDate, String classforSelection)
+	public ConceptMapBean(int id, int ownerId, int rootNodeId, String name, String description, LadderType ladderType, Timestamp createDate, Timestamp updateDate, String classforSelection, String classforNode)
 	{
 		this.id = id;
 		this.ownerId = ownerId;
@@ -59,6 +60,7 @@ public class ConceptMapBean implements java.io.Serializable
 		this.name = name;
 		this.description = description;
                 this.classforSelection = classforSelection;
+                this.classforNode = classforNode;
 		this.ladderType = ladderType;
 		this.createDate = createDate;
 		this.updateDate = updateDate;
@@ -138,6 +140,16 @@ public class ConceptMapBean implements java.io.Serializable
 	{
 		this.classforSelection = classforSelection;
 	}
+        
+        public String getClassforNode()
+	{
+		return classforNode;
+	}
+
+	public void setClassforNode(String classforNode)
+	{
+		this.classforNode = classforNode;
+	}
 
 	public ArrayList<ConceptNodeBean> getNodes()
 	{
@@ -212,7 +224,7 @@ public class ConceptMapBean implements java.io.Serializable
 	@Override
 	public String toString()
 	{
-		return "ConceptMapBean{" + "id=" + id + ", ownerId=" + ownerId + ", rootNodeId=" + rootNodeId + ", name=" + name + ", description=" + description + ", ladderType=" + ladderType + ", classforSelection=" + classforSelection + ", nodes=" + nodes + ", edges=" + edges + ", toolIds=" + toolIds + ", resourceIds=" + resourceIds + ", sharedUserIds=" + sharedUserIds + ", createDate=" + createDate + ", updateDate=" + updateDate + ", classforSelection="+classforSelection+'}';
+		return "ConceptMapBean{" + "id=" + id + ", ownerId=" + ownerId + ", rootNodeId=" + rootNodeId + ", name=" + name + ", description=" + description + ", ladderType=" + ladderType + ", classforSelection=" + classforSelection + ", classforNode=" + classforNode + ", nodes=" + nodes + ", edges=" + edges + ", toolIds=" + toolIds + ", resourceIds=" + resourceIds + ", sharedUserIds=" + sharedUserIds + ", createDate=" + createDate + ", updateDate=" + updateDate + '}';
 	}
 
 }

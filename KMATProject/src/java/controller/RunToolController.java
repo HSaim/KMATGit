@@ -5,7 +5,7 @@
  */
 package controller;
 
-//import matlabcontrol.*;
+import matlabcontrol.*;
 import model.LadderBean;
 import model.NodeBean;
 import model.EdgeBean;

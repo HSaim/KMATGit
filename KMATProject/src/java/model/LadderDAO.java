@@ -519,6 +519,7 @@ public class LadderDAO
 		Timestamp updateDt = result.getTimestamp(NODES_TBL + "." + "update_dt");
                 
                 String classforSelection = result.getString(NODES_TBL + "." + "class_for_selection");
+                String classforNode = result.getString(NODES_TBL + "." + "class_for_node");
 		
 		aNode = new NodeBean(id, nodeId, ladderId, ownerId, nodeType, nodeName, description, posX, posY, createDt, updateDt);
 		return aNode;
@@ -1086,8 +1087,8 @@ public class LadderDAO
 		int newNodeId = 0;
 		
 		//form insert query
-		String query = "INSERT INTO " + SCHEMA_NAME + "." + NODES_TBL + "(node_id, ladder_idfk, owner_idfk, node_type, node_name, description, pos_x, pos_y, create_dt, update_dt, class_for_selection)";
-		query += "VALUES('" + node.getNodeId() + "', '" + node.getLadderId() + "', '" + node.getOwnerId() + "', '" + node.getNodeType() + "', '" + node.getName() + "', '" + node.getDescription() + "', '" + node.getNodePosition().getX() + "', '" + node.getNodePosition().getY() + "', NOW(), NOW(), '" + node.getClassforSelection() + "')";
+		String query = "INSERT INTO " + SCHEMA_NAME + "." + NODES_TBL + "(node_id, ladder_idfk, owner_idfk, node_type, node_name, description, pos_x, pos_y, create_dt, update_dt, class_for_selection, class_for_node)";
+		query += "VALUES('" + node.getNodeId() + "', '" + node.getLadderId() + "', '" + node.getOwnerId() + "', '" + node.getNodeType() + "', '" + node.getName() + "', '" + node.getDescription() + "', '" + node.getNodePosition().getX() + "', '" + node.getNodePosition().getY() + "', NOW(), NOW(), '" + node.getClassforSelection() + "', '" + node.getClassforNode()+ "')";
 		
 		//call insertRow
 		newNodeId = insertRow(query);
@@ -1187,8 +1188,9 @@ public class LadderDAO
 		Timestamp updateDt = result.getTimestamp(NODES_TBL + "." + "update_dt");
                 
                 String classforSelection = result.getString(NODES_TBL + "." + "class_for_selection");
+                String classforNode = result.getString(NODES_TBL + "." + "class_for_node");
 		
-		aNode = new ConceptNodeBean(id, nodeId, ladderId, ownerId, nodeType, nodeName, description, posX, posY, createDt, updateDt, classforSelection);
+		aNode = new ConceptNodeBean(id, nodeId, ladderId, ownerId, nodeType, nodeName, description, posX, posY, createDt, updateDt, classforSelection, classforNode);
 		return aNode;
 	}
         
@@ -1222,6 +1224,7 @@ public class LadderDAO
 								.add("nodeType", node.getNodeType().toString())
 								.add("description", node.getDescription())
                                                                 .add("classforSelection", node.getClassforSelection())
+                                                                .add("classforNode", node.getClassforNode())
 								.add("title", node.getName());
 			
 			//jsonify tools, users, resources linked to nodes
@@ -1298,6 +1301,7 @@ public class LadderDAO
 				.add("nodes", jsonNodesBuilder.build())
 				.add("edges", jsonEdgesBuilder.build())
                                 .add("classforSelection", ladder.getClassforSelection())
+                                .add("classforNode", ladder.getClassforNode())
 				.build();
 		
 		//System.out.println(jsonLadderObject.toString());
@@ -1316,7 +1320,7 @@ public class LadderDAO
 		Timestamp createDt = result.getTimestamp(LADDERS_TBL + "." + "create_dt");
 		Timestamp updateDt = result.getTimestamp(LADDERS_TBL + "." + "update_dt");
 		
-		aLadder = new ConceptMapBean(ladderId, ownerId, rootNodeId, ladderName, description, ladderType, createDt, updateDt, "");
+		aLadder = new ConceptMapBean(ladderId, ownerId, rootNodeId, ladderName, description, ladderType, createDt, updateDt, "", "");
 		return aLadder;
 	}
 }

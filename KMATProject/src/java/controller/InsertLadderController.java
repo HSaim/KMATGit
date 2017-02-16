@@ -306,6 +306,7 @@ public class InsertLadderController extends HttpServlet
 					//type
 					newNode.setNodeType(ConceptNodeBean.NodeType.valueOf(newNodeObject.getString("nodeType")));
                                         newNode.setClassforSelection(newNodeObject.getString("classforSelection"));
+                                        newNode.setClassforNode(newNodeObject.getString("classforNode"));
                                         
                                         if (newNodeObject.getString("nodeType").equals("PROCESS"))
                                         {

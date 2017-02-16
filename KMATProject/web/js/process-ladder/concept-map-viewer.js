@@ -74,9 +74,13 @@ document.onload = (function(d3)
 		thisGraph.maxZoom = 3;
 		thisGraph.firstNodeData = null;	//root node
 		//set root node rootNodeId
-		if(nodes.length !== 0)
+                
+		if(nodes.length !== 0 && nodes.length !== 1)
 			thisGraph.firstNodeData = JSON.parse(JSON.stringify(nodes.filter(function(n){return n.id === ladder.rootNodeId;})[0]));
-		thisGraph.numTotalNodes = nodes.length;
+                else if (nodes.length == 1)
+                        thisGraph.firstNodeData = JSON.parse(JSON.stringify(nodes[0]));
+            
+            thisGraph.numTotalNodes = nodes.length;
 		thisGraph.ladder = JSON.parse(JSON.stringify(ladder));
 		
 		thisGraph.state = 
@@ -574,12 +578,7 @@ document.onload = (function(d3)
 	GraphCreator.prototype.replaceSelectNode = function(d3Node, nodeData)
 	{
 		var thisGraph = this;
-                if (nodeData.nodeType === "PROCESS")
-                    d3Node.classed("selectedP", true);
-                else if (nodeData.nodeType === "CONCEPT")
-                    d3Node.classed("selectedG", true);
-                else if (nodeData.nodeType === "COMPOSITION")
-                    d3Node.classed("selectedC", true);
+                d3Node.classed(nodeData.classforSelection, true);
 		//d3Node.classed(this.consts.selectedClass, true);
 		if(thisGraph.state.selectedNode)
 		{
@@ -593,16 +592,16 @@ document.onload = (function(d3)
 		var thisGraph = this;
                 var graphClass;
                 if (thisGraph.state.selectedNode.nodeType === "PROCESS")
-                    graphClass = "selectedP";
+                    graphClass = "conceptP";
                 else if (thisGraph.state.selectedNode.nodeType === "CONCEPT")
-                    graphClass = "selectedG";
+                    graphClass = "conceptG";
                 else if (thisGraph.state.selectedNode.nodeType === "COMPOSITION")
-                    graphClass = "selectedC";
+                    graphClass = "conceptC";
                 
 		thisGraph.circles.filter(function(cd)
 			{
 				return cd.id === thisGraph.state.selectedNode.id;
-			}).classed(graphClass, false);
+			}).classed(thisGraph.state.selectedNode.classforSelection, false);
                                 //.classed(thisGraph.consts.selectedClass, false);
 		thisGraph.state.selectedNode = null;
 	};
@@ -936,7 +935,9 @@ document.onload = (function(d3)
 		// remove old links
 		paths.exit().remove();
 
+    
 		// update existing nodes
+                
 		thisGraph.circles = thisGraph.circles.data(thisGraph.nodes, function(d)
 			{
 				return d.id;
@@ -946,15 +947,21 @@ document.onload = (function(d3)
 				return "translate(" + d.x + "," + d.y + ")";
 			});
 
+
 		// add new nodes
+                var color = d3.scale.category20();
+                
 		var newGs = thisGraph.circles.enter()
 						.append("g");
-
-		newGs.classed(consts.circleGClass, true)
-			.attr("transform", function(d)
+                                        
+		//newGs.classed(d.classforSelection, true)
+			newGs.attr("transform", function(d)
 			{
 				return "translate(" + d.x + "," + d.y + ")";
 			})
+                        .attr("class", function(d) { return d.classforNode; })
+                        //.style("opacity", .5)
+			//.style("fill", function(d) { return color(d.classforNode); })
 			.on("mouseover", function(d)
 			{
 				if(state.shiftNodeDrag)
@@ -1028,7 +1035,7 @@ document.onload = (function(d3)
 			{
 				thisGraph.insertTitleLinebreaks(d3.select(this), d.title);
 			});
-
+                        
 		// remove old nodes
 		thisGraph.circles.exit().remove();
 	};
