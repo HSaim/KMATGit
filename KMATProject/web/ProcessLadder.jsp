@@ -30,8 +30,8 @@
                 <!-- END: header -->
                 
                 <!-- START: Banner -->
-                 <aside id="banner" style="background-image: url(images/magicprocess-small.jpg);">
-                    <%--
+                <%--<aside id="banner" style="background-image: url(images/DESIGN-PROCESS1.jpg); background-repeat: no-repeat; background-position:center;">
+                   
                      <div class="container">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
@@ -44,11 +44,28 @@
                             </div>
                         </div>
                     </div>
-                    --%>
-		</aside>
+                    
+		</aside>--%>
+                
+                <aside id="hero" class="js-fullheight">
+                    <div class="flexslider js-fullheight">
+                        <ul class="slides">
+                            <li style="background-image: url(images/DESIGN-PROCESS1.jpg); background-repeat: no-repeat; background-position:center; background-size: contain;">
+                                <div class="overlay-gradient"></div>
+                                <div class="container">
+                                    <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+                                        <div class="slider-text-inner desc">
+                                               <h2 class="heading-section">Process Ladders</h2>			   					
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+		</aside>   
                 <!-- END: Banner-->
                 
-                <!-- START: Recover Account Form -->
+                <!-- START: Process Ladder Contents -->
                 <div id="contact-section">
                     <div class="container">
                         <div class="row text-center">                            
@@ -76,7 +93,7 @@
                         </table>
                     </div>
                 </div>
-                <!-- END: Recover Account Form -->
+                <!-- END: Process Ladder Contents -->
                 
                  <%-- adds js --%>
                 <jsp:include page="includes/js.jsp" /> 

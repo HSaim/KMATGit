@@ -15,7 +15,7 @@
 	<title>KMAT-Home</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Knowledge Management for All Tool (KMAT)" />
-	<meta name="keywords" content="KMAT, resource, concept, concept map, list, tool" />
+	<meta name="keywords" content="KMAT, resource, concept, concept map, list, tool, resources, composition, ladder, process" />
 	<meta name="author" content="KMAT Team" />
         
         <jsp:include page="includes/link.jsp" /> 
@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center features-heading animate-box" data-animate-effect="fadeIn">
                                 <h2>KMAT Features</h2>
-                                <p>KMAT provides following basic components. <br> Signup to use them.</p>
+                                <p>KMAT provides following basic components. <br> Sign-up to use them.</p>
                             </div>
                            
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
@@ -55,7 +55,7 @@
                                     <div class="sub-feature-innter">
                                         <h3><a href="ProcessLadder.jsp">Process Ladders</a></h3>
                                         <div class="price-status">
-                                            <span class="price">Program in excitation</span>
+                                            <span class="price">Program excitation</span>
                                         </div>
                                         <p>Represent the processes being run in an organization</p>
                                     </div>
@@ -71,7 +71,7 @@
                                 <div class="sub-feature">
 
                                     <figure>
-                                        <img src="images/CompositionLadder1.jpg" alt="Composition Ladder" class="img-responsive">
+                                        <img src="images/CompositionLadder1_1.jpg" alt="Composition Ladder" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
@@ -93,15 +93,15 @@
                                 <div class="sub-feature">
 
                                     <figure>
-                                        <img src="images/slide_3.jpg" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                        <img src="images/cptmap2.png" alt="Concept Map" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
-                                        <h3><a href="#">Concept Maps</a></h3>
+                                        <h3><a href="ConceptMap.jsp">Concept Maps</a></h3>
                                         <div class="price-status">
-                                            <span class="price">Relations between ladders and other components</span>
+                                            <span class="price">Relationships</span>
                                         </div>
-                                        <p>Represent the processes being run in an organization</p>
+                                        <p>Represent relationships between ideas, images, or words</p>
                                     </div>
                                     <p class="sub-feature-specification">
                                             <!--
