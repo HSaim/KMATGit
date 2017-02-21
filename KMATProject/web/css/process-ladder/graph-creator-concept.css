@@ -453,7 +453,21 @@ path.link.hidden
 }
 
 /* Edge on Selection */
-path.link.selected 
+path.link.selectedG
+{
+	stroke: yellow;
+	filter:url('#drop-shadow');
+	transform:scale(1,1) translate3d(0,0,0);
+}
+
+path.link.selectedC
+{
+	stroke: yellow;
+	filter:url('#drop-shadow');
+	transform:scale(1,1) translate3d(0,0,0);
+}
+
+path.link.selectedP 
 {
 	stroke: yellow;
 	filter:url('#drop-shadow');
