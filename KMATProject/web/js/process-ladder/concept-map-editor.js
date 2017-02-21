@@ -77,9 +77,12 @@ document.onload = (function(d3)
 		thisGraph.maxZoom = 3;
 		thisGraph.firstNodeData = null;	//root node
 		//set root node rootNodeId
-		if(nodes.length !== 0)
+		if(nodes.length !== 0 && nodes.length !== 1)
 			thisGraph.firstNodeData = JSON.parse(JSON.stringify(nodes.filter(function(n){return n.id === ladder.rootNodeId;})[0]));
-		thisGraph.numTotalNodes = nodes.length;
+		else if (nodes.length === 1)
+                        thisGraph.firstNodeData = JSON.parse(JSON.stringify(nodes[0]));
+            
+            thisGraph.numTotalNodes = nodes.length;
 		thisGraph.ladder = JSON.parse(JSON.stringify(ladder));
 		
 		thisGraph.state = 

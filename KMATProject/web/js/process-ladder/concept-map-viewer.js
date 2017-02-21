@@ -77,7 +77,7 @@ document.onload = (function(d3)
                 
 		if(nodes.length !== 0 && nodes.length !== 1)
 			thisGraph.firstNodeData = JSON.parse(JSON.stringify(nodes.filter(function(n){return n.id === ladder.rootNodeId;})[0]));
-                else if (nodes.length == 1)
+                else if (nodes.length === 1)
                         thisGraph.firstNodeData = JSON.parse(JSON.stringify(nodes[0]));
             
             thisGraph.numTotalNodes = nodes.length;
