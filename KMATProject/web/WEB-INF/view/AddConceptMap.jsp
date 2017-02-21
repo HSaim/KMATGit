@@ -34,7 +34,7 @@
          <jsp:include page="../../includes/js.jsp" /> 
     </head>
     
-    <body class = "add-c-map" id = "add-concept-map-body">
+    <body class = "add-c-map" id = "add-process-ladder-body">
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">
