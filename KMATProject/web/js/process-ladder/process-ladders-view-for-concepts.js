@@ -38,15 +38,21 @@ xhttp.onreadystatechange = function()
 
 			//** Ladder names **//
 			var col1 = document.createElement('div');
+                        //col1.setAttribute("id", "editIt");
+                        //Hyperlink Text Selector
+                        //col1.setAttribute("contentEditable", true);
+                        //document.getElementById('editIt').contentEditable = true;
 			col1.setAttribute("class", "col-md-6 table-row-div-align");
 			var col1href = document.createElement('a');
 			col1href.setAttribute("class", "ladder-view-table-link w3-display-middle");
 			col1href.innerHTML = "\n" + allProcessLadders[i].name;
+                        col1href.href = "view-a-process-ladder?ladder=" + JSON.stringify(allProcessLadders[i]);
+                        col1href.setAttribute('target', '_blank');
 //TODO: check if window.sessionStorage would be a better option
 			//set link to view ladder 
-			var url1 = "window.location.href='view-a-process-ladder?ladder=" + JSON.stringify(allProcessLadders[i]) + "'";
+			///var url1 = "window.location.href='view-a-process-ladder?ladder=" + JSON.stringify(allProcessLadders[i]) + "'";
 			//col1href.setAttribute("onclick", "window.location.href='view-a-process-ladder'");
-			col1href.setAttribute("onclick", url1);
+			///col1href.setAttribute("onclick", url1);
 			var col1h5 = document.createElement('h5');
 			col1.style.left = "20px";
 			col1h5.appendChild(col1href);
@@ -71,11 +77,13 @@ xhttp.onreadystatechange = function()
 			var col1chref = document.createElement('a');
 			col1chref.setAttribute("class", "ladder-view-table-link w3-display-middle");
 			col1chref.innerHTML = allCompositionLadders[i].name;
+                        col1chref.href = "view-a-composition-ladder?ladder=" + JSON.stringify(allCompositionLadders[i]);
+                        col1chref.setAttribute('target', '_blank');
 //TODO: check if window.sessionStorage would be a better option
 			//set link to view ladder 
-			var url1c = "window.location.href='view-a-composition-ladder?ladder=" + JSON.stringify(allCompositionLadders[i]) + "'";
+			///var url1c = "window.location.href='view-a-composition-ladder?ladder=" + JSON.stringify(allCompositionLadders[i]) + "'";
 			//col1chref.setAttribute("onclick", "window.location.href='view-a-composition-ladder'");
-			col1chref.setAttribute("onclick", url1c);
+			///col1chref.setAttribute("onclick", url1c);
 			var col1ch5 = document.createElement('h5');
 			col1c.style.left = "20px";
 			col1ch5.appendChild(col1chref);
