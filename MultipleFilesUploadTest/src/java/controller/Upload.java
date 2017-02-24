@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.ServletContext;
@@ -87,6 +88,7 @@ public class Upload extends HttpServlet {
         List<Part> fileParts = request.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList()); 
         
         for (Part filePart : fileParts) {
+            
             /** Any of the following way can be used **/
             // String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.            
             String fileName = extractFileName(filePart);
@@ -98,12 +100,12 @@ public class Upload extends HttpServlet {
             File file = new File(fileSaveDir, fileName);
 
             try (InputStream input = filePart.getInputStream()) {
-                Files.copy(input, file.toPath());
+                Files.copy(input, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 done = 1;
                 result = "Upload has been done successfully!";
             }
             catch (Exception e){
-                e.printStackTrace();
+                //e.getLocalizedMessage();
                 result = e.toString();
                 done =0;
             }            
