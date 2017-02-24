@@ -33,6 +33,7 @@ public class LadderBean implements java.io.Serializable
 	{
 		PROCESS,
 		COMPOSITION,
+                CONCEPT,
 		ROLES
 	};
 	
@@ -124,7 +125,7 @@ public class LadderBean implements java.io.Serializable
 	{
 		this.ladderType = ladderType;
 	}
-
+        
 	public ArrayList<NodeBean> getNodes()
 	{
 		return nodes;

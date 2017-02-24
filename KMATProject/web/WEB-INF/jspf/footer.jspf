@@ -25,9 +25,9 @@
                                     <div class="col-md-5">
                                             <h3>KMAT Features</h3>
                                             <ul class="link">
-                                                    <li><a href="#">Process Ladders</a></li>
-                                                    <li><a href = "">Composition Ladders</a></li>
-                                                    <li><a href="#">Concept Maps</a></li>
+                                                    <li><a href="ProcessLadder.jsp">Process Ladders</a></li>
+                                                    <li><a href = "CompositionLadder.jsp">Composition Ladders</a></li>
+                                                    <li><a href="ConceptMap.jsp">Concept Maps</a></li>
                                                     <li><a href="#">Resources</a></li>
                                                     <li><a href="#">Tools</a></li>
                                             </ul>

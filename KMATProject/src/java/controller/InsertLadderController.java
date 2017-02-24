@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.json.stream.JsonGenerator;
 import javax.json.stream.JsonGeneratorFactory;
+import model.ConceptMapBean;
+import model.ConceptNodeBean;
 /**
  *
  * @author Maryam Khalid
@@ -243,6 +245,198 @@ public class InsertLadderController extends HttpServlet
 			PrintWriter out = response.getWriter();
 			out.write(newLadderId+"");
 		}
+                
+                else if(action.equals("save-concept-map"))
+		{
+			String ladderString = request.getParameter("newLadder");
+			int newLadderId = 0;
+
+			//JSON readers
+			try (JsonReader jsonReader = Json.createReader(new StringReader(ladderString)))
+			{
+				JsonObject ladderObject = jsonReader.readObject();
+
+				ConceptMapBean newLadder = new ConceptMapBean(ladderObject.getString("name"));
+				newLadder.setId(ladderObject.getInt("id"));
+				newLadder.setLadderType(ConceptMapBean.LadderType.valueOf(ladderObject.getString("ladderType")));
+
+				if(!ladderObject.isNull("description"))
+					newLadder.setDescription(ladderObject.getString("description"));
+				else
+					newLadder.setDescription("");
+				
+				newLadder.setRootNodeId(ladderObject.getInt("rootNodeId"));
+				
+				if(!ladderObject.isNull("ownerId"))
+					newLadder.setOwnerId(ladderObject.getInt("ownerId"));
+				else
+					newLadder.setOwnerId(0);
+				
+				if(!ladderObject.isNull("createDt"))
+				{	
+					newLadder.setCreateDate(new Timestamp(Long.parseLong(ladderObject.getString("createDt"))));
+				}
+				else
+				{
+					Date utilDate = new java.util.Date();
+					newLadder.setCreateDate(new Timestamp(utilDate.getTime()));
+				}
+				
+				if(!ladderObject.isNull("updateDt"))
+				{	
+					newLadder.setUpdateDate(new Timestamp(Long.parseLong(ladderObject.getString("updateDt"))));
+				}
+				else
+				{
+					Date utilDate = new java.util.Date();
+					newLadder.setUpdateDate(new Timestamp(utilDate.getTime()));
+				}
+				
+				JsonArray jsonNodesArray = ladderObject.getJsonArray("nodes");
+				ArrayList<ConceptNodeBean> nodes = new ArrayList<>();
+				for(int i = 0; i < jsonNodesArray.size(); i++)
+				{
+					JsonObject newNodeObject = jsonNodesArray.getJsonObject(i);
+					double posX = newNodeObject.getJsonNumber("x").doubleValue();
+					double posY = newNodeObject.getJsonNumber("y").doubleValue();
+					//new node
+					ConceptNodeBean newNode = new ConceptNodeBean(newNodeObject.getString("title"), posX, posY);
+					//id
+					newNode.setNodeId(newNodeObject.getInt("id"));
+					//type
+					newNode.setNodeType(ConceptNodeBean.NodeType.valueOf(newNodeObject.getString("nodeType")));
+                                        newNode.setClassforSelection(newNodeObject.getString("classforSelection"));
+                                        newNode.setClassforNode(newNodeObject.getString("classforNode"));
+                                        
+                                        if (newNodeObject.getString("nodeType").equals("PROCESS"))
+                                        {
+                                            if (LadderDAO.ifLadderExists("PROCESS", newNodeObject.getString("title")) <= 0)
+                                            {
+                                                response.setContentType("text/html;charset=UTF-8");
+                                                PrintWriter out = response.getWriter();
+                                                out.write("Process Ladder " + newNodeObject.getString("title") + " does not exist."+"");
+                                                return;
+                                            }
+                                        }
+                                        else if(newNodeObject.getString("nodeType").equals("COMPOSITION"))
+                                        {
+                                            if (LadderDAO.ifLadderExists("COMPOSITION", newNodeObject.getString("title")) <= 0)
+                                            {
+                                                response.setContentType("text/html;charset=UTF-8");
+                                                PrintWriter out = response.getWriter();
+                                                out.write("Composition Ladder " + newNodeObject.getString("title") + " does not exist."+"");
+                                                return;
+                                            }
+                                        }
+					//descripton
+					if(newNodeObject.isNull("description"))
+						newNode.setDescription("");
+					else
+						newNode.setDescription(newNodeObject.getString("description"));
+
+					//tools, users and resources
+					if(!newNodeObject.isNull("tools"))
+					{
+						JsonArray nodeToolsJson = newNodeObject.getJsonArray("tools");
+						for(int j = 0; j < nodeToolsJson.size(); j++)
+						{
+							newNode.getToolIds().add(nodeToolsJson.getInt(j));
+						}
+					}
+					if(!newNodeObject.isNull("resources"))
+					{
+						JsonArray nodeResourcesJson = newNodeObject.getJsonArray("resources");
+						for(int j = 0; j < nodeResourcesJson.size(); j++)
+						{
+							newNode.getResourceIds().add(nodeResourcesJson.getInt(j));
+						}
+					}
+					if(!newNodeObject.isNull("users"))
+					{
+						JsonArray nodeUsersJson = newNodeObject.getJsonArray("users");
+						for(int j = 0; j < nodeUsersJson.size(); j++)
+						{
+							newNode.getSharedUserIds().add(nodeUsersJson.getInt(j));
+						}
+					}
+					nodes.add(newNode);
+				}
+
+				JsonArray jsonEdgesArray = ladderObject.getJsonArray("edges");
+				ArrayList<EdgeBean> edges = new ArrayList<>();
+				for(int i = 0; i < jsonEdgesArray.size(); i++)
+				{
+					JsonObject newEdgeObject = jsonEdgesArray.getJsonObject(i);
+					EdgeBean newEdge = new EdgeBean();
+					newEdge.setEdgeId(newEdgeObject.getInt("id"));
+
+					if(newEdgeObject.isNull("title"))
+						newEdge.setName("");
+					else
+						newEdge.setName(newEdgeObject.getString("title"));
+
+					if(newEdgeObject.isNull("description"))
+						newEdge.setDescription("");
+					else
+						newEdge.setDescription(newEdgeObject.getString("description"));
+					newEdge.setEdgeType(EdgeBean.EdgeType.valueOf(newEdgeObject.getString("edgeType")));
+
+					//to (target) and from (source)
+					newEdge.setFromNode(newEdgeObject.getInt("source"));
+					newEdge.setToNode(newEdgeObject.getInt("target"));
+
+					//tools, users and resources
+					if(!newEdgeObject.isNull("tools"))
+					{
+						JsonArray edgeToolsJson = newEdgeObject.getJsonArray("tools");
+						for(int j = 0; j < edgeToolsJson.size(); j++)
+						{
+							newEdge.getToolIds().add(edgeToolsJson.getInt(j));
+						}
+					}
+
+					if(!newEdgeObject.isNull("resources"))
+					{
+						JsonArray edgeResourcesJson = newEdgeObject.getJsonArray("resources");
+						for(int j = 0; j < edgeResourcesJson.size(); j++)
+						{
+							newEdge.getResourceIds().add(edgeResourcesJson.getInt(j));
+						}
+					}
+
+					if(!newEdgeObject.isNull("users"))
+					{
+						JsonArray edgeUsersJson = newEdgeObject.getJsonArray("users");
+						for(int j = 0; j < edgeUsersJson.size(); j++)
+						{
+							newEdge.getSharedUserIds().add(edgeUsersJson.getInt(j));
+						}
+					}
+					edges.add(newEdge);
+				}
+
+				//add nodes and edges to ladder
+				newLadder.setNodes(nodes);
+				newLadder.setEdges(edges);
+
+				//System.out.println("Parameter Names: " + request.getParameterNames());
+
+				if(newLadder.getId() == 0)
+				{
+					//save new ladder
+					newLadderId = LadderDAO.insertConceptMap(newLadder);
+				}
+				else
+				{
+					//System.out.println("Updating Ladder!! - in insert ladder controller");
+					LadderDAO.updateConceptMap(newLadder);
+				}
+			}
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.write(newLadderId+"");
+		}
+                
 		else if(action.equals("delete-ladder"))
 		{
 			String idString = request.getParameter("ladderId");

@@ -16,9 +16,11 @@
 
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
-    response.setHeader("Pragma","no-cache"); 
-    response.setHeader("Cache-Control","no-store");
-    response.setDateHeader("Expires",-1);
+    response.setHeader("Cache-Control","no-cache");  //Forces caches to obtain a new copy of the page from the origin server
+    response.setHeader("Cache-Control","no-store");  //Directs caches not to store the page under any circumstance
+    response.setDateHeader("Expires",-1);            //Causes the proxy cache to see the page as "stale"
+    response.setHeader("Pragma","no-cache");         //HTTP 1.0 backward compatibility
+    
     if(session.getAttribute("CurrentSessionUser")==null){
     
         response.sendRedirect("Home.jsp");
@@ -32,7 +34,7 @@
        <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Tools available in Knowledge Management for All Tool - KMAT" />
+	<meta name="description" content="Update the profile of a KMAT user" />
 	<meta name="keywords" content="KMAT, users, roles, knowledge engineers, concept map, list, tool, composition, composition ladder" />
 	<meta name="author" content="KMAT Team" />
         
@@ -67,9 +69,9 @@
                         <div class="col-md-10 col-md-push-2">
                            <%-- <input type = text value = "<%=request.getParameter("x")%>"> --%>
                            <%
-                            UserBean user = new UserBean();
-                            //user = request.getParameter("user");
-                            user = (UserBean) session.getAttribute("ret-user");
+                                UserBean user = new UserBean();
+                                //user = request.getParameter("user");
+                                user = (UserBean) session.getAttribute("ret-user");
                             %>
                             <%--
                            <c:set var="currentUser" value="${user}" />
@@ -80,40 +82,33 @@
                            <form name = "editUser" method="post" action="GetUsersController?action=update-user&&userId=<%=user.getUserId()%>" onSubmit="return verifyEmail()">                               
                                 
                                  <div class="row">
-                                     <div class="col-md-6">
-                                         First Name*
-                                     </div>
-                                     <div class="col-md-6">
-                                         Last Name*
-                                     </div>
+                                     
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="firstname" placeholder ="null" placeholder ="null" value = "<%=user.getFirstName() %>" required>
+                                            <label for="firstname">First Name*</label>
+                                            <input type="text" class="form-control" id = "firstname" name="firstname" placeholder ="null" placeholder ="null" value = "<%=user.getFirstName() %>" onkeyup="nospaces(this);"  required>                                            
+                                        </div>                                        
+                                    </div>
                                             
-                                        </div>
-                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="lastname" placeholder ="null" value = "<%=user.getLastName() %>"  required>
-                                          
-                                        </div>
+                                            <label for="lastname">Last Name*</label>
+                                            <input type="text" class="form-control" id = "lastname" name="lastname" placeholder ="null" value = "<%=user.getLastName() %>"  onkeyup="nospaces(this);"  required>                                          
+                                        </div>                                        
                                     </div>
+                                            
                                     <div class="col-md-12">
-                                        User Name/User Id*
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">                                            
-                                            <input type="text" class="form-control" name="user_name" placeholder ="null"  readonly value = "<%=user.getUserName() %>"  required>                                    
-                                        </div>
-                                    </div>
-                                        
-                                    <div class="col-md-12">
-                                        Password*
-                                    </div>
+                                        <div class="form-group">   
+                                            <label for="user_name">User Name/User Id*</label>
+                                            <input type="text" class="form-control" id = "user_name" name="user_name" placeholder ="null"  readonly value = "<%=user.getUserName() %>"   required>                                    
+                                        </div>                                        
+                                    </div>                                        
+                                    
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                                <!--<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>-->
-                                                <input type="text" class="form-control" name="password"  placeholder ="null" id = "password"  value = "<%=user.getPassword() %>" required> 
+                                            <!--<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>-->
+                                            <label for="password">Password*</label>
+                                            <input type="text" class="form-control" name="password"  placeholder ="null" id = "password"  value = "<%=user.getPassword() %>" required> 
                                         </div>
                                     </div>
                                      <%--
@@ -128,63 +123,57 @@
                                      --%>
                                      
                                     <div class="col-md-6">
-                                       Primary Email*
-                                    </div>
-                                    <div class="col-md-6">
-                                       Secondary Email
-                                    </div>
-                                    <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" name="p_email" placeholder ="null" value = "<%=user.getPriEmail()%>" required>
-                                            </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" name="s_email" placeholder ="null"  value = "<%=user.getSecEmail()%>">
-                                            </div>
-                                    </div>
-                                            
-                                    <div class="col-md-6">
-                                       Postal Address
-                                    </div>
-                                    <div class="col-md-6">
-                                       Permanent Address
-                                    </div>
-                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="postal_address" placeholder ="null"  value = "<%=user.getPosAddress()%>">
+                                             <label for="p_email">Primary Email*</label>
+                                            <input type="email" class="form-control" id = "p_email" name="p_email" placeholder ="null" value = "<%=user.getPriEmail()%>" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="per_address" placeholder ="null" value = "<%=user.getPerAddress()%>">
+                                            <label for="s_email">Secondary Email</label>
+                                            <input type="email" class="form-control" id = "s_email" name="s_email" placeholder ="null"  value = "<%=user.getSecEmail()%>">
                                         </div>
+                                    </div>                                            
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for ="postal_address">Postal Address</label>
+                                            <input type="text" class="form-control" id="postal_address" name="postal_address" placeholder ="null"  value = "<%=user.getPosAddress()%>" onkeyup="nospaces(this);" >
+                                        </div>                                        
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for ="per_address">Permanent Address</label>
+                                            <input type="text" class="form-control" id ="per_address" name="per_address" placeholder ="null" value = "<%=user.getPerAddress()%>">
+                                        </div>
+                                    </div>                                    
                                     
                                     <div class="col-md-4">
-                                        Work Phone
-                                    </div>
-                                    <div class="col-md-4">
-                                        Mobile Phone
-                                    </div>
-                                    <div class="col-md-4">
-                                        Home Phone
-                                    </div>
-                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="w_phone"   placeholder ="null" value = "<%=user.getWorkPhone()%>">
+                                            <label for ="w_phone">Work Phone</label>
+                                            <input type="text" class="form-control" id= "w_phone" name="w_phone"   placeholder ="null" value = "<%=user.getWorkPhone()%>">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="m_phone" placeholder ="null" value = "<%=user.getMobPhone()%>">
+                                            <label for ="m_phone">Mobile Phone</label>
+                                            <input type="text" class="form-control" id="m_phone" name="m_phone" placeholder ="null" value = "<%=user.getMobPhone()%>">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="h_phone"  placeholder ="null" value = "<%=user.getHomePhone()%>">
+                                            <label for ="h_phone">Home Phone</label>
+                                            <input type="text" class="form-control" id = "h_phone" name="h_phone"  placeholder ="null" value = "<%=user.getHomePhone()%>">
                                         </div>
                                     </div>
+                                    <div class = "col-md-12">
+                                        <label for = "desc">Comments</label>
+                                        <textarea name="" class="form-control" id="desc" cols="30" rows="7" placeholder="null"></textarea>
+                                    </div>
+                                   
+                                </div>
+                                        
+                                <div class="row" style="margin-top: 5px">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="submit" value="Update" class="btn btn-primary">
@@ -196,6 +185,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                    
                             </form>
                             
                         </div>

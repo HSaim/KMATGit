@@ -5,7 +5,7 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
     </servlet>
-	<servlet-mapping>
+    <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
     </servlet-mapping>
@@ -39,7 +39,7 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-roles</url-pattern>
     </servlet-mapping>
-	<servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-a-roles-hierarchy</url-pattern>
     </servlet-mapping>
@@ -47,7 +47,7 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/add-role</url-pattern>
     </servlet-mapping>
-	<servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/edit-roles-hierarchy</url-pattern>
     </servlet-mapping>
@@ -55,7 +55,7 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-composition-ladders</url-pattern>
     </servlet-mapping>
-	<servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-a-composition-ladder</url-pattern>
     </servlet-mapping>
@@ -63,7 +63,7 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/add-composition-ladder</url-pattern>
     </servlet-mapping>
-	<servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/edit-composition-ladder</url-pattern>
     </servlet-mapping>
@@ -71,7 +71,7 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-process-ladders</url-pattern>
     </servlet-mapping>
-	<servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-a-process-ladder</url-pattern>
     </servlet-mapping>
@@ -79,13 +79,29 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/add-process-ladder</url-pattern>
     </servlet-mapping>
-	<servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/edit-process-ladder</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-process-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-concept-map</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-concept-maps</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-concept-map</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-concept-map</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
@@ -107,6 +123,7 @@
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/change-password</url-pattern>
     </servlet-mapping>
+    
     <servlet>
         <servlet-name>GetUsersController</servlet-name>
         <servlet-class>controller.GetUsersController</servlet-class>
@@ -115,6 +132,7 @@
         <servlet-name>GetUsersController</servlet-name>
         <url-pattern>/GetUsersController</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>RunToolController</servlet-name>
         <url-pattern>/RunToolController</url-pattern>
@@ -123,10 +141,12 @@
         <servlet-name>RunToolController</servlet-name>
         <servlet-class>controller.RunToolController</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>InsertLadderController</servlet-name>
         <servlet-class>controller.InsertLadderController</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>GetLaddersController</servlet-name>
         <servlet-class>controller.GetLaddersController</servlet-class>
@@ -139,6 +159,7 @@
         <servlet-name>GetLaddersController</servlet-name>
         <url-pattern>/GetLaddersController</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>InsertResourceController</servlet-name>
         <servlet-class>controller.InsertResourceController</servlet-class>
@@ -147,6 +168,7 @@
         <servlet-name>InsertResourceController</servlet-name>
         <url-pattern>/insert-resource</url-pattern>
     </servlet-mapping>
+    
     <servlet>
         <servlet-name>GetResourceController</servlet-name>
         <servlet-class>controller.GetResourceController</servlet-class>
@@ -177,6 +199,8 @@
             <url-pattern>/Contact.jsp</url-pattern>
             <url-pattern>/NewProcessLadder.jsp</url-pattern>
             <url-pattern>/RecoverAccount.jsp</url-pattern>
+            <url-pattern>/ProcessLadder.jsp</url-pattern>
+            <url-pattern>/CompositionLadder.jsp</url-pattern>
             <!--
             <url-pattern>/News.jsp</url-pattern>            
             <url-pattern>/LoginAgain.jsp</url-pattern>

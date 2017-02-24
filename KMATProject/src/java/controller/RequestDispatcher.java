@@ -99,7 +99,19 @@ public class RequestDispatcher extends HttpServlet {
 		else if (userPath.equals("/edit-composition-ladder")){
             userPath = "/EditCompositionLadder";
         }
-		
+                else if(userPath.equals("/view-concept-maps")){
+            userPath = "/ViewConceptMaps";
+        }
+                else if(userPath.equals("/view-a-concept-map")){
+            userPath = "/ViewAConceptMap";
+        }
+        else if(userPath.equals("/add-concept-map")){
+            userPath = "/AddConceptMap";
+        }
+        else if(userPath.equals("/edit-concept-map")){
+            userPath = "/EditConceptMap";
+        }
+        
         else if(userPath.equals("/view-process-ladders")){
             userPath = "/ViewProcessLadders";
         }

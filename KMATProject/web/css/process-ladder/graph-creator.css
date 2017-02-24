@@ -21,7 +21,7 @@
 	float: left;
 	position: relative;
     top: 5px;
-    //width: 360px;
+    /*width: 360px;*/
     margin-right: 10px;
 	display: block;
 	box-sizing: border-box;
@@ -83,12 +83,12 @@
     border: 0;
     box-shadow: none;
 	/*padding: 7px 8px;*/
-    //font-size: 13px;
+    /*font-size: 13px;*/
     color: #333;
     vertical-align: middle;
 	border-radius: 3px;
     outline: none;
-	//font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	/*font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";*/
 	margin: 0;
 	box-sizing: border-box;
 	-webkit-appearance: textfield;
@@ -124,22 +124,22 @@ body
 /* Graph container */
 #main-svg
 {
-	//top: 11%;
-	//right: 1.5%;
+	/*top: 11%;
+	//right: 1.5%;*/
 	float: none;
 	margin-top: 5px;
 	position: relative;
 	display: block;
 	margin: 0 auto;
 	width: 100%;
-	height: 600px;		//TODO: make responsive
+	height: 600px;		/*TODO: make responsive*/
 	z-index: 1; /* Sit on top */
 	margin-bottom: 2em;
 	margin-left: 1em;
 	border: 2px solid #EEEEEE;
 	overflow: hidden;
 	
-	//position: relative;
+	/*position: relative;
 	//float: none;
 	//position: absolute;
 	/*display: inline;
@@ -157,7 +157,7 @@ body
 .graph-buttons, #graph-buttons
 {
 	position: relative;
-	//margin-left: 100px;
+	/*margin-left: 100px;*/
 	outline: none;
 }
 
@@ -168,15 +168,15 @@ body
 	width: 27px;
 	height: 27px;
 	opacity: 0.7;
-	//padding-left: 200px;
-	/*padding-right: 3px;*/
-	//margin-left: 100px;
+	/*padding-left: 200px;
+	/*padding-right: 3px;
+	//margin-left: 100px;*/
 	outline: none;
 }
 
 #graph-settings-icon
 {
-	//float: none;
+	/*float: none;*/
 	width: 25px;
 	height: 25px;
 	opacity: 0.7;
@@ -340,14 +340,14 @@ path.link.selected
 
 #error-button
 {
-	//display: none;
+	/*display: none;*/
 	display: block;
 	position: absolute;
 	right: 3%;
-	//bottom: 5%;
+	/*bottom: 5%;*/
 	z-index: 5;
 	outline: #000;
-	//margin-top: 40%;
+	/*margin-top: 40%;*/
 }
 
 /* Tooltip text */
