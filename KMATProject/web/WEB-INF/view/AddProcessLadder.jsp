@@ -57,7 +57,7 @@
                         <!-- START: Process ladder-svg and its menus area-->
                         <div class="col-md-10 col-md-push-2">
 							<br>
-                            <div class="row">
+                            <div id = "ladder-header-row" class="row">
 
                                 <div class="col-md-5 col-md-offset-3">
                                    
@@ -218,7 +218,7 @@
                                         <h2 style='padding:5px'>Settings</h2>
                                         <label style='font-family: Verdana, Geneva, sans-serif; font-size: 14.5px;'>Description:</label>
                                         <br>
-                                        <textarea id="graph-settings-description" class="modal-description" style='margin: 10px 0px; width: 95%;' id="settings-modal-description-id" rows="15" cols="54"></textarea>               
+                                        <textarea id="graph-settings-description" class="modal-description" style='margin: 10px 0px; width: 95%;' rows="15" cols="54"></textarea>               
                                     </div>
                                 </div>
                             </div>

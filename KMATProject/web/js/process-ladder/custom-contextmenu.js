@@ -105,17 +105,19 @@
    /**
 	* Positions the menu properly.
 	* 
-	* @param {Object} x The x position
-	* @param {Object} y The y position
-	* @param {Object} scale The scaled value for the parent object
+	* @param {float} x The x position
+	* @param {float} y The y position
+	* @param {float} scale The scaled value for the parent object
+	* @param {float} xOffset The offset relative to the starting of svg
 	*/
 	//function positionMenu(e)
-	function positionMenu(x, y, scale)
+	function positionMenu(x, y, scale, xOffset)
 	{
 		menu.style.transform = "scale(" + scale + ")";
+		//menu.style.transform = 0;
 		
-		clickCoordsX = x;
-		clickCoordsY = y;
+		clickCoordsX = x - xOffset - 15;
+		clickCoordsY = y - 25;
 		menuWidth = menu.offsetWidth + 100;
 		menuHeight = menu.offsetHeight + 4;
 

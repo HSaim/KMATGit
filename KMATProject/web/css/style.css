@@ -3,7 +3,7 @@ Import of other css into main,so only main to be linked with the code
 */
 @import url(left-sidebar.css);
 @import url(sign-in.css);
-@import url(verticalMenu.css);
+/*@import url(verticalMenu.css);*/
 
 @font-face {
   font-family: 'icomoon';

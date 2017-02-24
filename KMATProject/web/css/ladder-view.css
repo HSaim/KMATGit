@@ -28,6 +28,11 @@ and open the template in the editor.
 	//color:black;
 }
 
+.ladder-view-table-row
+{
+	padding-top: 1.5em;
+}
+
 .ladder-view-table-row:hover,
 .ladder-view-table-row:focus
 {
@@ -42,7 +47,9 @@ and open the template in the editor.
 	vertical-align: middle;
 }
 
-a
+.table-scroll-span
 {
-	margin-top: 10px;
+	/*display: block;*/
+	//max-height: 100%;
+	overflow-y: scroll;
 }

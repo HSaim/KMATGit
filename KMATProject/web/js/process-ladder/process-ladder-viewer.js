@@ -834,44 +834,19 @@ document.onload = (function(d3)
 				.attr("transform", "translate(" + d3.event.translate + ") scale(" + d3.event.scale + ")");
 	};
 
-	/**** MAIN ****/
-	// warn the user when leaving
-	window.onbeforeunload = function()
-	{
-		return "Make sure to save your graph locally before leaving :-)";
-	};
-
-	// initial node data
-	/*var nodes = [];
-	var edges = [];*/
-	
-	/*var ladderName = "Ladder 1";
-	//document.getElementById("page-title").innerHTML = "Process Ladder: " + ladderName;
-	var docEl = document.documentElement,
-		bodyEl = document.getElementsByTagName('body')[0];
-
-	var width = window.innerWidth || docEl.clientWidth || bodyEl.clientWidth,
-		height =  window.innerHeight|| docEl.clientHeight|| bodyEl.clientHeight;
-
-	var xLoc = width/2 - 25,
-		yLoc = 100;
-	var nodes = [{title: "new concept", id: 0, x: xLoc, y: yLoc},
-               {title: "new concept", id: 1, x: xLoc, y: yLoc + 200}];
-	var edges = [{id:1, source: nodes[1], target: nodes[0]}];*/
-
 	/** MAIN SVG **/
 	var svg = d3.select("#svg-row")
 				.append("svg")
 				.attr("id", "main-svg");
-		
+	
+	var mainSVG = document.getElementById("main-svg");
+	mainSVG.style.height= (document.getElementById("navbar").clientHeight - (2 * document.getElementById("ladder-header-row").clientHeight)) +"px";
+	
 	var graph = new GraphCreator(svg, ladderAllNodes, ladderAllEdges, aLadder);
 	if(ladderAllNodes !== null)
 	{
 		graph.setIdCt(ladderAllNodes.length);
 	}
 	graph.updateGraph();
-	/*var graph = new GraphCreator(svg, nodes, edges);
-	graph.setIdCt(2);
-	graph.updateGraph();*/
 	
 })(window.d3);

@@ -34,7 +34,7 @@ body
 .task
 {
 	/*extra*/
-	padding: 12px 0;
+	/*padding: 12px 0;*/
 	border-bottom: solid 1px #dfdfdf;
 }
 
@@ -52,8 +52,8 @@ body
 	position: absolute;
 	z-index: 10;
 	/*padding: 12px 0;*/
-	padding: 8px 0 0;
-	width: 150px;
+	/*padding: 8px 0 0;*/
+	width: 125px;
 	background-color: #fff;
 	border: solid 1px #dfdfdf;
 	box-shadow: 1px 1px 2px #cfcfcf;
@@ -68,6 +68,8 @@ body
 .context-menu__items
 {
 	list-style: none;
+	font-size: 12px;
+	font-family: "Roboto", sans-serif;
 	margin: 0;
 	padding: 0;
 }

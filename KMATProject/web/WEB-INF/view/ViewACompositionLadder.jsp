@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-md-10 col-md-push-2">
 							<br>
-                            <div class="row">
+                            <div id = "ladder-header-row" class="row">
 
                                 <div class="col-md-5 col-md-offset-3">
                                     <div>
@@ -86,15 +86,17 @@
                                 <!-- Modal content -->
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                            <span class="close" onclick="closeModal()" style="font-size: 20px; padding-top: 7px">×</span>
+                                            <span class="close" onclick="closeCompositionModal()" style="font-size: 20px; padding-top: 7px">×</span>
                                             <div class="node-name-div">
                                                 <p id="modal-node-name" contenteditable="false">Modal Header<p>
                                             </div>
                                     </div>
+									
                                     <div class="modal-body">
                                         <p style="text-align: left; font-family: Verdana, Geneva, sans-serif; font-size: 14px; color: rgb(77, 77, 77)">Description:&nbsp; 
                                         <textarea class="modal-description" id="modal-description-id" rows="15" cols="54" readonly="true"></textarea> </p>
 
+										<!--
                                         <button class="accordion" id="accordion1" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Linked Tools</button>
                                         <div class="panel" id="accordion1-panel">
                                             <div class="tools-last-accordion" id="tools-last-accordion-item">
@@ -112,6 +114,7 @@
                                             <div class="tools-last-accordion" id="share-last-accordion-item">
                                             </div>
                                         </div>
+										-->
                                         <br>
                                     </div>
 
@@ -139,7 +142,7 @@
                                         <h2 style='padding:5px'>Settings</h2>
                                         <label style='font-family: Verdana, Geneva, sans-serif; font-size: 14.5px;'>Description:</label>
                                         <br>
-                                        <textarea id="graph-settings-description" class="modal-description" style='margin: 10px 0px; width: 95%;' id="settings-modal-description-id" rows="15" cols="54"></textarea>               
+                                        <textarea id="graph-settings-description" class="modal-description" style='margin: 10px 0px; width: 95%;' rows="15" cols="54"></textarea>               
                                     </div>
                                 </div>
                             </div>

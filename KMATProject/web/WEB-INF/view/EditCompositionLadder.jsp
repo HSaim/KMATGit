@@ -52,7 +52,7 @@
                     <div class="row">
                         <div class="col-md-10 col-md-push-2">
 							<br>
-                            <div class="row">
+                            <div id = "ladder-header-row" class="row">
 
                                 <div class="col-md-5 col-md-offset-3">
                                    
@@ -107,7 +107,7 @@
                                 <!-- Modal content -->
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                            <span class="close" onclick="closeModal()" style="font-size: 20px; padding-top: 7px">×</span>
+                                            <span class="close" onclick="closeCompositionModal()" style="font-size: 20px; padding-top: 7px">×</span>
                                             <div class="node-name-div">
                                                 <p id="modal-node-name" contenteditable="true" onfocus="modalHeaderFull()" onblur="modalHeaderClip()">Modal Header<p>
                                             </div>
@@ -116,10 +116,13 @@
                                         <p style="text-align: left; font-family: Verdana, Geneva, sans-serif; font-size: 14px; color: rgb(77, 77, 77)">Description:&nbsp; 
                                         <textarea class="modal-description" id="modal-description-id" rows="15" cols="54"></textarea> </p>
 
+										<!--
                                         <button class="accordion" id="accordion1" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Link Tools</button>
                                         <div class="panel" id="accordion1-panel">
                                             <div class="tools-last-accordion" id="tools-last-accordion-item">
+										-->
                                                 <!--return false after onclick function so that control does not go to href -->
+										<!--
                                                 <a href="" id="tools-add-link" onclick="addToNode('accordion1-panel'); return false;"><img src="images/icons/add-icon.png" id="add-tool-icon" alt="">Add Tool</a>
                                                 <a href="" id="tools-edit-button" onclick="editAccordionItems('accordion1-panel'); return false;">Edit</a>
                                             </div>
@@ -128,7 +131,6 @@
                                         <button class="accordion" id="accordion2">Attach Resources</button>
                                         <div class="panel" id="accordion2-panel">
                                             <div class="tools-last-accordion" id="resources-last-accordion-item">
-                                                <!--return false after onclick function so that control does not go to href -->
                                                 <a href="" id="resources-add-link" onclick="addToNode('accordion2-panel'); return false;"><img src="images/icons/add-icon.png" id="add-resource-icon" alt="">Add Resource</a>
                                                 <a href="" id="resources-edit-button" onclick="editAccordionItems('accordion2-panel'); return false;">Edit</a>
                                             </div>
@@ -137,11 +139,11 @@
                                         <button class="accordion" id="accordion-share">Share with</button>
                                         <div class="panel" id="accordion3-panel">
                                             <div class="tools-last-accordion" id="share-last-accordion-item">
-                                                <!--return false after onclick function so that control does not go to href -->
                                                 <a href="" id="share-add-link" onclick="addToNode('accordion3-panel'); return false;"><img src="images/icons/add-icon.png" id="add-share-icon" alt="">Share</a>
                                                 <a href="" id="share-edit-button" onclick="editAccordionItems('accordion3-panel'); return false;">Edit</a>
                                             </div>
                                         </div>
+										-->
                                         <br>
                                         <!--<input id="modal-checkbox1" type="checkbox" name="rating" value="allowRating"/> <label for="modal-checkbox1">Allow Rating</label> <br><br>
                                         <input id="modal-checkbox2" type="checkbox" name="comments" value="allowComments"> <label for="modal-checkbox2">Allow Comments</label> <br><br>
@@ -155,8 +157,11 @@
                             <!-- END: The Modal -->
                             
                             <!-- START: Inner Modal -->
+							<!--
                             <div id="inner-modal-id" class="inner-modal">
+							-->
                                 <!-- Modal content -->
+							<!--
                                 <div class="inner-modal-content">
                                     <div class="inner-modal-header">
                                         <span id="search-header" class="field-search-border">
@@ -172,6 +177,7 @@
                                     </div>
                                 </div>
                             </div>
+							-->
                             <!-- END: Inner Modal -->
                             
                             <!-- START: context menu for each node - to reassign root -->
@@ -213,7 +219,7 @@
                                         <h2 style='padding:5px'>Settings</h2>
                                         <label style='font-family: Verdana, Geneva, sans-serif; font-size: 14.5px;'>Description:</label>
                                         <br>
-                                        <textarea id="graph-settings-description" class="modal-description" style='margin: 10px 0px; width: 95%;' id="settings-modal-description-id" rows="15" cols="54"></textarea>               
+                                        <textarea id="graph-settings-description" class="modal-description" style='margin: 10px 0px; width: 95%;' rows="15" cols="54"></textarea>               
                                     </div>
                                 </div>
                             </div>

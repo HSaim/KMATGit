@@ -21,6 +21,11 @@ xhttp.onreadystatechange = function()
 		}
 		allCompositionLadders = JSON.parse(xhttp.responseText);
 		//alert(allCompositionLadders.length);
+		
+		var listScrollDiv = document.createElement('div');
+		listScrollDiv.style.overflowY = "scroll";
+		listScrollDiv.style.height= (document.getElementById("navbar").clientHeight - (2*document.getElementById("list-header-row-id").clientHeight)) +"px";
+		
 		for(var i = 0; i < allCompositionLadders.length; i++)
 		{
 			//console.log(allCompositionLadders[i].name);
@@ -33,6 +38,7 @@ xhttp.onreadystatechange = function()
 			col1.setAttribute("class", "col-md-6 table-row-div-align");
 			var col1href = document.createElement('a');
 			col1href.setAttribute("class", "ladder-view-table-link w3-display-middle");
+			//col1href.setAttribute("class", "ladder-view-table-link center-table-cell");
 			col1href.innerHTML = allCompositionLadders[i].name;
 //TODO: check if window.sessionStorage would be a better option
 			//set link to view ladder 
@@ -47,6 +53,7 @@ xhttp.onreadystatechange = function()
 			//** Edit Ladder **//
 			var col2 = document.createElement('div');
 			col2.setAttribute("class", "col-md-3 center-block text-center talign-center table-row-div-align");
+			//col2.setAttribute("class", "col-md-3 center-table-cell");
 			var col2href = document.createElement('a');
 			//set link to edit composition ladder - passing on the ladder
 			var url2 = "window.location.href='edit-composition-ladder?ladder=" + JSON.stringify(allCompositionLadders[i]) + "'";
@@ -62,6 +69,7 @@ xhttp.onreadystatechange = function()
 			//** Delete Ladder **//
 			var col3 = document.createElement('div');
 			col3.setAttribute("class", "col-md-3 center-block text-center talign-center table-row-div-align");
+			//col3.setAttribute("class", "col-md-3 center-table-cell");
 			var col3href = document.createElement('a');
 			//set link to get ladders controller with action: delete-composition-ladder-from-view-ladders
 			col3href.setAttribute("onclick", "deleteLadder("+ allCompositionLadders[i].id + "); return false;");
@@ -78,9 +86,10 @@ xhttp.onreadystatechange = function()
 			rowDiv.appendChild(col1);
 			rowDiv.appendChild(col2);
 			rowDiv.appendChild(col3);
-
-			document.getElementById("inner-body").appendChild(rowDiv);
+			
+			listScrollDiv.appendChild(rowDiv);
 		}
+		document.getElementById("inner-body").appendChild(listScrollDiv);
 	}
 	else
 	{
