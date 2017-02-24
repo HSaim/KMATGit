@@ -98,9 +98,9 @@ public class Upload extends HttpServlet {
             
            
             File file = new File(fileSaveDir, fileName);
-
+            //File file1 = new File("d:\\", fileName);  //Local path
             try (InputStream input = filePart.getInputStream()) {
-                Files.copy(input, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(input, file.toPath() , StandardCopyOption.REPLACE_EXISTING);
                 done = 1;
                 result = "Upload has been done successfully!";
             }
