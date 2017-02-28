@@ -61,43 +61,7 @@ public class InsertResourceController extends HttpServlet {
 
         List items;
         PrintWriter out = response.getWriter();
-        /*try
-        {
-            
-            items = upload1.parseRequest(request);
-            
-            Iterator iter = items.iterator();
-            out.println(items.size());
-            while(iter.hasNext()){
-                FileItem item = (FileItem) iter.next();
-
-                /*if (item.isFormField()) {
-
-                  String name = item.getFieldName();//text1
-                  String value = item.getString();
-                  
-                  out.println(name + " : " + value);
-                  if(name.equals("addname")){
-                      resource.setResourceName(value);
-                  }
-                  else if(name.equals("add-description")){
-                      resource.setResourceDiscription(value);
-                  }
-                  
-                  
-                  
-
-                } else {
-                    //processUploadedFile(item);
-                }
-            
-            }
         
-        }
-        catch(Exception ex){
-            out.println(ex.getMessage() + "\n" + ex.getStackTrace());
-        }
-        */
         
         String resourcename = request.getParameter("addname");
         //PrintWriter out = response.getWriter();
@@ -337,7 +301,7 @@ public class InsertResourceController extends HttpServlet {
         }
         
         }
-    private String typeID(String extention){
+    public String typeID(String extention){
         String typeOfFile = null;
         if(extention.equals("jpg")||extention.equals("png")||extention.equals("bmp")||extention.equals("gif")
                 ||extention.equals("jpeg")||extention.equals("svg")||extention.equals("tiff")){

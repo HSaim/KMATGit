@@ -105,6 +105,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-resource</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-resources</url-pattern>
     </servlet-mapping>    
     <servlet-mapping>

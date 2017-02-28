@@ -4,16 +4,7 @@
     Author     : Habiba Saim
 --%>
 
-<!-- Code to prevent user from accessing any user specific page after logout/session-end -->
-<%
-    response.setHeader("Pragma","no-cache"); 
-    response.setHeader("Cache-Control","no-store");
-    response.setDateHeader("Expires",-1);
-    if(session.getAttribute("CurrentSessionUser")==null){
-    
-        response.sendRedirect("Home.jsp");
-    }
-%>  
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,6 +20,17 @@
         <!-- css includes here -->
         <jsp:include page="../../includes/link.jsp" />
         
+        <style>
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+</style>
         <title>Add Tool</title>
     </head>
     
@@ -55,7 +57,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10 col-md-push-2">
-                        <%-- Add Resource Block Starts --%> 
+                        <%-- Add Tool Block Starts --%> 
 
 
 
@@ -72,47 +74,74 @@
     
         </div>
     </div>
-    <div class="col-md-1">
-        <div class = "form-group">
-            <input type="radio" class = "form-check-input">
-        </div>
-    </div>
+    
     <div class="col-md-11">
         <div class="form-group">
-            
-        <input type = "file" class="form-control-file">
-    
+            <input type = "file" class="form-control-file">   <!--multiple files upload will go here--> 
         </div>
     </div>
     <br/>
-    <div class="col-md-1">
-        <div class = "form-group">
-            <input type="radio" class = "form-check-input">
-        </div>
-    </div>
-    <div class="col-md-8">
-        <div class="form-group">
-            
-        <input type = "text" class="form-control"placeholder="Link of Tool">
-    
-        </div>
-    </div>
+   
     <div class="col-md-3">
         <div class="form-group">
-            
-        <input type = "button" class="form-control"value="Preview">
-    
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Matlab 
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="#">Main</a></li>
+                            <li><a tabindex="-1" href="#">Others</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">JAVA 
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="#">JAR</a></li>
+                            <li><a tabindex="-1" href="#">Script</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" href="#">C++ 
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Exe</a></li>
+                            <li><a href="#">Script</a></li>
+                        </ul>
+                    </li>
+                  
+                </ul>
+            </div>
         </div>
-    </div>
-   <!-- <iframe src="http://www.wikipedia.org"></iframe>-->
+        
+
     
-   <row>
-              <div class="col-md-12" height="100%">   
-                <iframe src="https://google.com" style="width:100%; height:100%;"></iframe>
-                     </div>
-            
-       
- </row>
+        
+    </div><br>
+    <div class="col-md-6">
+            <div class="form-group">
+                <input type="checkbox" value="input">  Input<br>
+                <p>Input Format:</p>
+                <input type="checkbox" value="input-text">  Text<br>
+                <input type="checkbox" value="input-images">  Images<br>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" value="output">  Output<br>
+                <p>Output Format:</p>
+                <input type="checkbox" value="output-text">  Text<br>
+                <input type="checkbox" value="output-images">  Images<br>
+            </div>
+    </div>
+   
+    
+  
    <div class="col-md-12">
                 <div class="form-group">
                     <input type="submit" value="Add Tool" class="btn btn-primary">
@@ -132,7 +161,16 @@
                           
                 <!-- adds js -->                
                 <jsp:include page="../../includes/js.jsp" /> 
-                
+                <script>
+            $(document).ready(function(){
+                $('.dropdown-submenu a.test').on("click", function(e)
+                {
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+                });
+            });
+        </script>
                 <!-- footer.jspf integrates here -->
 
 

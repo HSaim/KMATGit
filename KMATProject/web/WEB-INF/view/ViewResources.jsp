@@ -50,7 +50,7 @@
                 <aside class="heading-bg" > <!--style="background: url(images/heading-bg1.jpg) repeat;">-->
                     <div class="container">
                         <!--<h1 class="page-heading-lead">-->
-                        Resources
+                        View Resources
                             <!--<span class="border"></span>-->
                         <!--</h1>-->
                     </div>                        
@@ -72,11 +72,7 @@
                    <div class="row">
                        <div class="col-md-10 col-md-push-2">
                            <!--Display of Resource Names, Edit and Delete Buttons. -->
-                           <h2 class="page-heading-lead">
-                               <span class="border"></span>
-                               Resources
-                               <span class="border"></span>
-                           </h2>
+                           
                            <div class="row">
                                <b>
                                    <div class="col-md-6">
@@ -95,17 +91,23 @@
                            <c:forEach var="resourceAdded" items="${resource}" varStatus="loop">
                                <div class="row">
                                    <div class="col-md-6">
-                                       <h3><c:out value="${resource.getresourceName()}"/></h3>                                       
+                                       <h3><c:out value="${resource.getresourceName()}"/></h3> 
+                                        <%--<input type = "hidden" value = "${user.getUserName()}" name = "hidden">--%>
+                                        <%--<input type = "hidden" value = "username" name = "hide">--%>
+                                       
+                                        </a>
+                                        
                                    </div>
                                    <div class="col-md-3">
-                                       <a href="GetResourceController?action=get-resource&resourceName=${resource.getResourceName()}">
-                                           <h2><i class="icon-edit"</h2>
+                                         <a href = "GetResourceController?action=get-resource&resourceName=${resource.getResourceName()}">
+                                            <h2><i class="icon-edit2"></i></h2>
+                                       
                                        </a>
                                            
                                    </div>
                                     <div class="col-md-3">
                                        <a href="GetResourceController?action=del-resource&resourceName=${resource.getResourceName()}">
-                                           <h2><i class="icon-remove-user"</h2>
+                                           <h2><i class="icon-trash"></i></h2>                                      
                                        </a>
                                            
                                    </div>       

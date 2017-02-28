@@ -1,5 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
+/* To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -132,7 +131,7 @@ public class ResourceDAO {
         
         return bean;
     }
-private static ResourceBean getResource(String resourceName){
+public static ResourceBean getResource(String resourceName){
     ResourceBean resource = new ResourceBean();
 
     String query1 ="Select resource_tbl.resource_id, resource_tbl.user_idfk, resource_tbl.resource_name, resource_tbl.description, resource_tbl.resource_type"
@@ -286,6 +285,58 @@ public static ArrayList<ResourceBean> getResources(String currentUsername){
         closeConnection();
     }
     return list;
+}
+public static ResourceBean updateResource(ResourceBean bean){
+    int resourceID = bean.getResourceID();
+    int userID = bean.getUserID();
+    String resourceName = bean.getResourceName();
+    String resourceDescription = bean.getResourceDiscription();
+    String resourceType = bean.getResourceType();
+    String link = "";
+    String fileName = "";
+    String filePath = "";
+    String fileType = "";
+    String fileFormat = "";
+    int fileSize = 0;
+    if (resourceType.equals("link")){
+        link = bean.getResourceLink();
+        
+    }
+    else if (resourceType.equals("file")){
+        fileName = bean.getFileName();
+        filePath = bean.getResourcePath();
+        fileType = bean.getFileType();
+        fileFormat = bean.getResourceFormat();
+        fileSize = bean.getResourceSize();
+    }
+    String query1 = "update resource_tbl set user_idfk= '"+userID+"', resource_name = '"+resourceName+"',description = '"+resourceDescription+"', resource_type = '"+resourceType+"', update_dt = NOW() where resource_id = '"+resourceID+"'";
+    String query2 = "update resource_link set link = '"+link+"' where resource_idfk = '"+resourceID+"'";
+    String query3 = "update resource_upload_tbl set file_name = '"+fileName+"', path = '"+filePath+"', type = '"+fileType+"', format = '"+fileFormat+"', size = '"+fileSize+"' where resource_idfk = '"+resourceID+"'";
+    try {
+        currentCon = ConnectionManager.getConnection();
+        stmt = currentCon.createStatement();
+        stmt.executeUpdate(query1);
+        if(resourceType.equals("link")){
+            stmt.executeUpdate(query2);
+        }
+        else if(resourceType.equals("file")){
+            stmt.executeUpdate(query3);
+        }
+        
+    
+        
+    }
+    catch(Exception ex){
+        
+        ex.printStackTrace();
+    }
+    finally{
+        closeConnection();
+    }
+    
+    
+    return bean;
+    
 }
 
     
