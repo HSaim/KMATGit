@@ -20,6 +20,7 @@ public class EdgeBean implements java.io.Serializable
 		PROCESS,
 		COMPOSITION,
 		ROLES,
+                CONCEPT,
 		CONCEPT_LINK,
 		CONCEPT_PARENT_TO_CHILD
 	};

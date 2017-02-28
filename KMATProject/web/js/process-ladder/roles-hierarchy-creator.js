@@ -344,8 +344,8 @@ document.onload = (function(d3)
 		d3.select("#save-input").on("click", function() 
 			{
 				var errorButton = document.getElementById("error-button");
-				//errorButton.style.display = "block";
-				errorButton.style.display = "none";
+				errorButton.style.display = "block";
+				//errorButton.style.display = "none";
 				
 //TODO: check for errors in current graph and fill graphCreationErrors array accordingly
 				
@@ -1308,12 +1308,20 @@ document.onload = (function(d3)
 	var svg = d3.select("#svg-row")
 				.append("svg")
 				.attr("id", "main-svg");
-				//.attr("class", "col-md-12");
-	/*var svg = d3.select("#svg-row")
-				.append("svg")
-				.attr("id", "main-svg")
-				.attr("class", "col-md-11 col-md-offset-1");*/
-	//var svg = d3.select("#main-svg");
+
+	var mainSVG = document.getElementById("main-svg");
+	mainSVG.style.height= (document.getElementById("navbar").clientHeight - (2 * document.getElementById("ladder-header-row").clientHeight)) +"px";
+	
+	var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+	var actualLeft = mainSVG.getBoundingClientRect().left + scrollLeft;
+	var toolTop = document.getElementById("navbar").clientHeight + 20;
+	var toolLeft = actualLeft + 20;
+	var errorButtonTop = mainSVG.clientHeight + 40;
+	var errorButtonLeft = mainSVG.clientWidth - 20;
+	
+	$("#error-button").offset({top: errorButtonTop, left: errorButtonLeft});
+	$("#toolbox").offset({top: toolTop, left: toolLeft});
+	
 	var graph = new GraphCreator(svg, ladderAllNodes, ladderAllEdges, aLadder);
 	if(ladderAllNodes !== null)
 	{

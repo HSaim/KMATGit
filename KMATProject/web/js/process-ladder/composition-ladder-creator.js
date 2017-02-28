@@ -224,7 +224,7 @@ document.onload = (function(d3)
 			})
 			.on("drag", function(args)
 			{
-				toggleMenuOff();
+				//toggleMenuOff();
 				thisGraph.state.justDragged = true;
 				thisGraph.dragmove.call(thisGraph, args);
 			});
@@ -344,8 +344,8 @@ document.onload = (function(d3)
 		d3.select("#save-input").on("click", function() 
 			{
 				var errorButton = document.getElementById("error-button");
-				//errorButton.style.display = "block";
-				errorButton.style.display = "none";
+				errorButton.style.display = "block";
+				//errorButton.style.display = "none";
 				
 //TODO: check for errors in current graph and fill graphCreationErrors array accordingly
 				
@@ -500,6 +500,7 @@ document.onload = (function(d3)
 				txtNode.focus();
 				alert("Node Details Saved");
 			}
+			/*
 			else if(isEdgeSelected)
 			{
 				//add to list of edge data - edges in graph
@@ -512,6 +513,7 @@ document.onload = (function(d3)
 				}
 				alert("Edge Details Saved");
 			}
+			*/
 			thisGraph.updateGraph();
 			thisGraph.isNodeSelected = false;
 			thisGraph.isEdgeSelected = false;
@@ -1030,11 +1032,12 @@ document.onload = (function(d3)
 			
 			document.getElementById("modal-description-id").value = selectedNode.description;
 			//load linked tools, users and resources on modal
-			onLoadModal("accordion1-panel", selectedNode.tools);
-			onLoadModal("accordion2-panel", selectedNode.resources);
-			onLoadModal("accordion3-panel", selectedNode.users);
+		//	onLoadModal("accordion1-panel", selectedNode.tools);
+		//	onLoadModal("accordion2-panel", selectedNode.resources);
+		//	onLoadModal("accordion3-panel", selectedNode.users);
 		}
-		else if(thisGraph.isEdgeSelected)
+		
+		/*else if(thisGraph.isEdgeSelected)
 		{
 			document.getElementById("modal-node-name").innerHTML = thisGraph.state.selectedEdge.title;
 			isEdgeSelected = thisGraph.isEdgeSelected === false ? false : true;
@@ -1045,7 +1048,7 @@ document.onload = (function(d3)
 			onLoadModal("accordion1-panel", selectedEdge.tools);
 			onLoadModal("accordion2-panel", selectedEdge.resources);
 			onLoadModal("accordion3-panel", selectedEdge.users);
-		}
+		}*/
 	};
 	
 	// keydown on main svg
@@ -1142,7 +1145,8 @@ document.onload = (function(d3)
 			})
 			.on("dblclick", function(d)
 			{
-				toggleMenuOff();
+				//toggleMenuOff();
+				/*
 				if(!d3.event.shiftKey && !thisGraph.state.shiftNodeDrag)
 				{
 					d3.event.stopPropagation();
@@ -1177,7 +1181,7 @@ document.onload = (function(d3)
 										thisGraph.isNodeSelected = false;
 										thisGraph.onClickModalOpen(thisGraph);
 									});
-				}
+				}*/
 			})
 			.on("mousedown", function(d)
 			{
@@ -1231,7 +1235,7 @@ document.onload = (function(d3)
 			})
 			.on("dblclick", function(d)
 			{
-				toggleMenuOff();
+				//toggleMenuOff();
 				if(!thisGraph.state.justDragged && !d3.event.shiftKey && !thisGraph.state.shiftNodeDrag)
 				{
 					d3.event.stopPropagation();
@@ -1266,10 +1270,12 @@ document.onload = (function(d3)
 			})
 			.on("contextmenu", function(d)
 			{
+				/*
 				toggleMenuOn();
 				positionMenu(window.event.x, window.event.y, thisGraph.zoomSvgParameter.scale());
 				//to ensure that the default contextmenu doesn't open
 				window.event.returnValue = false;
+				*/
 			})
 			.on("focus", function(d)
 			{
@@ -1308,12 +1314,20 @@ document.onload = (function(d3)
 	var svg = d3.select("#svg-row")
 				.append("svg")
 				.attr("id", "main-svg");
-				//.attr("class", "col-md-12");
-	/*var svg = d3.select("#svg-row")
-				.append("svg")
-				.attr("id", "main-svg")
-				.attr("class", "col-md-11 col-md-offset-1");*/
-	//var svg = d3.select("#main-svg");
+
+	var mainSVG = document.getElementById("main-svg");
+	mainSVG.style.height= (document.getElementById("navbar").clientHeight - (2 * document.getElementById("ladder-header-row").clientHeight)) +"px";
+	
+	var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+	var actualLeft = mainSVG.getBoundingClientRect().left + scrollLeft;
+	var toolTop = document.getElementById("navbar").clientHeight + 20;
+	var toolLeft = actualLeft + 20;
+	var errorButtonTop = mainSVG.clientHeight + 40;
+	var errorButtonLeft = mainSVG.clientWidth - 20;
+	
+	$("#error-button").offset({top: errorButtonTop, left: errorButtonLeft});
+	$("#toolbox").offset({top: toolTop, left: toolLeft});
+	
 	var graph = new GraphCreator(svg, ladderAllNodes, ladderAllEdges, aLadder);
 	if(ladderAllNodes !== null)
 	{

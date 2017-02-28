@@ -6,9 +6,11 @@
 
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
-    response.setHeader("Pragma","no-cache"); 
-    response.setHeader("Cache-Control","no-store");
-    response.setDateHeader("Expires",-1);
+    response.setHeader("Cache-Control","no-cache");  //Forces caches to obtain a new copy of the page from the origin server
+    response.setHeader("Cache-Control","no-store");  //Directs caches not to store the page under any circumstance
+    response.setDateHeader("Expires",-1);            //Causes the proxy cache to see the page as "stale"
+    response.setHeader("Pragma","no-cache");         //HTTP 1.0 backward compatibility
+    
     if(session.getAttribute("CurrentSessionUser")==null){
     
         response.sendRedirect("Home.jsp");
@@ -23,15 +25,16 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Add Concept Map</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Create a new cocnept map for Knowledge Management for All Tool - KMAT" />
+	<meta name="description" content="Create a new cocnept map for Knowledge Management for All Tools - KMAT" />
 	<meta name="keywords" content="KMAT, concept map, description, help" />
 	<meta name="author" content="KMAT Team" />
         
         <jsp:include page="../../includes/link.jsp" /> 
-        <jsp:include page="../../includes/process-ladder-link.jsp" />        
+        <jsp:include page="../../includes/concept-map-link.jsp" />   
+         <jsp:include page="../../includes/js.jsp" /> 
     </head>
     
-    <body class = "add-c-map" id = "add-concept-map-body">
+    <body class = "add-c-map" id = "add-process-ladder-body">
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">
@@ -57,7 +60,7 @@
                         <!-- START: Process ladder-svg and its menus area-->
                         <div class="col-md-10 col-md-push-2">
 							<br>
-                            <div class="row">
+                            <div id = "ladder-header-row" class="row">
 
                                 <div class="col-md-5 col-md-offset-3">
                                    
@@ -76,13 +79,13 @@
 <!-- update theses for concept maps -->
                                 <div class = "col-md-3 col-md-offset-1">
                                     <div id="graph-buttons" class="pull-right">
-                                        <input type="image" id="graph-help-icon" title="Help" src="images/help-icons/help-icon20.png"
-                                               onclick="onClickHelpButton('Process', window.event.x, window.event.y)" 
-                                               onmousedown="onMouseDownHelpButton('Process')" onmouseup="onMouseUpHelpButton('Process')" 
+                                        <input type="image" id="graph-help-icon" title="Help" src="images/help-icons/help-icon21.png"
+                                               onclick="onClickHelpButton('Concept', window.event.x, window.event.y)" 
+                                               onmousedown="onMouseDownHelpButton('Concept')" onmouseup="onMouseUpHelpButton('Concept')" 
                                                onblur="onBlurHelpButton()" alt="Help">
                                         <input type="image" id="graph-settings-icon" title="Settings" src="images/icons/settings-icon.png" 
-                                               onclick="onClickSettingsButton('Process' , window.event.x, window.event.y)" 
-                                               onmousedown="onMouseDownSettingsButton('Process')" onmouseup="onMouseUpSettingsButton('Process')" alt="Settings">
+                                               onclick="onClickSettingsButton('Concept' , window.event.x, window.event.y)" 
+                                               onmousedown="onMouseDownSettingsButton('Concept')" onmouseup="onMouseUpSettingsButton('Concept')" alt="Settings">
                                     </div>
                                 </div>
 								<br>
@@ -99,7 +102,7 @@
                 <!-- Update for Concept maps-->
 							<div id="toolbox">
 								<input type="image" id="center-input" title="Move to Root Node" src="images/icons/center-icon.ico" alt="Initial Position">
-								<input type="image" id="preview-input" title="Preview Map" src="images/icons/preview-icon.ico" alt="Preview Map">
+								<!--<input type="image" id="preview-input" title="Preview Map" src="images/icons/preview-icon.ico" alt="Preview Map">-->
 								<!--<form class="inline-toolbox-form" name = "add-edit-process" method="post" action="InsertLadderController" onSubmit="">
 									<input id="newLadderId" type="hidden" name="newLadder" value="">-->
 									<input type="image" id="save-input" title="Save Map" src="images/icons/backup-icon.ico" alt="Save Map">
@@ -107,10 +110,9 @@
 								<input class="form-inline" type="image" id="delete-graph" title="Delete Map" src="images/icons/delete-icon.png" alt="Delete Map">
 							</div>
 							
-							<input type="image" id="error-button" title="" src="images/icons/error-icon.ico" width="20" height="20" onclick="onClickErrorButton('Process')" onmousedown="onMouseDownErrorButton('Process')" onmouseup="onMouseUpErrorButton('Process')" onblur="onBlurErrorButton()" alt="Error">
+							<input type="image" id="error-button" title="" src="images/icons/error-icon.ico" width="20" height="20" onclick="onClickErrorButton('Concept')" onmousedown="onMouseDownErrorButton('Concept')" onmouseup="onMouseUpErrorButton('Concept')" onblur="onBlurErrorButton()" alt="Error">
 		
-         <!-- Maybe this Modal is not needed in concept maps as they have no resources etc. of their own
-         but of process or composition ladders-->
+         <!-- visible only if a concept map-->
                             <!-- START: The Modal -->
                             <div id="node-modal" class="modal">
                                 <!-- Modal content -->
@@ -202,7 +204,9 @@
                                 <h3 style='padding:5px'>Directions</h3>
                                 <ul>
                                     <li class="directions-list-item">Drag/scroll to translate/zoom the graph</li>
-                                    <li class="directions-list-item">Shift-click on graph to create a node</li>
+                                    <li class="directions-list-item">Alt-click on graph to create a process ladder node</li>
+                                    <li class="directions-list-item">Ctrl-click on graph to create a composition ladder node</li>
+                                    <li class="directions-list-item">Shift-click on graph to create a concept map node</li>
                                     <li class="directions-list-item">Shift-click on a node and then drag to another node to connect them with a directed edge</li>
                                     <li class="directions-list-item">Shift-click on a node to change its title</li>
                                     <li class="directions-list-item">Click on node or edge and press backspace/delete to delete</li>
@@ -224,7 +228,8 @@
                                         <h2 style='padding:5px'>Settings</h2>
                                         <label style='font-family: Verdana, Geneva, sans-serif; font-size: 14.5px;'>Description:</label>
                                         <br>
-                                        <textarea id="graph-settings-description" class="modal-description" style='margin: 10px 0px; width: 95%;' id="settings-modal-description-id" rows="15" cols="54"></textarea>               
+                                        <textarea id="graph-settings-description" class="modal-description" style='margin: 10px 0px; width: 95%;' rows="15" cols="54"></textarea>
+<!--                                        <textarea id="graph-settings-description" class="modal-description" style='margin: 10px 0px; width: 95%;' id="settings-modal-description-id" rows="15" cols="54"></textarea>               -->
                                     </div>
                                 </div>
                             </div>
@@ -245,14 +250,26 @@
                             <!-- Left side bar includes here -->
                             <jsp:include page="../../includes/left-sidebar.jsp" />
                         </div>
-                        <!-- END: Side bar -->
-                    </div>
+                        </div>
+                        <div class = "row">
+                            <div class="col-md-6">
+                                <div id="inner-body">
+                                    Process Ladders
+                                </div>
+                              
+                            </div>
+                            <div class="col-md-6">
+                                <div id="inner-body1">
+                                    Composition Ladders
+                                </div>
+                            </div>
+                        </div>
+                        </div>
                     <!-- START: Page contents main row -->
-                </div>
+                
                 <!-- END: Page contents -->
                
                 <!-- adds js -->                
                 <jsp:include page="../../includes/js.jsp" /> 
-                <jsp:include page="../../includes/process-ladder-js.jsp" /> 
-                
+                <jsp:include page="../../includes/concept-map-js.jsp" />
                 <!-- footer.jsp integrates here -->

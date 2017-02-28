@@ -46,6 +46,7 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session=request.getSession(); 
         session.removeAttribute("CurrentSessionUser");
+        request.logout();
         session.invalidate();  
         response.sendRedirect("Home.jsp");  
     }
@@ -115,7 +116,7 @@ public class LoginController extends HttpServlet {
             Object data = "You will shortly receive an email.";
             //user.setFirstName(kmatUsername);
             
-            newPassword = new String(RandomPasswordGenerator.generatePswd(6, 6, 2, 2, 2));  //A new password is generated
+            newPassword = new String(RandomPasswordGenerator.generatePswd(6, 6, 2, 2, 2));  //A new password is generated randomly
             user = UserDAO.recoverAccount(user, newPassword );
             //Send updated password to the user.
             if (user.isValidUser()){

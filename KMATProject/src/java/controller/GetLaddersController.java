@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.ConceptMapBean;
 import model.LadderBean;
 import model.LadderDAO;
 
@@ -88,7 +89,68 @@ public class GetLaddersController extends HttpServlet
 			PrintWriter out = response.getWriter();
 			out.print(allLaddersJson);
 		}
-		else if(action.equals("delete-process-ladder-from-view-ladders") || action.equals("delete-composition-ladder-from-view-ladders") || action.equals("delete-roles-hierarchy-from-view-ladders"))
+                
+                else if(action.equals("get-all-concept-maps"))
+		{
+			ArrayList<ConceptMapBean> allLadders = new ArrayList<ConceptMapBean>();
+                        if (action.equals("get-all-concept-maps"))
+                            allLadders = LadderDAO.getConceptLadders(ConceptMapBean.LadderType.CONCEPT.toString());
+			
+			String allLaddersJson = null;
+			if (allLadders != null)
+				allLaddersJson = LadderDAO.jsonConceptLaddersString(allLadders);
+            try
+			{
+				HttpSession session = request.getSession(true);
+				if (allLaddersJson != null)
+				{
+                                    if (action.equals("get-all-concept-maps"))
+                                            session.setAttribute("concept-maps", allLaddersJson);
+				}
+			}
+			catch(Exception e)
+			{
+					e.printStackTrace();
+			}
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(allLaddersJson);
+		}
+                
+                else if (action.equals("get-all-process-composition-ladders"))
+                {
+                    ArrayList<LadderBean> processLadders = new ArrayList<LadderBean>();
+                    ArrayList<LadderBean> compositionLadders = new ArrayList<LadderBean>();
+                    processLadders = LadderDAO.getLadders(LadderBean.LadderType.PROCESS.toString());
+                    compositionLadders = LadderDAO.getLadders(LadderBean.LadderType.COMPOSITION.toString());
+			
+                    String allPLaddersJson = null;
+                    String allCLaddersJson = null;
+			if (processLadders != null)
+				allPLaddersJson = LadderDAO.jsonAllLaddersString(processLadders);
+                        if (compositionLadders != null)
+				allCLaddersJson = LadderDAO.jsonAllLaddersString(compositionLadders);
+                        try
+			{
+				HttpSession session = request.getSession(true);
+				if (allPLaddersJson != null)
+				{
+                                    session.setAttribute("process-ladders", allPLaddersJson);
+				}
+                                if (allCLaddersJson != null)
+				{
+                                    session.setAttribute("composition-ladders", allCLaddersJson);
+				}
+			}
+			catch(Exception e)
+			{
+					e.printStackTrace();
+			}
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(allPLaddersJson + allCLaddersJson);
+                }
+		else if(action.equals("delete-process-ladder-from-view-ladders") || action.equals("delete-composition-ladder-from-view-ladders") || action.equals("delete-roles-hierarchy-from-view-ladders") || action.equals("delete-concept-map-from-view-ladders"))
 		{
 			String ladderId = request.getParameter("ladder_id");
 			LadderDAO.deleteLadder(Integer.parseInt(ladderId));

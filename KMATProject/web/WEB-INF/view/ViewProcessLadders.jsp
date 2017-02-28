@@ -9,9 +9,11 @@
 
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
-    response.setHeader("Pragma","no-cache"); 
-    response.setHeader("Cache-Control","no-store");
-    response.setDateHeader("Expires",-1);
+    response.setHeader("Cache-Control","no-cache");  //Forces caches to obtain a new copy of the page from the origin server
+    response.setHeader("Cache-Control","no-store");  //Directs caches not to store the page under any circumstance
+    response.setDateHeader("Expires",-1);            //Causes the proxy cache to see the page as "stale"
+    response.setHeader("Pragma","no-cache");         //HTTP 1.0 backward compatibility
+    
     if(session.getAttribute("CurrentSessionUser")==null){
     
         response.sendRedirect("Home.jsp");
@@ -60,21 +62,21 @@
 						<!--<a href=""><h3>Something</h3></a>-->
                         <div id="inner-body" class="col-md-10 col-md-push-2">
 							
-							<hr style="height:1px;border:none;color:#333;background-color:#a9a9a9;" />
-							<div class = "row">
-                                <b>
-                                <div class="col-md-6 center-block text-center talign-center">
-                                    <b>Ladder Name</b>                                    
-                                </div>
-                                <div class = "col-md-3 center-block text-center talign-center">
-                                    Edit
-                                </div>
-                                <div class = "col-md-3 center-block text-center talign-center">
-                                    Delete
-                                </div>
-                                </b>
-                            </div>
-                            <hr style="height:1px;border:none;color:#333;background-color:#a9a9a9;" />
+							<div id="list-header-row-id">
+								<hr style="height:1px;border:none;color:#333;background-color:#a9a9a9;" />
+									<div class = "row">
+										<div class="col-md-6 center-block text-center talign-center">
+											<b>Ladder Name</b>                                    
+										</div>
+										<div class = "col-md-3 center-block text-center talign-center">
+											Edit
+										</div>
+										<div class = "col-md-3 center-block text-center talign-center">
+											Delete
+										</div>
+									</div>
+								<hr style="height:1px;border:none;color:#333;background-color:#a9a9a9;" />
+							</div>
 							
 							<!-- EXTRA
 							<form name = "runtool" method="post" action="RunToolController" onSubmit="">

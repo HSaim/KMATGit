@@ -3,7 +3,7 @@ Import of other css into main,so only main to be linked with the code
 */
 @import url(left-sidebar.css);
 @import url(sign-in.css);
-@import url(verticalMenu.css);
+/*@import url(verticalMenu.css);*/
 
 @font-face {
   font-family: 'icomoon';
@@ -22,11 +22,12 @@ body, html, .container-fluid {
          height: 100%;
     }
 body {
-  font-family: "Open Sans", Arial, serif;
+  font-family: Georgia, serif; /* "Open Sans", Arial, serif;*/
   line-height: 1.8;
   font-size: 16px;
   background: #fff;
-  color: #848484;
+  /*color: #848484;*/
+  color: #545454;
   font-weight: 300;
   overflow-x: hidden;
   
@@ -77,6 +78,18 @@ figure {
 ::selection {
   color: #fcfcfc;
   background: #00ADB5;
+}
+
+.subTitle {
+
+    font-size: 25px;
+    font-family: Georgia, serif;
+    color: #5F9EA0 ;
+}
+#component_img
+{
+	width: 250px;
+    	height: 250px;
 }
 
 .btn {
@@ -464,10 +477,9 @@ figure {
 
 #uname a{
     font-family: Georgia, Serif !important;
-    color: forestgreen;
-    
-     
+    color: forestgreen;     
 }
+
 #header nav ul li.cta a:hover {
   background: #fff;
   color: #118DF0;
@@ -592,19 +604,21 @@ figure {
 
 /* Logged in username on menu bar */
 #userName {
-  font-size: 22px;
-  /*text-transform: uppercase;*/
-  font-weight: 700;
-  float: left;
-  margin-bottom: 0;
-  margin-top: 1.4em;
+    font-size: 20px;
+    /*text-transform: uppercase;
+    font-weight: 700;*/
+    float: right;
+    
+    margin-top: 1.4em;
+    position: relative;
+    margin-bottom: 1em;
 }
 #userName a {
-  /*color: rgba(21, 31, 44, 0.8);*/
-  /*border: 2px solid #00ADB5;*/
- /* padding: 0 7px;*/
-  position: relative;
-  font-family: Georgia, Serif !important;
+    /*color: rgba(21, 31, 44, 0.8);*/
+    /*border: 2px solid #00ADB5;*/
+   /* padding: 0 7px;*/
+    position: relative;
+    font-family: Georgia, Serif !important;
     color: forestgreen;
     text-indent: 3em;
 }
@@ -752,6 +766,8 @@ body.add-resource #primary-menu li.home > a{
   color: #00ADB5 !important;
   background: none !important;
 }
+
+
 
 
 

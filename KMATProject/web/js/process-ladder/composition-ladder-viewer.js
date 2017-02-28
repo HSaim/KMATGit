@@ -626,7 +626,7 @@ document.onload = (function(d3)
 			onLoadModal("accordion2-panel", selectedNode.resources);
 			onLoadModal("accordion3-panel", selectedNode.users);
 		}
-		else if(thisGraph.isEdgeSelected)
+		/*else if(thisGraph.isEdgeSelected)
 		{
 			document.getElementById("modal-node-name").innerHTML = thisGraph.state.selectedEdge.title;
 			isEdgeSelected = thisGraph.isEdgeSelected === false ? false : true;
@@ -637,7 +637,7 @@ document.onload = (function(d3)
 			onLoadModal("accordion1-panel", selectedEdge.tools);
 			onLoadModal("accordion2-panel", selectedEdge.resources);
 			onLoadModal("accordion3-panel", selectedEdge.users);
-		}
+		}*/
 	};
 	
 	// keydown on main svg
@@ -696,6 +696,7 @@ document.onload = (function(d3)
 			})
 			.on("dblclick", function(d)
 			{
+				/*
 				if(!d3.event.shiftKey && !thisGraph.state.shiftNodeDrag)
 				{
 					d3.event.stopPropagation();
@@ -730,7 +731,7 @@ document.onload = (function(d3)
 										thisGraph.isNodeSelected = false;
 										thisGraph.onClickModalOpen(thisGraph);
 									});
-				}
+				}*/
 			})
 			.on("mousedown", function(d)
 			{
@@ -853,6 +854,9 @@ document.onload = (function(d3)
 				.append("svg")
 				.attr("id", "main-svg");
 
+	var mainSVG = document.getElementById("main-svg");
+	mainSVG.style.height= (document.getElementById("navbar").clientHeight - (2 * document.getElementById("ladder-header-row").clientHeight)) +"px";
+	
 	var graph = new GraphCreator(svg, ladderAllNodes, ladderAllEdges, aLadder);
 	if(ladderAllNodes !== null)
 	{

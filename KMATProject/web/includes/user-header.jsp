@@ -20,7 +20,15 @@
                 </div>
                 
                 <div>
-                <h2 id="userName"><a href ="my-profile"><label id="uname"  ></label></a></h2>
+                    <h3 id="userName">
+                        <a href = "GetUsersController?action=get-current-user">
+                            <button type = "button " title = "Profile" id="uname"  ></button>
+                        </a>
+                        |
+                        <a href = "LoginController">
+                            Sign out
+                        </a>
+                    </h3>
                 </div>
                 <!-- START #menu-wrap -->
                 <nav id="menu-wrap" role="navigation">
@@ -46,11 +54,11 @@
                                     </li>                                                
                                 </ul>
                         </li>
-                    <li class ="about"><a href="about.html">About</a></li>
-                    <li class = "contact"><a href="contact.html">Contact</a></li>
-                    <li class="cta"><a href="Home.jsp">Sign out</a></li>
+                        <li class ="about"><a href="about.html">About</a></li>
+                        <li class = "contact"><a href="contact.html">Contact</a></li>
+                        <!--<li class="cta"><a href="LoginController">Sign out</a></li>--> 
 
-                </ul>
+                    </ul>
                 </nav>
                 <!-- END menu-wrap -->
             </div>

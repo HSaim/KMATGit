@@ -852,7 +852,10 @@ document.onload = (function(d3)
 	var svg = d3.select("#svg-row")
 				.append("svg")
 				.attr("id", "main-svg");
-
+	
+	var mainSVG = document.getElementById("main-svg");
+	mainSVG.style.height= (document.getElementById("navbar").clientHeight - (2 * document.getElementById("ladder-header-row").clientHeight)) +"px";
+	
 	var graph = new GraphCreator(svg, ladderAllNodes, ladderAllEdges, aLadder);
 	if(ladderAllNodes !== null)
 	{

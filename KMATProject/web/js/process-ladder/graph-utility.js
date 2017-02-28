@@ -508,6 +508,14 @@ function saveNodeDetails()
 	}
 }
 
+function closeCompositionModal()
+{
+	//remove description
+	document.getElementById("modal-description-id").value = "";
+	document.getElementById('node-modal').style.display = "none";
+	document.getElementById("add-process-ladder-body").style.overflow = "scroll";
+}
+
 function closeModal()
 {	
 	var graphModal = document.getElementById('node-modal');

@@ -17,29 +17,29 @@
                         <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
                                 <div class="slider-text-inner">
                                         <h2>Knowledge Management for All Tool</h2>
-                                        <p><a href="#" class="btn btn-primary btn-lg">Get started</a></p>
+                                        <p><a href="Home.jsp#get-signin" class="btn btn-primary btn-lg">Get started</a></p>
                                 </div>
                         </div>
                 </div>
             </li>
-            <li style="background-image: url(images/slide_2.jpg);">
+            <li style="background-image: url(images/slide_6.jpg);">
                     <div class="overlay-gradient"></div>
                 <div class="container">
                         <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
                                 <div class="slider-text-inner">
                                         <h2>Composition Ladder</h2>
-                                        <p><a href="#features" class="btn btn-primary btn-lg">Learn more</a></p>
+                                        <p><a href="CompositionLadder.jsp" class="btn btn-primary btn-lg">Learn more</a></p>
                                 </div>
                         </div>
                 </div>
             </li>
-            <li style="background-image: url(images/slide_3.jpg);">
+            <li style="background-image: url(images/slide_7.jpg);">
                 <div class="overlay-gradient"></div>
                 <div class="container">
                         <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
                                 <div class="slider-text-inner">
                                         <h2>Concept map</h2>
-                                        <p><a href="#features" class="btn btn-primary btn-lg">Learn more</a></p>
+                                        <p><a href="ConceptMap.jsp" class="btn btn-primary btn-lg">Learn more</a></p>
                                 </div>
                         </div>
                 </div>

@@ -3,11 +3,15 @@
     Created on : Jan 16, 2017, 1:02:03 PM
     Author     : Habiba Saim
 --%>
+<%@page import="model.UserBean"%>
+<%@page import="model.LoginUserBean"%>
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
-    response.setHeader("Pragma","no-cache"); 
-    response.setHeader("Cache-Control","no-store");
-    response.setDateHeader("Expires",-1);
+    response.setHeader("Cache-Control","no-cache");  //Forces caches to obtain a new copy of the page from the origin server
+    response.setHeader("Cache-Control","no-store");  //Directs caches not to store the page under any circumstance
+    response.setDateHeader("Expires",-1);            //Causes the proxy cache to see the page as "stale"
+    response.setHeader("Pragma","no-cache");         //HTTP 1.0 backward compatibility
+    
     if(session.getAttribute("CurrentSessionUser")==null){
     
         response.sendRedirect("Home.jsp");
@@ -29,14 +33,16 @@
         <jsp:include page="../../includes/link.jsp" />
         
         <title>My Profile</title>
+        
     </head>
+    
     <body class = "edit-profile">
         <!-- START wrapper -->
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">
-                <!-- START header -->
-                <jsp:include page="../../includes/user-header.jsp" />                 
+                <!-- START header -->                
+                <jsp:include page="../../includes/user-profile-header.jsp" />       
                 <!-- END header -->
                 
                 <!-- START: Page heading-->
@@ -46,39 +52,126 @@
                     </div>                        
                 </aside>
                 <!-- END: Page heading-->
-                
+                <%
+                    UserBean user = new UserBean();
+                    //user = request.getParameter("user");
+                    user = (UserBean) session.getAttribute("current-user");
+                %>
                 <div class="container">
                     <div class="row">
+                        <!-- START: Page contents -->
                         <div class="col-md-10 col-md-push-2">
+                            <%-- Logged in user detail in object 'user' 
+                            <%
+                                LoginUserBean user = new LoginUserBean();                           
+                                user = ((LoginUserBean) (session.getAttribute("CurrentSessionUser")));
+                            %>
+                            --%>
+                            <form name = "updateProfile" method="post" action="GetUsersController?action=update-profile&&userId=<%=user.getUserId()%>" onSubmit="return verifyEmail()">                               
+                                <div class="row">
+                                     
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstname">First Name*</label>
+                                            <input type="text" class="form-control" id = "firstname" name="firstname" placeholder ="null" value = "<%=user.getFirstName() %>" onkeyup="nospaces(this);"  required>                                            
+                                        </div>                                        
+                                    </div>
+                                            
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastname">Last Name*</label>
+                                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder ="null" value = "<%=user.getLastName() %>"  onkeyup="nospaces(this);" required>                                          
+                                        </div>                                        
+                                    </div>
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group"> 
+                                            <label for="user_name">User Name/User Id*</label>
+                                            <input type="text" class="form-control" id = "user_name" name="user_name" placeholder ="null"  readonly value = "<%=user.getUserName() %>"  required>                                    
+                                        </div>
+                                    </div>
+                                          <%--   
+                                    <div class="col-md-12">
+                                        Password*
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                                
+                                                <input type="text" class="form-control" name="password"  placeholder ="null" id = "password"  value = "<%=user.getPassword() %>" required> 
+                                        </div>
+                                    </div>
+                                
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                                <!--<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>-->
+                                                <input type="password" class="form-control" id = "re-password" placeholder="Re-enter Password*" onChange="validatePassword();" required>
+                                        </div>
+                                        <div class="registrationFormAlert" id="divCheckPasswordMatch">
+                                            </div>
+                                    </div>
+                                     --%>
+                                     
+                                    
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="p_email">Primary Email*</label>
+                                                <input type="email" class="form-control" id = "p_email" name="p_email" placeholder ="null" value = "<%=user.getPriEmail()%>" required>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="s_email">Secondary Email</label>
+                                                <input type="email" class="form-control" id = "s_email" name="s_email" placeholder ="null"  value = "<%=user.getSecEmail()%>">
+                                            </div>
+                                    </div>                                            
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for ="postal_address">Postal Address</label>
+                                            <input type="text" class="form-control" id="postal_address" name="postal_address" placeholder ="null"  value = "<%=user.getPosAddress()%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for ="per_address">Permanent Address</label>
+                                            <input type="text" class="form-control" id ="per_address" name="per_address" placeholder ="null" value = "<%=user.getPerAddress()%>">
+                                        </div>
+                                    </div>                                    
+                                    
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for ="w_phone">Work Phone</label>
+                                            <input type="text" class="form-control" id= "w_phone" name="w_phone"   placeholder ="null" value = "<%=user.getWorkPhone()%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for ="m_phone">Mobile Phone</label>
+                                            <input type="text" class="form-control" id="m_phone" name="m_phone" placeholder ="null" value = "<%=user.getMobPhone()%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for ="h_phone">Home Phone</label>
+                                            <input type="text" class="form-control" id = "h_phone" name="h_phone"  placeholder ="null" value = "<%=user.getHomePhone()%>">
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="submit" value="Save" class="btn btn-primary">
+                                            <span style="color: #4CAF50"> ${updateData}</span>
+                                        </div>                                        
+                                    </div>
+                                    
+                                </div>
+                            </form>
                         </div>
+                        <!-- END Page contents -->
+                        
                         <!-- START: Left side bar -->
                         <div class="col-md-2 col-md-pull-10 back-color" >
-                            <div class="sidebox" id = "navbar">
-                                <!--<h3 class="sidebox-lead">KMAT Components</h3>	-->
-                                <ul class="sidebox-menu">
-                                    <li class = "edit-profile selected" >
-                                        <a href="my-profile">
-                                            <div class="sidebox-menu-blurb-sub">
-                                                Edit Profile
-                                            </div>
-                                        </a>
-                                    </li>
-                                
-                                    <li class = "change-password">
-                                        <a href = "change-password">
-                                            <div class="sidebox-menu-blurb-sub">
-                                                Change Password
-                                            </div>
-                                        </a>
-                                    </li>
-                                    
-                                    <li>
-                                        <div class="extend-sidebar"> <!-- Spaces are added here to stretch the sidebar -->
-                                            <p></p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>                            
+                            <jsp:include page="../../includes/left-sidebar-profile.jsp" />                     
                         </div>         
                         <!-- END: Left side bar -->
                     </div>
@@ -86,7 +179,8 @@
                           
                 <!-- adds js -->                
                 <jsp:include page="../../includes/js.jsp" /> 
-                
+                <script src="../../js/signup-verifications.js"></script> 
+                <%--<script type="text/javascript" src="../../js/current-user-name.js"></script>--%>
                 <!-- footer.jspf integrates here -->
 
 

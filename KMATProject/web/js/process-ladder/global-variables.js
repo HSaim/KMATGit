@@ -7,7 +7,8 @@
 var LadderType = {
 			PROCESS : "PROCESS",
 			COMPOSITION: "COMPOSITION",
-			ROLES: "ROLES"
+			ROLES: "ROLES",
+                        CONCEPT: "CONCEPT"
 };
 
 var nodeType = {
@@ -21,6 +22,7 @@ var edgeType = {
 			EMPTY: "EMPTY",
 			PROCESS : "PROCESS",
 			COMPOSITION: "COMPOSITION",
+                        CONCEPT: "CONCEPT",
 			ROLES: "ROLES",
 			CONCEPT_LINK: "CONCEPT_LINK",
 			CONCEPT_PARENT_TO_CHILD: "CONCEPT_PARENT_TO_CHILD"
