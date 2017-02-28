@@ -4,12 +4,12 @@
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
-    </servlet>
+    </servlet>    
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
     </servlet-mapping>
-     
+    
     <!-- Servlet: RequestDispathcher -->
     <servlet>
         <servlet-name>RequestDispatcher</servlet-name>
@@ -114,7 +114,7 @@
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-resources</url-pattern>
-    </servlet-mapping>    
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/my-profile</url-pattern>
@@ -132,12 +132,12 @@
         <servlet-name>GetUsersController</servlet-name>
         <url-pattern>/GetUsersController</url-pattern>
     </servlet-mapping>
-
+    
     <servlet-mapping>
         <servlet-name>RunToolController</servlet-name>
         <url-pattern>/RunToolController</url-pattern>
     </servlet-mapping>
-	<servlet>
+    <servlet>
         <servlet-name>RunToolController</servlet-name>
         <servlet-class>controller.RunToolController</servlet-class>
     </servlet>
@@ -146,11 +146,11 @@
         <servlet-name>InsertLadderController</servlet-name>
         <servlet-class>controller.InsertLadderController</servlet-class>
     </servlet>
-    
     <servlet>
         <servlet-name>GetLaddersController</servlet-name>
         <servlet-class>controller.GetLaddersController</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>InsertLadderController</servlet-name>
         <url-pattern>/InsertLadderController</url-pattern>
@@ -159,7 +159,7 @@
         <servlet-name>GetLaddersController</servlet-name>
         <url-pattern>/GetLaddersController</url-pattern>
     </servlet-mapping>
-
+    
     <servlet>
         <servlet-name>InsertResourceController</servlet-name>
         <servlet-class>controller.InsertResourceController</servlet-class>
@@ -168,8 +168,8 @@
         <servlet-name>InsertResourceController</servlet-name>
         <url-pattern>/insert-resource</url-pattern>
     </servlet-mapping>
-    
     <servlet>
+        
         <servlet-name>GetResourceController</servlet-name>
         <servlet-class>controller.GetResourceController</servlet-class>
     </servlet>
@@ -181,6 +181,15 @@
         <servlet-name>InsertToolController</servlet-name>
         <url-pattern>/insert-tool</url-pattern>
     </servlet-mapping>-->
+    
+    <servlet>
+        <servlet-name>SendEmailController</servlet-name>
+        <servlet-class>controller.SendEmailController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendEmailController</servlet-name>
+        <url-pattern>/SendEmailController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -211,7 +220,7 @@
     </jsp-config>
     <!--END: Footer -->
     
-    <!-- SMTP settings -->
+    <!-- START: SMTP Settings -->
     <context-param>
         <param-name>host</param-name>
         <param-value>smtp.gmail.com</param-value>
@@ -228,11 +237,15 @@
         <param-name>pass</param-name>
         <param-value>kmatadmin123</param-value>
     </context-param>
-    <context-param> 
-    <description>Location to store uploaded file</description> 
-    <param-name>file-upload</param-name> 
-    <param-value>
-         c:\apache-tomcat-5.5.29\webapps\data\
-     </param-value> 
+    <!-- END: SMTP Settings -->
+    
+    <!-- START: File upload location for resources -->
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
+            c:\apache-tomcat-5.5.29\webapps\data\
+        </param-value>
     </context-param>
+    <!-- END: File upload location for resources -->
 </web-app>

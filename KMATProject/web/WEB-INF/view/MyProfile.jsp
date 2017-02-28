@@ -34,41 +34,6 @@
         
         <title>My Profile</title>
         
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-       
-        <!-- Popover Script, will shift it in .js file later -->
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $('[data-toggle="popover"]').popover({
-                    placement : 'bottom',
-
-                    html : true,
-                    
-                        
-                    content :   '<div class="media">\n\
-                                     <div class="media-left">\n\
-                                        <img src= "../../images/hero.jpg" class="pull-left" alt="Profile Img" style="width:60px">\n\
-                                    </div>\n\
-                                    <div class="media-body">\n\
-                                        <h5 class="media-heading">Jhon Carter</h5>\n\
-                                        <p><br/>Profile</p>\n\
-                                    </div>\n\
-                                </div>'
-                });
-            });
-        </script>
-
-        <style type="text/css">
-                .bs-example{
-                margin: 200px 150px 0;
-            }
-                .bs-example button{
-                        margin: 10px;
-        </style>
-
     </head>
     
     <body class = "edit-profile">
@@ -76,51 +41,8 @@
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">
-                <!-- START header -->
-                <%--
-                <div id = "header">
-                    <!-- START header-section -->
-                    <header id="header-section">
-                        <!-- START container -->
-                        <div class="container">
-
-                            <a href="#" class="js-nav-toggle nav-toggle"><i></i></a>
-                            <div>
-                                <h1 id="logo"><a href="home">KMAT</a></h1>
-                            </div>
-                            <%--
-                            <div>
-                                <h2 id="userName"><a href ="my-profile"><label id="uname"  data-toggle = "popover"></label></a></h2>
-                            </div>
-                            --%>
-                            <%--
-                            <div id="userName">    
-                                <input id="unameB" type="button" class="btn btn-primary" data-toggle="popover" title="User Name" value ="button"></input>
-                                <div class="head hide">user name</div>
-                            </div>
-                        </div>
-                        <!-- END container -->
-                          
-                    </header>
-                    <!-- END header-section -->
-                </div>
-  --%>
-  <%--
-                <!-- To display user name in label -->
-                <script>
-                    (function() {
-                        <% LoginUserBean currentUser = ((LoginUserBean) (session.getAttribute("CurrentSessionUser"))); %>
-                         var v1 = '<%= currentUser.getUsername() %>';                      
-                         //var label = document.getElementById("uname");
-
-                         //label.innerHTML = v1;
-                         document.getElementById("unameB").value=v1;
-                         document.getElementById("unameB").title=v1;
-                         //label.style.display = "block";
-                     })();
-                </script>
-              --%>
-            <jsp:include page="../../includes/user-profile-header.jsp" />       
+                <!-- START header -->                
+                <jsp:include page="../../includes/user-profile-header.jsp" />       
                 <!-- END header -->
                 
                 <!-- START: Page heading-->

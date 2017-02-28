@@ -23,6 +23,8 @@
                 
                 <div>
                     <h3 id="userName">
+                        <a href="home">Home</a>
+                        |
                         <a href = "GetUsersController?action=get-current-user">
                             <button type = "button " title = "Profile" id="uname"  ></button>
                         </a>
@@ -32,13 +34,14 @@
                         </a>
                     </h3>
                 </div>
+                <%--
                 <nav id="menu-wrap" role="navigation">
                     <ul class="sf-menu" id="primary-menu" >
                         
                         <li class ="home"><a href="home">Home</a></li>
                     </ul>
                 </nav>
-                
+                --%>
             </div>
         </div>
         <!-- END container -->

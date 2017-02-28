@@ -88,7 +88,6 @@
                                             <input type="submit" value="Reset" class="btn btn-primary">
                                             <span style="color: #4CAF50"> ${resetMessage}</span>
                                         </div>
-
                                     </div>
                                 </div>
                             </form>
