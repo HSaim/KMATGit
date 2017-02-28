@@ -191,8 +191,9 @@ body
 /* Toolbox buttons */
 #toolbox
 {
-	position: relative;
-	display: inline;
+/*	position: relative;
+	display: inline;*/
+    position: absolute;
     margin-bottom: 0.5em;
 	margin-top: 0.5em;
     margin-left: 1em;
@@ -519,7 +520,8 @@ li.directions-list-item
 	border: 1px solid red;
 	color: #D63301;
 	background-color: rgba(255, 204, 186, 0.95);
-	background-image: url('images/icons/error-icon.ico');
+/*	background-image: url('images/icons/error-icon.ico');*/
+        background-image: url("../../images/icons/error-icon.ico");
 	background-repeat: no-repeat;
 	background-position: 10px center;
 	background-size: 28px;

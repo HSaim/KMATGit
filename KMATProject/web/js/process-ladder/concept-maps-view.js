@@ -21,6 +21,11 @@ xhttp.onreadystatechange = function()
 		}
 		allConceptMaps = JSON.parse(xhttp.responseText);
 		//alert(allProcessLadders.length);
+                
+                var listScrollDiv = document.createElement('div');
+		listScrollDiv.style.overflowY = "scroll";
+		listScrollDiv.style.height= (document.getElementById("navbar").clientHeight - (2*document.getElementById("list-header-row-id").clientHeight)) +"px";
+                
 		for(var i = 0; i < allConceptMaps.length; i++)
 		{
 			//console.log(allProcessLadders[i].name);
@@ -79,8 +84,10 @@ xhttp.onreadystatechange = function()
 			rowDiv.appendChild(col2);
 			rowDiv.appendChild(col3);
 
-			document.getElementById("inner-body").appendChild(rowDiv);
+			//document.getElementById("inner-body").appendChild(rowDiv);
+                        listScrollDiv.appendChild(rowDiv);
 		}
+                document.getElementById("inner-body").appendChild(listScrollDiv);
 	}
 	else
 	{
