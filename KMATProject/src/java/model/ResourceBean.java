@@ -12,6 +12,7 @@ package model;
 public class ResourceBean implements java.io.Serializable{
     
     //Variable Declaration
+    private int resourceID;
     private String resourcename;
     private String resourcedescription;
     private String resourcepath;
@@ -20,24 +21,38 @@ public class ResourceBean implements java.io.Serializable{
     private int resourcesize;
     private String resourcelink;
     private String resourcefile;
-    private String userid;
+    private int userid;
     private String hidden;
+    private String fileType;
     
     public boolean added;
     public boolean duplicateResource;
     
-    public String getUserID(){
+    public int getResourceID(){
+        return resourceID;
+    }
+    public void setResourceID(int id){
+        resourceID = id;
+    }
+    
+    public String getFileType(){
+        return fileType;
+    }
+    public void setFileType(String fType){
+        fileType = fType;
+    }
+    public int getUserID(){
         return userid;
     }
-    public void setUserID(String uid){
+    public void setUserID(int uid){
         userid = uid;
     }
     
     public String getFileName(){
         return resourcefile;
     }
-    public void setFileName(String fname){
-        resourcefile = fname;
+    public void setFileName(String file){
+        resourcefile = file;
     }
             
     

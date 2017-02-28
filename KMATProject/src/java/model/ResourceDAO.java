@@ -34,7 +34,7 @@ public class ResourceDAO {
         
         String resourceName = bean.getResourceName();
         String resourceDiscription = bean.getResourceDiscription();
-        String userID = bean.getUserID();
+        int userID = bean.getUserID();
         String resourceType = bean.getResourceType();
         String resourceLink = bean.getResourceLink();
         String resourceFile = bean.getFileName();
@@ -121,7 +121,7 @@ public class ResourceDAO {
         
         return bean;
     }
-<<<<<<< HEAD
+
 public static ResourceBean getResource(String resourceName){
     ResourceBean resource = new ResourceBean();
 
@@ -165,8 +165,7 @@ public static ResourceBean getResource(String resourceName){
     
     return resource;
 }
-=======
->>>>>>> 0377e9717aa445d3b04961bdd259cd08eb727c20
+
 
 private static void closeConnection(){
         if (rs != null){
@@ -209,7 +208,7 @@ public static ArrayList<ResourceBean> getResources(String currentUsername){
     }
     return list;
 }
-<<<<<<< HEAD
+
 public static ResourceBean updateResource(ResourceBean bean){
     int resourceID = bean.getResourceID();
     int userID = bean.getUserID();
@@ -263,12 +262,7 @@ public static ResourceBean updateResource(ResourceBean bean){
     
 }
 
-=======
-public static ResourceBean getResource(String resourceName){
-    ResourceBean resource = new ResourceBean();
-    return resource;
-}
->>>>>>> 0377e9717aa445d3b04961bdd259cd08eb727c20
+
     
 }
 

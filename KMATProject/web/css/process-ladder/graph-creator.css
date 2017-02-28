@@ -82,13 +82,10 @@
     background: none;
     border: 0;
     box-shadow: none;
-<<<<<<< HEAD
+
 	/*padding: 7px 8px;
     font-size: 13px;*/
-=======
-	/*padding: 7px 8px;*/
-    /*font-size: 13px;*/
->>>>>>> 0377e9717aa445d3b04961bdd259cd08eb727c20
+	
     color: #333;
     vertical-align: middle;
 	border-radius: 3px;
@@ -130,11 +127,8 @@ body
 #main-svg
 {
 	/*top: 11%;
-<<<<<<< HEAD
 	right: 1.5%;*/
-=======
-	//right: 1.5%;*/
->>>>>>> 0377e9717aa445d3b04961bdd259cd08eb727c20
+
 	float: none;
 	margin-top: 5px;
 	position: relative;
@@ -149,13 +143,10 @@ body
 	overflow: hidden;
 	
 	/*position: relative;
-<<<<<<< HEAD
+
 	float: none;
 	position: absolute;*/
-=======
-	//float: none;
-	//position: absolute;
->>>>>>> 0377e9717aa445d3b04961bdd259cd08eb727c20
+	
 	/*display: inline;
 	margin: 0 auto;
 	width: 70%;
@@ -183,22 +174,16 @@ body
 	height: 27px;
 	opacity: 0.7;
 	/*padding-left: 200px;
-<<<<<<< HEAD
 	padding-right: 3px;
-=======
-	/*padding-right: 3px;
->>>>>>> 0377e9717aa445d3b04961bdd259cd08eb727c20
 	//margin-left: 100px;*/
 	outline: none;
 }
 
 #graph-settings-icon
 {
-<<<<<<< HEAD
-	/*//float: none;*/
-=======
+
 	/*float: none;*/
->>>>>>> 0377e9717aa445d3b04961bdd259cd08eb727c20
+
 	width: 25px;
 	height: 25px;
 	opacity: 0.7;
@@ -362,16 +347,7 @@ path.link.selected
 
 #error-button
 {
-<<<<<<< HEAD
-	/*//display: none;*/
-	display: block;
-	position: absolute;
-	right: 3%;
-	/*//bottom: 5%;*/
-	z-index: 5;
-	outline: #000;
-	/*//margin-top: 40%;*/
-=======
+
 	/*display: none;*/
 	display: block;
 	position: absolute;
@@ -380,7 +356,7 @@ path.link.selected
 	z-index: 5;
 	outline: #000;
 	/*margin-top: 40%;*/
->>>>>>> 0377e9717aa445d3b04961bdd259cd08eb727c20
+
 }
 
 /* Tooltip text */
