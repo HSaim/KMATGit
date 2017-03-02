@@ -80,13 +80,14 @@ public class InsertResourceController extends HttpServlet {
         String filePath = context.getInitParameter("file-upload");
         String contentType = request.getContentType();
         String ext = "";
+        String value2="";
         LoginUserBean currentUser = (LoginUserBean)request.getSession(false).getAttribute("CurrentSessionUser");
         String name = currentUser.getUsername();
         String searchUserID = "select user_id from user_tbl where username='"+ name+"'";
         int sizeInBytes = 0;
         String radio = request.getParameter("chk");
         String fileType="";
-        String uid = "";
+        int uid = 0;
         currentCon = ConnectionManager.getConnection();
         boolean more;
         
@@ -96,7 +97,7 @@ public class InsertResourceController extends HttpServlet {
             rs = stmt.executeQuery(searchUserID);	        
             more = rs.next();
             if(more){
-                uid = rs.getString("user_id");
+                uid = rs.getInt("user_id");
                 resource.setUserID(uid);
             }
         }
@@ -135,6 +136,7 @@ public class InsertResourceController extends HttpServlet {
 
                       name = fi.getFieldName();//text1
                       String value = fi.getString();
+                     
 
                       out.println(name + " : " + value);
                       if(name.equals("addname")){
@@ -144,12 +146,32 @@ public class InsertResourceController extends HttpServlet {
                       else if(name.equals("add-description")){
                           resource.setResourceDiscription(value);
                       }
-                      else if(name.equals("add-link")){
-                          resource.setResourceLink(value);
-                          resource.setFileName("none");
+                      else if(name.equals("chk") && value.equals("file")){
                           
+                           resource.setResourceType("file");                           
+                         
+                              
+                          }
+                      else if(name.equals("chk") && value.equals("link")){
                           
-                      }
+                           resource.setResourceType("link");
+                           fi = (FileItem)i.next();
+                           name = fi.getFieldName();
+                           value = fi.getString();
+                           if(name.equals("add-link")&& !value.equals("")){
+                                  resource.setResourceLink(value);
+                                  //resource.setFileName("none");
+                              }
+                         
+                              
+                          }
+                      
+                       
+                      
+                         
+                     
+                          
+                      //}
                     }
                     if ( !fi.isFormField () ){
                         
@@ -166,10 +188,10 @@ public class InsertResourceController extends HttpServlet {
                             file = new File( filePath + fileName.substring(fileName.lastIndexOf("\\")+1)) ;
                             }
                         fi.write( file ) ;
-                        out.println("Uploaded Filename: " + filePath + fileName + "<br>");
+                        out.println("Uploaded Filename: " + filePath + fileName);
                         resource.setResourcePath(filePath);
                         resource.setFileName(fileName);
-                        resource.setResourceLink("none");
+                       // resource.setResourceLink("none");
                         
                        // 
                        // out.println(request.getParameter("datafile"));
@@ -180,12 +202,13 @@ public class InsertResourceController extends HttpServlet {
                         resource.setResourceSize(sizeInBytes);
                         out.println(sizeInBytes);
                         fileType = typeID(ext);
-                        resource.setResourceType(fileType);
+                        resource.setFileType(fileType);
                         out.println(fileType);
                         }
                     
                     
                     }
+                
                 out.println("</body>");
                 out.println("</html>");
                 }
@@ -264,10 +287,7 @@ public class InsertResourceController extends HttpServlet {
             }
                
       
-            
-            
-            
-            
+                                              
             
            
         }

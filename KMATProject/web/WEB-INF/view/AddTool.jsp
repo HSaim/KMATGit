@@ -140,14 +140,14 @@
     
         
     </div><br>
-    <div class="col-md-6">
-            <div class="form-group">
+    <div class="form-group">
+            <div class="col-md-5">
                 <input type="checkbox" value="input">  Input<br>
                 <p>Input Format:</p>
                 <input type="checkbox" value="input-text">  Text<br>
                 <input type="checkbox" value="input-images">  Images<br>
             </div>
-            <div class="form-group">
+            <div class="col-md-5">
                 <input type="checkbox" value="output">  Output<br>
                 <p>Output Format:</p>
                 <input type="checkbox" value="output-text">  Text<br>
