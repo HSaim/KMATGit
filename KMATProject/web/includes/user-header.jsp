@@ -54,8 +54,8 @@
                                     </li>                                                
                                 </ul>
                         </li>
-                        <li class ="about"><a href="about.html">About</a></li>
-                        <li class = "contact"><a href="contact.html">Contact</a></li>
+                        <li class ="about"><a href="AboutKMAT.jsp">About KMAT</a></li>
+                        <li class = "contact"><a href="Contact.jsp">Contact</a></li>
                         <!--<li class="cta"><a href="LoginController">Sign out</a></li>--> 
 
                     </ul>

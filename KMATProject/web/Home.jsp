@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center features-heading animate-box" data-animate-effect="fadeIn">
                                 <h2>KMAT Features</h2>
-                                <p>KMAT provides following basic components. <br> Sign-up to use them.</p>
+                                <p>KMAT provides following basic components. <br> <a href="Home.jsp#get-signin">Sign-up</a> to use them.</p>
                             </div>
                            
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">

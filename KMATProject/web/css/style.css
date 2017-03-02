@@ -1040,7 +1040,9 @@ body.add-resource #primary-menu li.home > a{
 .grey-bg {
   background: rgba(45, 64, 89, 0.1);
 }
-
+.colored-bg {
+   background: #bcd2e4;
+}
 #section {
   background: rgba(45, 64, 89, 0.1);
   display: -webkit-box;

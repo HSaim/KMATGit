@@ -210,10 +210,12 @@
             <url-pattern>/SignUp.jsp</url-pattern>
             <url-pattern>/Home.jsp</url-pattern>
             <url-pattern>/Contact.jsp</url-pattern>
+            <url-pattern>/AboutKMAT.jsp</url-pattern>
             <url-pattern>/NewProcessLadder.jsp</url-pattern>
             <url-pattern>/RecoverAccount.jsp</url-pattern>
             <url-pattern>/ProcessLadder.jsp</url-pattern>
             <url-pattern>/CompositionLadder.jsp</url-pattern>
+            <url-pattern>/ConceptMap.jsp</url-pattern>
             <!--
             <url-pattern>/News.jsp</url-pattern>            
             <url-pattern>/LoginAgain.jsp</url-pattern>
