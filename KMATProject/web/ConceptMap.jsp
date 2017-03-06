@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="css/banner.css">
         <title>Concept Map</title>       
     </head>
-    <body>
+    <body class = "components">
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">

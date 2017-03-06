@@ -4,6 +4,9 @@
     Author     : Habiba Saim
 --%>
 
+<%--
+Testtin JSTL to use instead of Java Scriplets - to improve efficiency
+--%>
 <%@page import="model.LoginUserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
  <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
@@ -18,10 +21,11 @@
                 <div>
                 <h1 id="logo"><a href="Home.jsp">KMAT</a></h1>
                 </div>
-                <%
-                    LoginUserBean user = (LoginUserBean) session.getAttribute("CurrentSessionUser");                     
-                    if (user != null) {
-                %>
+                    <c:set var="user" value="${sessionScope.CurrentSessionUser}" />
+                    <c:if test = "{sessionScope.CurrentSessionUser != null}">
+                          
+                    
+                
                 <div>
                     <h3 id="userName">
                         <a href = "GetUsersController?action=get-current-user">
@@ -33,28 +37,17 @@
                         </a>
                     </h3>
                 </div>
-                <% }
-                %>
+                </c:if>
                 <!-- START #menu-wrap -->
                 <nav id="menu-wrap" role="navigation">
                     <ul class="sf-menu" id="primary-menu" >
-                        <% 
-                            if (user != null){
-                        %>
-                            
-                        <li class = "home"><a  href="home">Home</a></li>   
-                        <% }
-                           else {
-                        %>
-                        <li class = "home"><a  href="Home.jsp">Home</a></li>
-                        <%}
-                        %>
+                        <li class = "home"><a  href="Home.jsp">Home</a></li>                        
                         <li class = "components">
-                            <a href="#" class="fh5co-sub-ddown">KMAT Components</a>
+                            <a href="Components.jsp" class="fh5co-sub-ddown">KMAT Components</a>
                             <ul class="sub-menu">
                                 <li><a href="">Ladders</a>                                
                                     <ul class="sub-menu">
-                                        <li><a href="CompositionLadder.jsp" onclick="open">Composition Ladder</a></li>
+                                        <li><a href="CompositonLadder.jsp" onclick="open">Composition Ladder</a></li>
                                         <li><a href="ProcessLadder.jsp">Process Ladder</a></li>                                        
                                     </ul>
                                 </li>
@@ -71,17 +64,15 @@
                         </li>
                         <li class  = "about"><a href="AboutKMAT.jsp">About KMAT</a></li>
                         <li class = "contact"><a href="Contact.jsp">Contact KMAT</a></li>
+                        <%--
                          <%
                             user= (LoginUserBean) session.getAttribute("CurrentSessionUser");                     
                             if (user == null) {
                         %>
+                        --%>
                         <li class="cta home"><a href="Home.jsp#get-signin">Login</a></li>
                         <%--<li class="cta home"><a href="Home.jsp#name">Login</a></li>--%>
-                         <% } 
-                            
-                            
-                         %>
-                        
+                         
                        
                     </ul>
                 </nav>
@@ -105,9 +96,9 @@
     (function() {
        <%-- <% LoginUserBean currentUser = ((LoginUserBean) (session.getAttribute("CurrentSessionUser"))); %> --%>
                <% 
-                   user= (LoginUserBean) session.getAttribute("CurrentSessionUser");  
-            if (user != null){%>
-            var v1 = '<%= user.getUsername() %>';                      
+                   LoginUserBean currentUser = (LoginUserBean) session.getAttribute("CurrentSessionUser");  
+            if (currentUser != null){%>
+            var v1 = '<%= currentUser.getUsername() %>';                      
             var label = document.getElementById("uname");
 
             label.innerHTML = v1;

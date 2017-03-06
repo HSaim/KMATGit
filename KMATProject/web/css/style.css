@@ -653,7 +653,7 @@ figure {
 
 /* Changes color of active menu */
 body.home #primary-menu li.home > a,
-body.news #primary-menu li.news > a,
+body.components #primary-menu li.components > a,
 body.about #primary-menu li.about > a,
 body.contact #primary-menu li.contact > a,
 body.view-users #primary-menu li.home > a,

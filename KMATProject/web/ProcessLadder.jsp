@@ -21,7 +21,7 @@
         <title>Process Ladder</title>       
     </head>
     
-    <body>
+    <body class = "components">
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">
