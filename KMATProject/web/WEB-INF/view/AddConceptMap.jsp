@@ -96,8 +96,17 @@
 								
 							</div>-->
 
-							<div class="row" id="svg-row">
+							<div class="row" id="svg-row" style="float: left; width:80%">
 							</div>
+                                                        
+                                                        <div id="inner-body" style="float: right; width:19%">
+                                                            <h5 style="height:0px; font-weight: bold">Process Ladders:</h5>
+                                                            <div id="list-header-row-id">
+                                                            </div>
+                                                            <h5 style="height:0px; font-weight: bold">Composition Ladders:</h5>
+                                                            <div id="list-header-row-id-c">
+                                                            </div>
+                                                        </div>
 				
                 <!-- Update for Concept maps-->
 							<div id="toolbox">
@@ -252,19 +261,7 @@
                             <jsp:include page="../../includes/left-sidebar.jsp" />
                         </div>
                         </div>
-                        <div class = "row">
-                            <div class="col-md-6">
-                                <div id="inner-body">
-                                    Process Ladders
-                                </div>
-                              
-                            </div>
-                            <div class="col-md-6">
-                                <div id="inner-body1">
-                                    Composition Ladders
-                                </div>
-                            </div>
-                        </div>
+                        
                         </div>
                     <!-- START: Page contents main row -->
                 

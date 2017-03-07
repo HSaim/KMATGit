@@ -96,8 +96,12 @@
 								
 							</div>-->
 
-							<div class="row" id="svg-row">
+							<div class="row" id="svg-row" style="float: left; width:80%">
 							</div>
+                                                        
+                                                            </div>
+                                                            </div>
+                                                        </div>
 							
 							<div id="toolbox">
 								<input type="image" id="center-input" title="Move to Root Node" src="images/icons/center-icon.ico" alt="Initial Position">
@@ -246,19 +250,6 @@
                         </div>
                         <!-- END: Side bar -->
                     </div>
-                        <div class = "row">
-                            <div class="col-md-6">
-                                <div id="inner-body">
-                                    Process Ladders
-                                </div>
-                              
-                            </div>
-                            <div class="col-md-6">
-                                <div id="inner-body1">
-                                    Composition Ladders
-                                </div>
-                            </div>
-                        </div>
                     <!-- START: Page contents main row -->
                 </div>
                 <!-- END: Page contents -->
