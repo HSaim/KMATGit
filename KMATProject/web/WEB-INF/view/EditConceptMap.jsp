@@ -124,8 +124,8 @@
                                         <p style="text-align: left; font-family: Verdana, Geneva, sans-serif; font-size: 14px; color: rgb(77, 77, 77)">Description:&nbsp; 
                                         <textarea class="modal-description" id="modal-description-id" rows="15" cols="54"></textarea> </p>
 
-                                        <button class="accordion" id="accordion1" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Link Tools</button>
-                                        <div class="panel" id="accordion1-panel">
+                                        <button class="accordion" id="accordion1" style="border-top-left-radius: 10px; border-top-right-radius: 10px; display: none">Link Tools</button>
+                                        <div class="panel" id="accordion1-panel" style="display: none">
                                             <div class="tools-last-accordion" id="tools-last-accordion-item">
                                                 <!--return false after onclick function so that control does not go to href -->
                                                 <a href="" id="tools-add-link" onclick="addToNode('accordion1-panel'); return false;"><img src="images/icons/add-icon.png" id="add-tool-icon" alt="">Add Tool</a>
@@ -133,7 +133,7 @@
                                             </div>
                                         </div>
 
-                                        <button class="accordion" id="accordion2">Attach Resources</button>
+                                        <button class="accordion" id="accordion2" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Attach Resources</button>
                                         <div class="panel" id="accordion2-panel">
                                             <div class="tools-last-accordion" id="resources-last-accordion-item">
                                                 <!--return false after onclick function so that control does not go to href -->

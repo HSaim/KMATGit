@@ -97,13 +97,13 @@
                                         <p style="text-align: left; font-family: Verdana, Geneva, sans-serif; font-size: 14px; color: rgb(77, 77, 77)">Description:&nbsp; 
                                         <textarea class="modal-description" id="modal-description-id" rows="15" cols="54" readonly="true"></textarea> </p>
 
-                                        <button class="accordion" id="accordion1" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Linked Tools</button>
-                                        <div class="panel" id="accordion1-panel">
+                                        <button class="accordion" id="accordion1" style="border-top-left-radius: 10px; border-top-right-radius: 10px; display: none">Linked Tools</button>
+                                        <div class="panel" id="accordion1-panel" style="display: none">
                                             <div class="tools-last-accordion" id="tools-last-accordion-item">
                                             </div>
                                         </div>
 
-                                        <button class="accordion" id="accordion2">Attached Resources</button>
+                                        <button class="accordion" id="accordion2" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Attached Resources</button>
                                         <div class="panel" id="accordion2-panel">
                                             <div class="tools-last-accordion" id="resources-last-accordion-item">
                                             </div>
