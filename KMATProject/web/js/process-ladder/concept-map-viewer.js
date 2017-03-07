@@ -38,7 +38,7 @@ document.onload = (function(d3)
 	if(aLadder !== null)
 	{
 		//set ladder name, nodes and edges
-		document.getElementById("view-ladder-name").innerHTML = "Ladder Name: " + aLadder.name;
+		document.getElementById("view-ladder-name").innerHTML = "Concept Map Name: " + aLadder.name;
 		document.getElementById("graph-settings-description").innerHTML = aLadder.description;
 		document.getElementById("graph-settings-description").readOnly = true;
 		ladderAllNodes = JSON.parse(JSON.stringify(aLadder.nodes));

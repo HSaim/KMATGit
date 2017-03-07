@@ -929,7 +929,14 @@ public class LadderDAO
         public static int ifLadderExists(String ladderType, String ladderTitle)
 	{
 		int ladderID = 0;
-		String query = "Select ladder_id from " + SCHEMA_NAME + "." + LADDERS_TBL + " where ladder_type = '" + ladderType + "' and ladder_name = '" + ladderTitle + "'";
+                int nodeID = -2;
+                //String query = "Select ladder_id from " + SCHEMA_NAME + "." + LADDERS_TBL + " where ladder_type = '" + ladderType + "' and ladder_name = '" + ladderTitle + "'";
+                
+                String segments[] = ladderTitle.split("[\\|]");
+                String ladderName = segments[0].trim();
+                String nodeName = segments[segments.length -1].trim();
+		
+                String query = "Select ladder_id from " + SCHEMA_NAME + "." + LADDERS_TBL + " where ladder_type = '" + ladderType + "' and ladder_name = '" + ladderName + "'";
                 
                 conn = ConnectionManager.getConnection();
 		if (conn != null)
@@ -955,7 +962,37 @@ public class LadderDAO
 				e.printStackTrace();
 			}
                 }
-		return ladderID;
+                
+                if (ladderID > 0)
+                {
+                    String q = "Select node_id from " + SCHEMA_NAME + "." + NODES_TBL + " where ladder_idfk ="+ladderID + " and node_name = '" + nodeName + "'";
+                    nodeID = -1;
+                    conn = ConnectionManager.getConnection();
+                    if (conn != null)
+                    {
+                            try
+                            {
+                                    pst = conn.prepareStatement(q);
+                                    boolean isExecuted = pst.execute();
+                                    if (isExecuted)
+                                    {
+                                            result = pst.getResultSet();
+                                            boolean isValid = result.first();
+                                            while (isValid)
+                                            {
+                                                nodeID = result.getInt(NODES_TBL + "." + "node_id");
+                                                break;
+                                            }
+                                    }
+                            }
+                            catch (Exception e) 
+                            {
+                                    System.err.println("Unable to close ResultSet: " + e.getMessage());
+                                    e.printStackTrace();
+                            }
+                    }
+                }
+		return nodeID;
         }
         
         public static int insertConceptMap(ConceptMapBean conceptMap)

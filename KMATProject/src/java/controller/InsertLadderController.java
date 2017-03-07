@@ -310,21 +310,36 @@ public class InsertLadderController extends HttpServlet
                                         
                                         if (newNodeObject.getString("nodeType").equals("PROCESS"))
                                         {
-                                            if (LadderDAO.ifLadderExists("PROCESS", newNodeObject.getString("title")) <= 0)
+                                            //if (LadderDAO.ifLadderExists("PROCESS", newNodeObject.getString("title")) <= 0)
+                                            if (LadderDAO.ifLadderExists("PROCESS", newNodeObject.getString("title")) == -2)
                                             {
                                                 response.setContentType("text/html;charset=UTF-8");
                                                 PrintWriter out = response.getWriter();
-                                                out.write("Process Ladder " + newNodeObject.getString("title") + " does not exist."+"");
+                                                out.write("Process Ladder: " + newNodeObject.getString("title") + " does not exist."+"");
+                                                return;
+                                            }
+                                            else if (LadderDAO.ifLadderExists("PROCESS", newNodeObject.getString("title")) == -1)
+                                            {
+                                                response.setContentType("text/html;charset=UTF-8");
+                                                PrintWriter out = response.getWriter();
+                                                out.write("Process Ladder: " + newNodeObject.getString("title") + " | NODE does not exist."+"");
                                                 return;
                                             }
                                         }
                                         else if(newNodeObject.getString("nodeType").equals("COMPOSITION"))
                                         {
-                                            if (LadderDAO.ifLadderExists("COMPOSITION", newNodeObject.getString("title")) <= 0)
+                                            if (LadderDAO.ifLadderExists("COMPOSITION", newNodeObject.getString("title")) == -2)
                                             {
                                                 response.setContentType("text/html;charset=UTF-8");
                                                 PrintWriter out = response.getWriter();
-                                                out.write("Composition Ladder " + newNodeObject.getString("title") + " does not exist."+"");
+                                                out.write("Composition Ladder: " + newNodeObject.getString("title") + " does not exist."+"");
+                                                return;
+                                            }
+                                            else if (LadderDAO.ifLadderExists("COMPOSITION", newNodeObject.getString("title")) == -1)
+                                            {
+                                                response.setContentType("text/html;charset=UTF-8");
+                                                PrintWriter out = response.getWriter();
+                                                out.write("Composition Ladder: " + newNodeObject.getString("title") + " | NODE does not exist."+"");
                                                 return;
                                             }
                                         }
