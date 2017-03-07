@@ -99,7 +99,12 @@
 							<div class="row" id="svg-row" style="float: left; width:80%">
 							</div>
                                                         
+                                                        <div id="inner-body" style="float: right; width:19%">
+                                                            <h5 style="height:0px; font-weight: bold">Process Ladders:</h5>
+                                                            <div id="list-header-row-id">
                                                             </div>
+                                                            <h5 style="height:0px; font-weight: bold">Composition Ladders:</h5>
+                                                            <div id="list-header-row-id-c">
                                                             </div>
                                                         </div>
 							
