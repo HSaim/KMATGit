@@ -174,7 +174,7 @@
                             <div class="col-md-4 text-center">
                                 <div class="about-wrap">
                                     <div class="about">
-                                            <img src="images/author2.jpg" alt="">
+                                            <img src="images/author.jpg" alt="">
                                     </div>
                                     <div class="desc">
                                         <h3>Name 2</h3>

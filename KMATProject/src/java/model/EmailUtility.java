@@ -54,7 +54,7 @@ public class EmailUtility {
         msg.setFrom(sender);
         }
         catch(Exception e){
-            
+            e.printStackTrace();
         }
         InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
         msg.setRecipients(Message.RecipientType.TO, toAddresses);

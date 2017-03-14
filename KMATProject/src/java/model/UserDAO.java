@@ -716,6 +716,40 @@ public class UserDAO {
         return done;
         
     }
+    
+    public static ArrayList getUserLevels(){
+        ArrayList userLevelsList   = new ArrayList(); 
+        // int done =0;
+        String getLevels = "Select level_name from user_levels";
+        ResultSet rs;
+        try{ 
+            
+            currentCon = ConnectionManager.getConnection();
+            pst =currentCon.prepareStatement(getLevels);
+            rs = pst.executeQuery();
+            
+            
+            while (rs.next ()){
+                //Add records into data list
+
+                userLevelsList.add(rs.getString("level_name"));               
+
+            }
+            pst.close();
+            
+        }
+        catch (Exception ex) {
+        
+           ex.printStackTrace();
+        } 
+
+        //some exception handling
+        finally{       
+            
+            closeConnection();
+        }   
+        return userLevelsList;
+    }
     private static void closeConnection(){
         if (rs != null){
             try {

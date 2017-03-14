@@ -44,10 +44,10 @@
                 Roles                                           
             </div>
             <ul>
-                <li class = "view-roles">
+                <li class = "view-roles desable"  >
                     <a href="view-roles">
-                        <div class="sidebox-menu-blurb-sub">
-                            View Roles 
+                        <div class="sidebox-menu-blurb-sub " >
+                            View Roles
                         </div>
                     </a>
                 </li>

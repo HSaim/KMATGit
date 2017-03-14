@@ -131,6 +131,12 @@ and open the template in the editor.
     background-color: #f9f9f9;
 }
 
+.disableLink{
+  color: #d3d3d3;
+  /*background-color: #fff;*/
+  border-color: #ddd;
+  cursor: not-allowed;
+}
 /* Highlight the active left sidebar option */
 body.view-users .sidebox-menu li ul li.view-users > a .sidebox-menu-blurb-sub,
 body.add-user .sidebox-menu li ul li.add-user > a .sidebox-menu-blurb-sub,

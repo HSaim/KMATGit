@@ -207,7 +207,7 @@ public class GetUsersController extends HttpServlet {
             String recipientEmail = request.getParameter("p_email");
             String recipientName = request.getParameter("firstname");
             //String updateAccount = 
-            String subject = "User Registration";
+            String subject = "Registration Successful!";
             String content = "Dear " + recipientName + 
                     ",\n\nWelcome to KMAT" + 
                     "\n\nBest Regards,\n\nKMAT Team" +

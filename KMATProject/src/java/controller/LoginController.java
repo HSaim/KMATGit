@@ -11,6 +11,8 @@ import model.UserDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -63,7 +65,7 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action =request.getParameter("action");
-        
+        ArrayList userLevels = new ArrayList();
         //Handles user login request
         if (action.equals("login")){
             try{
@@ -79,6 +81,7 @@ public class LoginController extends HttpServlet {
                     //request.getRequestDispatcher("/WEB-INF/view/UserHome.jsp").forward(request, response);
                     //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/UserHome.jsp");
                      //dispatcher.forward(request, response);  
+                    userLevels = UserDAO.getUserLevels();
                     response.sendRedirect("home");
 
                 }
