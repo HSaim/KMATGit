@@ -805,9 +805,9 @@ document.onload = (function(d3)
 			
 			document.getElementById("modal-description-id").value = selectedNode.description;
 			//load linked tools, users and resources on modal
-			onLoadModal("accordion1-panel", selectedNode.tools);
-			onLoadModal("accordion2-panel", selectedNode.resources);
-			onLoadModal("accordion3-panel", selectedNode.users);
+			onLoadModalView("accordion1-panel", selectedNode.tools);
+			onLoadModalView("accordion2-panel", selectedNode.resources);
+			onLoadModalView("accordion3-panel", selectedNode.users);
 		}
 		else if(thisGraph.isEdgeSelected)
 		{
@@ -817,9 +817,9 @@ document.onload = (function(d3)
 			
 			document.getElementById("modal-description-id").value = selectedEdge.description;
 			//load linked tools, users and resources on modal
-			onLoadModal("accordion1-panel", selectedEdge.tools);
-			onLoadModal("accordion2-panel", selectedEdge.resources);
-			onLoadModal("accordion3-panel", selectedEdge.users);
+			onLoadModalView("accordion1-panel", selectedEdge.tools);
+			onLoadModalView("accordion2-panel", selectedEdge.resources);
+			onLoadModalView("accordion3-panel", selectedEdge.users);
 		}
 	}
     };
