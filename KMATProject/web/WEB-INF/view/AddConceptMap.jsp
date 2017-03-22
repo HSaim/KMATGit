@@ -72,7 +72,8 @@
                                         newDiv.setAttribute("class", newDivClass);
                                         //newDiv.setAttribute("class", "accordion-inner-panel");
                                         //newDiv.innerHTML = filename;
-                                        newDiv.innerHTML="<a href='"+result+"' target=_blank>"+ filename +"</a>";
+                                        //newDiv.innerHTML="<a href='"+result+"' target=_blank>"+ filename +"</a>";
+                                        newDiv.innerHTML= "<a href=\"servlet/DownloadServlet?filename="+filename+"\">"+ filename +"</a>";
                                         var newDivId = "accordion-inner-panel-" + panelId + input.length;
                                         newDiv.setAttribute("id", newDivId);
                                         newDiv.id = input.length;

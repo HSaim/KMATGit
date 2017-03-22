@@ -203,6 +203,18 @@
         <servlet-name>SendEmailController</servlet-name>
         <url-pattern>/SendEmailController</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DownloadServlet</servlet-name>
+    <servlet-class>controller.DownloadServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DownloadServlet</servlet-name>
+    <url-pattern>/servlet/DownloadServlet</url-pattern>
+  </servlet-mapping>
     <session-config>
         <session-timeout>
             30

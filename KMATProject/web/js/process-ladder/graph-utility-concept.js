@@ -289,7 +289,8 @@ function addNewItem(panelId, item, itemId)
 	//newDiv.innerHTML = item.name;
         //newDiv.innerHTML = item;
         var path = "c:\\docs\\"; //have to get from web.xml file-upload path
-        newDiv.innerHTML="<a href='"+path+item+"' target=_blank>"+ item +"</a>";
+        //newDiv.innerHTML="<a href='"+path+item+"' target=_blank>"+ item +"</a>";
+        newDiv.innerHTML= "<a href=\"servlet/DownloadServlet?filename="+item+"\">"+ item +"</a>";
 	var newDivId = "accordion-inner-panel-" + panelId + itemId;
 	newDiv.setAttribute("id", newDivId);
 	newDiv.id = itemId;
@@ -331,7 +332,9 @@ function addNewItemView(panelId, item, itemId)
 	//newDiv.innerHTML = item.name;
         //newDiv.innerHTML = item;
         var path = "c:\\docs\\"; //have to get from web.xml file-upload path
-        newDiv.innerHTML="<a href='"+path+item+"' target=_blank>"+ item +"</a>";
+        //newDiv.innerHTML="<a href='"+path+item+"' target=_blank>"+ item +"</a>";
+        newDiv.innerHTML= "<a href=\"servlet/DownloadServlet?filename="+item+"\">"+ item +"</a>";
+        //<a href="servlet/DownloadServlet">download the jsp file</a>
 	var newDivId = "accordion-inner-panel-" + panelId + itemId;
 	newDiv.setAttribute("id", newDivId);
 	newDiv.id = itemId;
