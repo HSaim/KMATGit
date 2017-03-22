@@ -363,7 +363,7 @@ public class InsertLadderController extends HttpServlet
 						JsonArray nodeResourcesJson = newNodeObject.getJsonArray("resources");
 						for(int j = 0; j < nodeResourcesJson.size(); j++)
 						{
-							newNode.getResourceIds().add(nodeResourcesJson.getInt(j));
+							newNode.getResources().add(nodeResourcesJson.getString(j));
 						}
 					}
 					if(!newNodeObject.isNull("users"))

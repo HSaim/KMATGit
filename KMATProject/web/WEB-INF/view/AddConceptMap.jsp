@@ -32,6 +32,71 @@
         <jsp:include page="../../includes/link.jsp" /> 
         <jsp:include page="../../includes/concept-map-link.jsp" />   
          <jsp:include page="../../includes/js.jsp" /> 
+         
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var form = document.getElementById('form1');
+                var input = [];
+                var div = document.createElement('div');
+                div.id = "all-resources";
+
+                form.onsubmit = function(event) {
+                    event.preventDefault();
+                    var formData = new FormData();
+                    formData.append('file', document.getElementById("filebtn").files[0]);
+                    
+                    $.ajax({
+                                    type: "post",
+                                    //contentType : "multipart/form-data; boundary=----WebKitFormBoundaryza119VZMGgyk1Bd4",
+                                    contentType: false,
+                                    url: "/KMATProject/insert-resource-concept",
+                                    data: formData,
+                                    processData: false,
+                                    success: function(result) {
+                                        input.push(result);
+                                        alert(result);
+                                        var filename = result.split('\\').pop();
+                                        //alert(filename);
+                                        var panelId = "accordion2-panel";
+                                        var accordionPanel = document.getElementById("accordion2-panel");
+                                        //keep track of number of items (except for the default last item)
+                                        if(isNaN(accordionPanel.numListElements) || accordionPanel.numListElements === null)
+                                                accordionPanel.numListElements = 0;
+                                        accordionPanel.numListElements++;
+
+                                        //create div element
+                                        var newDiv = document.createElement('div');
+                                        newDiv.item = filename;
+                                        var newDivClass = "accordion-inner-panel accordion-inner-panel-" + panelId;
+                                        newDiv.setAttribute("class", newDivClass);
+                                        //newDiv.setAttribute("class", "accordion-inner-panel");
+                                        //newDiv.innerHTML = filename;
+                                        newDiv.innerHTML="<a href='"+result+"' target=_blank>"+ filename +"</a>";
+                                        var newDivId = "accordion-inner-panel-" + panelId + input.length;
+                                        newDiv.setAttribute("id", newDivId);
+                                        newDiv.id = input.length;
+
+                                        //create view and delete icons for the div element
+                                        var delClassName = "accordion-view-icon-" + panelId;
+                                        var iconDelete = createAccordionActionItemIcons("image", delClassName, "delAccordionItem(this); return false;", "Delete", "resources/icons/accordion-delete-icon.png", "D");
+                                        
+                                        if(isNaN(accordionPanel.isEditAccordionItemsSelected) || accordionPanel.isEditAccordionItemsSelected === null)
+                                                accordionPanel.isEditAccordionItemsSelected = 0;
+                                        if(accordionPanel.isEditAccordionItemsSelected)
+                                        {
+                                                iconDelete.style.display = "none";
+                                        }
+                                        newDiv.appendChild(iconDelete);
+                                        accordionPanel.insertBefore(newDiv, accordionPanel.childNodes[accordionPanel.numListElements]);
+                                        div.innerHTML = "";
+                                        div.innerHTML = input;
+                                        document.body.appendChild(div);
+                                    }
+                                });
+                }
+        });
+        </script>
     </head>
     
     <body class = "add-c-map" id = "add-process-ladder-body">
@@ -150,13 +215,29 @@
                                         <div class="panel" id="accordion2-panel">
                                             <div class="tools-last-accordion" id="resources-last-accordion-item">
                                                 <!--return false after onclick function so that control does not go to href -->
-                                                <a href="" id="resources-add-link" onclick="addToNode('accordion2-panel'); return false;"><img src="images/icons/add-icon.png" id="add-resource-icon" alt="">Add Resource</a>
-                                                <a href="" id="resources-edit-button" onclick="editAccordionItems('accordion2-panel'); return false;">Edit</a>
+                                                <a href="" id="resources-add-link" onclick="addToNode('accordion2-panel'); return false;" style="display: none"><img src="images/icons/add-icon.png" id="add-resource-icon" alt="" style="display: none">Add Resource</a>
+                                                <a href="" id="resources-edit-button" onclick="editAccordionItems('accordion2-panel'); return false;" style="display: none">Edit</a>
+                                                
+                                                <form method="post" id="form1" action="insert-resource-concept" enctype="multipart/form-data">
+                                                    <row>
+                                                    <div class="col-md-11">
+                                                        <div class="form-group">
+                                                           <input type = "file" name="datafile" id="filebtn" class="form-control-file">
+                                                        </div>
+                                                    </div>
+                                                    </row>
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                           <img src="images/icons/add-icon.png" id="add-resource-icon1" alt=""><input type="submit" value="Add Resource" id="submitLink">
+                                                        </div>
+                                                    </div>
+                                               </form>
                                             </div>
                                         </div>
 
-                                        <button class="accordion" id="accordion-share">Share with</button>
-                                        <div class="panel" id="accordion3-panel">
+                                        <button class="accordion" id="accordion-share" style="display: none">Share with</button>
+                                        <div class="panel" id="accordion3-panel" style="display: none">
                                             <div class="tools-last-accordion" id="share-last-accordion-item">
                                                 <!--return false after onclick function so that control does not go to href -->
                                                 <a href="" id="share-add-link" onclick="addToNode('accordion3-panel'); return false;"><img src="images/icons/add-icon.png" id="add-share-icon" alt="">Share</a>

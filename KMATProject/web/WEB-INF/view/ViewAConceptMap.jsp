@@ -109,8 +109,8 @@
                                             </div>
                                         </div>
 
-                                        <button class="accordion" id="accordion-share">Shared with</button>
-                                        <div class="panel" id="accordion3-panel">
+                                        <button class="accordion" id="accordion-share" style="display: none">Shared with</button>
+                                        <div class="panel" id="accordion3-panel" style="display: none">
                                             <div class="tools-last-accordion" id="share-last-accordion-item">
                                             </div>
                                         </div>
@@ -169,7 +169,7 @@
                 <script type="text/javascript" src="js/process-ladder/libs/d3/d3.js"></script>
 				<script src="js/process-ladder/global-variables.js"></script>
 				<script src="js/process-ladder/concept-map-viewer.js"></script>
-				<script src="js/process-ladder/graph-utility.js"></script>
+				<script src="js/process-ladder/graph-utility-concept.js"></script>
 				<script src="js/process-ladder/graphbuttons.js"></script>
                 
                 <!-- footer.jsp integrates here -->

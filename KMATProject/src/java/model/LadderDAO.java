@@ -328,6 +328,50 @@ public class LadderDAO
 		nodeResources = getRelations(query, "resource_idfk", REL_NODE_RESOURCE_TBL);
 		return nodeResources;
 	}
+        
+        public static ArrayList<String> getNodeResourceNames(ArrayList<Integer> resourceIds)
+	{
+		ArrayList<String> nodeResources = new ArrayList<>();
+                for (int i=0; i < resourceIds.size(); i++)
+                {
+                    String query = "SELECT resource_name FROM " + SCHEMA_NAME + ".resource_tbl WHERE resource_id = " + resourceIds.get(i);
+                    
+                    conn = ConnectionManager.getConnection();
+                    if (conn != null)
+                    {
+                            try
+                            {
+                                    pst = conn.prepareStatement(query);
+                                    boolean isExecuted = pst.execute();
+                                    if (isExecuted)
+                                    {
+                                            result = pst.getResultSet();
+                                            boolean isValid = result.first();
+                                            while (isValid)
+                                            {
+                                                nodeResources.add(i, result.getString("resource_tbl" + "." + "resource_name"));
+                                                break;
+                                            }
+                                    }
+                                    else
+                                    {
+                                            System.out.println("Could not execute Query: " + query);
+                                    }
+                            }
+                            catch (SQLException e)
+                            {
+                                    System.err.println("Values for get links query not executed with following error:");
+                                    System.err.println(e.getMessage());
+                                    //e.printStackTrace();
+                            }
+                            finally
+                            {
+                                    closeConnection();
+                            }
+                    }
+                }
+		return nodeResources;
+	}
 	
 	public static ArrayList<Integer> getNodeUsers(int id)
 	{
@@ -1151,6 +1195,45 @@ public class LadderDAO
 				queryLinkResource += "VALUES('" + newNodeId + "', '" + node.getResourceIds().get(i) + "')";
 				insertRow(queryLinkResource);
 			}
+                        
+                        for(int i = 0; i < node.getResources().size(); i++)
+			{
+                            String resourceID = "Select resource_id from " + SCHEMA_NAME + ". resource_tbl where resource_name = '" + node.getResources().get(i) +"'";
+                            int resID = 0;
+                            conn = ConnectionManager.getConnection();
+                            if (conn != null)
+                            {
+                                try
+                                {
+                                    pst = conn.prepareStatement(resourceID);
+                                    boolean isExecuted = pst.execute();
+                                    if (isExecuted)
+                                    {
+					result = pst.getResultSet();
+					boolean isValid = result.first();
+					while (isValid)
+					{
+                                            resID = result.getInt("resource_tbl" + "." + "resource_id");
+                                            break;
+                                        }
+                                    }
+                                }
+                                catch (SQLException e)
+                                {
+                                        System.err.println("Values for get links query not executed with following error:");
+                                        System.err.println(e.getMessage());
+                                        //e.printStackTrace();
+                                }
+                                finally
+                                {
+                                        closeConnection();
+                                }
+				String queryLinkResource = "INSERT INTO " + SCHEMA_NAME + "." + REL_NODE_RESOURCE_TBL + "(node_tbl_idfk, resource_idfk)";
+				//queryLinkResource += "VALUES('" + newNodeId + "', '" + node.getResourceIds().get(i) + "')";
+                                queryLinkResource += "VALUES('" + newNodeId + "', '" + resID + "')";
+				insertRow(queryLinkResource);
+                            }
+                        }
 		}
 	}
         
@@ -1170,6 +1253,7 @@ public class LadderDAO
 				//get node tools, resources and users
 				aNode.setToolIds(getNodeTools(aNode.getId()));
 				aNode.setResourceIds(getNodeResources(aNode.getId()));
+                                aNode.setResources(getNodeResourceNames(aNode.getResourceIds()));
 				aNode.setSharedUserIds(getNodeUsers(aNode.getId()));
 				
 				nodesList.add(aNode);
@@ -1195,7 +1279,7 @@ public class LadderDAO
 				//for each ladder - get users, resources and tools
 				aLadder.setToolIds(getLadderTools(aLadder.getId()));
 				aLadder.setResourceIds(getLadderResources(aLadder.getId()));
-				aLadder.setSharedUserIds(getLadderUsers(aLadder.getId()));
+                                aLadder.setSharedUserIds(getLadderUsers(aLadder.getId()));
 
 				//for each ladder - get nodes
 				aLadder.setNodes(getConceptNodes(aLadder.getId()));
@@ -1275,13 +1359,19 @@ public class LadderDAO
 			{
 				jsonResourceBuilder.add(node.getResourceIds().get(j));
 			}
+                        JsonArrayBuilder jsonResourceNamesBuilder = Json.createArrayBuilder();
+			for(int j = 0; j < node.getResources().size(); j++)
+			{
+				jsonResourceNamesBuilder.add(node.getResources().get(j));
+			}
 			JsonArrayBuilder jsonUserBuilder = Json.createArrayBuilder();
 			for(int j = 0; j < node.getSharedUserIds().size(); j++)
 			{
 				jsonUserBuilder.add(node.getSharedUserIds().get(j));
 			}
 			nodeBuilder.add("tools", jsonToolBuilder.build())
-					.add("resources", jsonResourceBuilder.build())
+					//.add("resources", jsonResourceBuilder.build())
+                                        .add("resources", jsonResourceNamesBuilder.build())
 					.add("users", jsonUserBuilder.build())
 					.add("x", node.getNodePosition().getX())
 					.add("y", node.getNodePosition().getY());

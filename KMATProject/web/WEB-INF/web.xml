@@ -172,8 +172,17 @@
         <servlet-name>InsertResourceController</servlet-name>
         <url-pattern>/insert-resource</url-pattern>
     </servlet-mapping>
+    
     <servlet>
-        
+        <servlet-name>InsertResourceConceptController</servlet-name>
+        <servlet-class>controller.InsertResourceConceptController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertResourceConceptController</servlet-name>
+        <url-pattern>/insert-resource-concept</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>GetResourceController</servlet-name>
         <servlet-class>controller.GetResourceController</servlet-class>
     </servlet>
@@ -250,7 +259,8 @@
         <description>Location to store uploaded file</description>
         <param-name>file-upload</param-name>
         <param-value>
-            c:\apache-tomcat-5.5.29\webapps\data\
+<!--            c:\apache-tomcat-5.5.29\webapps\data\-->
+c:\docs\
         </param-value>
     </context-param>
     <!-- END: File upload location for resources -->
