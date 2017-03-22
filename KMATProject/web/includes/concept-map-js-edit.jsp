@@ -9,6 +9,6 @@
 <script type="text/javascript" src="js/process-ladder/libs/d3/d3.js"></script>
 <script src="js/process-ladder/global-variables.js"></script>
 <script src="js/process-ladder/concept-map-editor.js"></script>
-<script src="js/process-ladder/graph-utility.js"></script>
+<script src="js/process-ladder/graph-utility-concept.js"></script>
 <script src="js/process-ladder/custom-contextmenu.js"></script>
 <script src="js/process-ladder/graphbuttons.js"></script>
