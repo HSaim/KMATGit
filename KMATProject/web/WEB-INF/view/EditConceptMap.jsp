@@ -53,7 +53,7 @@
                                     processData: false,
                                     success: function(result) {
                                         input.push(result);
-                                        alert(result);
+                                        //alert(result);
                                         var filename = result.split('\\').pop();
                                         //alert(filename);
                                         var panelId = "accordion2-panel";

@@ -54,6 +54,8 @@ public class LadderDAO
 	private static final String REL_EDGE_USER_TBL = "rel_edge_user_tbl";
 	private static final String REL_EDGE_RESOURCE_TBL = "rel_edge_resource_tbl";
 	private static final String REL_EDGE_TOOL_TBL = "rel_edge_tool_tbl";
+        private static final String USER_DET_TBL = "user_details_tbl";
+        private static final String USER_TBL = "user_tbl";
 	
 	public static int insertLadder(LadderBean ladder)
 	{
@@ -1009,7 +1011,7 @@ public class LadderDAO
                 
                 if (ladderID > 0)
                 {
-                    String q = "Select node_id from " + SCHEMA_NAME + "." + NODES_TBL + " where ladder_idfk ="+ladderID + " and node_name = '" + nodeName + "'";
+                    String q = "Select id from " + SCHEMA_NAME + "." + NODES_TBL + " where ladder_idfk ="+ladderID + " and node_name = '" + nodeName + "'";
                     nodeID = -1;
                     conn = ConnectionManager.getConnection();
                     if (conn != null)
@@ -1024,7 +1026,7 @@ public class LadderDAO
                                             boolean isValid = result.first();
                                             while (isValid)
                                             {
-                                                nodeID = result.getInt(NODES_TBL + "." + "node_id");
+                                                nodeID = result.getInt(NODES_TBL + "." + "id");
                                                 break;
                                             }
                                     }
@@ -1450,4 +1452,49 @@ public class LadderDAO
 		aLadder = new ConceptMapBean(ladderId, ownerId, rootNodeId, ladderName, description, ladderType, createDt, updateDt, "", "");
 		return aLadder;
 	}
+        
+        public static String getEmailAddress(Integer userID) {
+            String emailAddress = "";
+            String query = "SELECT email1 FROM " + SCHEMA_NAME + "." + USER_DET_TBL + " WHERE user_idfk = " + userID;
+            
+            conn = ConnectionManager.getConnection();
+		if (conn != null)
+		{
+			try
+			{
+				pst = conn.prepareStatement(query);
+				boolean isExecuted = pst.execute();
+				if (isExecuted)
+				{
+					result = pst.getResultSet();
+					boolean isValid = result.first();
+					while (isValid)
+					{
+                                            emailAddress = result.getString(USER_DET_TBL + "." + "email1");
+                                            break;
+                                        }
+				}
+				else
+				{
+					System.out.println("Could not execute Query: " + query);
+				}
+			}
+			catch (SQLException e)
+			{
+				System.err.println("Values for get object(s) query not executed with following error:");
+				System.err.println(e.getMessage());
+				//e.printStackTrace();
+			}
+			finally
+			{
+				closeConnection();
+			}
+		}
+		else
+		{
+			System.err.println("The System is not connected to database. Cannot get object(s).");
+		}
+                
+            return emailAddress;
+        }
 }
