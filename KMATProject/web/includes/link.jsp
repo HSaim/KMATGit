@@ -5,7 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+        <!-- Logo addition in title -->
+        <link rel="icon" href="images/logo_3.png" type="image/x-icon" />
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
         

@@ -50,7 +50,7 @@
                         <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
                                 <div class="slider-text-inner">
                                         <h2>Resources</h2>
-                                        <p><a href="#features" class="btn btn-primary btn-lg">Learn more</a></p>
+                                        <p><a href="Resources.jsp" class="btn btn-primary btn-lg">Learn more</a></p>
                                 </div>
                         </div>
                 </div>

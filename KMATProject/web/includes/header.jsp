@@ -24,9 +24,11 @@
                 %>
                 <div>
                     <h3 id="userName">
-                        <a href = "GetUsersController?action=get-current-user">
+                        <%--<a href = "GetUsersController?action=get-current-user">
                             <button type = "button " title = "Profile" id="uname"></button>
-                        </a>
+                        </a>--%>
+                           <a href="GetUsersController?action=get-current-user" class="button" id="uname" title = "Profile"></a>
+                       
                         |
                         <a href = "LoginController">
                             Sign out
@@ -59,7 +61,7 @@
                                     </ul>
                                 </li>
                                 <li><a href = "ConceptMap.jsp">Concept Map</a></li>
-                                <li><a href = ""></a></li>
+                                <li><a href = "Resources.jsp">Resources</a></li>
                                 <li><a href = ""></a></li>
                                 <li><a href = ""></a></li>
                                 <%--
@@ -113,6 +115,6 @@
             label.innerHTML = v1;
             //label.style.display = "block";
         <%}
-%>
+        %>
     })();
 </script>

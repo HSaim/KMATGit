@@ -27,14 +27,24 @@ public class UserDAO {
             
 
         String username = bean.getUsername();    
-        String password = bean.getPassword();   
+        String password = bean.getPassword();  
+        int userId = 0;
+        int userLevelId  = 0;
+        String accessRight;
+        String status;
+        List<List<String>> rights_status = new ArrayList<List<String>>();
+        
 
+        ResultSet rs1 = null;     // To retrieve user level
+        ResultSet rs2 = null;     // To retrieve user access rights
+        
         String searchQuery =
               "select * from user_tbl where username='"
                        + username
                        + "' AND password='"
                        + password
                        + "'";	    
+        //Check that user is a registered user only
         String searchQuery1 =
               "select * from user_tbl where username='"
                        + username
@@ -42,7 +52,9 @@ public class UserDAO {
                        + password
                        + "' AND NOT EXISTS" 
                        + "(SELECT  null FROM    unregistered_user_tbl WHERE   user_tbl.user_id = unregistered_user_tbl.user_idfk)" ;	 
-
+        
+        String getUserLevelQuery = "select level_idfk from user_details_tbl where user_idfk = " +userId;
+        String getAccessRightsQuery; 
         try{                
            //connect to DB 
            currentCon = ConnectionManager.getConnection();
@@ -60,9 +72,29 @@ public class UserDAO {
            else if (more) {         
               
                 //System.out.println("Welcome " + username);
-              
-                bean.setUserId(rs.getInt("user_id"));
+                userId = rs.getInt("user_id");
+                bean.setUserId(userId);
                 bean.setValid(true);
+                getUserLevelQuery = "select level_idfk from user_details_tbl where user_idfk = " +userId;
+                
+                rs1 = stmt.executeQuery(getUserLevelQuery);
+                if (rs1.next()){
+                    userLevelId = rs1.getInt("level_idfk");
+                    bean.setUserLevelId(userLevelId);
+                    getAccessRightsQuery =  "Select access_rights_tbl.right_name, rel_level_right_tbl.status\n" +
+                            "	from access_rights_tbl, rel_level_right_tbl\n" +
+                            "    where rel_level_right_tbl.level_idfk = " + userLevelId + " and access_rights_tbl.right_id = rel_level_right_tbl.right_idfk";
+                    rs2 = stmt.executeQuery(getAccessRightsQuery);
+                    while (rs2.next()){
+                        accessRight = rs2.getString("right_name");
+                        status = rs2.getString("status");
+                        List<String> temp = new ArrayList<String>(); 
+                        temp.add(accessRight);
+                        temp.add(status);
+                        rights_status.add(temp);
+                    }
+                    bean.setAccessRights(rights_status);
+                }
            }
         } 
 
@@ -720,7 +752,7 @@ public class UserDAO {
     public static ArrayList getUserLevels(){
         ArrayList userLevelsList   = new ArrayList(); 
         // int done =0;
-        String getLevels = "Select level_name from user_levels";
+        String getLevels = "Select level_name from user_levels_tbl";
         ResultSet rs;
         try{ 
             

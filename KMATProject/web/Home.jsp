@@ -13,6 +13,7 @@
         
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>KMAT-Home</title>
+        
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Knowledge Management for All Tool (KMAT)" />
 	<meta name="keywords" content="KMAT, resource, concept, concept map, list, tool, resources, composition, ladder, process" />
@@ -117,15 +118,15 @@
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
                                 <div class="sub-feature">
                                     <figure>
-                                        <img src="images/slide_3.jpg" alt="slide" class="img-responsive">
+                                        <img src="images/resources_4.jpg" alt="resources" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
-                                        <h3><a href="#">Resources</a></h3>
+                                        <h3><a href="Resources.jsp">Resources</a></h3>
                                         <div class="price-status">
-                                            <span class="price">Organization's processes</span>
+                                            <span class="price">System's basic blocks</span>
                                         </div>
-                                        <p>Represent the processes being run in an organization</p>
+                                        <p>Web links, images, videos, and documents</p>
                                     </div>
                                     <p class="sub-feature-specification">
                                             <!--

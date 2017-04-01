@@ -25,9 +25,12 @@
                     <h3 id="userName">
                         <a href="home">Home</a>
                         |
+                        <%--
                         <a href = "GetUsersController?action=get-current-user">
                             <button type = "button " title = "Profile" id="uname"  ></button>
-                        </a>
+                        </a>--%>
+                        <a href="GetUsersController?action=get-current-user" class="button" id="uname" title = "Profile"></a>
+                       
                         |
                         <a href = "LoginController">
                             Sign out

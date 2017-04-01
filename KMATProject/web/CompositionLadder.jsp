@@ -3,6 +3,17 @@
     Created on : Feb 16, 2017, 12:07:49 PM
     Author     : Habiba Saim
 --%>
+<%--
+   response.setHeader("Cache-Control","no-cache");  //Forces caches to obtain a new copy of the page from the origin server
+    response.setHeader("Cache-Control","no-store");  //Directs caches not to store the page under any circumstance
+    response.setDateHeader("Expires",-1);            //Causes the proxy cache to see the page as "stale"
+    response.setHeader("Pragma","no-cache");         //HTTP 1.0 backward compatibility
+    
+    if(session.getAttribute("CurrentSessionUser")==null){
+    
+        response.sendRedirect("Home.jsp");
+    }
+--%> 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

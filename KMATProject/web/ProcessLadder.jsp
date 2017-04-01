@@ -72,12 +72,12 @@
                             <h1 class = "subTitle">What is a Process Ladder?</h1>
                         </div>
                         
-                        <table class=" tWiz" style="width: 100%" cellPadding=5 align=left>
+                        <table style="width: 100%" cellPadding=5 align=left>
                             <tbody>
                                 <tr>
                                     A Process is a set of interrelated activities that interact to achieve a result, and is simply known as "program in excitation".
                             
-                            It is a data structure that can be used to model a complete process such as student’s course enrollment, Point-of-Sale transaction, forest preservation/management etc.
+                                    It is a data structure that can be used to model a complete process such as student’s course enrollment, Point-of-Sale transaction, forest preservation/management etc.
                                 </tr>
                                 <tr>
                                     <td style="width: 40%; vertical-align: top; text-align:  center">

@@ -4,12 +4,27 @@
     Author     : Habiba Saim
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="model.LoginUserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
     
 
 <div class="sidebox" id = "navbar">
+  
+    <%
+        LoginUserBean user = (LoginUserBean) session.getAttribute("CurrentSessionUser");                     
+        List<List<String>> accessRights  =  user.getAccessRights();
+        int x;
+        List<String> rights = new ArrayList<String>(); 
+        List<String> status = new ArrayList<String>(); 
+        for (int i=0; i<accessRights.size(); i++){
+            rights.add(accessRights.get(i).get(0));
+            status.add(accessRights.get(i).get(1));
+        }   
+    %>
+
     <!--<h3 class="sidebox-lead">KMAT Components</h3>	-->
     <ul class="sidebox-menu">
         <li>
@@ -26,14 +41,36 @@
                     <a href="GetUsersController?action=get-all-users"> 
                 <!--<li class = "view-users"><a href="view-users"> -->
                         <div class="sidebox-menu-blurb-sub">
+                            <%
+                                x = rights.indexOf("View-User");
+                                //if (temp.get(0).equalsIgnoreCase("View-User") && temp.get(1).equalsIgnoreCase("A")){
+                                if (status.get(x).equalsIgnoreCase("A")){
+                            
+                           %>
                             View Users
+                            <% }
+                                else{
+                           %>
+                            <div class = "disableLink">View Users</div>
+                            <% }
+                            %>
                         </div>
                     </a>
                 </li>
                 <li class = "add-user">
                     <a href="add-user">
                         <div class="sidebox-menu-blurb-sub">
+                            <%
+                               x = rights.indexOf("Add-User");
+                               if (status.get(x).equalsIgnoreCase("A")){
+                           %>
                             Add User
+                            <% }
+                                else{
+                           %>
+                           <div class = "disableLink">Add User</div>
+                            <% }
+                            %>
                         </div>
                     </a>
                 </li>
@@ -127,11 +164,13 @@
                                 View Tools
                             </div>
                     </a></li>
-                    <li class = "add-tool"><a href="add-tool">
+                    <li class = "add-tool">
+                        <a href="add-tool">
                             <div class="sidebox-menu-blurb-sub">
                                 Add Tool
                             </div>
-                    </a></li>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </li>
@@ -139,11 +178,13 @@
             <div class="sidebox-menu-blurb">
                 Resources 
                 <ul>
-                    <li class = "view-resources"><a href="GetResourceController?action=get-all-resources">
+                    <li class = "view-resources">
+                        <a href="GetResourceController?action=get-all-resources">
                             <div class="sidebox-menu-blurb-sub">
                                 View Resources
                             </div>
-                    </a></li>
+                        </a>
+                    </li>
                     <li class = "add-resource">
                         <a href="add-resource">
                             <div class="sidebox-menu-blurb-sub">

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
+    <filter>
+        <filter-name>noCacheFilter</filter-name>
+        <filter-class>controller.NoCacheFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>noCacheFilter</filter-name>
+        <url-pattern>/WEB-INF/view/*</url-pattern>                
+    </filter-mapping>
+    
     <!-- Servlet: LoginController-->
+    
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
@@ -223,6 +234,18 @@
     <welcome-file-list>
         <welcome-file>Home.jsp</welcome-file>
     </welcome-file-list>
+    
+    
+        <!--<url-pattern>/Contact.jsp</url-pattern>
+            <url-pattern>/AboutKMAT.jsp</url-pattern>
+            
+            <url-pattern>/RecoverAccount.jsp</url-pattern>
+            <url-pattern>/ProcessLadder.jsp</url-pattern>
+            <url-pattern>/CompositionLadder.jsp</url-pattern>
+            <url-pattern>/ConceptMap.jsp</url-pattern>
+            <url-pattern>/Resources.jsp</url-pattern>
+            -->
+    
     <!-- START: Footer -->
     <jsp-config>
         <jsp-property-group>
@@ -237,6 +260,7 @@
             <url-pattern>/ProcessLadder.jsp</url-pattern>
             <url-pattern>/CompositionLadder.jsp</url-pattern>
             <url-pattern>/ConceptMap.jsp</url-pattern>
+            <url-pattern>/Resources.jsp</url-pattern>
             <!--
             <url-pattern>/News.jsp</url-pattern>            
             <url-pattern>/LoginAgain.jsp</url-pattern>

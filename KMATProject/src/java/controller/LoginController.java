@@ -81,7 +81,8 @@ public class LoginController extends HttpServlet {
                     //request.getRequestDispatcher("/WEB-INF/view/UserHome.jsp").forward(request, response);
                     //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/UserHome.jsp");
                      //dispatcher.forward(request, response);  
-                    userLevels = UserDAO.getUserLevels();
+                    //userLevels = UserDAO.getUserLevels();
+                    
                     response.sendRedirect("home");
 
                 }
