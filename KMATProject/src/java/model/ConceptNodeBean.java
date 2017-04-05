@@ -38,6 +38,7 @@ public class ConceptNodeBean implements java.io.Serializable
 	private Timestamp updateDate;
         private String classforSelection;
         private String classforNode;
+        private int originalNodeID;
 	
 	public ConceptNodeBean(String name, double posX, double posY)
 	{
@@ -155,6 +156,16 @@ public class ConceptNodeBean implements java.io.Serializable
 	public void setClassforNode(String classforNode)
 	{
 		this.classforNode = classforNode;
+	}
+        
+        public int getOriginalNodeID()
+	{
+		return originalNodeID;
+	}
+
+	public void setOriginalNodeID(int originalNodeID)
+	{
+		this.originalNodeID = originalNodeID;
 	}
         
 	public void setDescription(String description)

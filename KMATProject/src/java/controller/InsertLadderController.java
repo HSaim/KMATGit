@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package controller;
+import static controller.InsertResourceConceptController.currentCon;
 import model.LadderBean;
 import model.NodeBean;
 import model.EdgeBean;
@@ -19,6 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.json.*;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,7 +34,9 @@ import javax.json.stream.JsonGeneratorFactory;
 import javax.servlet.ServletContext;
 import model.ConceptMapBean;
 import model.ConceptNodeBean;
+import model.ConnectionManager;
 import model.EmailUtility;
+import model.LoginUserBean;
 /**
  *
  * @author Maryam Khalid
@@ -40,6 +47,10 @@ public class InsertLadderController extends HttpServlet
     private String port;
     private String kmatUsername;
     private String kmatPassword;
+    
+    static Connection currentCon = null;
+    static ResultSet rs = null;  
+    static Statement stmt = null;
 	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 	/**
 	 * Handles the HTTP <code>GET</code> method.
@@ -338,6 +349,7 @@ public class InsertLadderController extends HttpServlet
                                             {
                                                 //fill users here
                                                 users = LadderDAO.getNodeUsers(nodeID);
+                                                newNode.setOriginalNodeID(nodeID);
                                             }
                                         }
                                         else if(newNodeObject.getString("nodeType").equals("COMPOSITION"))
@@ -360,6 +372,7 @@ public class InsertLadderController extends HttpServlet
                                             else
                                             {
                                                 users = LadderDAO.getNodeUsers(nodeID);
+                                                newNode.setOriginalNodeID(nodeID);
                                             }
                                         }
 					//descripton
@@ -454,16 +467,34 @@ public class InsertLadderController extends HttpServlet
 				newLadder.setEdges(edges);
 
 				//System.out.println("Parameter Names: " + request.getParameterNames());
-
+                                LoginUserBean currentUser = (LoginUserBean)request.getSession(false).getAttribute("CurrentSessionUser");
+                                String name = currentUser.getUsername();
+                                String searchUserID = "select user_id from user_tbl where username='"+ name+"'";
+                                int uid = 0;
+                                currentCon = ConnectionManager.getConnection();
+                                boolean more;
+                                try
+                                {
+                                    stmt=currentCon.createStatement();
+                                    rs = stmt.executeQuery(searchUserID);	        
+                                    more = rs.next();
+                                    if(more){
+                                        uid = rs.getInt("user_id");
+                                    }
+                                }
+                                catch(SQLException ex){
+                                //todo: Handle Sql Exception
+                                }
+                                
 				if(newLadder.getId() == 0)
 				{
 					//save new ladder
-					newLadderId = LadderDAO.insertConceptMap(newLadder);
+					newLadderId = LadderDAO.insertConceptMap(newLadder, uid);
 				}
 				else
 				{
 					//System.out.println("Updating Ladder!! - in insert ladder controller");
-					LadderDAO.updateConceptMap(newLadder);
+					LadderDAO.updateConceptMap(newLadder, uid);
 				}
                                 
                         ServletContext context = getServletContext();

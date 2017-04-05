@@ -5,8 +5,13 @@
  */
 package controller;
 
+import static controller.InsertLadderController.currentCon;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +19,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.ConceptMapBean;
+import model.ConnectionManager;
 import model.LadderBean;
 import model.LadderDAO;
+import model.LoginUserBean;
 
 /**
  *
@@ -23,6 +30,9 @@ import model.LadderDAO;
  */
 public class GetLaddersController extends HttpServlet
 {
+    static Connection currentCon = null;
+    static ResultSet rs = null;  
+    static Statement stmt = null;
 
 	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 	/**
@@ -92,20 +102,46 @@ public class GetLaddersController extends HttpServlet
                 
                 else if(action.equals("get-all-concept-maps"))
 		{
-			ArrayList<ConceptMapBean> allLadders = new ArrayList<ConceptMapBean>();
-                        if (action.equals("get-all-concept-maps"))
-                            allLadders = LadderDAO.getConceptLadders(ConceptMapBean.LadderType.CONCEPT.toString());
-			
-			String allLaddersJson = null;
-			if (allLadders != null)
-				allLaddersJson = LadderDAO.jsonConceptLaddersString(allLadders);
-            try
+                        LoginUserBean currentUser = (LoginUserBean)request.getSession(false).getAttribute("CurrentSessionUser");
+                                String name = currentUser.getUsername();
+                                String searchUserID = "select user_id from user_tbl where username='"+ name+"'";
+                                int uid = 0;
+                                currentCon = ConnectionManager.getConnection();
+                                boolean more;
+                                try
+                                {
+                                    stmt=currentCon.createStatement();
+                                    rs = stmt.executeQuery(searchUserID);	        
+                                    more = rs.next();
+                                    if(more){
+                                        uid = rs.getInt("user_id");
+                                    }
+                                }
+                                catch(SQLException ex){
+                                //todo: Handle Sql Exception
+                                }
+                        ArrayList<ConceptMapBean> editable = new ArrayList<ConceptMapBean>();
+                        ArrayList<ConceptMapBean> viewable = new ArrayList<ConceptMapBean>();
+                        
+                        editable = LadderDAO.getConceptLadders(ConceptMapBean.LadderType.CONCEPT.toString(), uid);
+                        viewable = LadderDAO.getConceptLaddersForView(ConceptMapBean.LadderType.CONCEPT.toString(), uid);
+                        
+			String editableLaddersJson = null;
+                        String viewableLaddersJson = null;
+			if (editable != null)
+				editableLaddersJson = LadderDAO.jsonConceptLaddersString(editable);
+                        if (viewable != null)
+				viewableLaddersJson = LadderDAO.jsonConceptLaddersString(viewable);
+                        try
 			{
 				HttpSession session = request.getSession(true);
-				if (allLaddersJson != null)
+				if (editableLaddersJson != null)
 				{
-                                    if (action.equals("get-all-concept-maps"))
-                                            session.setAttribute("concept-maps", allLaddersJson);
+                                            session.setAttribute("concept-maps", editableLaddersJson);
+				}
+                                if (viewableLaddersJson != null)
+				{
+                                            session.setAttribute("view-concept-maps", viewableLaddersJson);
 				}
 			}
 			catch(Exception e)
@@ -114,7 +150,7 @@ public class GetLaddersController extends HttpServlet
 			}
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.print(allLaddersJson);
+			out.print(editableLaddersJson + viewableLaddersJson);
 		}
                 
                 else if (action.equals("get-all-process-composition-ladders"))

@@ -1041,13 +1041,15 @@ public class LadderDAO
 		return nodeID;
         }
         
-        public static int insertConceptMap(ConceptMapBean conceptMap)
+        public static int insertConceptMap(ConceptMapBean conceptMap, int userID)
 	{
 		int newLadderId = 0;
 		
 		//form insert query
-		String query = "INSERT INTO " + SCHEMA_NAME + "." + LADDERS_TBL + "(root_node_idfk, owner_idfk, ladder_name, description, ladder_type, create_dt, update_dt)";
-		query += "VALUES('" + conceptMap.getRootNodeId() + "', '" + conceptMap.getOwnerId() + "', '" + conceptMap.getName() + "', '" + conceptMap.getDescription() + "', '" + conceptMap.getLadderType() + "', NOW(), NOW());";
+//		String query = "INSERT INTO " + SCHEMA_NAME + "." + LADDERS_TBL + "(root_node_idfk, owner_idfk, ladder_name, description, ladder_type, create_dt, update_dt)";
+//		query += "VALUES('" + conceptMap.getRootNodeId() + "', '" + conceptMap.getOwnerId() + "', '" + conceptMap.getName() + "', '" + conceptMap.getDescription() + "', '" + conceptMap.getLadderType() + "', NOW(), NOW());";
+		String query = "INSERT INTO " + SCHEMA_NAME + "." + LADDERS_TBL + "(root_node_idfk, owner_idfk, ladder_name, description, ladder_type, create_dt, update_dt, created_by)";
+		query += "VALUES('" + conceptMap.getRootNodeId() + "', '" + conceptMap.getOwnerId() + "', '" + conceptMap.getName() + "', '" + conceptMap.getDescription() + "', '" + conceptMap.getLadderType() + "', NOW(), NOW(), "+userID+");";
 		
 		//call insertRow
 		newLadderId = insertRow(query);
@@ -1090,7 +1092,7 @@ public class LadderDAO
 		return newLadderId;
 	}
         
-        public static ConceptMapBean updateConceptMap(ConceptMapBean aLadder)
+        public static ConceptMapBean updateConceptMap(ConceptMapBean aLadder, int userID)
 	{
 		//update ladder details
 		Date utilDate = new java.util.Date();
@@ -1170,8 +1172,8 @@ public class LadderDAO
 		int newNodeId = 0;
 		
 		//form insert query
-		String query = "INSERT INTO " + SCHEMA_NAME + "." + NODES_TBL + "(node_id, ladder_idfk, owner_idfk, node_type, node_name, description, pos_x, pos_y, create_dt, update_dt, class_for_selection, class_for_node)";
-		query += "VALUES('" + node.getNodeId() + "', '" + node.getLadderId() + "', '" + node.getOwnerId() + "', '" + node.getNodeType() + "', '" + node.getName() + "', '" + node.getDescription() + "', '" + node.getNodePosition().getX() + "', '" + node.getNodePosition().getY() + "', NOW(), NOW(), '" + node.getClassforSelection() + "', '" + node.getClassforNode()+ "')";
+		String query = "INSERT INTO " + SCHEMA_NAME + "." + NODES_TBL + "(node_id, ladder_idfk, owner_idfk, node_type, node_name, description, pos_x, pos_y, create_dt, update_dt, class_for_selection, class_for_node, original_node_id)";
+		query += "VALUES('" + node.getNodeId() + "', '" + node.getLadderId() + "', '" + node.getOwnerId() + "', '" + node.getNodeType() + "', '" + node.getName() + "', '" + node.getDescription() + "', '" + node.getNodePosition().getX() + "', '" + node.getNodePosition().getY() + "', NOW(), NOW(), '" + node.getClassforSelection() + "', '" + node.getClassforNode()+ "', "+ node.getOriginalNodeID()+")";
 		
 		//call insertRow
 		newNodeId = insertRow(query);
@@ -1264,13 +1266,50 @@ public class LadderDAO
 		return nodesList;
 	}
         
-        public static ArrayList<ConceptMapBean> getConceptLadders(String ladderType)
+        public static ArrayList<ConceptMapBean> getConceptLadders(String ladderType, int uid)
 	{
 		ArrayList<ConceptMapBean> laddersList = new ArrayList<>();
 		//query according to ladder type
-		String laddersQuery = "SELECT * FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " WHERE ladder_type = '" + ladderType + "'";
+		//String laddersQuery = "SELECT * FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " WHERE ladder_type = '" + ladderType + "'";
+		
+                String laddersQuery = "SELECT * FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " WHERE ladder_type = '" + ladderType + "' AND created_by ="+uid;
 		
 		ArrayList<Object> objects = getObjects(laddersQuery, GetEntity.CONCEPTMAPS);
+		if(objects != null)
+		{
+			//convert each object to ladder
+			for(int i = 0; i < objects.size(); i++)
+			{
+				ConceptMapBean aLadder = (ConceptMapBean)objects.get(i);
+
+				//for each ladder - get users, resources and tools
+				aLadder.setToolIds(getLadderTools(aLadder.getId()));
+				aLadder.setResourceIds(getLadderResources(aLadder.getId()));
+                                aLadder.setSharedUserIds(getLadderUsers(aLadder.getId()));
+
+				//for each ladder - get nodes
+				aLadder.setNodes(getConceptNodes(aLadder.getId()));
+
+				//for each ladder - get edges
+				aLadder.setEdges(getEdges(aLadder.getId()));
+				
+				laddersList.add(aLadder);
+			}
+		}
+		return laddersList;
+	}
+        
+        public static ArrayList<ConceptMapBean> getConceptLaddersForView(String ladderType, int uid)
+	{
+		ArrayList<ConceptMapBean> laddersList = new ArrayList<>();
+		//query according to ladder type
+		//String laddersQuery = "SELECT * FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " WHERE ladder_type = '" + ladderType + "'";
+		
+                //String laddersQuery = "SELECT * FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " WHERE ladder_type = '" + ladderType + "' AND created_by ="+uid;
+		//String laddersQuery = "SELECT * FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " l join " + SCHEMA_NAME + "." + NODES_TBL + " n on l.ladder_id = n.ladder_idfk join " + SCHEMA_NAME + "." + REL_NODE_USER_TBL + " u on n.id = u.node_tbl_idfk where l.ladder_type = '" + ladderType + "' and u.user_idfk = " + uid + " and l.created_by != " + uid;
+                String laddersQuery = "SELECT * FROM (SELECT l.*, n.original_node_id FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " l join " + SCHEMA_NAME + "." + NODES_TBL + " n on l.ladder_id = n.ladder_idfk where l.ladder_type = '" + ladderType + "') a join " + SCHEMA_NAME + "." + REL_NODE_USER_TBL + " u on a.original_node_id = u.node_tbl_idfk where u.user_idfk = " + uid + " and a.created_by != " + uid;
+		
+                ArrayList<Object> objects = getObjects(laddersQuery, GetEntity.CONCEPTMAPS);
 		if(objects != null)
 		{
 			//convert each object to ladder
@@ -1440,14 +1479,23 @@ public class LadderDAO
         private static ConceptMapBean getConceptMapsFromDatabase(ResultSet result) throws SQLException
 	{
 		ConceptMapBean aLadder = null;
-		int ladderId = result.getInt(LADDERS_TBL + "." + "ladder_id");
-		int rootNodeId = result.getInt(LADDERS_TBL + "." + "root_node_idfk");
-		int ownerId = result.getInt(LADDERS_TBL + "." + "owner_idfk");
-		String ladderName = result.getString(LADDERS_TBL + "." + "ladder_name");
-		String description = result.getString(LADDERS_TBL + "." + "description");
-		ConceptMapBean.LadderType ladderType = ConceptMapBean.LadderType.valueOf(result.getString(LADDERS_TBL + "." + "ladder_type"));
-		Timestamp createDt = result.getTimestamp(LADDERS_TBL + "." + "create_dt");
-		Timestamp updateDt = result.getTimestamp(LADDERS_TBL + "." + "update_dt");
+//		int ladderId = result.getInt(LADDERS_TBL + "." + "ladder_id");
+//		int rootNodeId = result.getInt(LADDERS_TBL + "." + "root_node_idfk");
+//		int ownerId = result.getInt(LADDERS_TBL + "." + "owner_idfk");
+//		String ladderName = result.getString(LADDERS_TBL + "." + "ladder_name");
+//		String description = result.getString(LADDERS_TBL + "." + "description");
+//		ConceptMapBean.LadderType ladderType = ConceptMapBean.LadderType.valueOf(result.getString(LADDERS_TBL + "." + "ladder_type"));
+//		Timestamp createDt = result.getTimestamp(LADDERS_TBL + "." + "create_dt");
+//		Timestamp updateDt = result.getTimestamp(LADDERS_TBL + "." + "update_dt");
+
+                int ladderId = result.getInt("ladder_id");
+		int rootNodeId = result.getInt("root_node_idfk");
+		int ownerId = result.getInt("owner_idfk");
+		String ladderName = result.getString("ladder_name");
+		String description = result.getString("description");
+		ConceptMapBean.LadderType ladderType = ConceptMapBean.LadderType.valueOf(result.getString("ladder_type"));
+		Timestamp createDt = result.getTimestamp("create_dt");
+		Timestamp updateDt = result.getTimestamp("update_dt");
 		
 		aLadder = new ConceptMapBean(ladderId, ownerId, rootNodeId, ladderName, description, ladderType, createDt, updateDt, "", "");
 		return aLadder;
