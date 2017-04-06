@@ -43,9 +43,9 @@
                 <aside id="hero" class="js-fullheight">
                     <div class="flexslider js-fullheight">
                         <ul class="slides">
-                            <li style="background-image: url(images/resources_6.gif); background-repeat: no-repeat; background-position:center; background-size: contain;">
+                            <li style="background-image: url(images/resources_14.jpg); background-repeat: no-repeat; background-position:center; background-size: contain;">
                                 <div class="overlay-gradient"></div>
-                                <%--
+                                
                                 <div class="container">
                                     <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
                                         <div class="slider-text-inner desc">
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                --%>
+                               
                             </li>
                         </ul>
                     </div>

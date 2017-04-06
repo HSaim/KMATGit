@@ -17,7 +17,7 @@
             <div class="nav-header">
                 <a href="#" class="js-nav-toggle nav-toggle"><i></i></a>
                 <div>
-                    <h1 id="logo"><a href="home">KMAT</a></h1>
+                    <h1 id="logo"><a href="Home.jsp">KMAT</a></h1>
                 </div>
                 
                 

@@ -53,8 +53,9 @@ public class UserDAO {
                        + "' AND NOT EXISTS" 
                        + "(SELECT  null FROM    unregistered_user_tbl WHERE   user_tbl.user_id = unregistered_user_tbl.user_idfk)" ;	 
         
-        String getUserLevelQuery = "select level_idfk from user_details_tbl where user_idfk = " +userId;
+        String getUserLevelQuery;// = "select level_idfk from user_details_tbl where user_idfk = " +userId;
         String getAccessRightsQuery; 
+        String getAccessLevelNameQuery;
         try{                
            //connect to DB 
            currentCon = ConnectionManager.getConnection();
@@ -81,6 +82,9 @@ public class UserDAO {
                 if (rs1.next()){
                     userLevelId = rs1.getInt("level_idfk");
                     bean.setUserLevelId(userLevelId);
+                    
+                    
+                    //Get the access rights of the user
                     getAccessRightsQuery =  "Select access_rights_tbl.right_name, rel_level_right_tbl.status\n" +
                             "	from access_rights_tbl, rel_level_right_tbl\n" +
                             "    where rel_level_right_tbl.level_idfk = " + userLevelId + " and access_rights_tbl.right_id = rel_level_right_tbl.right_idfk";
@@ -94,6 +98,14 @@ public class UserDAO {
                         rights_status.add(temp);
                     }
                     bean.setAccessRights(rights_status);
+                    
+                    //Get name of user level
+                    getAccessLevelNameQuery = "Select level_name from user_levels_tbl where level_id = " + userLevelId;
+                    rs2 = stmt.executeQuery(getAccessLevelNameQuery);
+                    
+                    if (rs2.next()){
+                        bean.setUserLevelName(rs2.getString("level_name"));
+                    }
                 }
            }
         } 

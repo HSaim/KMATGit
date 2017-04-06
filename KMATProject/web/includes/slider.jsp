@@ -44,7 +44,7 @@
                         </div>
                 </div>
             </li>
-            <li style="background-image: url(images/slide_4.jpg);">
+            <li style="background-image: url(images/resources_1.jpg);">
                 <div class="overlay-gradient"></div>
                 <div class="container">
                         <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">

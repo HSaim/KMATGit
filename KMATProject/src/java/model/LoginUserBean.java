@@ -14,7 +14,16 @@ public class LoginUserBean implements java.io.Serializable {
     private String username;
     private String password;
     private int userId;
-    private int userLevelId;                           //User access level
+    private int userLevelId;                               //User access level id
+    private String userLevelName;                          //User access level name
+
+    public String getUserLevelName() {
+        return userLevelName;
+    }
+
+    public void setUserLevelName(String userLevelName) {
+        this.userLevelName = userLevelName;
+    }
     private  List<List<String>> accessRights;          //Access rights of the logged in user
 
     public List<List<String>> getAccessRights() {
