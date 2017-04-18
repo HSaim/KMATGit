@@ -77,7 +77,6 @@
                     <div class="row">                        
                         <div class="col-md-10 col-md-push-2">
                             <!-- Display of user names, edit and delete buttons for registered users-->
-                            <%--
                             <h2 class="page-heading-lead">
                                 <span class="border"></span>
                                 Registered Users
@@ -101,10 +100,14 @@
                             <c:forEach var="user" items="${rusers}" varStatus="loop">
                                 <div class = "row">
                                     <div class="col-md-6">
-                                        <h3><c:out value="${user.getUserName()}" /></h3>                                        
+                                        <h3><c:out value="${user.getUserName()}" /></h3>
+                                        <%--<input type = "hidden" value = "${user.getUserName()}" name = "hidden">--%>
+                                        <%--<input type = "hidden" value = "username" name = "hide">--%>
                                     </div>
                                     <div class = "col-md-3">
+                                        <%--<input type = "hidden" value = "username" name = "hidden">--%>
                                         
+                                        <%--<a href = "edit-user?x=${user.getUserName()}">--%>
                                         <a href = "GetUsersController?action=get-user&userName=${user.getUserName()}">
                                             <h2><i class="icon-edit"></i></h2>
                                         </a>
@@ -116,84 +119,86 @@
                                     </div>
                                 </div>
                                 
-                                <c:if test="${not loop.last}"><hr/></c:if> <%-- Add an <hr/ > if it is not the last item 
+                                <c:if test="${not loop.last}"><hr/></c:if> <%-- Add an <hr/ > if it is not the last item --%>
                             </c:forEach>
+                            <%--
+                            <% 
+                                ArrayList<UserBean> users = new ArrayList<UserBean>();
+                                if (session.getAttribute("users") != null) {
+                                    users = (ArrayList<UserBean> ) session.getAttribute("users");
+                                }
+                                //else{
+                                  //   users = (ArrayList<UserBean> ) session.getAttribute("users");
+                                //}
+                           %>
+                            <div align="center">
+                                <table border="1" cellpadding="5">
+                                    <caption><h2>List of users</h2></caption>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Profession</th>
+                                    </tr>
+                                    <c:forEach var="user" items="${users}">
+                                        <tr>
+                                            <td><c:out value="${user.getUserName()}" /></td>
+                                            <%--<td><c:out value="${user.name}" /></td>
+                                            <td><c:out value="${user.email}" /></td>
+                                            <td><c:out value="${user.profession}" /></td>
+                                           
+                                        </tr>
+                                    </c:forEach>
+                                </table>
+                            </div>
+                            --%>
+                            <!-- Display of user names, edit and delete buttons for unregistered users-->
+                            <hr style="height:2px;border:none;color:#00c5cf;background-color:#00c5cf;" />
+                            <h2 class="page-heading-lead">
+                                <span class="border"></span>
+                                Unregistered Users
+                                <span class="border"></span>
+                            </h2>
+                            <div class = "row">
+                                <b>
+                                <div class="col-md-6">
+                                    <b>User Name</b>                                    
+                                </div>
+                                <div class = "col-md-3">
+                                    Register
+                                </div>
+                                <div class = "col-md-3">
+                                    Delete
+                                </div>
+                                </b>
+                            </div>
+                            <hr style="height:1px;border:none;color:#333;background-color:#a9a9a9;" />
                             
-                        </div>--%>
-                            
-                        <div id="portfolio-section">
-			<div class="portfolio-row-half">
-                            <c:forEach var="user" items="${rusers}" varStatus="loop">
-                                <%--
-				<div class="portfolio-grid-item-color">
-					<div class="desc">
-						<h2>Our Project</h2>
-						<p>Far far away, behind the word mountains, far from the countries</p>
-						<p><a href="#" class="btn btn-primary btn-outline with-arrow">View All Projects <i class="icon-arrow-right22"></i></a></p>
-					</div>
-				</div>
-                                --%>
-                                <a href = "GetUsersController?action=onlyView-user&userName=${user.getUserName()}" class="portfolio-grid-item" style="background-image: url(images/project-2.jpg);">
-                                    <div class="desc">
-                                        <h3><c:out value="${user.getUserName()}" /></h3>
+                            <c:forEach var="uuser" items="${uusers}">
+                                <div class = "row">
+                                    <div class="col-md-6">
+                                        <h3><c:out value="${uuser.getUserName()}" /></h3>
+                                        <%--<input type = "hidden" value = "${user.getUserName()}" name = "hidden">--%>
+                                        <%--<input type = "hidden" value = "username" name = "hide">--%>
                                     </div>
-				</a>
-                                <%--
-				<a href="#" class="portfolio-grid-item" style="background-image: url(images/project-2.jpg);">
-					<div class="desc2">
-						<h3>Shoes</h3>
-						<span>Travel</span>
-						<i class="sl-icon-heart"></i>
-					</div>
-				</a>
-				<a href="#" class="portfolio-grid-item" style="background-image: url(images/project-3.jpg);">
-					<div class="desc2">
-						<h3>Shoes</h3>
-						<span>Travel</span>
-						<i class="sl-icon-heart"></i>
-					</div>
-				</a>
-				<a href="#" class="portfolio-grid-item" style="background-image: url(images/project-4.jpg);">
-					<div class="desc2">
-						<h3>Shoes</h3>
-						<span>Travel</span>
-						<i class="sl-icon-heart"></i>
-					</div>
-				</a>
-				<a href="#" class="portfolio-grid-item" style="background-image: url(images/project-5.jpg);">
-					<div class="desc2">
-						<h3>Shoes</h3>
-						<span>Travel</span>
-						<i class="sl-icon-heart"></i>
-					</div>
-				</a>
-				<a href="#" class="portfolio-grid-item" style="background-image: url(images/project-6.jpg);">
-					<div class="desc2">
-						<h3>Shoes</h3>
-						<span>Travel</span>
-						<i class="sl-icon-heart"></i>
-					</div>
-				</a>
-				<a href="#" class="portfolio-grid-item" style="background-image: url(images/project-1.jpg);">
-					<div class="desc2">
-						<h3>Shoes</h3>
-						<span>Travel</span>
-						<i class="sl-icon-heart"></i>
-					</div>
-				</a>
-				<a href="#" class="portfolio-grid-item" style="background-image: url(images/project-2.jpg);">
-					<div class="desc2">
-						<h3>Shoes</h3>
-						<span>Travel</span>
-						<i class="sl-icon-heart"></i>
-					</div>
-				</a>
-                                --%>
-                                 </c:forEach>
-			</div>
-		</div>    
-                       
-                          </div>  
+                                    <div class = "col-md-3">
+                                        <%--<input type = "hidden" value = "username" name = "hidden">--%>
+                                        
+                                        <%--<a href = "edit-user?x=${user.getUserName()}">--%>
+                                        <a href = "GetUsersController?action=get-uuser&userName=${uuser.getUserName()}">
+                                            <h2><i class="icon-add-user"></i></h2>
+                                        </a>
+                                    </div>
+                                    <div class = "col-md-3">
+                                        <a href ="GetUsersController?action=del-uuser&userName=${uuser.getUserName()}&userEmail=${uuser.getPriEmail()}&userFName=${uuser.getFirstName()}">
+                                            <h2><i class="icon-remove-user"></i></h2>
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr/>
+                            </c:forEach>
+                        </div>
+                
                         <div class="col-md-2 col-md-pull-10 back-color" >
                             <%-- <jsp:include page="includes/verticalUserMenu.jsp" />  --%>
                             <!-- Left side bar includes here -->

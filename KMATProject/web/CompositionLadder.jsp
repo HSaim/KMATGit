@@ -55,7 +55,7 @@
                     </div>
                     
 		</div>
-                --%>
+                
                 <!--<div class="da-slider" style="background-image: url(images/CompositionLadder3.jpg); background-repeat: no-repeat; background-position:center;"></div>-->
                 <aside id="hero" class="js-fullheight">
                     <div class="flexslider js-fullheight">
@@ -73,6 +73,18 @@
                         </ul>
                     </div>
 		</aside>  
+                
+                --%>
+                <div class="page-title" style="background-image: url(images/CompositionLadder2.jpg);">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 animate-box">
+                                <h1><span class="colored">Composition Ladders</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- END: Banner-->
                 
                 <!-- START: Composition Ladder Contents-->

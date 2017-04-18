@@ -29,7 +29,7 @@
                 <!-- END: header -->
                 
                 <!-- START: Banner -->
-                 <aside id="banner" style="background-image: url(images/banner1.jpg);">
+                 <%--<aside id="banner" style="background-image: url(images/banner1.jpg);">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
@@ -43,6 +43,17 @@
                         </div>
                     </div>
 		</aside>
+                 --%>
+                <div class="page-title" style="background-image: url(images/banner1.jpg);">
+                    <div class="overlay"></div>
+                    <div class="container">
+                            <div class="row">
+                                    <div class="col-md-12 animate-box">
+                                            <h1><span class="colored">Recover - </span> KMAT Account</h1>
+                                    </div>
+                            </div>
+                    </div>
+                </div>
                 <!-- END: Banner-->
                 
                 <!-- START: Recover Account Form -->

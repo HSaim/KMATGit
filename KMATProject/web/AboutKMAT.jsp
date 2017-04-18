@@ -1,5 +1,5 @@
 <%-- 
-    Document   : AboutUs
+    Document   : AboutKMAT
     Created on : Feb 28, 2017, 10:29:09 AM
     Author     : Habiba Saim
 --%>

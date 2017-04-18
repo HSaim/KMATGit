@@ -39,7 +39,7 @@
                 <!-- END: header -->
                 
                 <!-- START: Banner -->
-                
+                <%--
                 <aside id="hero" class="js-fullheight">
                     <div class="flexslider js-fullheight">
                         <ul class="slides">
@@ -57,7 +57,18 @@
                             </li>
                         </ul>
                     </div>
-		</aside>  
+		</aside>
+                --%>
+                <div class="page-title" style="background-image: url(images/resources_14.jpg);">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 animate-box">
+                                <h1><span class="colored">Resources</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- END: Banner-->
                 
                 <!-- START: Resources Contents-->

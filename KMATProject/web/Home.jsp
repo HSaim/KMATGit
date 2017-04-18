@@ -32,8 +32,8 @@
             <!-- START page-->
             <div id = "page">
                 <!-- START header -->
-                 <%--<jsp:include page="includes/header.jsp" /> --%> 
-                 <%@ include file="includes/header.jsp" %>
+                 <jsp:include page="includes/header.jsp" /> 
+                 <%--<%@ include file="includes/header.jsp" %>--%> 
                 <!-- END header -->
                  <!-- Slider Starts-->
                 
@@ -239,7 +239,7 @@
                     </div>                
                 </c:if>
                 <!-- END: Sign in -->
-                
+             
                 <!-- adds js -->                
                 <%@ include file="includes/js.jsp" %>
                 
