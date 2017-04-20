@@ -147,15 +147,15 @@
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
                                 <div class="sub-feature">
                                     <figure>
-                                        <img src="images/slide_2.jpg" alt="slide" class="img-responsive">
+                                        <img src="images/tools_3.jpg" alt="tools" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
                                     </figure>
                                     <div class="sub-feature-innter">
-                                        <h3><a href="#">Tools</a></h3>
+                                        <h3><a href="Tools.jsp">Tools</a></h3>
                                         <div class="price-status">
-                                            <span class="price">Organization's processes</span>
+                                            <span class="price">Softwares/applications</span>
                                         </div>
-                                        <p>Represent the processes being run in an organization</p>
+                                        <p>Linked to processes to accomplish a task</p>
                                     </div>
                                     <p class="sub-feature-specification">
                                         <!--

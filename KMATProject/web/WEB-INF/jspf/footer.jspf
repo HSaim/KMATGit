@@ -29,7 +29,7 @@
                                             <li><a href = "CompositionLadder.jsp">Composition Ladders</a></li>
                                             <li><a href="ConceptMap.jsp">Concept Maps</a></li>
                                             <li><a href="Resources.jsp">Resources</a></li>
-                                            <li><a href="#">Tools</a></li>
+                                            <li><a href="Tools.jsp">Tools</a></li>
                                         </ul>
                                     </div>
 

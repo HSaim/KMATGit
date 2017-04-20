@@ -62,7 +62,7 @@
                                 </li>
                                 <li><a href = "ConceptMap.jsp">Concept Map</a></li>
                                 <li><a href = "Resources.jsp">Resources</a></li>
-                                <li><a href = ""></a></li>
+                                <li><a href = "Tools.jsp">Tools</a></li>
                                 <li><a href = ""></a></li>
                                 <%--
                                 <li>

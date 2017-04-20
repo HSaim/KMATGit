@@ -1,7 +1,7 @@
 <%-- 
     Document   : Resource
     Created on : Mar 30, 2017, 9:37:00 AM
-    Author     : Saim
+    Author     : Habiba Saim
 --%>
 
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
@@ -20,8 +20,8 @@
         <meta charset="utf-8">        
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="KMAT Composition Ladder Introduction" />
-	<meta name="keywords" content="KMAT, composition, ladder, hierarchy" />
+	<meta name="description" content="KMAT Resources Introduction" />
+	<meta name="keywords" content="KMAT, Web links, images, videos, and documents, knowledge, linked, users, roles, processes, tools, composition, concept, ladder, hierarchy" />
 	<meta name="author" content="KMAT Team" />
         
         
@@ -83,7 +83,8 @@
                                 <tr>
                                    Resources are the basic blocks of the system. 
                                    They incorporate knowledge at all levels for each entity in an organization. 
-                                   Resources can be linked to users, roles, tools, <a href='ProcessLadder.jsp'>processes</a>, departments, projects or divisions and even to other resources.  
+                                   Resources can be linked to users, roles, <a href = 'Tools.jsp'>tools</a>, 
+                                   <a href="ProcessLadder.jsp#contact-section">processes</a>, departments, projects or divisions and even to other resources.  
                                 </tr>
                                 <tr>
                                     
@@ -95,7 +96,7 @@
                                             pdf form or some editable form. It can also be a web link. 
                                         Whereas, a simple diagram (in the form of an image perhaps) can be used to highlight different steps in a process.
 
-                                        Since different forms of resources require different tools, 
+                                        Since different forms of resources require different  <a href = 'Tools.jsp'>tools</a>, 
                                             which are already out there, KMAT  handles linking of resources, uploading and downloading them 
                                             and opening them in their default application on the end user’s system.
 
@@ -118,7 +119,7 @@
                                     <td style="width: 100%;">
                                     This module is responsible for all resources to be added to the system so that they can be linked with 
                                         roles, <a href = "ProcessLadder.jsp#contact-section">processes</a>, <a href = "CompositionLadder.jsp#contact-section">compositions</a>,
-                                        <a href = "ConceptMap.jsp#contact-section">concept maps</a> and tools when required. 
+                                        <a href = "ConceptMap.jsp#contact-section">concept maps</a> and  <a href = 'Tools.jsp'>tools</a> when required. 
                                     When a resource is added, it is uploaded onto the server. 
                                     A copy of the resource is also placed on the user’s system where it is accessible to KMAT 
                                         so that it does not have to be located every time. 

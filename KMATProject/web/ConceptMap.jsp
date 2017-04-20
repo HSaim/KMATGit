@@ -37,8 +37,18 @@
                 <jsp:include page="includes/header.jsp" />                      
                 <!-- END: header -->
                 
-                <!-- START: Banner
-                
+                <!-- START: Banner -->
+                <div class="page-title" style="background-image: url(images/banner3.jpg);">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 animate-box">
+                                <h1><span class="colored">Concept Maps</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--
                  <div id="banner" style="background-image:  url(images/CompositionLadder3.jpg); background-repeat: no-repeat; background-position:center;">
                     
                      <div class="container">
@@ -55,7 +65,7 @@
                     
 		</div>
                 -->
-                <!--<div class="da-slider" style="background-image: url(images/CompositionLadder3.jpg); background-repeat: no-repeat; background-position:center;"></div>-->
+                <!--<div class="da-slider" style="background-image: url(images/CompositionLadder3.jpg); background-repeat: no-repeat; background-position:center;"></div>
                 <aside id="hero" class="js-fullheight">
                     <div class="flexslider js-fullheight">
                         <ul class="slides">
@@ -87,9 +97,9 @@
                                    
                                    The concept map defines the integration mechanism between layers and ladders, 
                                         and is part of the service layer of the tool. 
-                                    It visually links together users, <a href = "ProcessLadder.jsp#contact-section">processes</a>, 
-                                        <a href = "CompositionLadder.jsp#contact-section">compositions</a> and 
-                                        all types of <a href = "Resources.jsp#contact-section">resources</a> in a graphical network 
+                                    It visually links together users, <a href = "ProcessLadder.jsp">processes</a>, 
+                                        <a href = "CompositionLadder.jsp">compositions</a> and 
+                                        all types of <a href = "Resources.jsp">resources</a> in a graphical network 
                                         of nodes and directed/undirected edges. Nodes can represent processes, 
                                         compositions or nodes of each or can be external nodes and edges represent the relationship between two nodes. 
                                    Concept map also hosts the knowledge resources being shared within or outside an organization. 
@@ -107,7 +117,7 @@
                                     
                                     
                                     <td style="vertical-align: top; text-align:  center">
-                                            <img id="component_img" src="images/Concept-map--Risk-management.png">
+                                            <img id="component_img_large" src="images/Concept-map--Risk-management.png">
                                     </td>
                                 </tr>
                             </tbody>
