@@ -1,9 +1,18 @@
 
 var listOfResources = [{id: 2, name: "Resource2", description: ""},
 					{id: 3, name: "Test Long Long Long Resource3", description: ""}];
+                                    
+                                    var listOfTools =	[{id: 1, name: "Adobe Acrobat", description: ""}, 
+					//{id: 2, name: "Test Tool2", description: ""},
+					{id: 3, name: "Test Long Long Long Tool3 Test Long Long Long Tool3", description: ""},
+					//{id: 4, name: "Test Tool3", description: ""},
+					{id: 5, name: "Netbeans", description: ""}];
+var listOfUsers = [{id: 1, name: "User 1", description: "", email:"maryam.khalid.86@gmail.com"}];
 
 // get these links from database
+var searchResultTools = [];
 var searchResultResources = [];
+var searchResultUsers = [];
 
 function changeNameTextFieldColor()
 {
@@ -366,16 +375,33 @@ function onLoadModal(callingNodeId, linkedObjectsList)
 	{
 		return;
 	}
-	
+	var completeItemsList = [];
+	if(callingNodeId === "accordion1-panel-pc")
+	{
+		completeItemsList = listOfTools;
+	}
+	else if(callingNodeId === "accordion2-panel-pc")
+	{
+		completeItemsList = listOfResources;
+	}
+	else if(callingNodeId === "accordion3-panel-pc")
+	{
+		completeItemsList = listOfUsers;
+	}
 	document.getElementById(callingNodeId).isEditAccordionItemsSelected = 0;
 	document.getElementById(callingNodeId).numListElements = 0;
 	
 	//check if id from linkedObjectsList matches id of completeItemsList
 	for(var i = 0; i < linkedObjectsList.length; i++)
 	{
-            addNewItem(callingNodeId, linkedObjectsList[i], i);
+		for(var j = 0; j < completeItemsList.length; j++)
+		{
+			if(linkedObjectsList[i] === completeItemsList[j].id)
+			{
+				addNewItem(callingNodeId, completeItemsList[j], j);
+			}
+		}
 	}
-        searchResultResources = linkedObjectsList;
 }
 
 function onLoadModalView(callingNodeId, linkedObjectsList)
@@ -517,6 +543,38 @@ function closeModal()
 	acc3.style.borderBottomRightRadius = "10px";
 	
 	searchResultResources.length = 0;
+	
+	resetModalState();
+	graphModal.style.display = "none";
+	document.getElementById("add-process-ladder-body").style.overflow = "scroll";
+	
+	//TODO: prompt if details have changed but have not been saved
+}
+
+function closeModalPC()
+{	
+	var graphModal = document.getElementById('node-modal-pc');
+	
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++)
+	{
+		if(acc[i].isClose)
+		{
+			acc[i].classList.toggle("active");
+			acc[i].nextElementSibling.classList.toggle("show");
+			acc[i].isClose = false;
+		}
+	}
+	
+	openedLastAccordion = false;
+	acc3.style.borderBottomLeftRadius = "10px";
+	acc3.style.borderBottomRightRadius = "10px";
+	
+	searchResultTools.length = 0;
+	searchResultResources.length = 0;
+	searchResultUsers.length = 0;
 	
 	resetModalState();
 	graphModal.style.display = "none";

@@ -384,6 +384,23 @@ document.onload = (function(d3)
 						thisGraph.selectedGraphEdge.classed(thisGraph.consts.selectedClass, true);
                                                 //thisGraph.selectedGraphEdge.classed(thisGraph.state.selectedNode.classforSelection, true);
 				}
+                                if(document.getElementById("node-modal-pc").style.display === "block")
+				{
+					if(thisGraph.isNodeSelected)
+                                        {
+						//thisGraph.selectedGraphCircle.classed("selected circle", true);
+                                                //thisGraph.selectedGraphCircle.classed(thisGraph.state.selectedNode.classforSelection+" circle", true);
+                                                if (thisGraph.state.selectedNode.nodeType === "PROCESS")
+                                                            thisGraph.selectedGraphCircle.classed("selectedP circle", true);
+                                                else if (thisGraph.state.selectedNode.nodeType === "CONCEPT")
+                                                            thisGraph.selectedGraphCircle.classed("selectedG circle", true);
+                                                else if (thisGraph.state.selectedNode.nodeType === "COMPOSITION")
+                                                            thisGraph.selectedGraphCircle.classed("selectedC circle", true);
+                                        }		
+                                        else if(thisGraph.isEdgeSelected)
+						thisGraph.selectedGraphEdge.classed(thisGraph.consts.selectedClass, true);
+                                                //thisGraph.selectedGraphEdge.classed(thisGraph.state.selectedNode.classforSelection, true);
+				}
 				else if(thisGraph.modalJustClosed && thisGraph.selectedGraphCircle !== null)
 				{
 					thisGraph.modalJustClosed = false;
@@ -401,6 +418,22 @@ document.onload = (function(d3)
 		svg.on("focusin", function(d)
 			{
 				if(document.getElementById("node-modal").style.display === "block")
+				{
+					if(thisGraph.isNodeSelected)
+                                        {
+						//thisGraph.selectedGraphCircle.classed("selected circle", true);
+                                            //thisGraph.selectedGraphCircle.classed(thisGraph.state.selectedNode.classforSelection+" circle", true);
+                                            if (thisGraph.state.selectedNode.nodeType === "PROCESS")
+                                                            thisGraph.selectedGraphCircle.classed("selectedP circle", true);
+                                                else if (thisGraph.state.selectedNode.nodeType === "CONCEPT")
+                                                            thisGraph.selectedGraphCircle.classed("selectedG circle", true);
+                                                else if (thisGraph.state.selectedNode.nodeType === "COMPOSITION")
+                                                            thisGraph.selectedGraphCircle.classed("selectedC circle", true);
+                                        }
+                                        else if(thisGraph.isEdgeSelected)
+						thisGraph.selectedGraphEdge.classed(thisGraph.consts.selectedClass, true)
+				}
+                                if(document.getElementById("node-modal-pc").style.display === "block")
 				{
 					if(thisGraph.isNodeSelected)
                                         {
@@ -788,7 +821,20 @@ document.onload = (function(d3)
             var thisGraph = this;
             if (thisGraph.isNodeSelected === true && (thisGraph.state.selectedNode.nodeType === "PROCESS" || thisGraph.state.selectedNode.nodeType === "COMPOSITION"))
             {
-                //don't open modal for process and composition nodes
+                d3.select("body")
+			.style("overflow", "hidden");   
+		document.getElementById("node-modal-pc").style.display = "block";
+		thisGraph.modalJustClosed = true;
+                document.getElementById("modal-node-name-pc").innerHTML = thisGraph.state.selectedNode.title;
+			//copy node data to global variable
+			isNodeSelected = thisGraph.isNodeSelected === false ? false : true;
+			selectedNode = JSON.parse(JSON.stringify(thisGraph.state.selectedNode));
+			
+			document.getElementById("modal-description-id-pc").value = selectedNode.description;
+			//load linked tools, users and resources on modal
+			onLoadModal("accordion1-panel-pc", selectedNode.tools);
+			onLoadModal("accordion2-panel-pc", selectedNode.resources);
+			onLoadModal("accordion3-panel-pc", selectedNode.users);
             }
             else
             {
