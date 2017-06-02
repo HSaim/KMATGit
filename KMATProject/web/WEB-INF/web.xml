@@ -270,6 +270,7 @@
             <url-pattern>/ConceptMap.jsp</url-pattern>
             <url-pattern>/Resources.jsp</url-pattern>
             <url-pattern>/Tools.jsp</url-pattern>
+            <url-pattern>/Users.jsp</url-pattern>
             <!--
             <url-pattern>/News.jsp</url-pattern>            
             <url-pattern>/LoginAgain.jsp</url-pattern>

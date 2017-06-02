@@ -65,7 +65,7 @@
                             <h1 class = "subTitle">Knowledge Management for All Tool (KMAT)</h1>
                         </div>
                         
-                        <table class=" tWiz" style="width: 100%" cellPadding=5 align=left>
+                        <table style="width: 100%" cellPadding=5 align=left>
                             <tbody>
                                 
                                 <tr>
