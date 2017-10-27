@@ -54,8 +54,6 @@ public class LadderDAO
 	private static final String REL_EDGE_USER_TBL = "rel_edge_user_tbl";
 	private static final String REL_EDGE_RESOURCE_TBL = "rel_edge_resource_tbl";
 	private static final String REL_EDGE_TOOL_TBL = "rel_edge_tool_tbl";
-        private static final String USER_DET_TBL = "user_details_tbl";
-        private static final String USER_TBL = "user_tbl";
 	
 	public static int insertLadder(LadderBean ladder)
 	{
@@ -328,50 +326,6 @@ public class LadderDAO
 		String query = "SELECT resource_idfk FROM " + SCHEMA_NAME + "." + REL_NODE_RESOURCE_TBL + " WHERE node_tbl_idfk = " + id;
 		
 		nodeResources = getRelations(query, "resource_idfk", REL_NODE_RESOURCE_TBL);
-		return nodeResources;
-	}
-        
-        public static ArrayList<String> getNodeResourceNames(ArrayList<Integer> resourceIds)
-	{
-		ArrayList<String> nodeResources = new ArrayList<>();
-                for (int i=0; i < resourceIds.size(); i++)
-                {
-                    String query = "SELECT resource_name FROM " + SCHEMA_NAME + ".resource_tbl WHERE resource_id = " + resourceIds.get(i);
-                    
-                    conn = ConnectionManager.getConnection();
-                    if (conn != null)
-                    {
-                            try
-                            {
-                                    pst = conn.prepareStatement(query);
-                                    boolean isExecuted = pst.execute();
-                                    if (isExecuted)
-                                    {
-                                            result = pst.getResultSet();
-                                            boolean isValid = result.first();
-                                            while (isValid)
-                                            {
-                                                nodeResources.add(i, result.getString("resource_tbl" + "." + "resource_name"));
-                                                break;
-                                            }
-                                    }
-                                    else
-                                    {
-                                            System.out.println("Could not execute Query: " + query);
-                                    }
-                            }
-                            catch (SQLException e)
-                            {
-                                    System.err.println("Values for get links query not executed with following error:");
-                                    System.err.println(e.getMessage());
-                                    //e.printStackTrace();
-                            }
-                            finally
-                            {
-                                    closeConnection();
-                            }
-                    }
-                }
 		return nodeResources;
 	}
 	
@@ -975,14 +929,7 @@ public class LadderDAO
         public static int ifLadderExists(String ladderType, String ladderTitle)
 	{
 		int ladderID = 0;
-                int nodeID = -2;
-                //String query = "Select ladder_id from " + SCHEMA_NAME + "." + LADDERS_TBL + " where ladder_type = '" + ladderType + "' and ladder_name = '" + ladderTitle + "'";
-                
-                String segments[] = ladderTitle.split("[\\|]");
-                String ladderName = segments[0].trim();
-                String nodeName = segments[segments.length -1].trim();
-		
-                String query = "Select ladder_id from " + SCHEMA_NAME + "." + LADDERS_TBL + " where ladder_type = '" + ladderType + "' and ladder_name = '" + ladderName + "'";
+		String query = "Select ladder_id from " + SCHEMA_NAME + "." + LADDERS_TBL + " where ladder_type = '" + ladderType + "' and ladder_name = '" + ladderTitle + "'";
                 
                 conn = ConnectionManager.getConnection();
 		if (conn != null)
@@ -1008,48 +955,16 @@ public class LadderDAO
 				e.printStackTrace();
 			}
                 }
-                
-                if (ladderID > 0)
-                {
-                    String q = "Select id from " + SCHEMA_NAME + "." + NODES_TBL + " where ladder_idfk ="+ladderID + " and node_name = '" + nodeName + "'";
-                    nodeID = -1;
-                    conn = ConnectionManager.getConnection();
-                    if (conn != null)
-                    {
-                            try
-                            {
-                                    pst = conn.prepareStatement(q);
-                                    boolean isExecuted = pst.execute();
-                                    if (isExecuted)
-                                    {
-                                            result = pst.getResultSet();
-                                            boolean isValid = result.first();
-                                            while (isValid)
-                                            {
-                                                nodeID = result.getInt(NODES_TBL + "." + "id");
-                                                break;
-                                            }
-                                    }
-                            }
-                            catch (Exception e) 
-                            {
-                                    System.err.println("Unable to close ResultSet: " + e.getMessage());
-                                    e.printStackTrace();
-                            }
-                    }
-                }
-		return nodeID;
+		return ladderID;
         }
         
-        public static int insertConceptMap(ConceptMapBean conceptMap, int userID)
+        public static int insertConceptMap(ConceptMapBean conceptMap)
 	{
 		int newLadderId = 0;
 		
 		//form insert query
-//		String query = "INSERT INTO " + SCHEMA_NAME + "." + LADDERS_TBL + "(root_node_idfk, owner_idfk, ladder_name, description, ladder_type, create_dt, update_dt)";
-//		query += "VALUES('" + conceptMap.getRootNodeId() + "', '" + conceptMap.getOwnerId() + "', '" + conceptMap.getName() + "', '" + conceptMap.getDescription() + "', '" + conceptMap.getLadderType() + "', NOW(), NOW());";
-		String query = "INSERT INTO " + SCHEMA_NAME + "." + LADDERS_TBL + "(root_node_idfk, owner_idfk, ladder_name, description, ladder_type, create_dt, update_dt, created_by)";
-		query += "VALUES('" + conceptMap.getRootNodeId() + "', '" + conceptMap.getOwnerId() + "', '" + conceptMap.getName() + "', '" + conceptMap.getDescription() + "', '" + conceptMap.getLadderType() + "', NOW(), NOW(), "+userID+");";
+		String query = "INSERT INTO " + SCHEMA_NAME + "." + LADDERS_TBL + "(root_node_idfk, owner_idfk, ladder_name, description, ladder_type, create_dt, update_dt)";
+		query += "VALUES('" + conceptMap.getRootNodeId() + "', '" + conceptMap.getOwnerId() + "', '" + conceptMap.getName() + "', '" + conceptMap.getDescription() + "', '" + conceptMap.getLadderType() + "', NOW(), NOW());";
 		
 		//call insertRow
 		newLadderId = insertRow(query);
@@ -1092,7 +1007,7 @@ public class LadderDAO
 		return newLadderId;
 	}
         
-        public static ConceptMapBean updateConceptMap(ConceptMapBean aLadder, int userID)
+        public static ConceptMapBean updateConceptMap(ConceptMapBean aLadder)
 	{
 		//update ladder details
 		Date utilDate = new java.util.Date();
@@ -1172,8 +1087,8 @@ public class LadderDAO
 		int newNodeId = 0;
 		
 		//form insert query
-		String query = "INSERT INTO " + SCHEMA_NAME + "." + NODES_TBL + "(node_id, ladder_idfk, owner_idfk, node_type, node_name, description, pos_x, pos_y, create_dt, update_dt, class_for_selection, class_for_node, original_node_id)";
-		query += "VALUES('" + node.getNodeId() + "', '" + node.getLadderId() + "', '" + node.getOwnerId() + "', '" + node.getNodeType() + "', '" + node.getName() + "', '" + node.getDescription() + "', '" + node.getNodePosition().getX() + "', '" + node.getNodePosition().getY() + "', NOW(), NOW(), '" + node.getClassforSelection() + "', '" + node.getClassforNode()+ "', "+ node.getOriginalNodeID()+")";
+		String query = "INSERT INTO " + SCHEMA_NAME + "." + NODES_TBL + "(node_id, ladder_idfk, owner_idfk, node_type, node_name, description, pos_x, pos_y, create_dt, update_dt, class_for_selection, class_for_node)";
+		query += "VALUES('" + node.getNodeId() + "', '" + node.getLadderId() + "', '" + node.getOwnerId() + "', '" + node.getNodeType() + "', '" + node.getName() + "', '" + node.getDescription() + "', '" + node.getNodePosition().getX() + "', '" + node.getNodePosition().getY() + "', NOW(), NOW(), '" + node.getClassforSelection() + "', '" + node.getClassforNode()+ "')";
 		
 		//call insertRow
 		newNodeId = insertRow(query);
@@ -1199,45 +1114,6 @@ public class LadderDAO
 				queryLinkResource += "VALUES('" + newNodeId + "', '" + node.getResourceIds().get(i) + "')";
 				insertRow(queryLinkResource);
 			}
-                        
-                        for(int i = 0; i < node.getResources().size(); i++)
-			{
-                            String resourceID = "Select resource_id from " + SCHEMA_NAME + ". resource_tbl where resource_name = '" + node.getResources().get(i) +"'";
-                            int resID = 0;
-                            conn = ConnectionManager.getConnection();
-                            if (conn != null)
-                            {
-                                try
-                                {
-                                    pst = conn.prepareStatement(resourceID);
-                                    boolean isExecuted = pst.execute();
-                                    if (isExecuted)
-                                    {
-					result = pst.getResultSet();
-					boolean isValid = result.first();
-					while (isValid)
-					{
-                                            resID = result.getInt("resource_tbl" + "." + "resource_id");
-                                            break;
-                                        }
-                                    }
-                                }
-                                catch (SQLException e)
-                                {
-                                        System.err.println("Values for get links query not executed with following error:");
-                                        System.err.println(e.getMessage());
-                                        //e.printStackTrace();
-                                }
-                                finally
-                                {
-                                        closeConnection();
-                                }
-				String queryLinkResource = "INSERT INTO " + SCHEMA_NAME + "." + REL_NODE_RESOURCE_TBL + "(node_tbl_idfk, resource_idfk)";
-				//queryLinkResource += "VALUES('" + newNodeId + "', '" + node.getResourceIds().get(i) + "')";
-                                queryLinkResource += "VALUES('" + newNodeId + "', '" + resID + "')";
-				insertRow(queryLinkResource);
-                            }
-                        }
 		}
 	}
         
@@ -1257,7 +1133,6 @@ public class LadderDAO
 				//get node tools, resources and users
 				aNode.setToolIds(getNodeTools(aNode.getId()));
 				aNode.setResourceIds(getNodeResources(aNode.getId()));
-                                aNode.setResources(getNodeResourceNames(aNode.getResourceIds()));
 				aNode.setSharedUserIds(getNodeUsers(aNode.getId()));
 				
 				nodesList.add(aNode);
@@ -1266,13 +1141,11 @@ public class LadderDAO
 		return nodesList;
 	}
         
-        public static ArrayList<ConceptMapBean> getConceptLadders(String ladderType, int uid)
+        public static ArrayList<ConceptMapBean> getConceptLadders(String ladderType)
 	{
 		ArrayList<ConceptMapBean> laddersList = new ArrayList<>();
 		//query according to ladder type
-		//String laddersQuery = "SELECT * FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " WHERE ladder_type = '" + ladderType + "'";
-		
-                String laddersQuery = "SELECT * FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " WHERE ladder_type = '" + ladderType + "' AND created_by ="+uid;
+		String laddersQuery = "SELECT * FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " WHERE ladder_type = '" + ladderType + "'";
 		
 		ArrayList<Object> objects = getObjects(laddersQuery, GetEntity.CONCEPTMAPS);
 		if(objects != null)
@@ -1285,42 +1158,7 @@ public class LadderDAO
 				//for each ladder - get users, resources and tools
 				aLadder.setToolIds(getLadderTools(aLadder.getId()));
 				aLadder.setResourceIds(getLadderResources(aLadder.getId()));
-                                aLadder.setSharedUserIds(getLadderUsers(aLadder.getId()));
-
-				//for each ladder - get nodes
-				aLadder.setNodes(getConceptNodes(aLadder.getId()));
-
-				//for each ladder - get edges
-				aLadder.setEdges(getEdges(aLadder.getId()));
-				
-				laddersList.add(aLadder);
-			}
-		}
-		return laddersList;
-	}
-        
-        public static ArrayList<ConceptMapBean> getConceptLaddersForView(String ladderType, int uid)
-	{
-		ArrayList<ConceptMapBean> laddersList = new ArrayList<>();
-		//query according to ladder type
-		//String laddersQuery = "SELECT * FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " WHERE ladder_type = '" + ladderType + "'";
-		
-                //String laddersQuery = "SELECT * FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " WHERE ladder_type = '" + ladderType + "' AND created_by ="+uid;
-		//String laddersQuery = "SELECT * FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " l join " + SCHEMA_NAME + "." + NODES_TBL + " n on l.ladder_id = n.ladder_idfk join " + SCHEMA_NAME + "." + REL_NODE_USER_TBL + " u on n.id = u.node_tbl_idfk where l.ladder_type = '" + ladderType + "' and u.user_idfk = " + uid + " and l.created_by != " + uid;
-                String laddersQuery = "SELECT * FROM (SELECT l.*, n.original_node_id FROM " + SCHEMA_NAME + "." + LADDERS_TBL + " l join " + SCHEMA_NAME + "." + NODES_TBL + " n on l.ladder_id = n.ladder_idfk where l.ladder_type = '" + ladderType + "') a join " + SCHEMA_NAME + "." + REL_NODE_USER_TBL + " u on a.original_node_id = u.node_tbl_idfk where u.user_idfk = " + uid + " and a.created_by != " + uid;
-		
-                ArrayList<Object> objects = getObjects(laddersQuery, GetEntity.CONCEPTMAPS);
-		if(objects != null)
-		{
-			//convert each object to ladder
-			for(int i = 0; i < objects.size(); i++)
-			{
-				ConceptMapBean aLadder = (ConceptMapBean)objects.get(i);
-
-				//for each ladder - get users, resources and tools
-				aLadder.setToolIds(getLadderTools(aLadder.getId()));
-				aLadder.setResourceIds(getLadderResources(aLadder.getId()));
-                                aLadder.setSharedUserIds(getLadderUsers(aLadder.getId()));
+				aLadder.setSharedUserIds(getLadderUsers(aLadder.getId()));
 
 				//for each ladder - get nodes
 				aLadder.setNodes(getConceptNodes(aLadder.getId()));
@@ -1400,19 +1238,13 @@ public class LadderDAO
 			{
 				jsonResourceBuilder.add(node.getResourceIds().get(j));
 			}
-                        JsonArrayBuilder jsonResourceNamesBuilder = Json.createArrayBuilder();
-			for(int j = 0; j < node.getResources().size(); j++)
-			{
-				jsonResourceNamesBuilder.add(node.getResources().get(j));
-			}
 			JsonArrayBuilder jsonUserBuilder = Json.createArrayBuilder();
 			for(int j = 0; j < node.getSharedUserIds().size(); j++)
 			{
 				jsonUserBuilder.add(node.getSharedUserIds().get(j));
 			}
 			nodeBuilder.add("tools", jsonToolBuilder.build())
-					//.add("resources", jsonResourceBuilder.build())
-                                        .add("resources", jsonResourceNamesBuilder.build())
+					.add("resources", jsonResourceBuilder.build())
 					.add("users", jsonUserBuilder.build())
 					.add("x", node.getNodePosition().getX())
 					.add("y", node.getNodePosition().getY());
@@ -1479,70 +1311,16 @@ public class LadderDAO
         private static ConceptMapBean getConceptMapsFromDatabase(ResultSet result) throws SQLException
 	{
 		ConceptMapBean aLadder = null;
-//		int ladderId = result.getInt(LADDERS_TBL + "." + "ladder_id");
-//		int rootNodeId = result.getInt(LADDERS_TBL + "." + "root_node_idfk");
-//		int ownerId = result.getInt(LADDERS_TBL + "." + "owner_idfk");
-//		String ladderName = result.getString(LADDERS_TBL + "." + "ladder_name");
-//		String description = result.getString(LADDERS_TBL + "." + "description");
-//		ConceptMapBean.LadderType ladderType = ConceptMapBean.LadderType.valueOf(result.getString(LADDERS_TBL + "." + "ladder_type"));
-//		Timestamp createDt = result.getTimestamp(LADDERS_TBL + "." + "create_dt");
-//		Timestamp updateDt = result.getTimestamp(LADDERS_TBL + "." + "update_dt");
-
-                int ladderId = result.getInt("ladder_id");
-		int rootNodeId = result.getInt("root_node_idfk");
-		int ownerId = result.getInt("owner_idfk");
-		String ladderName = result.getString("ladder_name");
-		String description = result.getString("description");
-		ConceptMapBean.LadderType ladderType = ConceptMapBean.LadderType.valueOf(result.getString("ladder_type"));
-		Timestamp createDt = result.getTimestamp("create_dt");
-		Timestamp updateDt = result.getTimestamp("update_dt");
+		int ladderId = result.getInt(LADDERS_TBL + "." + "ladder_id");
+		int rootNodeId = result.getInt(LADDERS_TBL + "." + "root_node_idfk");
+		int ownerId = result.getInt(LADDERS_TBL + "." + "owner_idfk");
+		String ladderName = result.getString(LADDERS_TBL + "." + "ladder_name");
+		String description = result.getString(LADDERS_TBL + "." + "description");
+		ConceptMapBean.LadderType ladderType = ConceptMapBean.LadderType.valueOf(result.getString(LADDERS_TBL + "." + "ladder_type"));
+		Timestamp createDt = result.getTimestamp(LADDERS_TBL + "." + "create_dt");
+		Timestamp updateDt = result.getTimestamp(LADDERS_TBL + "." + "update_dt");
 		
 		aLadder = new ConceptMapBean(ladderId, ownerId, rootNodeId, ladderName, description, ladderType, createDt, updateDt, "", "");
 		return aLadder;
 	}
-        
-        public static String getEmailAddress(Integer userID) {
-            String emailAddress = "";
-            String query = "SELECT email1 FROM " + SCHEMA_NAME + "." + USER_DET_TBL + " WHERE user_idfk = " + userID;
-            
-            conn = ConnectionManager.getConnection();
-		if (conn != null)
-		{
-			try
-			{
-				pst = conn.prepareStatement(query);
-				boolean isExecuted = pst.execute();
-				if (isExecuted)
-				{
-					result = pst.getResultSet();
-					boolean isValid = result.first();
-					while (isValid)
-					{
-                                            emailAddress = result.getString(USER_DET_TBL + "." + "email1");
-                                            break;
-                                        }
-				}
-				else
-				{
-					System.out.println("Could not execute Query: " + query);
-				}
-			}
-			catch (SQLException e)
-			{
-				System.err.println("Values for get object(s) query not executed with following error:");
-				System.err.println(e.getMessage());
-				//e.printStackTrace();
-			}
-			finally
-			{
-				closeConnection();
-			}
-		}
-		else
-		{
-			System.err.println("The System is not connected to database. Cannot get object(s).");
-		}
-                
-            return emailAddress;
-        }
 }

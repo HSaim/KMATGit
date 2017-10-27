@@ -47,13 +47,13 @@ public class ResourceDAO {
         
         String searchResourceName ="select resource_name from resource_tbl where resource_name='"+resourceName+"'";
         
-        String insertQuery1 = "insert into resource_tbl(user_idfk,resource_name,description,create_dt,update_dt)"+"VALUES('"+userID+"','"+resourceName+"',"
-                + "'"+resourceDiscription+"',NOW(),NOW())";
+        String insertQuery1 = "insert into resource_tbl(user_idfk,resource_name,description, resource_type, create_dt,update_dt)"+"VALUES('"+userID+"','"+resourceName+"',"
+                + "'"+resourceDiscription+"','"+resourceType+"',NOW(),NOW())";
         String searchResourceId = "select resource_id from resource_tbl where resource_name ='"+resourceName+"'";
         
         
         try{
-            if(resourceName!="" && resourceDiscription!=""){
+            if(resourceName!="" && resourceDiscription!="" && resourceType!=""){
             currentCon = ConnectionManager.getConnection();
             stmt = currentCon.createStatement();
             rs = stmt.executeQuery(searchResourceName);
@@ -69,7 +69,8 @@ public class ResourceDAO {
                 rs = stmt.executeQuery(searchResourceId);
                 if(rs.next()){
                     resourceId=rs.getInt("resource_id");
-                    if(resourceFile.equals("none")){
+                    System.out.println("Resource Type : "+resourceType);
+                    if(resourceType.equals("link")){
                         String insertQuery2 = "Insert into resource_link_tbl (resource_idfk, link) Values (?, ?)";
                         //resource_link_tbl_Insertion = stmt.executeUpdate(insertQuery2);
                         PreparedStatement pst=currentCon.prepareStatement(insertQuery2);
@@ -78,7 +79,7 @@ public class ResourceDAO {
                         pst.executeUpdate();
                         
                     }
-                    else if(resourceLink.equals("none")){
+                    else if(resourceType.equals("file")){
                       // String insertQuery3 = "INSERT INTO resource_upload_tbl(resource_idfk, path, type, format, Size) VALUES("+resourceId+", '"+resourcePath+"', '"+resourceType+"', '"+resourceFormat+"', "+resourceSize+")";
                        //String inserQ = "Insert into resource_upload_tbl (resource_idfk, path) Values (" +resourceId +", 'c:\\resourcePath\\cvbvb\\')";
                        String inserQ2 = "Insert into resource_upload_tbl (resource_idfk, path, type, format, Size) Values (?, ?, ?, ?, ?)";
@@ -125,32 +126,44 @@ public class ResourceDAO {
 public static ResourceBean getResource(String resourceName){
     ResourceBean resource = new ResourceBean();
 
-    String query1 ="Select resource_tbl.resource_id, resource_tbl.user_idfk, resource_tbl.resource_name, resource_tbl.description, resource_tbl.resource_type"
-            +"resource_upload_tbl.file_name, resource_upload_tbl.path, resource_upload_tbl.type, resource_upload_tbl.format, resource_upload_tbl.Size"
-            +"resource_link_tbl.link"
-            +"from resource_tbl,resource_upload_tbl, resource_link_tbl"
-            +"where resource_tbl.resource_name='"+resourceName+"' AND resource_tbl.resource_id = resource_upload_tbl.resource_idfk AND resource_tbl.resource_id = resource_link_tbl.resource_idfk";
+    String query1 ="Select * from resource_tbl where resource_tbl.resource_name='"+resourceName+"'";
     
     try{
         currentCon = ConnectionManager.getConnection();
         stmt = currentCon.createStatement();
         rs = stmt.executeQuery(query1);
+        
+        int resourceID = 0;
+        String resourceType = "";
         if(rs.next()){
-            resource.setUserID(rs.getInt("user_idfk"));
+            
+            resourceType = rs.getString("resource_type"); 
+            resource.setResourceType(resourceType);
+            resourceID = rs.getInt("resource_id");
+            resource.setResourceID(resourceID);
+            String discr = rs.getString("description");
+            resource.setResourceDiscription(discr);
+            System.out.println("Discription: "+discr);
             resource.setResourceName(rs.getString("resource_name"));
-            resource.setResourceDiscription(rs.getString("description"));
-            resource.setResourceType(rs.getString("resource_type"));
-            if(resource.getResourceType().equals("link")){
-                 resource.setResourceLink(rs.getString("link"));                
+            //resource.setResourceDiscription(rs.getString("description"));
+            if(resourceType.equals("link")|| resourceType.equals("Link")){
+                String link= "select * from kmat.resource_link_tbl where resource_idfk = '"+resourceID+"'";
+                rs = stmt.executeQuery(link);
+                if(rs.next()){
+                    resource.setResourceLink(rs.getString("link"));
+                }
             }
-            else if(resource.getResourceType().equals("file")){
-                resource.setResourcePath(rs.getString("path"));
+            else if(resourceType.equals("file")||resourceType.equals("File")){
+                String file = "select * from kmat.resource_upload_tbl where resource_idfk = '"+resourceID+"'";
+                
+                resource.setFileName(rs.getString("file_name"));
                 resource.setFileType(rs.getString("type"));
                 resource.setResourceFormat(rs.getString("format"));
-                resource.setResourceSize(rs.getInt("Size"));
-                resource.setFileName(rs.getString("file_name"));
-                
+                resource.setResourcePath(rs.getString("path"));
+                resource.setResourceSize(rs.getInt("size"));
+                            
             }
+            
             
             
             
@@ -184,14 +197,17 @@ private static void closeConnection(){
         }   
        ConnectionManager.putConnection(currentCon);
     }
-public static ArrayList<ResourceBean> getResources(String currentUsername){
+public static ArrayList<ResourceBean> getResources(String currentUsername)
+{
     ArrayList<ResourceBean> list = new ArrayList<ResourceBean>();
-    String query = "Select user_tbl.user_id from user-tbl where user_tbl.username<>'"+currentUsername+"'";
-    String query1 = "Select resource_tbl.resource_id, resource_tbl.resource_name, resource_tbl.description, resource_link_tbl.link"
-            + "where ";
+    String query = "Select kmat.user_tbl.user_id from kmat.user_tbl where kmat.user_tbl.username = '"+currentUsername+"'";
     String uid="";
+    
+    
+    
     try{
         boolean more;
+        currentCon = ConnectionManager.getConnection();
         stmt=currentCon.createStatement();
         rs = stmt.executeQuery(query);	        
         more = rs.next();
@@ -199,14 +215,31 @@ public static ArrayList<ResourceBean> getResources(String currentUsername){
             uid = rs.getString("user_id");
             
         }
+        String query1 = "select kmat.resource_tbl.resource_id, kmat.resource_tbl.resource_name From kmat.resource_tbl where kmat.resource_tbl.user_idfk = '"+uid+"'";
+        System.out.println(query1);
+        rs = stmt.executeQuery(query1);
+       // more = rs.next();
+        while(rs.next()){
+            ResourceBean resource = new ResourceBean();
+            resource.setResourceID(rs.getInt("resource_id"));
+            resource.setResourceName(rs.getString("resource_name"));
+            list.add(resource);
+            int id = rs.getInt("resource_id");
+            String name = rs.getString("resource_name");
+            System.out.println(id);
+            System.out.println(name);
+        } 
     }
     catch(Exception ex){
+        ex.printStackTrace();
         
     }
     finally{
         
     }
     return list;
+
+    
 }
 
 public static ResourceBean updateResource(ResourceBean bean){

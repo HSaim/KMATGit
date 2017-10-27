@@ -53,7 +53,7 @@
             <!-- START page-->
             <div id = "page">
                 <!-- START header -->
-                <jsp:include page="../../includes/header.jsp" />                 
+                <jsp:include page="../../includes/user-header.jsp" />                 
                 <!-- END header -->
                 
                 <!-- START: Page heading-->

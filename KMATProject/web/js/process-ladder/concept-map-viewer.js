@@ -38,7 +38,7 @@ document.onload = (function(d3)
 	if(aLadder !== null)
 	{
 		//set ladder name, nodes and edges
-		document.getElementById("view-ladder-name").innerHTML = "Concept Map Name: " + aLadder.name;
+		document.getElementById("view-ladder-name").innerHTML = "Ladder Name: " + aLadder.name;
 		document.getElementById("graph-settings-description").innerHTML = aLadder.description;
 		document.getElementById("graph-settings-description").readOnly = true;
 		ladderAllNodes = JSON.parse(JSON.stringify(aLadder.nodes));
@@ -805,9 +805,9 @@ document.onload = (function(d3)
 			
 			document.getElementById("modal-description-id").value = selectedNode.description;
 			//load linked tools, users and resources on modal
-			onLoadModalView("accordion1-panel", selectedNode.tools);
-			onLoadModalView("accordion2-panel", selectedNode.resources);
-			onLoadModalView("accordion3-panel", selectedNode.users);
+			onLoadModal("accordion1-panel", selectedNode.tools);
+			onLoadModal("accordion2-panel", selectedNode.resources);
+			onLoadModal("accordion3-panel", selectedNode.users);
 		}
 		else if(thisGraph.isEdgeSelected)
 		{
@@ -817,9 +817,9 @@ document.onload = (function(d3)
 			
 			document.getElementById("modal-description-id").value = selectedEdge.description;
 			//load linked tools, users and resources on modal
-			onLoadModalView("accordion1-panel", selectedEdge.tools);
-			onLoadModalView("accordion2-panel", selectedEdge.resources);
-			onLoadModalView("accordion3-panel", selectedEdge.users);
+			onLoadModal("accordion1-panel", selectedEdge.tools);
+			onLoadModal("accordion2-panel", selectedEdge.resources);
+			onLoadModal("accordion3-panel", selectedEdge.users);
 		}
 	}
     };

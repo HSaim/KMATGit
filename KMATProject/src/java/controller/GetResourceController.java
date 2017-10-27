@@ -287,8 +287,7 @@ public class GetResourceController extends HttpServlet{
                     }
                 resource = ResourceDAO.updateResource(resource);
                 
-                out.println("</body>");
-                out.println("</html>");
+               
                 }
             catch(Exception ex) {
                 System.out.println(ex);
@@ -305,6 +304,40 @@ public class GetResourceController extends HttpServlet{
             out.println("</html>");
             }
         }
+        /*else if (action.equals("del-resource")){
+            String resourcename;
+            int deleted;
+            resourcename = request.getParameter("resourceName");
+            deleted = UserDAO.deleteUser(username);
+            response.setContentType("text/html;charset=UTF-8");
+            //response.sendRedirect("GetUsersController?action=get-all-users");
+            if (deleted !=0){
+                try {
+                    
+                    PrintWriter out = response.getWriter();
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('User " +username+ " has been deleted succesfully.');");
+                    out.println("location='GetUsersController?action=get-all-users';");                    
+                    out.println("</script>");                    
+                }
+                catch (Exception e){
+                    System.out.println("Alert could not be generated. Error: " + e);
+                }
+            }
+            else{
+                try {
+                    PrintWriter out = response.getWriter();
+                    out.println("<script type=\"text/javascript\">");
+                    
+                    out.println("location='GetUsersController?action=get-all-users';");
+                    out.println("alert('User '" +username+ "' could not be deleted.');");
+                    out.println("</script>");                    
+                }
+                catch (Exception e){
+                    System.out.println("Alert could not be generated. Error: " + e);
+                }
+            }
+        }*/
         
     }
     public String typeID(String extention){

@@ -16,7 +16,7 @@
             <div class="nav-header">
                 <a href="#" class="js-nav-toggle nav-toggle"><i></i></a>
                 <div>
-                <h1 id="logo"><a href="Home.jsp">KMAT</a></h1>
+                <h1 id="logo"><a href="home">KMAT</a></h1>
                 </div>
                 
                 <div>
@@ -37,28 +37,25 @@
                         <!--<h2 id="userName"><a href ="SignUp.jsp"><label id="uname" align = "left"></label></a></h2>-->
                         <!--<li id = "uname"><a>UserName</a></li>-->
                         <li class ="home"><a href="home">Home</a></li>
-                        <li class = "components">
-                            <a href="#" class="fh5co-sub-ddown">KMAT Components</a>
-                            <ul class="sub-menu">
-                                <li><a href="">Ladders</a>                                
-                                    <ul class="sub-menu">
-                                        <li><a href="CompositionLadder.jsp" onclick="open">Composition Ladder</a></li>
-                                        <li><a href="ProcessLadder.jsp">Process Ladder</a></li>                                        
-                                    </ul>
-                                </li>
-                                <li><a href = "ConceptMap.jsp">Concept Map</a></li>
-                                <li><a href = ""></a></li>
-                                <li><a href = ""></a></li>
-                                <li><a href = ""></a></li>
-                                <%--
-                                <li>
-                                    <a href="#" class="fh5co-sub-ddown">sub menu 2</a>
-                                </li>  
-                                --%>
-                            </ul>
+                        <li class="news">
+                            <a href="" class="fh5co-sub-ddown">News</a>
+                                <ul class="sub-menu">
+                                    <li><a href="">sub menu 1</a></li>
+                                    <li>
+                                        <a href="#" class="fh5co-sub-ddown">sub menu 2</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="" >Build</a></li>
+                                            <li><a href="">Work</a></li>
+                                            <li><a href="">Light</a></li>
+                                            <li><a href="">Relic</a></li>
+                                            <li><a href="">Display</a></li>
+                                            <li><a href="">Sprint</a></li>
+                                        </ul>
+                                    </li>                                                
+                                </ul>
                         </li>
-                        <li class  = "about"><a href="AboutKMAT.jsp">About KMAT</a></li>
-                        <li class = "contact"><a href="Contact.jsp">Contact KMAT</a></li>
+                        <li class ="about"><a href="AboutKMAT.jsp">About KMAT</a></li>
+                        <li class = "contact"><a href="Contact.jsp">Contact</a></li>
                         <!--<li class="cta"><a href="LoginController">Sign out</a></li>--> 
 
                     </ul>

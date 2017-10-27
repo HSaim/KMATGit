@@ -28,9 +28,6 @@ xhttp.onreadystatechange = function()
                 composition = response.substring(index+1);
                 
 		allProcessLadders = JSON.parse(process);
-                var listScrollDiv = document.createElement('div');
-		listScrollDiv.style.overflowY = "scroll";
-		listScrollDiv.style.height= (document.getElementById("navbar").clientHeight - (2*document.getElementById("list-header-row-id").clientHeight))/2.5 +"px";
 		//alert(allProcessLadders.length);
 		for(var i = 0; i < allProcessLadders.length; i++)
 		{
@@ -62,17 +59,10 @@ xhttp.onreadystatechange = function()
 			col1.appendChild(col1h5);
                         
 			rowDiv.appendChild(col1);
-                        listScrollDiv.appendChild(rowDiv);
-			//document.getElementById("inner-body").appendChild(rowDiv);
+			document.getElementById("inner-body").appendChild(rowDiv);
 		}
-                document.getElementById("list-header-row-id").appendChild(listScrollDiv);
                 
                 allCompositionLadders = JSON.parse(composition);
-                
-                var listScrollDiv = document.createElement('div');
-		listScrollDiv.style.overflowY = "scroll";
-		listScrollDiv.style.height= (document.getElementById("navbar").clientHeight - (2*document.getElementById("list-header-row-id-c").clientHeight))/2.5 +"px";
-		
 		//alert(allCompositionLadders.length);
 		for(var i = 0; i < allCompositionLadders.length; i++)
 		{
@@ -100,10 +90,8 @@ xhttp.onreadystatechange = function()
 			col1c.appendChild(col1ch5);
 
 			rowDivc.appendChild(col1c);
-                        listScrollDiv.appendChild(rowDivc);
-			//document.getElementById("inner-body1").appendChild(rowDivc);
+			document.getElementById("inner-body1").appendChild(rowDivc);
 		}
-                document.getElementById("list-header-row-id-c").appendChild(listScrollDiv);
 	}
 	else
 	{

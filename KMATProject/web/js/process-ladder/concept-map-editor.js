@@ -475,11 +475,11 @@ document.onload = (function(d3)
 				
 				if(document.getElementById("name-input").value === "")
 				{
-					alert("Specify name of Concept Map");
+					alert("Specify name of ladder");
 				}
 				else if(thisGraph.idct === 0 || thisGraph.nodes.length === 0)
 				{
-					alert("Create a map to save");
+					alert("Create a ladder to save");
 				}
 				else
 				{
@@ -543,11 +543,11 @@ document.onload = (function(d3)
 							if(thisGraph.ladder.id === 0)
 							{
 								thisGraph.ladder.id = parseInt(xhttp.responseText);
-								alert('Concept Map Saved!');
+								alert('Ladder Saved!');
 							}
 							else
 							{
-								alert('Concept Map Updated!');
+								alert('Ladder Updated!');
 							}
                                                     }
 						}
@@ -767,7 +767,7 @@ document.onload = (function(d3)
 					if(xhttp.status === 200) 
 					{
 						thisGraph.ladder = null;
-						alert('Concept Map Deleted!');
+						alert('Ladder Deleted!');
 					}
 					else
 					{

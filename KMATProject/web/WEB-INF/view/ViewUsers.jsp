@@ -44,7 +44,7 @@
             <!-- START page-->
             <div id = "page">
                 <!-- START header -->
-                <jsp:include page="../../includes/header.jsp" />                 
+                <jsp:include page="../../includes/user-header.jsp" />                 
                 <!-- END header -->
                 
                 <!-- START: Page heading-->
@@ -60,7 +60,7 @@
                 
                 <!--Access users from session -->
                 <% 
-                    ArrayList<UserBean> rusers = new ArrayList<UserBean>();
+                   /* ArrayList<UserBean> rusers = new ArrayList<UserBean>();
                      ArrayList<UserBean> uusers = new ArrayList<UserBean>();
                     if (session.getAttribute("rusers") != null) {
                         rusers = (ArrayList<UserBean> ) session.getAttribute("rusers");
@@ -68,7 +68,7 @@
                     
                     if (session.getAttribute("uusers") != null) {
                         uusers = (ArrayList<UserBean> ) session.getAttribute("uusers");
-                    }
+                    }*/
                     //else{
                       //   users = (ArrayList<UserBean> ) session.getAttribute("users");
                     //}

@@ -39,7 +39,7 @@
             <!-- START page-->
             <div id = "page">
                 <!-- START header -->
-                <jsp:include page="../../includes/header.jsp" />                 
+                <jsp:include page="../../includes/user-header.jsp" />                 
                 <!-- END header -->
                 
                 <!-- START: Page heading-->
@@ -97,20 +97,20 @@
                                         <p style="text-align: left; font-family: Verdana, Geneva, sans-serif; font-size: 14px; color: rgb(77, 77, 77)">Description:&nbsp; 
                                         <textarea class="modal-description" id="modal-description-id" rows="15" cols="54" readonly="true"></textarea> </p>
 
-                                        <button class="accordion" id="accordion1" style="border-top-left-radius: 10px; border-top-right-radius: 10px; display: none">Linked Tools</button>
-                                        <div class="panel" id="accordion1-panel" style="display: none">
+                                        <button class="accordion" id="accordion1" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Linked Tools</button>
+                                        <div class="panel" id="accordion1-panel">
                                             <div class="tools-last-accordion" id="tools-last-accordion-item">
                                             </div>
                                         </div>
 
-                                        <button class="accordion" id="accordion2" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Attached Resources</button>
+                                        <button class="accordion" id="accordion2">Attached Resources</button>
                                         <div class="panel" id="accordion2-panel">
                                             <div class="tools-last-accordion" id="resources-last-accordion-item">
                                             </div>
                                         </div>
 
-                                        <button class="accordion" id="accordion-share" style="display: none">Shared with</button>
-                                        <div class="panel" id="accordion3-panel" style="display: none">
+                                        <button class="accordion" id="accordion-share">Shared with</button>
+                                        <div class="panel" id="accordion3-panel">
                                             <div class="tools-last-accordion" id="share-last-accordion-item">
                                             </div>
                                         </div>
@@ -169,7 +169,7 @@
                 <script type="text/javascript" src="js/process-ladder/libs/d3/d3.js"></script>
 				<script src="js/process-ladder/global-variables.js"></script>
 				<script src="js/process-ladder/concept-map-viewer.js"></script>
-				<script src="js/process-ladder/graph-utility-concept.js"></script>
+				<script src="js/process-ladder/graph-utility.js"></script>
 				<script src="js/process-ladder/graphbuttons.js"></script>
                 
                 <!-- footer.jsp integrates here -->

@@ -30,72 +30,7 @@
 	<meta name="author" content="KMAT Team" />
         
         <jsp:include page="../../includes/link.jsp" /> 
-        <jsp:include page="../../includes/concept-map-link.jsp" />  
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var form = document.getElementById('form1');
-                var input = [];
-                var div = document.createElement('div');
-                div.id = "all-resources";
-
-                form.onsubmit = function(event) {
-                    event.preventDefault();
-                    var formData = new FormData();
-                    formData.append('file', document.getElementById("filebtn").files[0]);
-                    
-                    $.ajax({
-                                    type: "post",
-                                    //contentType : "multipart/form-data; boundary=----WebKitFormBoundaryza119VZMGgyk1Bd4",
-                                    contentType: false,
-                                    url: "/KMATProject/insert-resource-concept",
-                                    data: formData,
-                                    processData: false,
-                                    success: function(result) {
-                                        input.push(result);
-                                        //alert(result);
-                                        var filename = result.split('\\').pop();
-                                        //alert(filename);
-                                        var panelId = "accordion2-panel";
-                                        var accordionPanel = document.getElementById("accordion2-panel");
-                                        //keep track of number of items (except for the default last item)
-                                        if(isNaN(accordionPanel.numListElements) || accordionPanel.numListElements === null)
-                                                accordionPanel.numListElements = 0;
-                                        accordionPanel.numListElements++;
-
-                                        //create div element
-                                        var newDiv = document.createElement('div');
-                                        newDiv.item = filename;
-                                        var newDivClass = "accordion-inner-panel accordion-inner-panel-" + panelId;
-                                        newDiv.setAttribute("class", newDivClass);
-                                        //newDiv.setAttribute("class", "accordion-inner-panel");
-                                        //newDiv.innerHTML = filename;
-                                        //newDiv.innerHTML="<a href='"+result+"' target=_blank>"+ filename +"</a>";
-                                        newDiv.innerHTML= "<a href=\"servlet/DownloadServlet?filename="+filename+"\">"+ filename +"</a>";
-                                        var newDivId = "accordion-inner-panel-" + panelId + input.length;
-                                        newDiv.setAttribute("id", newDivId);
-                                        newDiv.id = input.length;
-
-                                        //create view and delete icons for the div element
-                                        var delClassName = "accordion-view-icon-" + panelId;
-                                        var iconDelete = createAccordionActionItemIcons("image", delClassName, "delAccordionItem(this); return false;", "Delete", "resources/icons/accordion-delete-icon.png", "D");
-                                        
-                                        if(isNaN(accordionPanel.isEditAccordionItemsSelected) || accordionPanel.isEditAccordionItemsSelected === null)
-                                                accordionPanel.isEditAccordionItemsSelected = 0;
-                                        if(accordionPanel.isEditAccordionItemsSelected)
-                                        {
-                                                iconDelete.style.display = "none";
-                                        }
-                                        newDiv.appendChild(iconDelete);
-                                        accordionPanel.insertBefore(newDiv, accordionPanel.childNodes[accordionPanel.numListElements]);
-                                        div.innerHTML = "";
-                                        div.innerHTML = input;
-                                        document.body.appendChild(div);
-                                    }
-                                });
-                }
-        });
-        </script>
+        <jsp:include page="../../includes/concept-map-link.jsp" />        
     </head>
     
     <!--<body class = "add-p-ladder" id = "add-process-ladder-body">-->
@@ -104,7 +39,7 @@
             <!-- START page-->
             <div id = "page">
                 <!-- START header -->
-                <jsp:include page="../../includes/header.jsp" />                 
+                <jsp:include page="../../includes/user-header.jsp" />                 
                 <!-- END header -->
                 
                 <!-- START: Page heading-->
@@ -161,17 +96,8 @@
 								
 							</div>-->
 
-							<div class="row" id="svg-row" style="float: left; width:80%">
+							<div class="row" id="svg-row">
 							</div>
-                                                        
-                                                        <div id="inner-body" style="float: right; width:19%">
-                                                            <h5 style="height:0px; font-weight: bold">Process Ladders:</h5>
-                                                            <div id="list-header-row-id">
-                                                            </div>
-                                                            <h5 style="height:0px; font-weight: bold">Composition Ladders:</h5>
-                                                            <div id="list-header-row-id-c">
-                                                            </div>
-                                                        </div>
 							
 							<div id="toolbox">
 								<input type="image" id="center-input" title="Move to Root Node" src="images/icons/center-icon.ico" alt="Initial Position">
@@ -198,8 +124,8 @@
                                         <p style="text-align: left; font-family: Verdana, Geneva, sans-serif; font-size: 14px; color: rgb(77, 77, 77)">Description:&nbsp; 
                                         <textarea class="modal-description" id="modal-description-id" rows="15" cols="54"></textarea> </p>
 
-                                        <button class="accordion" id="accordion1" style="border-top-left-radius: 10px; border-top-right-radius: 10px; display: none">Link Tools</button>
-                                        <div class="panel" id="accordion1-panel" style="display: none">
+                                        <button class="accordion" id="accordion1" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Link Tools</button>
+                                        <div class="panel" id="accordion1-panel">
                                             <div class="tools-last-accordion" id="tools-last-accordion-item">
                                                 <!--return false after onclick function so that control does not go to href -->
                                                 <a href="" id="tools-add-link" onclick="addToNode('accordion1-panel'); return false;"><img src="images/icons/add-icon.png" id="add-tool-icon" alt="">Add Tool</a>
@@ -207,33 +133,17 @@
                                             </div>
                                         </div>
 
-                                        <button class="accordion" id="accordion2" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Attach Resources</button>
+                                        <button class="accordion" id="accordion2">Attach Resources</button>
                                         <div class="panel" id="accordion2-panel">
                                             <div class="tools-last-accordion" id="resources-last-accordion-item">
                                                 <!--return false after onclick function so that control does not go to href -->
-                                                <a href="" id="resources-add-link" onclick="addToNode('accordion2-panel'); return false;" style="display: none"><img src="images/icons/add-icon.png" id="add-resource-icon" alt="">Add Resource</a>
-                                                <a href="" id="resources-edit-button" onclick="editAccordionItems('accordion2-panel'); return false;" style="display: none">Edit</a>
-                                                
-                                                <form method="post" id="form1" action="insert-resource-concept" enctype="multipart/form-data">
-                                                    <row>
-                                                    <div class="col-md-11">
-                                                        <div class="form-group">
-                                                           <input type = "file" name="datafile" id="filebtn" class="form-control-file">
-                                                        </div>
-                                                    </div>
-                                                    </row>
-
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                           <img src="images/icons/add-icon.png" id="add-resource-icon1" alt=""><input type="submit" value="Add Resource" id="submitLink">
-                                                        </div>
-                                                    </div>
-                                               </form>
+                                                <a href="" id="resources-add-link" onclick="addToNode('accordion2-panel'); return false;"><img src="images/icons/add-icon.png" id="add-resource-icon" alt="">Add Resource</a>
+                                                <a href="" id="resources-edit-button" onclick="editAccordionItems('accordion2-panel'); return false;">Edit</a>
                                             </div>
                                         </div>
 
-                                        <button class="accordion" id="accordion-share" style="display: none">Share with</button>
-                                        <div class="panel" id="accordion3-panel" style="display: none">
+                                        <button class="accordion" id="accordion-share">Share with</button>
+                                        <div class="panel" id="accordion3-panel">
                                             <div class="tools-last-accordion" id="share-last-accordion-item">
                                                 <!--return false after onclick function so that control does not go to href -->
                                                 <a href="" id="share-add-link" onclick="addToNode('accordion3-panel'); return false;"><img src="images/icons/add-icon.png" id="add-share-icon" alt="">Share</a>
@@ -336,6 +246,19 @@
                         </div>
                         <!-- END: Side bar -->
                     </div>
+                        <div class = "row">
+                            <div class="col-md-6">
+                                <div id="inner-body">
+                                    Process Ladders
+                                </div>
+                              
+                            </div>
+                            <div class="col-md-6">
+                                <div id="inner-body1">
+                                    Composition Ladders
+                                </div>
+                            </div>
+                        </div>
                     <!-- START: Page contents main row -->
                 </div>
                 <!-- END: Page contents -->

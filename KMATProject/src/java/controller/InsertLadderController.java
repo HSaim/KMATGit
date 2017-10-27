@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package controller;
-import static controller.InsertResourceConceptController.currentCon;
 import model.LadderBean;
 import model.NodeBean;
 import model.EdgeBean;
@@ -20,10 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.json.*;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,26 +26,14 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.json.stream.JsonGenerator;
 import javax.json.stream.JsonGeneratorFactory;
-import javax.servlet.ServletContext;
 import model.ConceptMapBean;
 import model.ConceptNodeBean;
-import model.ConnectionManager;
-import model.EmailUtility;
-import model.LoginUserBean;
 /**
  *
  * @author Maryam Khalid
  */
 public class InsertLadderController extends HttpServlet
 {
-    private String host;
-    private String port;
-    private String kmatUsername;
-    private String kmatPassword;
-    
-    static Connection currentCon = null;
-    static ResultSet rs = null;  
-    static Statement stmt = null;
 	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 	/**
 	 * Handles the HTTP <code>GET</code> method.
@@ -311,8 +294,6 @@ public class InsertLadderController extends HttpServlet
 				
 				JsonArray jsonNodesArray = ladderObject.getJsonArray("nodes");
 				ArrayList<ConceptNodeBean> nodes = new ArrayList<>();
-                                ArrayList<Integer> users = new ArrayList<>();
-                                
 				for(int i = 0; i < jsonNodesArray.size(); i++)
 				{
 					JsonObject newNodeObject = jsonNodesArray.getJsonObject(i);
@@ -329,50 +310,22 @@ public class InsertLadderController extends HttpServlet
                                         
                                         if (newNodeObject.getString("nodeType").equals("PROCESS"))
                                         {
-                                            int nodeID = LadderDAO.ifLadderExists("PROCESS", newNodeObject.getString("title"));
-                                            //if (LadderDAO.ifLadderExists("PROCESS", newNodeObject.getString("title")) <= 0)
-                                            if (nodeID == -2)
+                                            if (LadderDAO.ifLadderExists("PROCESS", newNodeObject.getString("title")) <= 0)
                                             {
                                                 response.setContentType("text/html;charset=UTF-8");
                                                 PrintWriter out = response.getWriter();
-                                                out.write("Process Ladder: " + newNodeObject.getString("title") + " does not exist."+"");
+                                                out.write("Process Ladder " + newNodeObject.getString("title") + " does not exist."+"");
                                                 return;
-                                            }
-                                            else if (nodeID == -1)
-                                            {
-                                                response.setContentType("text/html;charset=UTF-8");
-                                                PrintWriter out = response.getWriter();
-                                                out.write("Process Ladder: " + newNodeObject.getString("title") + " NODE does not exist."+"");
-                                                return;
-                                            }
-                                            else
-                                            {
-                                                //fill users here
-                                                users = LadderDAO.getNodeUsers(nodeID);
-                                                newNode.setOriginalNodeID(nodeID);
                                             }
                                         }
                                         else if(newNodeObject.getString("nodeType").equals("COMPOSITION"))
                                         {
-                                            int nodeID = LadderDAO.ifLadderExists("COMPOSITION", newNodeObject.getString("title"));
-                                            if (nodeID == -2)
+                                            if (LadderDAO.ifLadderExists("COMPOSITION", newNodeObject.getString("title")) <= 0)
                                             {
                                                 response.setContentType("text/html;charset=UTF-8");
                                                 PrintWriter out = response.getWriter();
-                                                out.write("Composition Ladder: " + newNodeObject.getString("title") + " does not exist."+"");
+                                                out.write("Composition Ladder " + newNodeObject.getString("title") + " does not exist."+"");
                                                 return;
-                                            }
-                                            else if (nodeID == -1)
-                                            {
-                                                response.setContentType("text/html;charset=UTF-8");
-                                                PrintWriter out = response.getWriter();
-                                                out.write("Composition Ladder: " + newNodeObject.getString("title") + " | NODE does not exist."+"");
-                                                return;
-                                            }
-                                            else
-                                            {
-                                                users = LadderDAO.getNodeUsers(nodeID);
-                                                newNode.setOriginalNodeID(nodeID);
                                             }
                                         }
 					//descripton
@@ -395,7 +348,7 @@ public class InsertLadderController extends HttpServlet
 						JsonArray nodeResourcesJson = newNodeObject.getJsonArray("resources");
 						for(int j = 0; j < nodeResourcesJson.size(); j++)
 						{
-							newNode.getResources().add(nodeResourcesJson.getString(j));
+							newNode.getResourceIds().add(nodeResourcesJson.getInt(j));
 						}
 					}
 					if(!newNodeObject.isNull("users"))
@@ -467,58 +420,18 @@ public class InsertLadderController extends HttpServlet
 				newLadder.setEdges(edges);
 
 				//System.out.println("Parameter Names: " + request.getParameterNames());
-                                LoginUserBean currentUser = (LoginUserBean)request.getSession(false).getAttribute("CurrentSessionUser");
-                                String name = currentUser.getUsername();
-                                String searchUserID = "select user_id from user_tbl where username='"+ name+"'";
-                                int uid = 0;
-                                currentCon = ConnectionManager.getConnection();
-                                boolean more;
-                                try
-                                {
-                                    stmt=currentCon.createStatement();
-                                    rs = stmt.executeQuery(searchUserID);	        
-                                    more = rs.next();
-                                    if(more){
-                                        uid = rs.getInt("user_id");
-                                    }
-                                }
-                                catch(SQLException ex){
-                                //todo: Handle Sql Exception
-                                }
-                                
+
 				if(newLadder.getId() == 0)
 				{
 					//save new ladder
-					newLadderId = LadderDAO.insertConceptMap(newLadder, uid);
+					newLadderId = LadderDAO.insertConceptMap(newLadder);
 				}
 				else
 				{
 					//System.out.println("Updating Ladder!! - in insert ladder controller");
-					LadderDAO.updateConceptMap(newLadder, uid);
+					LadderDAO.updateConceptMap(newLadder);
 				}
-                                
-                        ServletContext context = getServletContext();
-                        setEmailHeader(context);
-                        
-                        ArrayList<String> recipientEmail = new ArrayList<>();
-                        recipientEmail = getEmailAddresses(users);
-                        
-                        //String recipientEmail = users.getPriEmail();
-                        String subject = "Concept Map Created/Updated";
-                        String content = "Dear User, the Concept Map: " + newLadder.getName() + 
-                            " has been created/updated." +
-                            "\n\nBest Regards,\n\nKMAT Team" +
-                            "\n\n\n_________________________________________________________" +
-                            "\nThis is an autogenerated email, kindly do not reply.";
-                        try
-                        {
-                                EmailUtility.sendEmail(host, port, kmatUsername, kmatPassword, recipientEmail, subject, content);                    
-                            }
-                            catch (Exception e){
-                                e.printStackTrace();
-                            }
 			}
-                        
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.write(newLadderId+"");
@@ -538,13 +451,6 @@ public class InsertLadderController extends HttpServlet
 		//out.println("location='add-process-ladder';");
 		//out.println("</script>");
 	}
-        
-        private void setEmailHeader(ServletContext context){
-        host = context.getInitParameter("host");
-        port = context.getInitParameter("port");
-        kmatUsername = context.getInitParameter("user");
-        kmatPassword = context.getInitParameter("pass");
-    }
 
 	/**
 	 * Returns a short description of the servlet.
@@ -556,14 +462,5 @@ public class InsertLadderController extends HttpServlet
 	{
 		return "Short description";
 	}// </editor-fold>
-
-    private ArrayList<String> getEmailAddresses(ArrayList<Integer> users) {
-        ArrayList<String> emailAddresses = new ArrayList<>();
-        for (int i=0; i<users.size(); i++)
-        {
-            emailAddresses.add(i, LadderDAO.getEmailAddress(users.get(i)));
-        }
-        return emailAddresses;
-    }
 
 }

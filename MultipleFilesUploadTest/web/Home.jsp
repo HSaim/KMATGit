@@ -16,6 +16,7 @@
         <form action="Upload" method="post" enctype="multipart/form-data">
             <input type="text" name="description" />
             <input type="file" name="file" multiple="true"/>
+            <input type="file" name="file">
             <input type="submit" />
         </form>
     </body>

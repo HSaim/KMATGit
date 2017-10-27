@@ -67,6 +67,9 @@ public class RequestDispatcher extends HttpServlet {
         else if (userPath.equals("/edit-user")) {
             userPath = "/EditUser";
         }
+        else if (userPath.equals("/edit-resource")) {
+            userPath = "/EditResource";
+        }
         else if (userPath.equals("/register-user")) {
             userPath = "/RegisterUser";
         }
@@ -143,12 +146,7 @@ public class RequestDispatcher extends HttpServlet {
         else if (userPath.equals("/change-password")){
             userPath = "/ChangePassword";
         }
-        /**
-        else if (userPath.equals("/process-ladder")){
-            userPath = "/ProcessLadder";
-            
-        }
-        */
+        
         
         
         

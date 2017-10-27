@@ -142,6 +142,17 @@ public class InsertResourceController extends HttpServlet {
                       if(name.equals("addname")){
                         
                         resource.setResourceName(value);
+                        filePath = filePath+value;//file path appended with the resource name.
+                        File fileSaveDir = new File(filePath);
+                        if (!fileSaveDir.exists()) {//folder created to upload the files in the folder 
+                            fileSaveDir.mkdirs();
+                            //fileSaveDir.mkdir();
+                        }
+                        //filePath = fileSaveDir;
+                        
+                        
+                        
+                        
                       }
                       else if(name.equals("add-description")){
                           resource.setResourceDiscription(value);
@@ -227,28 +238,6 @@ public class InsertResourceController extends HttpServlet {
             out.println("</html>");
             }
         try{
-            //ResourceBean resource = new ResourceBean();
-            //GET ADD RESOURCE ELEMENT
-          /*  resource.setUserID(uid);
-            resource.setResourceName(request.getParameter("add-name"));
-            resource.setResourceDiscription(request.getParameter("add-description"));
-            if(radio.equals("file")){
-                resource.setFileName(request.getParameter("datafile"));
-                resource.setResourceFormat(ext);
-                resource.setResourcePath(filePath);
-                resource.setResourceSize(sizeInBytes);
-                resource.setResourceType(fileType);
-                
-            }
-            else if(radio.equals("link")){
-                resource.setResourceLink(request.getParameter("add-link"));
-                
-            }*/
-            
-            
-            //resource.setHidden(request.getParameter("hidden"));
-            
-           // out.println();
             resource = ResourceDAO.insertResource(resource);
             
             //If insertion done successfully and done by existing user
@@ -276,10 +265,11 @@ public class InsertResourceController extends HttpServlet {
                 try {
                     //PrintWriter out = response.getWriter();
                     String resourceName= resource.getResourceName();
-                    out.println("<script type=\"text/javascript\">");
+                    /*out.println("<script type=\"text/javascript\">");
                     out.println("alert('Resource name: " + resource.getResourceName() +" already exists, choose a new one!');");
                     out.println("location='AddUser';");
-                    out.println("</script>");                    
+                    out.println("</script>");*/
+                    response.sendRedirect("user-home");                    
                 }
                 catch (Exception e){
                     System.out.println("Alert could not be generated. Error: " + e);

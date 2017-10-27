@@ -4,15 +4,6 @@
     Author     : Habiba Saim
 --%>
 
-<!-- Code to prevent user from accessing any user specific page after logout/session-end -->
-<%
-    response.setHeader("Cache-Control","no-cache");  //Forces caches to obtain a new copy of the page from the origin server
-    response.setHeader("Cache-Control","no-store");  //Directs caches not to store the page under any circumstance
-    response.setDateHeader("Expires",-1);            //Causes the proxy cache to see the page as "stale"
-    response.setHeader("Pragma","no-cache");         //HTTP 1.0 backward compatibility
-%>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,7 +21,7 @@
         <title>Process Ladder</title>       
     </head>
     
-    <body class = "components">
+    <body>
         <div id = "wrapper">
             <!-- START page-->
             <div id = "page">
@@ -81,12 +72,12 @@
                             <h1 class = "subTitle">What is a Process Ladder?</h1>
                         </div>
                         
-                        <table style="width: 100%" cellPadding=5 align=left>
+                        <table class=" tWiz" style="width: 100%" cellPadding=5 align=left>
                             <tbody>
                                 <tr>
                                     A Process is a set of interrelated activities that interact to achieve a result, and is simply known as "program in excitation".
                             
-                                    It is a data structure that can be used to model a complete process such as student’s course enrollment, Point-of-Sale transaction, forest preservation/management etc.
+                            It is a data structure that can be used to model a complete process such as student’s course enrollment, Point-of-Sale transaction, forest preservation/management etc.
                                 </tr>
                                 <tr>
                                     <td style="width: 40%; vertical-align: top; text-align:  center">

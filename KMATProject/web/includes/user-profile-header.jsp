@@ -17,7 +17,7 @@
             <div class="nav-header">
                 <a href="#" class="js-nav-toggle nav-toggle"><i></i></a>
                 <div>
-                    <h1 id="logo"><a href="Home.jsp">KMAT</a></h1>
+                    <h1 id="logo"><a href="home">KMAT</a></h1>
                 </div>
                 
                 
@@ -25,12 +25,9 @@
                     <h3 id="userName">
                         <a href="home">Home</a>
                         |
-                        <%--
                         <a href = "GetUsersController?action=get-current-user">
                             <button type = "button " title = "Profile" id="uname"  ></button>
-                        </a>--%>
-                        <a href="GetUsersController?action=get-current-user" class="button" id="uname" title = "Profile"></a>
-                       
+                        </a>
                         |
                         <a href = "LoginController">
                             Sign out

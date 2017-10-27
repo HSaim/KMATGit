@@ -4,9 +4,10 @@
     Author     : Habiba Saim, Fahad Akhtar
 --%>
 
-<%@page import="model.UserBean"%>
-<%@page import="java.util.ArrayList"%>
+
+
 <%@page import="model.ResourceBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
@@ -45,7 +46,7 @@
             <!-- START page-->
             <div id = "page">
                 <!-- START header -->
-                <jsp:include page="../../includes/header.jsp" />                 
+                <jsp:include page="../../includes/user-header.jsp" />                 
                 <!-- END header -->
                 
                 <!-- START: Page heading-->
@@ -59,17 +60,13 @@
                 </aside>
                 <!-- END: Page heading-->
                  <!--Access users from session -->
-                <% 
-                    ArrayList<ResourceBean> resource = new ArrayList<ResourceBean>();
-                    if (session.getAttribute("resource") != null) {
-                        resource = (ArrayList<ResourceBean> ) session.getAttribute("resource");
-                    }
-                    ArrayList<UserBean> user = new ArrayList<UserBean>();
-                    if (session.getAttribute("user") != null) {
-                        user = (ArrayList<UserBean> ) session.getAttribute("user");
-                    }
+                <%-- 
+                    ArrayList<ResourceBean> vresource = new ArrayList<ResourceBean>();
+                    if (session.getAttribute("resources") != null) {
+                        vresource = (ArrayList<ResourceBean> ) session.getAttribute("resources");
+                    }                
                    
-               %>
+               --%>
                <div class="container">
                    <div class="row">
                        <div class="col-md-10 col-md-push-2">
@@ -88,36 +85,38 @@
                                    </div>
                                </b>
                            </div>
-                           <hr style="height:1px;border: none;color: #333;background-color: #a9a9a9;"/>
-                           
-                           <c:forEach var="resourceAdded" items="${resource}" varStatus="loop">
-                               <div class="row">
-                                   <div class="col-md-6">
-                                       <h3><c:out value="${resource.getresourceName()}"/></h3> 
+                           <hr style="height:1px;border: none;color: #333;background-color: #a9a9a9;"/>                            
+                            <% 
+                    ArrayList<ResourceBean> resource1 = new ArrayList<ResourceBean>();
+                    if (session.getAttribute("resources") != null) {
+                        resource1 = (ArrayList<ResourceBean> ) session.getAttribute("resources");
+                    }
+                    request.setAttribute("resource1", resource1);
+                   
+               %>
+                            <c:forEach  items="${resource1}" var="res">
+                               <div class = "row">
+                                    <div class="col-md-6">
+                                        <h3> <a href = "GetResourceController?action=get-resource=${res.getResourceName()}">
+                                            <c:out value="${res.getResourceName()}" /></a></h3>
                                         <%--<input type = "hidden" value = "${user.getUserName()}" name = "hidden">--%>
                                         <%--<input type = "hidden" value = "username" name = "hide">--%>
-                                       
-                                        </a>
+                                    </div>
+                                    <div class = "col-md-3">
+                                        <%--<input type = "hidden" value = "username" name = "hidden">--%>
                                         
-                                   </div>
-                                   <div class="col-md-3">
-                                         <a href = "GetResourceController?action=get-resource&resourceName=${resource.getResourceName()}">
-                                            <h2><i class="icon-edit2"></i></h2>
-                                       
-                                       </a>
-                                           
-                                   </div>
-                                    <div class="col-md-3">
-                                       <a href="GetResourceController?action=del-resource&resourceName=${resource.getResourceName()}">
-                                           <h2><i class="icon-trash"></i></h2>                                      
-                                       </a>
-                                           
-                                   </div>       
-                                           
-                                       
-                                     
-                               </div>
-                                       <c:if test="${not loop.last}"><hr/></c:if>
+                                        <%--<a href = "edit-user?x=${user.getUserName()}">--%>
+                                        <a href = "GetResourceController?action=get-resource&resourceName=${res.getResourceName()}">
+                                            <h2><i class="icon-edit"></i></h2>
+                                        </a>
+                                    </div>
+                                    <div class = "col-md-3">
+                                        <a href ="GetUsersController?action=del-resource&resourceName=${res.getResourceName()}">
+                                            <h2><i class="icon-cross3"></i></h2>
+                                        </a>
+                                    </div>
+                                </div>
+                               <%--<c:if test="${not loop.last}"><hr/></c:if>  Add an <hr/ > if it is not the last item --%>
                            </c:forEach>
                                         
                        </div>

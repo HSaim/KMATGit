@@ -1,12 +1,9 @@
+<!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
 <%-- 
     Document   : AddTool
     Created on : Nov 16, 2016, 10:29:01 AM
     Author     : Habiba Saim
 --%>
-
-<<<<<<< HEAD
-
-=======
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
     response.setHeader("Cache-Control","no-cache");  //Forces caches to obtain a new copy of the page from the origin server
@@ -19,7 +16,7 @@
         response.sendRedirect("Home.jsp");
     }
 %>  
->>>>>>> 0377e9717aa445d3b04961bdd259cd08eb727c20
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,6 +31,7 @@
         
         <!-- css includes here -->
         <jsp:include page="../../includes/link.jsp" />
+        <jsp:include page="../../includes/js.jsp" /> 
         
         <style>
 .dropdown-submenu {
@@ -55,7 +53,7 @@
             <!-- START page-->
             <div id = "page">
                 <!-- START header -->
-                <jsp:include page="../../includes/header.jsp" />                 
+                <jsp:include page="../../includes/user-header.jsp" />                 
                 <!-- END header -->
                 
                 <!-- START: Page heading-->
@@ -76,83 +74,119 @@
 
 
 
-<form method="post" action="AddResource" enctype="multipart/form-data">
+<form method="post" action="insert-tool" enctype="multipart/form-data">
+    <input type="hidden" name="hidden" value="AddTool" >
     <div class="col-md-12">
         <div class="form-group">
-        <input type = "text" class="form-control"placeholder="Name of Tool">
+        <input type = "text" class="form-control"placeholder="Name of Tool" name="addTool" id="tool-name">
     
         </div>
     </div>
     <div class="col-md-12">
         <div class="form-group">
-            <textarea class="form-control"placeholder="Description of Tool"rows="10"></textarea>
+            <textarea class="form-control"placeholder="Description of Tool"rows="10" name="addToolDescrp" id="tool-descrp"></textarea>
     
         </div>
     </div>
-    
-    <div class="col-md-11">
-        <div class="form-group">
-            <input type = "file" class="form-control-file">   <!--multiple files upload will go here--> 
-        </div>
-    </div>
-    <br/>
-   
     <div class="col-md-3">
         <div class="form-group">
+            <p>Tool Type:</p>
+        </div>
+    </div>
+   <div class="col-md-6">
+       <div class="form-group">
             <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-submenu">
-                        <a class="test" tabindex="-1" href="#">Matlab 
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="#">Main</a></li>
-                            <li><a tabindex="-1" href="#">Others</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <a class="test" tabindex="-1" href="#">JAVA 
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="#">JAR</a></li>
-                            <li><a tabindex="-1" href="#">Script</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <a class="test" href="#">C++ 
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Exe</a></li>
-                            <li><a href="#">Script</a></li>
-                        </ul>
-                    </li>
-                  
-                </ul>
+                
+                <div>
+                    <select id="tool_opition"name ="toolType" id="tool-type" class="addTypesBtn">
+                        <option value="C++">C++</option>
+                        <option value="JAVA">JAVA</option>
+                        <option value="MATLAB">MATLAB</option>
+                        <option value="C#">C#</option>
+                        <option value="Dot Net">Dot Net</option>
+                        <option value="Blender">Blender</option>
+                        <option value="Android">Android</option>
+                        <option value="IOS">IOS</option>
+                        <option value="Windows">Windows</option>
+                        <option value="others">Others</option>
+                    </select>
+        <!--            
+                    <script type="text/javascript">
+                         
+    $(".addTypesBtn").click(function(event){
+        //$("#environment").hide();
+        $('#tool_opition').on('change', function() {
+            var selectedSID = $(this).find(':selected').val();
+            var selectedSoftware = $(this).find(':selected').text();
+            if(selectedSID=="others"){
+                $("#environment").show(); 
+            }
+            event.preventDefault();
+            var typeDescription = $("#typeDescription").val();
+            alert(typeDescription);
+            $.ajax({
+                url: '/types/type_count',
+                method: "post",
+                data:	{typeDesc:typeDescription},
+                success:	function(data){
+                    $(".badgetypes").html(data[0].typecount);
+                                  
+                }
+
+            })
+        })
+    });
+    </script>-->
+                </div>
             </div>
         </div>
-        
-
+    </div>
+    <div class="col-md-12" id = "environment" name = "environment" style="display: none">
+        <div class="form-group">
+        <input type = "text" class="form-control" id="typeDescription" placeholder="Name of New Tool">
+        <input type="button" class =" form-control addTypesBtn" value="ADD">
     
-        
-    </div><br>
+        </div>
+    </div>
+    
+    <div class="col-md-12">
+        <div class="col-md-6">
+        <div class="form-group">
+            <p>Main File:</p><input type = "file" class="form-control-file">   <!--multiple files upload will go here--> 
+        </div>
+        </div>
+        <div class="col-md-6">
+        <div class="form-group">
+            <p>Other Files:</p><input type = "file" class="form-control-file" multiple="ture">   <!--multiple files upload will go here--> 
+        </div>
+        </div>
+    </div>
+    
+   
+    
+ <!--  
+    
+    <script type = "text/javascript">
+        function myfun(){
+            var x = document.getElementById(environment);
+            x.style.display = block;
+            
+        }
+           
+    </script>-->
+    <div class="col-md-12">
     <div class="form-group">
-            <div class="col-md-5">
-                <input type="checkbox" value="input">  Input<br>
-                <p>Input Format:</p>
-                <input type="checkbox" value="input-text">  Text<br>
-                <input type="checkbox" value="input-images">  Images<br>
+            <div class="col-md-3">
+                <input type="checkbox" value="input" name = "input">  Input<br>
+                
             </div>
-            <div class="col-md-5">
-                <input type="checkbox" value="output">  Output<br>
-                <p>Output Format:</p>
-                <input type="checkbox" value="output-text">  Text<br>
-                <input type="checkbox" value="output-images">  Images<br>
+    
+    
+            <div class="col-md-3">
+                <input type="checkbox" value="output" name = "output">  Output<br>
+                
             </div>
+    </div>
     </div>
    
     
@@ -175,7 +209,7 @@
                 </div>
                           
                 <!-- adds js -->                
-                <jsp:include page="../../includes/js.jsp" /> 
+                
                 <script>
             $(document).ready(function(){
                 $('.dropdown-submenu a.test').on("click", function(e)

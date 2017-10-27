@@ -5,8 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-        <!-- Logo addition in title -->
-        <link rel="icon" href="images/logo_3.png" type="image/x-icon" />
+
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
         
@@ -17,8 +16,8 @@
 	<!-- Simple Line Icons -->
 	<link rel="stylesheet" href="css/simple-line-icons.css">
 	<!-- Bootstrap  -->
-	<!--<link rel="stylesheet" href="css/bootstrap.css">-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 	<!-- Superfish -->
 	<link rel="stylesheet" href="css/superfish.css">
 	<!-- Flexslider  -->

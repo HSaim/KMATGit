@@ -31,14 +31,12 @@ public class ConceptNodeBean implements java.io.Serializable
 	private String description;
 	private ArrayList<Integer> toolIds;
 	private ArrayList<Integer> resourceIds;
-        private ArrayList<String> resources;
 	private ArrayList<Integer> sharedUserIds;
 	private Position nodePosition;
 	private Timestamp createDate;
 	private Timestamp updateDate;
         private String classforSelection;
         private String classforNode;
-        private int originalNodeID;
 	
 	public ConceptNodeBean(String name, double posX, double posY)
 	{
@@ -46,7 +44,6 @@ public class ConceptNodeBean implements java.io.Serializable
 		toolIds = new ArrayList<>();
 		resourceIds = new ArrayList<>();
 		sharedUserIds = new ArrayList<>();
-                resources = new ArrayList<>();
 		this.nodeId = 0;
 		this.ladderId = 0;
 		this.ownerId = 0;
@@ -67,7 +64,6 @@ public class ConceptNodeBean implements java.io.Serializable
 		this.updateDate = updatedt;
 		toolIds = new ArrayList<>();
 		resourceIds = new ArrayList<>();
-                resources = new ArrayList<>();
 		sharedUserIds = new ArrayList<>();
                 this.classforSelection = classforSelection;
                 this.classforNode = classforNode;
@@ -158,16 +154,6 @@ public class ConceptNodeBean implements java.io.Serializable
 		this.classforNode = classforNode;
 	}
         
-        public int getOriginalNodeID()
-	{
-		return originalNodeID;
-	}
-
-	public void setOriginalNodeID(int originalNodeID)
-	{
-		this.originalNodeID = originalNodeID;
-	}
-        
 	public void setDescription(String description)
 	{
 		this.description = description;
@@ -191,16 +177,6 @@ public class ConceptNodeBean implements java.io.Serializable
 	public void setResourceIds(ArrayList<Integer> resourceIds)
 	{
 		this.resourceIds = resourceIds;
-	}
-        
-        public ArrayList<String> getResources()
-	{
-		return resources;
-	}
-
-	public void setResources(ArrayList<String> resources)
-	{
-		this.resources = resources;
 	}
 
 	public ArrayList<Integer> getSharedUserIds()
@@ -246,7 +222,7 @@ public class ConceptNodeBean implements java.io.Serializable
 	@Override
 	public String toString()
 	{
-		return "ConceptNodeBean{" + "id=" + id + ", nodeId=" + nodeId + ", ladderId=" + ladderId + ", ownerId=" + ownerId + ", nodeType=" + nodeType + ", name=" + name + ", description=" + description + ", toolIds=" + toolIds + ", resourceIds=" + resourceIds + ", resources=" + resources + ", sharedUserIds=" + sharedUserIds + ", nodePosition=(" + nodePosition.getX() + "," + nodePosition.getY() + "), createDate=" + createDate + ", updateDate=" + updateDate + ", classforSelection=" + classforSelection + ", classforNode=" + classforNode + '}';
+		return "ConceptNodeBean{" + "id=" + id + ", nodeId=" + nodeId + ", ladderId=" + ladderId + ", ownerId=" + ownerId + ", nodeType=" + nodeType + ", name=" + name + ", description=" + description + ", toolIds=" + toolIds + ", resourceIds=" + resourceIds + ", sharedUserIds=" + sharedUserIds + ", nodePosition=(" + nodePosition.getX() + "," + nodePosition.getY() + "), createDate=" + createDate + ", updateDate=" + updateDate + ", classforSelection=" + classforSelection + ", classforNode=" + classforNode + '}';
 	}
 
 	//Inner class for setting position of node
