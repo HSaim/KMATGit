@@ -105,7 +105,6 @@ public class InsertResourceController extends HttpServlet {
         //todo: Handle Sql Exception
         }
         
-
         if ((contentType.indexOf("multipart/form-data") >= 0)){
             DiskFileItemFactory factory = new DiskFileItemFactory();
             // maximum size that will be stored in memory
@@ -142,13 +141,8 @@ public class InsertResourceController extends HttpServlet {
                       if(name.equals("addname")){
                         
                         resource.setResourceName(value);
-                        filePath = filePath+value;//file path appended with the resource name.
-                        File fileSaveDir = new File(filePath);
-                        if (!fileSaveDir.exists()) {//folder created to upload the files in the folder 
-                            fileSaveDir.mkdirs();
-                            //fileSaveDir.mkdir();
-                        }
-                        //filePath = fileSaveDir;
+                        
+                        
                         
                         
                         
@@ -241,7 +235,7 @@ public class InsertResourceController extends HttpServlet {
             resource = ResourceDAO.insertResource(resource);
             
             //If insertion done successfully and done by existing user
-            if (resource.isAdded() && resource.getHidden().equalsIgnoreCase("AddResource")){
+            if (resource.isAdded() /*&& resource.getHidden().equalsIgnoreCase("AddResource")*/){
                 //HttpSession session = request.getSession(true);
                 //session.setAttribute("CurrentSessionUser", user);//.getUsername());
                 //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/view/UserHome.jsp");
@@ -260,16 +254,16 @@ public class InsertResourceController extends HttpServlet {
       
             }
             //If duplicate user name is given in the form from an existing user
-            else if (!resource.isAdded() && resource.isDuplicateResource() && resource.getHidden().equalsIgnoreCase("addresource")){  
+            else if (!resource.isAdded() && resource.isDuplicateResource() /*&& resource.getHidden().equalsIgnoreCase("addresource")*/){  
                 response.setContentType("text/html;charset=UTF-8");
                 try {
                     //PrintWriter out = response.getWriter();
-                    String resourceName= resource.getResourceName();
+                    //String resourceName= resource.getResourceName();
                     /*out.println("<script type=\"text/javascript\">");
                     out.println("alert('Resource name: " + resource.getResourceName() +" already exists, choose a new one!');");
                     out.println("location='AddUser';");
                     out.println("</script>");*/
-                    response.sendRedirect("user-home");                    
+                    response.sendRedirect("home");                    
                 }
                 catch (Exception e){
                     System.out.println("Alert could not be generated. Error: " + e);

@@ -122,7 +122,7 @@
             <div class="sidebox-menu-blurb">
                 Tools 
                 <ul>
-                    <li class = "view-tools"><a href="view-tools">
+                    <li class = "view-tools"><a href="GetToolController?action=get-all-tools">
                             <div class="sidebox-menu-blurb-sub">
                                 View Tools
                             </div>

@@ -18,7 +18,8 @@ public class ToolBean implements java.io.Serializable{
     private String mainExtention;
     private int userId;
     private String hidden;
-    private int toolID;private int toolTypeID;
+    private int toolID;
+    private int toolTypeID;
     private boolean input;
     private boolean output;
     

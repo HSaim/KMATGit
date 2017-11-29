@@ -66,16 +66,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10 col-md-push-2">
-                           <%-- <input type = text value = "<%=request.getParameter("x")%>"> --%>
+                           
                            <%
                                 ResourceBean resource = new ResourceBean();
                                 //user = request.getParameter("user");
                                 resource = (ResourceBean) session.getAttribute("ret-resource");
                             %>
-                            <%--
-                           <c:set var="currentResource" value="${resource}" />
-                           <c:out value="${currentResource.getResourceName()}"/>
-                            --%>
+                            
                     
                            <br/>
                            <form name = "editResource" method="post" enctype="multipart/form-data" action="GetResourcesController?action=update-resource&&resourceId=<%=resource.getResourceID()%>">                               

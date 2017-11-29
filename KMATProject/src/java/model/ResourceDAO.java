@@ -77,20 +77,23 @@ public class ResourceDAO {
                         pst.setInt(1,resourceId);
                         pst.setString(2,resourceLink);
                         pst.executeUpdate();
+                        resource_link_tbl_Insertion = 1;
                         
                     }
                     else if(resourceType.equals("file")){
                       // String insertQuery3 = "INSERT INTO resource_upload_tbl(resource_idfk, path, type, format, Size) VALUES("+resourceId+", '"+resourcePath+"', '"+resourceType+"', '"+resourceFormat+"', "+resourceSize+")";
                        //String inserQ = "Insert into resource_upload_tbl (resource_idfk, path) Values (" +resourceId +", 'c:\\resourcePath\\cvbvb\\')";
-                       String inserQ2 = "Insert into resource_upload_tbl (resource_idfk, path, type, format, Size) Values (?, ?, ?, ?, ?)";
+                       String inserQ2 = "Insert into resource_upload_tbl (resource_idfk, file_name, path, type, format, Size) Values (?, ?, ?, ?, ?,?)";
                        //resource_upload_tbl_Insertion = stmt.executeUpdate(inserQ);
                        PreparedStatement pst=currentCon.prepareStatement(inserQ2);
                         pst.setInt(1,resourceId);
-                        pst.setString(2,resourcePath);
-                        pst.setString(3, resourceType);
-                        pst.setString(4, resourceFormat);
-                        pst.setInt(5, resourceSize);
+                        pst.setString(2,resourceFile);
+                        pst.setString(3,resourcePath);
+                        pst.setString(4, resourceType);
+                        pst.setString(5, resourceFormat);
+                        pst.setInt(6, resourceSize);
                         pst.executeUpdate();
+                        resource_upload_tbl_Insertion = 1;
                     }
                     if(resource_tbl_Insertion != 0&& (resource_upload_tbl_Insertion != 0 || resource_link_tbl_Insertion != 0)){
                         bean.setAdded(true);

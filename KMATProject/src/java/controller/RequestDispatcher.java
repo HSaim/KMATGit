@@ -131,6 +131,9 @@ public class RequestDispatcher extends HttpServlet {
         else if(userPath.equals("/view-tools")){
             userPath = "/ViewTools";
         }
+        else if(userPath.equals("/edit-tool")){
+            userPath = "/EditTool";
+        }
         else if (userPath.equals("/add-tool")){
             userPath = "/AddTool";
         }

@@ -140,27 +140,52 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div><!--
     <div class="col-md-12" id = "environment" name = "environment" style="display: none">
         <div class="form-group">
         <input type = "text" class="form-control" id="typeDescription" placeholder="Name of New Tool">
         <input type="button" class =" form-control addTypesBtn" value="ADD">
     
         </div>
-    </div>
+    </div>-->
     
     <div class="col-md-12">
         <div class="col-md-6">
         <div class="form-group">
-            <p>Main File:</p><input type = "file" class="form-control-file">   <!--multiple files upload will go here--> 
+            <p>Main File:</p><input type = "file" name="main" class="form-control-file">   <!--multiple files upload will go here--> 
         </div>
         </div>
         <div class="col-md-6">
         <div class="form-group">
-            <p>Other Files:</p><input type = "file" class="form-control-file" multiple="ture">   <!--multiple files upload will go here--> 
+            <p>Please Upload Compressed Folder in .zip Format:</p><input type = "file" name="others" class="form-control-file" onchange="ValidateSingleInput(this);">   <!--multiple files upload will go here--> 
         </div>
         </div>
     </div>
+    <script>
+        var _validFileExtensions = [".zip"];    
+function ValidateSingleInput(oInput) {
+    if (oInput.type == "file") {
+        var sFileName = oInput.value;
+         if (sFileName.length > 0) {
+            var blnValid = false;
+            for (var j = 0; j < _validFileExtensions.length; j++) {
+                var sCurExtension = _validFileExtensions[j];
+                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                    blnValid = true;
+                    break;
+                }
+            }
+             
+            if (!blnValid) {
+                alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                oInput.value = "";
+                return false;
+            }
+        }
+    }
+    return true;
+}
+    </script>
     
    
     

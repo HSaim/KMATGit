@@ -4,9 +4,9 @@
     Author     : Fahad Akhtar
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.ToolBean"%>
 <%@page import="java.util.ArrayList"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- Code to prevent user from accessing any user specific page after logout/session-end -->
 <%
     response.setHeader("Cache-Control","no-cache");  //Forces caches to obtain a new copy of the page from the origin server
@@ -34,7 +34,7 @@
         <!-- css includes here -->
         <jsp:include page="../../includes/link.jsp" />
         
-        <title>View Tools</title>
+        <title>Tools</title>
     </head>
     
    <body class = "view-tools">
@@ -50,7 +50,7 @@
                 <aside class="heading-bg" > <!--style="background: url(images/heading-bg1.jpg) repeat;">-->
                     <div class="container">
                         <!--<h1 class="page-heading-lead">-->
-                         View Tools
+                         View Tools 
                             <!--<span class="border"></span>-->
                         <!--</h1>-->
                     </div>                        
@@ -69,7 +69,7 @@
                                             </b>
                                         </div>
                                         <div class="col-md-3">
-                                            <b>View Details</b>
+                                            <b>View/Edit Details</b>
                                         </div>
                                         <div class="col-md-3">
                                             <b>Delete</b>
@@ -90,20 +90,20 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <h3>
-                                                    <a href="GetToolController?action=get-tool=${res.gettoolName()}">
+                                                    <a>
                                                         <c:out value="${res.getToolName()}"/>
                                                     </a>
                                                 </h3>
                                             </div>
                                             <div class="col-md-3">
-                                                <a href="GetToolController?action=get-tool&toolName=${res.getToolname()}">
+                                                <a href="GetToolController?action=get-tool&toolName=${res.getToolName()}">
                                                     <h2>
                                                         <i class="icon-edit"></i>
                                                     </h2>
                                                 </a>
                                             </div>       
                                             <div class="col-md-3">
-                                                <a href="GetToolController?action=del-tool&toolName=${res.getToolname()}">
+                                                <a href="GetToolController?action=del-tool&toolName=${res.getToolName()}">
                                                     <h2>
                                                         <i class="icon-cross3"></i>
                                                     </h2>

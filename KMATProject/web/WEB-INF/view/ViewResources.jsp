@@ -97,7 +97,7 @@
                             <c:forEach  items="${resource1}" var="res">
                                <div class = "row">
                                     <div class="col-md-6">
-                                        <h3> <a href = "GetResourceController?action=get-resource=${res.getResourceName()}">
+                                        <h3> <a >
                                             <c:out value="${res.getResourceName()}" /></a></h3>
                                         <%--<input type = "hidden" value = "${user.getUserName()}" name = "hidden">--%>
                                         <%--<input type = "hidden" value = "username" name = "hide">--%>
@@ -111,7 +111,7 @@
                                         </a>
                                     </div>
                                     <div class = "col-md-3">
-                                        <a href ="GetUsersController?action=del-resource&resourceName=${res.getResourceName()}">
+                                        <a href ="GetResourceController?action=del-resource&resourceName=${res.getResourceName()}">
                                             <h2><i class="icon-cross3"></i></h2>
                                         </a>
                                     </div>

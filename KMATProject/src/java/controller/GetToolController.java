@@ -94,7 +94,7 @@ public class GetToolController extends HttpServlet{
             }
             
         }
-        else if(action.equals("get-tools")){
+        else if(action.equals("get-tool")){
             String toolName;
             ToolBean tool = new ToolBean();
             toolName = request.getParameter("toolName");
@@ -102,7 +102,7 @@ public class GetToolController extends HttpServlet{
             request.setAttribute("tool", tool);
             HttpSession session = request.getSession(true);
             session.setAttribute("ret-tool", tool);
-            response.sendRedirect("edit-resource");
+            response.sendRedirect("edit-tool");
             
             
         }

@@ -165,7 +165,8 @@
                             </div>
                     </a></li>
                     <li class = "add-tool">
-                        <a href="add-tool">
+                        <a href="GetToolController?action=get-all-tools">
+                           <!--<a href="add-tool">-->
                             <div class="sidebox-menu-blurb-sub">
                                 Add Tool
                             </div>
