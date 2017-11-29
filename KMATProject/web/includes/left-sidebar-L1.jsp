@@ -1,21 +1,12 @@
 <%-- 
-    Document   : left-sidebar
-    Created on : Oct 31, 2016, 12:32:36 PM
-    Author     : Habiba Saim
+    Document   : left-sidebar-L1
+    Created on : Apr 10, 2017, 12:15:37 PM
+    Author     : Saim
 --%>
 
-<%@page import="model.LoginUserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-    
-
-<div class="sidebox" id = "navbar">
-    <!--<h3 class="sidebox-lead">KMAT Components</h3>	-->
-
-    <ul class="sidebox-menu">
-        <li>
-            <!-- <a href="#">-->
-
+<ul class="sidebox-menu">
+        <li>           
             <div class="sidebox-menu-blurb">
                 Users 
                 <!--<span class="sidebox-menu-meta">Add User</span>-->
@@ -24,31 +15,32 @@
             <ul>
                 
                 <li class = "view-users">
-                    <a href="GetUsersController?action=get-all-users"> 
-                <!--<li class = "view-users"><a href="view-users"> -->
-                        <div class="sidebox-menu-blurb-sub">
-                            View Users
+                    <a href="GetUsersController?action=get-all-users">                
+                        <div class="sidebox-menu-blurb-sub">                            
+                            View Users                            
+                            <%--<div class = "disableLink">View Users</div>--%>                            
                         </div>
                     </a>
                 </li>
                 <li class = "add-user">
                     <a href="add-user">
-                        <div class="sidebox-menu-blurb-sub">
-                            Add User
+                        <div class="sidebox-menu-blurb-sub">                            
+                            <div class = "disableLink">Add User </div>                         
                         </div>
                     </a>
                 </li>
             </ul>
         </li>
+        
         <li>
             <div class="sidebox-menu-blurb">
                 Roles                                           
             </div>
             <ul>
-                <li class = "view-roles">
+                <li class = "view-roles desable"  >
                     <a href="view-roles">
-                        <div class="sidebox-menu-blurb-sub">
-                            View Roles 
+                        <div class="sidebox-menu-blurb-sub " >
+                            View Roles
                         </div>
                     </a>
                 </li>
@@ -61,6 +53,7 @@
                 </li>
             </ul>                                    
         </li>
+        
         <li>
             <div class="sidebox-menu-blurb">
                 Composition Ladders 
@@ -78,6 +71,7 @@
                 </ul>
             </div>
         </li>
+        
         <li>
             <div class="sidebox-menu-blurb">
                 Process Ladders 
@@ -95,7 +89,6 @@
                     </a></li>
                 </ul>
             </div>
-
         </li>
         
         <!--Changes by Zohaa-->
@@ -115,36 +108,39 @@
                     </a></li>
                 </ul>
             </div>
-
-        </li>
-        
+        </li>        
         
         <li>
             <div class="sidebox-menu-blurb">
                 Tools 
                 <ul>
-                    <li class = "view-tools"><a href="GetToolController?action=get-all-tools">
+                    <li class = "view-tools"><a href="view-tools">
                             <div class="sidebox-menu-blurb-sub">
                                 View Tools
                             </div>
                     </a></li>
-                    <li class = "add-tool"><a href="add-tool">
+                    <li class = "add-tool">
+                        <a href="add-tool">
                             <div class="sidebox-menu-blurb-sub">
                                 Add Tool
                             </div>
-                    </a></li>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </li>
+        
         <li>
             <div class="sidebox-menu-blurb">
                 Resources 
                 <ul>
-                    <li class = "view-resources"><a href="GetResourceController?action=get-all-resources">
+                    <li class = "view-resources">
+                        <a href="GetResourceController?action=get-all-resources">
                             <div class="sidebox-menu-blurb-sub">
                                 View Resources
                             </div>
-                    </a></li>
+                        </a>
+                    </li>
                     <li class = "add-resource">
                         <a href="add-resource">
                             <div class="sidebox-menu-blurb-sub">
@@ -155,6 +151,7 @@
                 </ul>
             </div>
         </li>
+        
         <li>
             <%--
             <div class="extend-sidebar"> <!-- Spaces are added here to stretch the sidebar -->
@@ -162,23 +159,5 @@
             </div>
             --%>
         </li>
+        
     </ul>
-
-
-    
-        <jsp:include page="left-sidebar-L0.jsp" />  
-    </c:when>
-    <c:when test="${CurrentSessionUser.userLevelName == 'L1'}">
-    <%--}
-    else if(userLevel.equalsIgnoreCase("L1")){
-    --%>
-    <jsp:include page="left-sidebar-L1.jsp" />  
-    
-    </c:when>
-    </c:choose>
-    <%--}
-    --%>
-
-</div>
-
-                     

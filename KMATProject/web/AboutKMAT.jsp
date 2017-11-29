@@ -1,5 +1,5 @@
 <%-- 
-    Document   : AboutUs
+    Document   : AboutKMAT
     Created on : Feb 28, 2017, 10:29:09 AM
     Author     : Habiba Saim
 --%>
@@ -57,7 +57,7 @@
                             <h1 class = "subTitle">Knowledge Management for All Tool (KMAT)</h1>
                         </div>
                         
-                        <table class=" tWiz" style="width: 100%" cellPadding=5 align=left>
+                        <table style="width: 100%" cellPadding=5 align=left>
                             <tbody>
                                 
                                 <tr>

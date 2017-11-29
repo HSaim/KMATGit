@@ -28,8 +28,18 @@
                 <jsp:include page="includes/header.jsp" />                      
                 <!-- END: header -->
                 
-                <!-- START: Banner
-                
+                <!-- START: Banner -->
+                <div class="page-title" style="background-image: url(images/banner3.jpg);">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 animate-box">
+                                <h1><span class="colored">Concept Maps</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--
                  <div id="banner" style="background-image:  url(images/CompositionLadder3.jpg); background-repeat: no-repeat; background-position:center;">
                     
                      <div class="container">
@@ -46,7 +56,7 @@
                     
 		</div>
                 -->
-                <!--<div class="da-slider" style="background-image: url(images/CompositionLadder3.jpg); background-repeat: no-repeat; background-position:center;"></div>-->
+                <!--<div class="da-slider" style="background-image: url(images/CompositionLadder3.jpg); background-repeat: no-repeat; background-position:center;"></div>
                 <aside id="hero" class="js-fullheight">
                     <div class="flexslider js-fullheight">
                         <ul class="slides">
@@ -80,6 +90,7 @@
                                    a road map represents the locations of highways and towns, 
                                    and a circuit diagram represents the workings of an electrical appliance. 
                                    
+
                                    In a concept map, each word or phrase connects to another, and links back to the original idea, 
                                    word, or phrase. 
                                    
@@ -91,12 +102,31 @@
                                    This is different from a composition ladder or a process ladder since each has specified relationships between them.
                                    
                                    Risk management concept map example is given below:
+
+                                   The concept map defines the integration mechanism between layers and ladders, 
+                                        and is part of the service layer of the tool. 
+                                    It visually links together users, <a href = "ProcessLadder.jsp">processes</a>, 
+                                        <a href = "CompositionLadder.jsp">compositions</a> and 
+                                        all types of <a href = "Resources.jsp">resources</a> in a graphical network 
+                                        of nodes and directed/undirected edges. Nodes can represent processes, 
+                                        compositions or nodes of each or can be external nodes and edges represent the relationship between two nodes. 
+                                   Concept map also hosts the knowledge resources being shared within or outside an organization. 
+                                   At times localization is required for better understanding of the knowledge resources, 
+                                        this feature may also be initiated through the concept maps. 
+                                    In case of an agricultural research institute, if a farmer, 
+                                        an external stakeholder to the organization wants to know as to how crop yield estimates are generated, 
+                                        what are the inputs, and outputs to this process, farmer could refer to the concept map layer, 
+                                        understand the process and could also know about the people responsible within the organization for this task. 
+                                    Various resource modules may also be accessed by the stakeholder through this layer. 
+                                    
+                                    Risk management concept map example is given below:
+
                                 </tr>
                                 <tr>
                                     
                                     
                                     <td style="vertical-align: top; text-align:  center">
-                                            <img id="component_img" src="images/Concept-map--Risk-management.png">
+                                            <img id="component_img_large" src="images/Concept-map--Risk-management.png">
                                     </td>
                                 </tr>
                             </tbody>

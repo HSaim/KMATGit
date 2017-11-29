@@ -21,7 +21,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-users-KE</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
         <url-pattern>/view-users</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-user</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestDispatcher</servlet-name>
@@ -243,6 +251,11 @@
             <url-pattern>/ProcessLadder.jsp</url-pattern>
             <url-pattern>/CompositionLadder.jsp</url-pattern>
             <url-pattern>/ConceptMap.jsp</url-pattern>
+
+            <url-pattern>/Resources.jsp</url-pattern>
+            <url-pattern>/Tools.jsp</url-pattern>
+            <url-pattern>/Users.jsp</url-pattern>
+
             <!--
             <url-pattern>/News.jsp</url-pattern>            
             <url-pattern>/LoginAgain.jsp</url-pattern>

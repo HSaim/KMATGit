@@ -121,6 +121,46 @@
                             </div>
                             <!-- END: The Modal -->
                             
+                            <!-- START: The Modal -->
+                            <div id="node-modal-pc" class="modal">
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                            <span class="close" onclick="closeModalPC()" style="font-size: 20px; padding-top: 7px">×</span>
+                                            <div class="node-name-div">
+												<p id="modal-node-name-pc" contenteditable="false">Modal Header<p>
+                                            </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p style="text-align: left; font-family: Verdana, Geneva, sans-serif; font-size: 14px; color: rgb(77, 77, 77)">Description:&nbsp; 
+											<textarea class="modal-description" id="modal-description-id-pc" rows="15" cols="54" readonly="true"></textarea> </p>
+
+                                        <button class="accordion" id="accordion1" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Linked Tools</button>
+                                        <div class="panel" id="accordion1-panel-pc">
+                                            <div class="tools-last-accordion" id="tools-last-accordion-item">
+                                            </div>
+                                        </div>
+
+                                        <button class="accordion" id="accordion2">Attached Resources</button>
+                                        <div class="panel" id="accordion2-panel-pc">
+                                            <div class="tools-last-accordion" id="resources-last-accordion-item">
+                                            </div>
+                                        </div>
+
+                                        <button class="accordion" id="accordion-share">Shared with</button>
+                                        <div class="panel" id="accordion3-panel-pc">
+                                            <div class="tools-last-accordion" id="share-last-accordion-item">
+                                            </div>
+                                        </div>
+                                        <br>
+<!--TODO: make a runNodeProcess() function-->
+                                        <!--<button id="run-process-button" class="modal-save-button" onclick="saveNodeDetails()">Save</button>-->
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- END: The Modal -->
+                            
                             <!-- START: help tool tips-->
                             <div class="help-tooltiptext" id="help-tooltiptext">
                                 <h3 style='padding:5px'>Directions</h3>

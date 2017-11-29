@@ -28,8 +28,8 @@
             <!-- START page-->
             <div id = "page">
                 <!-- START header -->
-                 <%--<jsp:include page="includes/header.jsp" /> --%> 
-                 <%@ include file="includes/header.jsp" %>
+                 <jsp:include page="includes/header.jsp" /> 
+                 <%--<%@ include file="includes/header.jsp" %>--%> 
                 <!-- END header -->
                  <!-- Slider Starts-->
                 
@@ -49,8 +49,7 @@
                                 <div class="sub-feature">
 
                                     <figure>
-                                        <img src="images/process.jpeg" alt="Process Ladder" class="img-responsive">
-                                        <!--<a href="#" class="tag">For Sale</a>-->
+                                        <img src="images/process.jpeg" alt="Process Ladder" class="img-responsive">                                        
                                     </figure>
                                     <div class="sub-feature-innter">
                                         <h3><a href="ProcessLadder.jsp">Process Ladders</a></h3>
@@ -59,10 +58,7 @@
                                         </div>
                                         <p>Represent the processes being run in an organization</p>
                                     </div>
-                                    <p class="sub-feature-specification">
-                                            <!--
-                                            <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-                                            -->
+                                    <p class="sub-feature-specification">                                            
                                     </p>
                                 </div>					
                             </div>
@@ -71,8 +67,7 @@
                                 <div class="sub-feature">
 
                                     <figure>
-                                        <img src="images/CompositionLadder1_1.jpg" alt="Composition Ladder" class="img-responsive">
-                                        <!--<a href="#" class="tag">For Sale</a>-->
+                                        <img src="images/CompositionLadder1_1.jpg" alt="Composition Ladder" class="img-responsive">                                        
                                     </figure>
                                     <div class="sub-feature-innter">
                                         <h3><a href="CompositionLadder.jsp">Composition Ladders</a></h3>
@@ -82,9 +77,7 @@
                                         <p>Parts of knowledge objects and their hierarchy of composition</p>
                                     </div>
                                     <p class="sub-feature-specification">
-                                            <!--
-                                            <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-                                            -->
+                                            
                                     </p>
                                 </div>					
                             </div>
@@ -117,8 +110,12 @@
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
                                 <div class="sub-feature">
                                     <figure>
+
                                         <img src="images/slide_3.jpg" alt="slide" class="img-responsive">
                                         <!--<a href="#" class="tag">For Sale</a>-->
+
+                                        <img src="images/resources_4.jpg" alt="resources" class="img-responsive">                                        
+
                                     </figure>
                                     <div class="sub-feature-innter">
                                         <h3><a href="#">Resources</a></h3>
@@ -127,10 +124,7 @@
                                         </div>
                                         <p>Represent the processes being run in an organization</p>
                                     </div>
-                                    <p class="sub-feature-specification">
-                                            <!--
-                                            <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-                                            -->                                   
+                                    <p class="sub-feature-specification">                                                                               
                                     </p>
                                 </div>					
                             </div>
@@ -138,20 +132,16 @@
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
                                 <div class="sub-feature">
                                     <figure>
-                                        <img src="images/slide_2.jpg" alt="slide" class="img-responsive">
-                                        <!--<a href="#" class="tag">For Sale</a>-->
+                                        <img src="images/tools_3.jpg" alt="tools" class="img-responsive">                                        
                                     </figure>
                                     <div class="sub-feature-innter">
-                                        <h3><a href="#">Tools</a></h3>
+                                        <h3><a href="Tools.jsp">Tools</a></h3>
                                         <div class="price-status">
-                                            <span class="price">Organization's processes</span>
+                                            <span class="price">Softwares/applications</span>
                                         </div>
-                                        <p>Represent the processes being run in an organization</p>
+                                        <p>Linked to processes to accomplish a task</p>
                                     </div>
-                                    <p class="sub-feature-specification">
-                                        <!--
-                                        <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-                                        -->
+                                    <p class="sub-feature-specification">                                       
                                     </p>
                                 </div>					
                             </div>
@@ -159,20 +149,16 @@
                             <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
                                 <div class="sub-feature">
                                     <figure>
-                                        <img src="images/slide_3.jpg" alt="slide" class="img-responsive">
-                                        <!--<a href="#" class="tag">For Sale</a>-->
+                                        <img src="images/users_4.jpg" alt="users" class="img-responsive">                                        
                                     </figure>
                                     <div class="sub-feature-innter">
-                                        <h3><a href="#">Concept Maps</a></h3>
+                                        <h3><a href="Users.jsp">Users</a></h3>
                                         <div class="price-status">
-                                            <span class="price">Organization's processes</span>
+                                            <span class="price">System users</span>
                                         </div>
-                                        <p>Represent the processes being run in an organization</p>
+                                        <p>Knowledge Engineers, project managers, administrators etc. </p>
                                     </div>
-                                    <p class="sub-feature-specification">
-                                        <!--
-                                        <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-                                        -->
+                                    <p class="sub-feature-specification">                                        
                                     </p>
                                 </div>					
                             </div>
@@ -227,7 +213,7 @@
                     </div>
                 </div>
                 <!-- END: Sign in -->
-                
+             
                 <!-- adds js -->                
                 <%@ include file="includes/js.jsp" %>
                 

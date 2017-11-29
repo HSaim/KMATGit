@@ -66,8 +66,31 @@ public class GetUsersController extends HttpServlet {
         currentUser = (LoginUserBean) request.getSession(false).getAttribute("CurrentSessionUser");
         currentUsername = currentUser.getUsername();
         
-        //To retrieve the users in KMAT DB
-        if (action.equals("get-all-users")){            
+        //To retrieve the users in KMAT DB for KE View
+        if (action.equals("get-all-users-KE")){            
+            ArrayList<UserBean> registeredUsers = new ArrayList<UserBean>();
+            registeredUsers = UserDAO.getRegisteredUsers(currentUsername);
+            
+            ArrayList<UserBean> unRegisteredUsers = new ArrayList<UserBean>();
+            unRegisteredUsers = UserDAO.geUnregisteredUsers(currentUsername);
+            
+            try{
+                HttpSession session = request.getSession(true);
+                if (registeredUsers!=null){                   
+                    session.setAttribute("rusers", registeredUsers);                                        
+                }
+                if (unRegisteredUsers!=null){                   
+                   session.setAttribute("uusers", unRegisteredUsers);                                        
+                }
+                response.sendRedirect("view-users-KE");
+            }
+            catch(Exception e){
+                    e.printStackTrace();
+            }
+        }
+        
+        //To retrieve the users in KMAT DB for other than KE view
+        else if (action.equals("get-all-users")){            
             ArrayList<UserBean> registeredUsers = new ArrayList<UserBean>();
             registeredUsers = UserDAO.getRegisteredUsers(currentUsername);
             
@@ -100,7 +123,7 @@ public class GetUsersController extends HttpServlet {
             response.sendRedirect("edit-user");
         }
         
-        //For unregistered user
+        //For KE, to edit the profile of unregistered user
         else if(action.equals("get-uuser")){
             String username;
             UserBean user = new UserBean();
@@ -110,6 +133,17 @@ public class GetUsersController extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("ret-user", user);
             response.sendRedirect("register-user");
+        }
+        
+        else if(action.equals("onlyView-user")){
+            String username;
+            UserBean user = new UserBean();
+            username = request.getParameter("userName");
+            user = UserDAO.getUser(username);
+           // request.setAttribute("user", user);
+            HttpSession session = request.getSession(true);
+            session.setAttribute("viewUser", user);
+            response.sendRedirect("view-a-user");
         }
         
         else if (action.equals("update-user")){

@@ -86,6 +86,11 @@ figure {
     font-family: Georgia, serif;
     color: #5F9EA0 ;
 }
+
+.font-formatting{
+    font-family: Georgia, serif;
+    color: #5F9EA0 ;
+}
 #component_img
 {
 	width: 250px;
@@ -1096,8 +1101,9 @@ body.add-resource #primary-menu li.home > a{
   padding-left: 5em;
 }
 .col-half .featured-inner .desc h3 {
-  font-size: 18px;
+  font-size: 14px;
   margin-bottom: 15px;
+  text-align: center;
 }
 .col-half.col-half-color {
   background: #00ADB5;
@@ -1267,9 +1273,11 @@ body.add-resource #primary-menu li.home > a{
   background-position: center center;
   position: relative;
   width: 25%;
-  height: 350px;
-  float: left;
+  height: 100px;
+  float: left; 
   overflow: hidden;
+  margin: 1em;
+  text-align: center;
 }
 @media screen and (max-width: 992px) {
   #portfolio-section .portfolio-row-half .portfolio-grid-item {
@@ -1332,7 +1340,7 @@ body.add-resource #primary-menu li.home > a{
 #portfolio-section .portfolio-row-half .portfolio-grid-item-color {
   position: relative;
   width: 25%;
-  height: 350px;
+  height: 100px;
   float: left;
   background: #F36363;
 }
@@ -1876,6 +1884,63 @@ body.add-resource #primary-menu li.home > a{
   text-decoration: none;
   color: #212121;
 }
+
+/* START: Page Title */
+
+.page-title {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  padding: 7em 0;
+  position: relative;
+}
+@media screen and (max-width: 768px) {
+   .page-title {
+    padding: 3em 0;
+  }
+}
+.page-title .overlay {
+  background: rgba(0, 0, 0, 0.7);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  position: absolute;
+  z-index: 1;
+}
+ .page-title .container {
+  position: relative;
+  z-index: 2;
+}
+ .page-title p, .page-title h3 {
+  color: #fff;
+}
+ .page-title p:last-child {
+  margin-bottom: 0;
+}
+ .page-title .btn {
+  color: #fff;
+}
+
+.page-title {
+  padding: 10em 0 5em 0 !important;
+}
+@media screen and (max-width: 768px) {
+  .page-title {
+    padding: 6em 0 1em 0 !important;
+  }
+}
+.page-title h1 {
+  font-size: 40px;
+  line-height: 1.5;
+  color: #fff;
+  margin: 0;
+}
+.page-title h1 .colored {
+  color: #4CB648;
+}
+/* END - Page Title */
 
 #footer {
   padding: 7em 0;

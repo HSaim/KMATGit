@@ -1174,8 +1174,16 @@ public class LadderDAO
         
         private static ConceptNodeBean getConceptNodeFromDatabase(ResultSet result) throws SQLException
 	{
+            int id = result.getInt(NODES_TBL + "." + "id");
+            if (result.getString(NODES_TBL + "." + "node_type").equals("CONCEPT"))
+            {
+                id = result.getInt(NODES_TBL + "." + "id");
+            }
+            else
+            {
+                id = result.getInt(NODES_TBL + "." + "original_node_id");
+            }
 		ConceptNodeBean aNode = null;
-		int id = result.getInt(NODES_TBL + "." + "id");
 		int nodeId = result.getInt(NODES_TBL + "." + "node_id");
 		int ladderId = result.getInt(NODES_TBL + "." + "ladder_idfk");
 		int ownerId = result.getInt(NODES_TBL + "." + "owner_idfk");

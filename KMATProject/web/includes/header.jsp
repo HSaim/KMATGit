@@ -22,7 +22,21 @@
                         <li class = "news">
                             <a href="" class="fh5co-sub-ddown">News</a>
                             <ul class="sub-menu">
+
                                 <li><a href="">sub menu 1</a></li>
+
+                                <li><a href="">Ladders</a>                                
+                                    <ul class="sub-menu">
+                                        <li><a href="CompositionLadder.jsp" onclick="open">Composition Ladder</a></li>
+                                        <li><a href="ProcessLadder.jsp">Process Ladder</a></li>                                        
+                                    </ul>
+                                </li>
+                                <li><a href = "ConceptMap.jsp">Concept Map</a></li>
+                                <li><a href = "Resources.jsp">Resources</a></li>
+                                <li><a href = "Tools.jsp">Tools</a></li>
+                                <li><a href = "Users.jsp">Users</a></li>
+                                <%--
+
                                 <li>
                                     <a href="#" class="fh5co-sub-ddown">sub menu 2</a>
                                     <ul class="sub-menu">

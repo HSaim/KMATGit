@@ -23,14 +23,17 @@
                                         <p><a href="AboutKMAT.jsp" class="btn btn-primary btn-outline with-arrow btn-sm">KMAT Introduction<i class="icon-arrow-right"></i></a></p>
                                     </div>
                                     <div class="col-md-5">
-                                            <h3>KMAT Components</h3>
-                                            <ul class="link">
-                                                    <li><a href="ProcessLadder.jsp">Process Ladders</a></li>
-                                                    <li><a href = "CompositionLadder.jsp">Composition Ladders</a></li>
-                                                    <li><a href="ConceptMap.jsp">Concept Maps</a></li>
-                                                    <li><a href="#">Resources</a></li>
-                                                    <li><a href="#">Tools</a></li>
-                                            </ul>
+
+                                        <h3>KMAT Components</h3>
+                                        <ul class="link">
+                                            <li><a href="ProcessLadder.jsp">Process Ladders</a></li>
+                                            <li><a href = "CompositionLadder.jsp">Composition Ladders</a></li>
+                                            <li><a href="ConceptMap.jsp">Concept Maps</a></li>
+                                            <li><a href="Resources.jsp">Resources</a></li>
+                                            <li><a href="Tools.jsp">Tools</a></li>
+                                            <li><a href="Users.jsp">Users</a></li>
+                                        </ul>
+
                                     </div>
 
                                 </div>

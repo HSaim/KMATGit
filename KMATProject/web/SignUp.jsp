@@ -49,7 +49,7 @@
                         </ul>
                     </div>
 		</aside>   
-                --%>
+                
                 <aside id="banner" style="background-image: url(images/banner1.jpg);">
                     <div class="container">
                         <div class="row">
@@ -63,7 +63,17 @@
                             </div>
                         </div>
                     </div>
-		</aside>
+		</aside>--%>
+                <div class="page-title" style="background-image: url(images/banner1.jpg);">
+                    <div class="overlay"></div>
+                    <div class="container">
+                            <div class="row">
+                                    <div class="col-md-12 animate-box">
+                                            <h1><span class="colored">Sign up for</span> KMAT</h1>
+                                    </div>
+                            </div>
+                    </div>
+                </div>
                 <!-- END: Banner-->
                 
                 <!-- START: Signup Form -->

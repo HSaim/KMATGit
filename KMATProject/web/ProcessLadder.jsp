@@ -30,6 +30,16 @@
                 <!-- END: header -->
                 
                 <!-- START: Banner -->
+                <div class="page-title" style="background-image: url(images/DESIGN-PROCESS.jpg);">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 animate-box">
+                                <h1><span class="colored">Process Ladders</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <%--<aside id="banner" style="background-image: url(images/DESIGN-PROCESS1.jpg); background-repeat: no-repeat; background-position:center;">
                    
                      <div class="container">
@@ -45,7 +55,7 @@
                         </div>
                     </div>
                     
-		</aside>--%>
+		</aside>
                 
                 <aside id="hero" class="js-fullheight">
                     <div class="flexslider js-fullheight">
@@ -62,7 +72,7 @@
                             </li>
                         </ul>
                     </div>
-		</aside>   
+		</aside>   --%>
                 <!-- END: Banner-->
                 
                 <!-- START: Process Ladder Contents -->
@@ -79,6 +89,7 @@
                             
                             It is a data structure that can be used to model a complete process such as student’s course enrollment, Point-of-Sale transaction, forest preservation/management etc.
                                 </tr>
+                                <br/><br/>
                                 <tr>
                                     <td style="width: 40%; vertical-align: top; text-align:  center">
                                             <img id="component_img" src="images/process-ladder-example.png">
