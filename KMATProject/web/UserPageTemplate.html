@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>User Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+       <!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Simple Line Icons -->
+	<link rel="stylesheet" href="css/simple-line-icons.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Superfish -->
+	<link rel="stylesheet" href="css/superfish.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="css/flexslider.css">
+        <!-- Homeslider  
+	<link rel="stylesheet" href="css/homeslider.css">-->
+	<link rel="stylesheet" href="css/style.css">
+        
+        <!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+        
+    </head>
+    <body>
+        <div id = "wrapper">
+            <!-- START page-->
+            <div id = "page">
+                <!-- START header -->
+                <div id = "header">
+                    <!-- START header-section -->
+                    <header id="header-section">
+                        <!-- START container -->
+                        <div class="container">
+                            <div class="nav-header">
+                                <a href="#" class="js-nav-toggle nav-toggle"><i></i></a>
+                                <h1 id="logo"><a href="Home.jsp">KMAT</a></h1>
+                                <!-- START #menu-wrap -->
+                                <nav id="menu-wrap" role="navigation">
+                                    <ul class="sf-menu" id="primary-menu" >
+                                        <!--<label id="uname" align = "left"><a href =""></a></label>-->
+                                        <li id = "uname"><a>UserName</a></li>
+                                        <li class ="home"><a href="home">Home</a></li>
+                                        <li class="news">
+                                            <a href="" class="fh5co-sub-ddown">News</a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="">sub menu 1</a></li>
+                                                    <li>
+                                                        <a href="#" class="fh5co-sub-ddown">sub menu 2</a>
+                                                        <ul class="sub-menu">
+                                                            <li><a href="" >Build</a></li>
+                                                            <li><a href="">Work</a></li>
+                                                            <li><a href="">Light</a></li>
+                                                            <li><a href="">Relic</a></li>
+                                                            <li><a href="">Display</a></li>
+                                                            <li><a href="">Sprint</a></li>
+                                                        </ul>
+                                                    </li>                                                
+                                                </ul>
+                                        </li>
+                                    <li class ="about"><a href="about.html">About</a></li>
+                                    <li class = "contact"><a href="contact.html">Contact</a></li>
+                                    <li class="cta"><a href="Home.jsp">Sign out</a></li>
+
+                                </ul>
+                                </nav>
+                                <!-- END menu-wrap -->
+                            </div>
+                        </div>
+                        <!-- END container -->
+                    </header>
+                    <!-- END header-section -->
+                </div>              
+                <!-- END header -->
+                <!-- START: Page heading-->
+                <aside class="heading-bg" > <!--style="background: url(images/heading-bg1.jpg) repeat;">-->
+                    <div class="container">
+                        <!--<h1 class="page-heading-lead">-->
+                        Resources
+                            <!--<span class="border"></span>-->
+                        <!--</h1>-->
+                    </div>                        
+                </aside>
+                <!-- END: Page heading-->
+           
+                <!--Start Page contents -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-md-push-2">
+                            
+                            <!-- Do your code here -->
+                            
+                            
+                        </div>
+                        <div class="col-md-2 col-md-pull-10 back-color" >
+                            
+                            <!-- Left side bar includes here -->
+                            <div class="sidebox" id = "navbar">
+   
+                                <ul class="sidebox-menu">
+                                    <li>
+                                        <!-- <a href="#">-->
+
+                                        <div class="sidebox-menu-blurb">
+                                            Users 
+                                            <!--<span class="sidebox-menu-meta">Add User</span>-->
+                                        </div>
+                                        <!-- </a>-->
+                                        <ul>
+
+                                            <li class = "view-users"><a href="GetUsersController?action=get-all-users"> 
+                                            <!--<li class = "view-users"><a href="view-users"> -->
+                                                    <div class="sidebox-menu-blurb-sub">
+                                                        View Users
+                                                    </div>
+                                            </a></li>
+                                            <li class = "add-user"><a href="add-user">
+                                                    <div class="sidebox-menu-blurb-sub">
+                                                        Add User
+                                                    </div>
+                                            </a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="sidebox-menu-blurb">
+                                            Roles                                           
+                                        </div>
+                                        <ul>
+                                            <li class = "view-roles"><a href="view-roles">
+                                                    <div class="sidebox-menu-blurb-sub">
+                                                        View Roles 
+                                                    </div>
+                                            </a></li>
+                                            <li class = "add-role"><a href="add-role">
+                                                    <div class="sidebox-menu-blurb-sub">
+                                                        Add Role 
+                                                    </div>
+                                            </a></li>
+                                        </ul>                                    
+                                    </li>
+                                    <li>
+                                        <div class="sidebox-menu-blurb">
+                                            Composition Ladders 
+                                            <ul>
+                                                <li class = "view-c-ladders"><a href="view-composition-ladders">
+                                                        <div class="sidebox-menu-blurb-sub">
+                                                            View Composition Ladders
+                                                        </div>
+                                                </a></li>
+                                                <li class = "add-c-ladder"><a href="add-composition-ladder">
+                                                        <div class="sidebox-menu-blurb-sub">
+                                                            Add Composition Ladder
+                                                        </div>
+                                                </a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="sidebox-menu-blurb">
+                                            Process Ladders 
+                                            <ul>
+                                                <li class = "view-p-ladders"><a href="view-process-ladders">
+                                                        <div class="sidebox-menu-blurb-sub">
+                                                            View Process Ladders
+                                                        </div>
+                                                </a></li>
+                                                <li class = "add-p-ladder"><a href="add-process-ladder">
+                                                        <div class="sidebox-menu-blurb-sub">
+                                                            Add Process Ladder
+                                                        </div>
+                                                </a></li>
+                                            </ul>
+                                        </div>
+
+                                    </li>
+                                    
+                                    <!--Changes by Zohaa-->
+                                    <li>
+                                        <div class="sidebox-menu-blurb">
+                Concept Maps
+                <ul>
+                    <li class = "view-c-maps"><a href="view-concept-maps">
+                            <div class="sidebox-menu-blurb-sub">
+                                    View Concept Maps
+                            </div>
+                    </a></li>
+                    <li class = "add-c-map"><a href="add-concept-map">
+                            <div class="sidebox-menu-blurb-sub">
+                                Add Concept Map
+                            </div>
+                    </a></li>
+                </ul>
+            </div>
+
+        </li>
+        
+        
+                                    <li>
+                                        <div class="sidebox-menu-blurb">
+                                            Tools 
+                                            <ul>
+                                                <li class = "view-tools"><a href="view-tools">
+                                                        <div class="sidebox-menu-blurb-sub">
+                                                            View Tools
+                                                        </div>
+                                                </a></li>
+                                                <li class = "add-tool"><a href="add-tool">
+                                                        <div class="sidebox-menu-blurb-sub">
+                                                            Add Tool
+                                                        </div>
+                                                </a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="sidebox-menu-blurb">
+                                            Resources 
+                                            <ul>
+                                                <li class = "view-resources"><a href="view-resources">
+                                                        <div class="sidebox-menu-blurb-sub">
+                                                            View Resources
+                                                        </div>
+                                                </a></li>
+                                                <li class = "add-resource"><a href="add-resource">
+                                                        <div class="sidebox-menu-blurb-sub">
+                                                            Add Resource
+                                                        </div>
+                                                </a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+
+                            </div>
+                            <!-- END: Left side bar  -->
+                        </div>                        
+                    </div>
+                </div>
+                <!--End Page contents --> 
+            <footer id="footer">
+                    <div class="container">
+			<div class="row">
+                            <div class="col-md-4">
+				<div class="copyright">
+                                    <p><small>
+                                            <!--
+                                        <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+                                        <jsp:useBean id="date" class="java.util.Date" />
+                                        <fmt:formatDate value="${date}" pattern="yyyy" /> 
+                                            --->
+                                        &copy; Rice Lab,<br/> Lahore University of Management Sciences, Lahore, Pakistan. <br/>All Rights Reserved. 
+                                    </small></p>
+				</div>
+                            </div>
+                                        
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h3>About Us</h3>
+                                        <p>We provide knowledge management system for SME</p>
+                                        <p><a href="#" class="btn btn-primary btn-outline with-arrow btn-sm">I'm button <i class="icon-arrow-right"></i></a></p>
+                                    </div>
+                                    <div class="col-md-5">
+                                            <h3>KMAT Features</h3>
+                                            <ul class="link">
+                                                    <li><a href="#">Process Ladders</a></li>
+                                                    <li><a href = "">Composition Ladders</a></li>
+                                                    <li><a href="#">Concept Maps</a></li>
+                                                    <li><a href="#">Resources</a></li>
+                                                    <li><a href="#">Tools</a></li>
+                                            </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                    <ul class="social-icons">
+                                            <li>
+                                                    <a href="#"><i class="icon-twitter-with-circle"></i></a>
+                                                    <a href="#"><i class="icon-facebook-with-circle"></i></a>
+                                                    <a href="#"><i class="icon-instagram-with-circle"></i></a>
+                                                    <a href="#"><i class="icon-linkedin-with-circle"></i></a>
+                                            </li>
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+		</footer>                
+                <!-- END footer -->	
+            </div>
+            <!-- END page -->
+        </div>
+        <!-- END wrapper -->
+        
+    </body>
+</html>

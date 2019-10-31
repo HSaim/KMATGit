@@ -1,7 +1,7 @@
 <%-- 
     Document   : ContactUs
     Created on : Aug 16, 2016, 10:42:31 AM
-    Author     : Saim
+    Author     : Habiba Saim
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -29,9 +29,4 @@
              <%-- adds Top Slider, login functions --%>
              <jsp:include page="includes/js.jsp" /> 
 
-             <%-- Includes footer 
-             <jsp:include page="includes/footer.jsp" />
-
-    </body>
-</html>
---%>
+             <%-- footer.jspf integrates here --%>

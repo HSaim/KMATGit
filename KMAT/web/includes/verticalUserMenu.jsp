@@ -1,22 +1,22 @@
 <%-- 
-    Document   : sidebarUser
+    Document   : verticalUserMenu
     Created on : Aug 2, 2016, 11:41:03 AM
     Author     : Habiba Saim
 --%>
-
+<!-- Adds vertical menu on user's home page -->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- <link rel="stylesheet" type="text/css" href="css/sidebarMenu.css">-->
 <%-- Sidebar Menu Starts 
 <div id = "nav" >--%>
-<div id = "container"> 
+<nav id = "container"> 
     <div id = "navbar">
         <ul >
             <li class = "user">
                 <a href = "AddUser">User</a>  
             </li>
 
-            <li class =  "rolls">
-                <a href="#">Roles</a>
+            <li class =  "role">
+                <a href="AddRoles">Roles</a>
                 <!-- Provision to add sub menu   -->
                 <ul>
                    <li><a href="#">Sub-Item 1 a</a></li>
@@ -24,31 +24,28 @@
 
             </li>
 
-            <li>
-                <a href = "#addLadder">Composition Ladder</a>
+            <li class = "ladder">
+                <a href = "AddLadder">Composition Ladder</a>
             </li>
 
-            <li>
-                <a>Concept Map</a>
+            <li class = "map">
+                <a href = "AddMap">Concept Map</a>
             </li>
 
-            <li >
-                <a>Tools</a>
+            <li class = "tool">
+                <a href = "AddTools">Tools</a>
             </li>
 
             <li class = "resource" >
-                <a href = "AddResource">
-                    Resources
-                </a>
+                <a href = "AddResource">Resources</a>                   
             </li>      
 
-            <li>
-                <a>Lists</a>
-            </li>
-
+            <li class = "list">
+                <a href = "AddList">Lists</a>
+            </li>            
          </ul>   
     </div>
-</div>
+</nav >
 <!-- Script for submenu to be diplayed and hidden on mouse click -->
 <script>
     $(document).ready(function () {

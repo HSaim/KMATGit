@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <!-- Servlet: LoginController-->
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
+    </servlet>    
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Servlet: RequestDispathcher -->
+    <servlet>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <servlet-class>controller.RequestDispatcher</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-users-KE</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-users</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/register-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-roles</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-roles-hierarchy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-role</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-roles-hierarchy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-composition-ladders</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-composition-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-composition-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-composition-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-process-ladders</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-process-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-process-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-process-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-process-ladder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-concept-map</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-concept-maps</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-a-concept-map</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-concept-map</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-tool</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-resource</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/add-tool</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-resources</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/view-tools</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/my-profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/change-password</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-resource</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestDispatcher</servlet-name>
+        <url-pattern>/edit-tool</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>GetUsersController</servlet-name>
+        <servlet-class>controller.GetUsersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetUsersController</servlet-name>
+        <url-pattern>/GetUsersController</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>RunToolController</servlet-name>
+        <url-pattern>/RunToolController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RunToolController</servlet-name>
+        <servlet-class>controller.RunToolController</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>InsertLadderController</servlet-name>
+        <servlet-class>controller.InsertLadderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetLaddersController</servlet-name>
+        <servlet-class>controller.GetLaddersController</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>InsertLadderController</servlet-name>
+        <url-pattern>/InsertLadderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetLaddersController</servlet-name>
+        <url-pattern>/GetLaddersController</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>InsertResourceController</servlet-name>
+        <servlet-class>controller.InsertResourceController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertResourceController</servlet-name>
+        <url-pattern>/insert-resource</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        
+        <servlet-name>GetResourceController</servlet-name>
+        <servlet-class>controller.GetResourceController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetResourceController</servlet-name>
+        <url-pattern>/GetResourceController</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>InsertToolController</servlet-name>
+        <servlet-class>controller.InsertToolController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertToolController</servlet-name>
+        <url-pattern>/insert-tool</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        
+        <servlet-name>GetToolController</servlet-name>
+        <servlet-class>controller.GetToolController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetToolController</servlet-name>
+        <url-pattern>/GetToolController</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>SendEmailController</servlet-name>
+        <servlet-class>controller.SendEmailController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendEmailController</servlet-name>
+        <url-pattern>/SendEmailController</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>Home.jsp</welcome-file>
+    </welcome-file-list>
+    <!-- START: Footer -->
+    <jsp-config>
+        <jsp-property-group>
+            <description>header and footer settings</description>
+            <url-pattern>/WEB-INF/view/*</url-pattern>
+            <url-pattern>/SignUp.jsp</url-pattern>
+            <url-pattern>/Home.jsp</url-pattern>
+            <url-pattern>/Contact.jsp</url-pattern>
+            <url-pattern>/AboutKMAT.jsp</url-pattern>
+            <url-pattern>/NewProcessLadder.jsp</url-pattern>
+            <url-pattern>/RecoverAccount.jsp</url-pattern>
+            <url-pattern>/ProcessLadder.jsp</url-pattern>
+            <url-pattern>/CompositionLadder.jsp</url-pattern>
+            <url-pattern>/ConceptMap.jsp</url-pattern>
+
+            <url-pattern>/Resources.jsp</url-pattern>
+            <url-pattern>/Tools.jsp</url-pattern>
+            <url-pattern>/Users.jsp</url-pattern>
+
+            <!--
+            <url-pattern>/News.jsp</url-pattern>            
+            <url-pattern>/LoginAgain.jsp</url-pattern>
+            <url-pattern>/Map.jsp</url-pattern>
+            <url-pattern>/AboutUs.jsp</url-pattern-->
+            <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
+        </jsp-property-group>
+    </jsp-config>
+    <!--END: Footer -->
+    
+    <!-- START: SMTP Settings -->
+    <context-param>
+        <param-name>host</param-name>
+        <param-value>smtp.gmail.com</param-value>
+    </context-param>
+    <context-param>
+        <param-name>port</param-name>
+        <param-value>587</param-value>
+    </context-param>
+    <context-param>
+        <param-name>user</param-name>
+        <param-value>kmat.main@gmail.com</param-value>
+    </context-param>
+    <context-param>
+        <param-name>pass</param-name>
+        <param-value>kmatadmin123</param-value>
+    </context-param>
+    <!-- END: SMTP Settings -->
+    
+    <!-- START: File upload location for resources -->
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
+            c:\apache-tomcat-5.5.29\webapps\data\resource\
+        </param-value>
+    </context-param>
+    <!-- END: File upload location for resources -->
+        <!-- START: File upload location for tools -->
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload-tools</param-name>
+        <param-value>
+            c:\apache-tomcat-5.5.29\webapps\data\tools\
+        </param-value>
+    </context-param>
+    <!-- END: File upload location for resources -->
+
+</web-app>

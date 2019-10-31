@@ -50,3 +50,8 @@ build/
 nbbuild/
 nbdist/
 */nbproject/private/
+*.class
+
+
+
+

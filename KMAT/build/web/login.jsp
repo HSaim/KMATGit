@@ -29,7 +29,7 @@
 
             <%-- Login section starts --%>
             <div  id ="Login" align="center">
-                 <form method="post" action="ValidateLogin.jsp" >    
+                 <form method="post" action="LoginController" >    
 
                      <table style="width:auto"align="center">
                          <tr>
@@ -83,9 +83,4 @@
              <%-- adds Top Slider, login functions --%>
              <jsp:include page="includes/js.jsp" />
 
-             <%-- Includes footer
-             <jsp:include page="includes/footer.jsp" />
-
-    </body>
-</html>
- --%>
+             <%-- footer.jspf integrates here --%>

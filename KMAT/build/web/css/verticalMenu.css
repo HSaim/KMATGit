@@ -110,6 +110,8 @@ span[class ^= "icon"]{
 #container {
     position: relative;
     margin-top: 0;
+    display: block;
+    height: 100%;
 }
 #navbar {
     float: left;
@@ -166,7 +168,12 @@ span[class ^= "icon"]{
 }
 
 body.adduser #navbar ul li.user > a,
-body.addresource #navbar ul li.resource > a{
+body.addroles #navbar ul li.role > a,
+body.addladder #navbar ul li.ladder > a,
+body.addmap #navbar ul li.map > a,
+body.addtool #navbar ul li.tool > a,
+body.addresource #navbar ul li.resource > a,
+body.addlist #navbar ul li.list > a {
     background: #CD853F;
     color: #fff;
 }

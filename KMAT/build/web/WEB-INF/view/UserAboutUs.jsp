@@ -4,6 +4,17 @@
     Author     : Saim
 --%>
 
+<!-- Code to prevent user from accessing any user specific page after logout/session-end -->
+<%
+    response.setHeader("Pragma","no-cache"); 
+    response.setHeader("Cache-Control","no-store");
+    response.setDateHeader("Expires",-1);
+    if(session.getAttribute("CurrentSessionUser")==null){
+    
+        response.sendRedirect("login.jsp");
+    }
+%> 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,7 +38,7 @@
             
             <h1>User's About Us Page is under construction</h1>
             
-            <%-- Sidebar Menu Starts --%>
+            <%-- Sidebar Menu Starts 
             <jsp:include page="../../includes/verticalUserMenu.jsp" />       
             <%-- Sidebar Menu Ends --%>
             
@@ -36,9 +47,4 @@
              <%-- adds Top Slider, login functions --%>
              <jsp:include page="../../includes/js.jsp" /> 
 
-             <%-- Includes footer
-             <jsp:include page="includes/footer.jsp" />
-
-    </body>
-</html>
- --%>
+             <%-- footer.jspf integrates here --%>

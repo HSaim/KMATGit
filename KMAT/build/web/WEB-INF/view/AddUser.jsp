@@ -6,6 +6,17 @@
     Signup Form
 --%>
 
+<!-- Code to prevent user from accessing any user specific page after logout/session-end -->
+<%
+    response.setHeader("Pragma","no-cache"); 
+    response.setHeader("Cache-Control","no-store");
+    response.setDateHeader("Expires",-1);
+    if(session.getAttribute("CurrentSessionUser")==null){
+    
+        response.sendRedirect("login.jsp");
+    }
+%> 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +25,24 @@
         <link rel="stylesheet" type="text/css" href="css/mainStyle.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <title>Add User</title>
+        
+         <!-- To validate email address-->
+        <script>
+            function verifyEmail(){
+                var status = true;     
+                var emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+                    if (document.signup.p_email.value.search(emailRegEx) == -1) {
+                         alert("Please enter a valid email address in Primary Email field");                      
+                         status = false;
+                    }
+
+                    if (document.signup.s_email.value.search(emailRegEx) == -1 && document.signup.s_email.value!="") {
+                         alert("Please enter a valid email address in Secondary Email field");                   
+                         status = false;
+                    }
+                return status;
+            }
+        </script>
     </head>
     
     <body class="adduser" >
@@ -34,7 +63,7 @@
             <%-- Add User Block Starts --%>      
 
             <div  id ="Login" align="center">
-                <form method="post" action="InsertUser.jsp">
+                <form name =  "signup" method="post" action="InsertUserController" onSubmit="return verifyEmail()">
                     <input type="hidden" name="hidden" value="AddUser"> <!-- For distinction of SignUp and AddUser pages-->
                     <table style="width:auto"align="center">
                         <tr>
@@ -49,12 +78,8 @@
                 </form>
             </div>       
             <%-- Add User Block Ends --%>
-           <%-- adds Top Slider, login functions --%>
+            
+            <%-- adds Top Slider, login functions --%>
             <jsp:include page="../../includes/js.jsp" /> 
-
-            <%-- Includes footer 
-            <jsp:include page="includes/footer.jsp" />
-
-    </body>
-</html>
---%>
+            
+            <%-- footer.jspf integrates here --%>
